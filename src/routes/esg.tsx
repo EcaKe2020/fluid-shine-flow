@@ -29,7 +29,7 @@ export const Route = createFileRoute("/esg")({
       },
     ],
   }),
-  component: Esg;
+  component: Esg,
 });
 
 const PILLARS = [
