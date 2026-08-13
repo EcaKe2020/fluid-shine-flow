@@ -31,7 +31,7 @@ export const Route = createFileRoute("/tools")({
       },
     ],
   }),
-  component: Tools;
+  component: Tools,
 });
 
 function Field({
