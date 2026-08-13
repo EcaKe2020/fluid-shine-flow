@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as EsgRouteImport } from './routes/esg'
 import { Route as IndustriesRouteImport } from './routes/industries'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as ServicesRouteImport } from './routes/services'
@@ -27,6 +28,11 @@ const IndexRoute = IndexRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EsgRoute = EsgRouteImport.update({
+  id: '/esg',
+  path: '/esg',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndustriesRoute = IndustriesRouteImport.update({
@@ -68,6 +74,7 @@ const SolutionsSlugRoute = SolutionsSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/esg': typeof EsgRoute
   '/industries': typeof IndustriesRoute
   '/projects': typeof ProjectsRoute
   '/services': typeof ServicesRoute
@@ -79,6 +86,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/esg': typeof EsgRoute
   '/industries': typeof IndustriesRoute
   '/projects': typeof ProjectsRoute
   '/services': typeof ServicesRoute
@@ -91,6 +99,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/esg': typeof EsgRoute
   '/industries': typeof IndustriesRoute
   '/projects': typeof ProjectsRoute
   '/services': typeof ServicesRoute
@@ -104,6 +113,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/esg'
     | '/industries'
     | '/projects'
     | '/services'
@@ -115,6 +125,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/esg'
     | '/industries'
     | '/projects'
     | '/services'
@@ -126,6 +137,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/esg'
     | '/industries'
     | '/projects'
     | '/services'
@@ -138,6 +150,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  EsgRoute: typeof EsgRoute
   IndustriesRoute: typeof IndustriesRoute
   ProjectsRoute: typeof ProjectsRoute
   ServicesRoute: typeof ServicesRoute
@@ -161,6 +174,13 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/esg': {
+      id: '/esg'
+      path: '/esg'
+      fullPath: '/esg'
+      preLoaderRoute: typeof EsgRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/industries': {
@@ -218,6 +238,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  EsgRoute: EsgRoute,
   IndustriesRoute: IndustriesRoute,
   ProjectsRoute: ProjectsRoute,
   ServicesRoute: ServicesRoute,
