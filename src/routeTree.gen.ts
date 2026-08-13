@@ -14,6 +14,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as EsgRouteImport } from './routes/esg'
 import { Route as IndustriesRouteImport } from './routes/industries'
 import { Route as InsightsRouteImport } from './routes/insights'
+import { Route as PriceListRouteImport } from './routes/price-list'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as TeamRouteImport } from './routes/team'
@@ -44,6 +45,11 @@ const IndustriesRoute = IndustriesRouteImport.update({
 const InsightsRoute = InsightsRouteImport.update({
   id: '/insights',
   path: '/insights',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PriceListRoute = PriceListRouteImport.update({
+  id: '/price-list',
+  path: '/price-list',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProjectsRoute = ProjectsRouteImport.update({
@@ -83,6 +89,7 @@ export interface FileRoutesByFullPath {
   '/esg': typeof EsgRoute
   '/industries': typeof IndustriesRoute
   '/insights': typeof InsightsRoute
+  '/price-list': typeof PriceListRoute
   '/projects': typeof ProjectsRoute
   '/services': typeof ServicesRoute
   '/team': typeof TeamRoute
@@ -96,6 +103,7 @@ export interface FileRoutesByTo {
   '/esg': typeof EsgRoute
   '/industries': typeof IndustriesRoute
   '/insights': typeof InsightsRoute
+  '/price-list': typeof PriceListRoute
   '/projects': typeof ProjectsRoute
   '/services': typeof ServicesRoute
   '/team': typeof TeamRoute
@@ -110,6 +118,7 @@ export interface FileRoutesById {
   '/esg': typeof EsgRoute
   '/industries': typeof IndustriesRoute
   '/insights': typeof InsightsRoute
+  '/price-list': typeof PriceListRoute
   '/projects': typeof ProjectsRoute
   '/services': typeof ServicesRoute
   '/team': typeof TeamRoute
@@ -125,6 +134,7 @@ export interface FileRouteTypes {
     | '/esg'
     | '/industries'
     | '/insights'
+    | '/price-list'
     | '/projects'
     | '/services'
     | '/team'
@@ -138,6 +148,7 @@ export interface FileRouteTypes {
     | '/esg'
     | '/industries'
     | '/insights'
+    | '/price-list'
     | '/projects'
     | '/services'
     | '/team'
@@ -151,6 +162,7 @@ export interface FileRouteTypes {
     | '/esg'
     | '/industries'
     | '/insights'
+    | '/price-list'
     | '/projects'
     | '/services'
     | '/team'
@@ -165,6 +177,7 @@ export interface RootRouteChildren {
   EsgRoute: typeof EsgRoute
   IndustriesRoute: typeof IndustriesRoute
   InsightsRoute: typeof InsightsRoute
+  PriceListRoute: typeof PriceListRoute
   ProjectsRoute: typeof ProjectsRoute
   ServicesRoute: typeof ServicesRoute
   TeamRoute: typeof TeamRoute
@@ -208,6 +221,13 @@ declare module '@tanstack/react-router' {
       path: '/insights'
       fullPath: '/insights'
       preLoaderRoute: typeof InsightsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/price-list': {
+      id: '/price-list'
+      path: '/price-list'
+      fullPath: '/price-list'
+      preLoaderRoute: typeof PriceListRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/projects': {
@@ -261,6 +281,7 @@ const rootRouteChildren: RootRouteChildren = {
   EsgRoute: EsgRoute,
   IndustriesRoute: IndustriesRoute,
   InsightsRoute: InsightsRoute,
+  PriceListRoute: PriceListRoute,
   ProjectsRoute: ProjectsRoute,
   ServicesRoute: ServicesRoute,
   TeamRoute: TeamRoute,
