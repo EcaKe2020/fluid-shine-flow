@@ -1,13 +1,20 @@
 import { Link } from "@tanstack/react-router";
-import { Menu, Phone, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { ChevronDown, Menu, Phone, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import logo from "@/assets/eca-logo.png.asset.json";
 import { COMPANY, shopUrl, SOLUTIONS } from "@/lib/eca";
 
-const NAV_LINKS = [
+const INDUSTRY_LINKS = [
+  "Internet service providers",
+  "Contractors and installers",
+  "Corporates and integrators",
+  "Schools and institutions",
+  "Government and county projects",
+  "Data centres and developers",
+] as const;
+
+const SIMPLE_LINKS = [
   { to: "/about", label: "Company" },
-  { to: "/solutions", label: "Solutions" },
-  { to: "/industries", label: "Industries" },
   { to: "/tools", label: "Tools" },
   { to: "/projects", label: "Projects" },
   { to: "/insights", label: "Insights" },
@@ -15,12 +22,62 @@ const NAV_LINKS = [
 ] as const;
 
 const MOBILE_NAV = [
-  ...NAV_LINKS,
+  { to: "/about", label: "Company" },
+  { to: "/solutions", label: "Solutions" },
+  { to: "/industries", label: "Industries" },
+  { to: "/tools", label: "Tools" },
+  { to: "/projects", label: "Projects" },
+  { to: "/insights", label: "Insights" },
+  { to: "/price-list", label: "Price List" },
   { to: "/services", label: "Services" },
   { to: "/team", label: "Team" },
   { to: "/esg", label: "ESG" },
   { to: "/contact", label: "Contact" },
 ] as const;
+
+function MegaMenu({
+  label,
+  children,
+}: {
+  label: string;
+  children: (close: () => void) => React.ReactNode;
+}) {
+  const [open, setOpen] = useState(false);
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const show = () => {
+    if (timer.current) clearTimeout(timer.current);
+    setOpen(true);
+  };
+  const hide = () => {
+    if (timer.current) clearTimeout(timer.current);
+    timer.current = setTimeout(() => setOpen(false), 140);
+  };
+
+  return (
+    <div className="relative" onMouseEnter={show} onMouseLeave={hide}>
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+        className="inline-flex items-center gap-1 whitespace-nowrap text-sm font-medium text-white/80 transition-colors hover:text-white"
+      >
+        {label}
+        <ChevronDown className={`size-3.5 transition-transform ${open ? "rotate-180" : ""}`} />
+      </button>
+      {open ? (
+        <div className="absolute left-1/2 top-[calc(100%+0.75rem)] z-50 w-[24rem] -translate-x-1/2">
+          <div
+            className="bg-[#0B0C10] p-3"
+            style={{ border: "1px solid rgba(255,255,255,0.1)" }}
+          >
+            <div className="grid gap-1">{children(() => setOpen(false))}</div>
+          </div>
+        </div>
+      ) : null}
+    </div>
+  );
+}
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -44,7 +101,58 @@ export function Header() {
 
       {/* Nav links center */}
       <nav className="mx-auto hidden items-center gap-7 lg:flex">
-        {NAV_LINKS.map((item) => (
+        <Link
+          to="/about"
+          activeProps={{ className: "text-[#00D4FF]" }}
+          className="whitespace-nowrap text-sm font-medium text-white/80 transition-colors hover:text-white"
+        >
+          Company
+        </Link>
+
+        <MegaMenu label="Solutions">
+          {(close) => (
+            <>
+              {SOLUTIONS.map((s) => (
+                <Link
+                  key={s.slug}
+                  to="/solutions/$slug"
+                  params={{ slug: s.slug }}
+                  onClick={close}
+                  className="px-3 py-2.5 transition-colors hover:bg-white/5"
+                >
+                  <span className="block text-sm font-semibold text-white">{s.title}</span>
+                  <span className="mt-0.5 block text-xs text-white/50">{s.points.join(" · ")}</span>
+                </Link>
+              ))}
+              <Link
+                to="/solutions"
+                onClick={close}
+                className="mt-1 px-3 py-2 text-xs font-bold uppercase tracking-[0.14em] text-[#00D4FF] transition-colors hover:bg-white/5"
+              >
+                All solutions
+              </Link>
+            </>
+          )}
+        </MegaMenu>
+
+        <MegaMenu label="Industries">
+          {(close) => (
+            <div className="grid grid-cols-2 gap-1">
+              {INDUSTRY_LINKS.map((label) => (
+                <Link
+                  key={label}
+                  to="/industries"
+                  onClick={close}
+                  className="px-3 py-2 text-sm font-medium text-white/80 transition-colors hover:bg-white/5 hover:text-[#00D4FF]"
+                >
+                  {label}
+                </Link>
+              ))}
+            </div>
+          )}
+        </MegaMenu>
+
+        {SIMPLE_LINKS.filter((n) => n.to !== "/about").map((item) => (
           <Link
             key={item.to}
             to={item.to}
