@@ -1,14 +1,7 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, ArrowUpRight, ChevronRight, MessageCircle } from "lucide-react";
+import { ArrowRight, ArrowUpRight, MessageCircle } from "lucide-react";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { shopUrl, WHATSAPP_URL } from "@/lib/eca";
-
-/** Small caps section label used above every H2. */
-export function Label({ children }: { children: ReactNode }) {
-  return (
-    <p className="mb-3 text-[0.6875rem] font-bold uppercase tracking-[0.18em] text-ember">{children}</p>
-  );
-}
 
 /** Counts a numeric value up once it scrolls into view. */
 export function CountUp({
@@ -57,42 +50,6 @@ export function CountUp({
   );
 }
 
-export function Breadcrumbs({ items }: { items: { label: string; to?: string }[] }) {
-  return (
-    <>
-      <nav aria-label="Breadcrumb" className="mb-5 flex flex-wrap items-center gap-1.5 text-xs text-muted-foreground">
-        <Link to="/" className="hover:text-primary">
-          Home
-        </Link>
-        {items.map((item) => (
-          <span key={item.label} className="flex items-center gap-1.5">
-            <ChevronRight className="size-3" />
-            {item.to ? (
-              <Link to={item.to} className="hover:text-primary">
-                {item.label}
-              </Link>
-            ) : (
-              <span className="text-foreground/80">{item.label}</span>
-            )}
-          </span>
-        ))}
-      </nav>
-      <Jsonld
-        data={{
-          "@context": "https://schema.org",
-          "@type": "BreadcrumbList",
-          itemListElement: [{ label: "Home", to: "/" }, ...items].map((item, i) => ({
-            "@type": "ListItem",
-            position: i + 1,
-            name: item.label,
-            ...(item.to ? { item: `https://ecanetworks.co.ke${item.to}` } : {}),
-          })),
-        }}
-      />
-    </>
-  );
-}
-
 export function Section({
   children,
   className = "",
@@ -103,7 +60,10 @@ export function Section({
   id?: string;
 }) {
   return (
-    <section id={id} className={`mx-auto w-full max-w-6xl px-5 py-16 sm:py-24 ${className}`}>
+    <section
+      id={id}
+      className={`section-pad py-20 ${className}`}
+    >
       {children}
     </section>
   );
@@ -150,8 +110,7 @@ export function Reveal({
 
 export function Eyebrow({ children }: { children: ReactNode }) {
   return (
-    <p className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-primary">
-      <span className="size-1.5 rounded-full bg-ember" />
+    <p className="mb-4 text-xs font-bold uppercase tracking-[0.18em] text-[#00D4FF]">
       {children}
     </p>
   );
@@ -168,7 +127,7 @@ export function Heading({
 }) {
   return (
     <Tag
-      className={`text-balance text-3xl font-semibold leading-tight sm:text-4xl lg:text-[2.75rem] ${className}`}
+      className={`text-balance text-3xl font-bold leading-tight tracking-[-0.02em] text-[#1A1A1A] sm:text-4xl lg:text-[2.5rem] ${className}`}
     >
       {children}
     </Tag>
@@ -177,7 +136,7 @@ export function Heading({
 
 export function Lead({ children, className = "" }: { children: ReactNode; className?: string }) {
   return (
-    <p className={`max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg ${className}`}>
+    <p className={`max-w-2xl text-pretty text-base leading-relaxed text-[#666666] sm:text-lg ${className}`}>
       {children}
     </p>
   );
@@ -187,7 +146,7 @@ export function QuoteButton({ label = "Request a quote" }: { label?: string }) {
   return (
     <Link
       to="/contact"
-      className="ink-fill inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-lift)] transition hover:brightness-110 dark:text-background"
+      className="btn-radius inline-flex items-center gap-2 bg-[#00D4FF] px-6 py-3 text-sm font-semibold text-[#0B0C10] transition-opacity hover:opacity-90"
     >
       {label}
       <ArrowRight className="size-4" />
@@ -207,12 +166,10 @@ export function ShopButton({
       href={shopUrl(medium)}
       target="_blank"
       rel="noreferrer"
-      className="gloss gloss-hover inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-foreground"
+      className="inline-flex items-center gap-2 text-sm font-semibold text-[#1A1A1A] transition-colors hover:text-[#00D4FF]"
     >
-      <span className="relative z-10 flex items-center gap-2">
-        {label}
-        <ArrowUpRight className="size-4 text-ember" />
-      </span>
+      {label}
+      <ArrowUpRight className="size-4 text-[#00D4FF]" />
     </a>
   );
 }
@@ -223,7 +180,7 @@ export function WhatsAppButton({ label = "Chat with a technician" }: { label?: s
       href={WHATSAPP_URL}
       target="_blank"
       rel="noreferrer"
-      className="inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold text-primary underline-offset-4 hover:underline"
+      className="inline-flex items-center gap-2 text-sm text-[#666666] transition-colors hover:text-[#00D4FF]"
     >
       <MessageCircle className="size-4" />
       {label}
@@ -231,18 +188,19 @@ export function WhatsAppButton({ label = "Chat with a technician" }: { label?: s
   );
 }
 
+/** Flat panel — no card, no shadow, no border. Just a div. */
 export function Panel({
   children,
   className = "",
-  hover = true,
+  hover = false,
 }: {
   children: ReactNode;
   className?: string;
   hover?: boolean;
 }) {
   return (
-    <div className={`gloss ${hover ? "gloss-hover" : ""} rounded-3xl p-6 ${className}`}>
-      <div className="relative z-10">{children}</div>
+    <div className={className}>
+      {children}
     </div>
   );
 }
@@ -255,20 +213,16 @@ export function CtaBand({
   body?: string;
 }) {
   return (
-    <Section>
-      <Reveal>
-        <div className="gloss rounded-[2rem] px-6 py-12 text-center sm:px-14">
-          <div className="relative z-10 mx-auto max-w-2xl">
-            <Heading>{title}</Heading>
-            <Lead className="mx-auto mt-4">{body}</Lead>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <QuoteButton />
-              <ShopButton />
-              <WhatsAppButton />
-            </div>
-          </div>
+    <Section style={{ borderTop: "1px solid #E5E5E5" } as React.CSSProperties}>
+      <div className="max-w-2xl">
+        <Heading>{title}</Heading>
+        <Lead className="mt-4">{body}</Lead>
+        <div className="mt-8 flex flex-wrap items-center gap-4">
+          <QuoteButton />
+          <ShopButton />
+          <WhatsAppButton />
         </div>
-      </Reveal>
+      </div>
     </Section>
   );
 }
