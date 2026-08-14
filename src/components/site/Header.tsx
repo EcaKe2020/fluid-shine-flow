@@ -113,7 +113,7 @@ export function Header() {
           <Link
             to="/about"
             activeProps={{ className: "text-primary" }}
-            className="rounded-full px-3.5 py-1.5 text-sm font-medium text-foreground/75 transition hover:text-foreground"
+            className="whitespace-nowrap rounded-full px-3.5 py-1.5 text-sm font-medium text-foreground/75 transition hover:text-foreground"
           >
             Company
           </Link>
@@ -168,7 +168,7 @@ export function Header() {
               key={item.to}
               to={item.to}
               activeProps={{ className: "text-primary" }}
-              className="rounded-full px-3.5 py-1.5 text-sm font-medium text-foreground/75 transition hover:text-foreground"
+              className="whitespace-nowrap rounded-full px-3.5 py-1.5 text-sm font-medium text-foreground/75 transition hover:text-foreground"
             >
               {item.label}
             </Link>
@@ -178,7 +178,7 @@ export function Header() {
         <div className="ml-auto flex items-center gap-2 lg:ml-4">
           <a
             href={COMPANY.phoneHref}
-            className="hidden items-center gap-1.5 text-sm font-semibold text-foreground/80 hover:text-primary lg:inline-flex"
+            className="hidden items-center gap-1.5 whitespace-nowrap text-sm font-semibold text-foreground/80 hover:text-primary xl:inline-flex"
           >
             <Phone className="size-4 text-ember" />
             {COMPANY.phone}
@@ -188,13 +188,13 @@ export function Header() {
             href={shopUrl("nav-button")}
             target="_blank"
             rel="noreferrer"
-            className="hidden rounded-full border border-ember/50 px-4 py-2.5 text-sm font-semibold text-ember transition hover:bg-ember/10 sm:inline-flex"
+            className="hidden whitespace-nowrap rounded-full border border-ember/50 px-4 py-2.5 text-sm font-semibold text-ember transition hover:bg-ember/10 sm:inline-flex"
           >
             Shop online
           </a>
           <Link
             to="/contact"
-            className="ink-fill hidden rounded-full px-4 py-2.5 text-sm font-semibold text-primary-foreground transition hover:brightness-110 md:inline-flex dark:text-background"
+            className="ink-fill hidden whitespace-nowrap rounded-full px-4 py-2.5 text-sm font-semibold text-primary-foreground transition hover:brightness-110 md:inline-flex dark:text-background"
           >
             Request a quote
           </Link>
