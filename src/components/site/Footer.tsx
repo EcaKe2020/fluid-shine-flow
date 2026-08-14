@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import logo from "@/assets/eca-logo.png.asset.json";
-import { COMPANY, SHOP_URL, SOLUTIONS, WHATSAPP_URL } from "@/lib/eca";
+import { COMPANY, shopUrl, SOLUTIONS, WHATSAPP_URL } from "@/lib/eca";
 
 export function Footer() {
   return (
