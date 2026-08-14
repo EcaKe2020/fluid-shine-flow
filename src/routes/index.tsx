@@ -100,6 +100,9 @@ function Home() {
           },
           areaServed: { "@type": "Country", name: "Kenya" },
           openingHours: "Mo-Fr 08:00-17:00",
+          foundingDate: String(COMPANY.founded),
+          priceRange: "KSh",
+          brand: BRANDS.map((b) => ({ "@type": "Brand", name: b })),
           sameAs: ["https://ecanetworks.com"],
         }}
       />
