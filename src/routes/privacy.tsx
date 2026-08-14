@@ -66,8 +66,8 @@ function Privacy() {
           Plain language, <span className="ink-text">no fine print games</span>
         </Heading>
         <Lead className="mt-5">
-          {COMPANY.name}, {COMPANY.address}. Questions about anything on this page go to{" "}
-          {COMPANY.email} or {COMPANY.phone}.
+          {COMPANY.name}, {COMPANY.address}. Questions about anything on this page go to {COMPANY.email} or{" "}
+          {COMPANY.phone}.
         </Lead>
       </div>
 

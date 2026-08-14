@@ -75,10 +75,7 @@ function BomCalculator() {
   }, [outlets, avgRun, cords]);
 
   const lines = [
-    {
-      label: `${category} cable`,
-      value: `${result.metres} m, about ${result.boxes} boxes of 305 m`,
-    },
+    { label: `${category} cable`, value: `${result.metres} m, about ${result.boxes} boxes of 305 m` },
     { label: "Keystone jacks", value: `${result.keystones} pcs` },
     { label: "Faceplates, dual gang", value: `${result.faceplates} pcs` },
     { label: "24 port patch panels", value: `${result.panels} pcs` },
@@ -94,8 +91,7 @@ function BomCalculator() {
         <h2 className="text-lg font-semibold text-foreground">Project bill of materials</h2>
       </div>
       <p className="mt-2 text-sm text-muted-foreground">
-        A first pass estimate for a copper installation, including a twelve percent allowance for
-        routing and waste.
+        A first pass estimate for a copper installation, including a twelve percent allowance for routing and waste.
       </p>
 
       <div className="mt-6 grid gap-4 sm:grid-cols-2">
@@ -129,11 +125,7 @@ function BomCalculator() {
           />
         </Field>
         <Field label="Category">
-          <select
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            className={inputClass}
-          >
+          <select value={category} onChange={(e) => setCategory(e.target.value)} className={inputClass}>
             <option>CAT6</option>
             <option>CAT6A</option>
             <option>CAT6 shielded</option>
@@ -152,8 +144,8 @@ function BomCalculator() {
 
       {avgRun > 85 ? (
         <p className="mt-5 rounded-xl bg-ember/15 px-4 py-3 text-xs text-foreground/80">
-          A permanent link is limited to 90 metres of solid cable. At this run length, consider a
-          second cabinet or a fibre backbone to the far end.
+          A permanent link is limited to 90 metres of solid cable. At this run length, consider a second cabinet or a
+          fibre backbone to the far end.
         </p>
       ) : null}
 
@@ -163,9 +155,7 @@ function BomCalculator() {
           onClick={() => {
             const text = lines.map((l) => `${l.label}: ${l.value}`).join("\n");
             void navigator.clipboard.writeText(text);
-            toast.success("Bill of materials copied", {
-              description: "Paste it into your quote request.",
-            });
+            toast.success("Bill of materials copied", { description: "Paste it into your quote request." });
           }}
           className="gloss gloss-hover inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold"
         >
@@ -203,8 +193,7 @@ function CableSelector() {
       return {
         pick: "Riser rated indoor outdoor fibre",
         why: "A vertical run between floors needs flame rating plus enough strength to hang its own weight.",
-        watch:
-          "Support the cable at each floor rather than letting the full drop hang from the top.",
+        watch: "Support the cable at each floor rather than letting the full drop hang from the top.",
       };
     }
     if (span <= 80 && poles !== "shared with power") {
@@ -228,8 +217,8 @@ function CableSelector() {
         <h2 className="text-lg font-semibold text-foreground">Fibre cable selector</h2>
       </div>
       <p className="mt-2 text-sm text-muted-foreground">
-        Answer four questions and the tool names the cable family the route calls for, plus the
-        mistake it most often causes.
+        Answer four questions and the tool names the cable family the route calls for, plus the mistake it most often
+        causes.
       </p>
 
       <div className="mt-6 grid gap-4 sm:grid-cols-2">
@@ -252,22 +241,13 @@ function CableSelector() {
           />
         </Field>
         <Field label="Pole route">
-          <select
-            value={poles}
-            onChange={(e) => setPoles(e.target.value)}
-            className={inputClass}
-            disabled={route !== "aerial"}
-          >
+          <select value={poles} onChange={(e) => setPoles(e.target.value)} className={inputClass} disabled={route !== "aerial"}>
             <option>shared with power</option>
             <option>dedicated telecom poles</option>
           </select>
         </Field>
         <Field label="Fibre count">
-          <select
-            value={cores}
-            onChange={(e) => setCores(Number(e.target.value))}
-            className={inputClass}
-          >
+          <select value={cores} onChange={(e) => setCores(Number(e.target.value))} className={inputClass}>
             {[2, 4, 12, 24, 48, 96, 144].map((n) => (
               <option key={n} value={n}>
                 {n} core
@@ -279,9 +259,7 @@ function CableSelector() {
 
       <div className="mt-7 space-y-4 rounded-2xl bg-primary/8 p-5">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-primary">
-            Recommended family
-          </p>
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-primary">Recommended family</p>
           <p className="mt-1 text-base font-semibold">{advice.pick}</p>
         </div>
         <p className="text-sm leading-relaxed text-muted-foreground">{advice.why}</p>
@@ -289,8 +267,7 @@ function CableSelector() {
           <span className="font-semibold">Watch for this.</span> {advice.watch}
         </p>
         <p className="text-xs text-muted-foreground">
-          Sized at {cores} core. Leave spare fibres for growth, since a second span costs far more
-          than extra cores today.
+          Sized at {cores} core. Leave spare fibres for growth, since a second span costs far more than extra cores today.
         </p>
       </div>
 
@@ -312,9 +289,8 @@ function Tools() {
             Do the rough numbers yourself, <span className="ink-text">then let us check them</span>
           </Heading>
           <Lead className="mt-5">
-            These calculators give an estimate good enough for a budget conversation. They are not a
-            substitute for a site survey, and the technical desk will review anything before it
-            becomes an order.
+            These calculators give an estimate good enough for a budget conversation. They are not a substitute for a site
+            survey, and the technical desk will review anything before it becomes an order.
           </Lead>
         </div>
 

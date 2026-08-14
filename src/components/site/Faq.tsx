@@ -19,22 +19,23 @@ export function FaqList({ items }: { items: readonly Item[] }) {
           })),
         }}
       />
-      <div className="space-y-4">
-        {items.map((item) => (
-          <details key={item.q} className="faq-item" data-testid="faq-item">
-            <summary className="flex cursor-pointer items-start justify-between gap-4 text-base font-semibold text-[#1A1A1A] p-4">
-              {item.q}
-              <span className="mt-0.5 shrink-0 text-xl font-light text-[#00D4FF] transition-transform group-open:rotate-45">
-                +
-              </span>
-            </summary>
-            <div className="mt-3 px-4 pb-4 space-y-3 text-sm leading-relaxed text-[#666666]">
-              <p className="font-medium text-[#1A1A1A]">{item.a}</p>
-              {item.long ? <p>{item.long}</p> : null}
-            </div>
-          </details>
-        ))}
-      </div>
+      {items.map((item) => (
+        <details
+          key={item.q}
+          className="group border-b border-[#E5E5E5] py-5"
+        >
+          <summary className="flex cursor-pointer items-start justify-between gap-4 text-base font-semibold text-[#1A1A1A]">
+            {item.q}
+            <span className="mt-0.5 shrink-0 text-xl font-light text-[#00D4FF] transition-transform group-open:rotate-45">
+              +
+            </span>
+          </summary>
+          <div className="mt-3 space-y-3 text-sm leading-relaxed text-[#666666]">
+            <p className="font-medium text-[#1A1A1A]">{item.a}</p>
+            {item.long ? <p>{item.long}</p> : null}
+          </div>
+        </details>
+      ))}
     </div>
   );
 }

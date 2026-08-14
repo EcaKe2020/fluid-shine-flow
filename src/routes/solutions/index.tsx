@@ -45,8 +45,8 @@ function SolutionsHub() {
             <span className="ink-text">patch panel</span>
           </Heading>
           <Lead className="mt-5">
-            Pick the line closest to your project. Each page explains what the equipment does, how
-            to specify it and which questions the technical desk will ask before pricing the list.
+            Pick the line closest to your project. Each page explains what the equipment does, how to specify it and
+            which questions the technical desk will ask before pricing the list.
           </Lead>
           <div className="mt-8 flex flex-wrap gap-3">
             <QuoteButton />
@@ -93,9 +93,9 @@ function SolutionsHub() {
             <div className="relative z-10">
               <Heading>Mixed lists are normal, not awkward</Heading>
               <Lead className="mt-4">
-                A single site rarely stays inside one category. Aerial fibre lands on a splice tray,
-                the tray feeds a switch, the switch powers a camera. Quote the whole chain in one
-                document and the compatibility argument disappears.
+                A single site rarely stays inside one category. Aerial fibre lands on a splice tray, the tray feeds a
+                switch, the switch powers a camera. Quote the whole chain in one document and the compatibility argument
+                disappears.
               </Lead>
               <div className="mt-7">
                 <QuoteButton label="Send a mixed bill of materials" />

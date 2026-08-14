@@ -223,9 +223,7 @@ export const Route = createFileRoute("/solutions/$slug")({
   },
   head: ({ params }) => {
     const solution = SOLUTIONS.find((s) => s.slug === params.slug);
-    const title = solution
-      ? `${solution.title} in Kenya | ECA Networks`
-      : "Solutions | ECA Networks";
+    const title = solution ? `${solution.title} in Kenya | ECA Networks` : "Solutions | ECA Networks";
     const description = solution?.blurb ?? "Network infrastructure supply from Nairobi.";
     return {
       meta: [
@@ -286,9 +284,7 @@ function SolutionPage() {
         <Reveal>
           <Panel hover={false}>
             <h2 className="text-xl font-semibold">In one paragraph</h2>
-            <p className="mt-3 max-w-3xl text-base leading-relaxed text-foreground/85">
-              {detail.answer}
-            </p>
+            <p className="mt-3 max-w-3xl text-base leading-relaxed text-foreground/85">{detail.answer}</p>
           </Panel>
         </Reveal>
       </Section>
@@ -327,10 +323,7 @@ function SolutionPage() {
             <Panel hover={false}>
               <ol className="space-y-4">
                 {detail.specify.map((item, i) => (
-                  <li
-                    key={item}
-                    className="flex gap-4 text-sm leading-relaxed text-muted-foreground"
-                  >
+                  <li key={item} className="flex gap-4 text-sm leading-relaxed text-muted-foreground">
                     <span className="ink-fill grid size-7 shrink-0 place-items-center rounded-full text-xs font-semibold text-primary-foreground dark:text-background">
                       {i + 1}
                     </span>

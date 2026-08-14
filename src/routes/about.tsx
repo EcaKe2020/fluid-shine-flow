@@ -57,15 +57,13 @@ function About() {
         <div className="rise">
           <Eyebrow>About the company</Eyebrow>
           <Heading as="h1">
-            A supply desk built for people who{" "}
-            <span className="ink-text">install networks for a living</span>
+            A supply desk built for people who <span className="ink-text">install networks for a living</span>
           </Heading>
           <Lead className="mt-5">
-            {COMPANY.name} supplies fibre optic and network infrastructure from Embakasi, Nairobi to
-            internet providers, contractors, integrators, institutions and public sector projects
-            across Kenya. The counter, the warehouse and the technical desk sit in the same
-            building, which is why a corrected bill of materials can turn into a packed consignment
-            the same day.
+            {COMPANY.name} supplies fibre optic and network infrastructure from Embakasi, Nairobi to internet providers,
+            contractors, integrators, institutions and public sector projects across Kenya. The counter, the warehouse and
+            the technical desk sit in the same building, which is why a corrected bill of materials can turn into a
+            packed consignment the same day.
           </Lead>
         </div>
 
@@ -104,8 +102,8 @@ function About() {
               <Eyebrow>How we work</Eyebrow>
               <Heading>Four habits that shape every order</Heading>
               <Lead className="mt-4">
-                None of this is unusual in engineering. It is unusual in distribution, which is
-                exactly the gap the business exists to close.
+                None of this is unusual in engineering. It is unusual in distribution, which is exactly the gap the
+                business exists to close.
               </Lead>
             </div>
           </Reveal>
@@ -129,17 +127,15 @@ function About() {
               <div>
                 <h2 className="text-xl font-semibold">Mission</h2>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                  Keep Kenyan networks supplied with equipment that is correctly specified,
-                  genuinely in stock and backed locally, so that installers spend their time
-                  building rather than chasing parts.
+                  Keep Kenyan networks supplied with equipment that is correctly specified, genuinely in stock and backed
+                  locally, so that installers spend their time building rather than chasing parts.
                 </p>
               </div>
               <div>
                 <h2 className="text-xl font-semibold">Vision</h2>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                  To be the first number a Kenyan network builder dials when a project needs
-                  infrastructure, whether that is a single splice tray or a county wide fibre
-                  rollout.
+                  To be the first number a Kenyan network builder dials when a project needs infrastructure, whether that
+                  is a single splice tray or a county wide fibre rollout.
                 </p>
               </div>
             </div>

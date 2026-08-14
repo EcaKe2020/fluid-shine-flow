@@ -57,26 +57,11 @@ const TYPES = [
 ];
 
 const FLOW = [
-  {
-    step: "Enquiry",
-    body: "Send a drawing, a part list, a photograph or a description of the site.",
-  },
-  {
-    step: "Technical review",
-    body: "The desk checks grades, spans, power budgets and quantities, and asks about anything ambiguous.",
-  },
-  {
-    step: "Quotation",
-    body: "A priced list with stock status per line and freight where reels or cabinets are involved.",
-  },
-  {
-    step: "Supply",
-    body: "Collection in Embakasi or courier dispatch, staged across a rollout where that suits the crew.",
-  },
-  {
-    step: "Support",
-    body: "Warranty handling, replacement parts and technical questions after the consignment lands.",
-  },
+  { step: "Enquiry", body: "Send a drawing, a part list, a photograph or a description of the site." },
+  { step: "Technical review", body: "The desk checks grades, spans, power budgets and quantities, and asks about anything ambiguous." },
+  { step: "Quotation", body: "A priced list with stock status per line and freight where reels or cabinets are involved." },
+  { step: "Supply", body: "Collection in Embakasi or courier dispatch, staged across a rollout where that suits the crew." },
+  { step: "Support", body: "Warranty handling, replacement parts and technical questions after the consignment lands." },
 ];
 
 function Projects() {
@@ -89,9 +74,9 @@ function Projects() {
             The work behind the <span className="ink-text">delivery note</span>
           </Heading>
           <Lead className="mt-5">
-            Named case studies are published only once a client approves the details, so this page
-            describes project types and the supply workflow rather than claiming outcomes we cannot
-            evidence. Ask the sales desk for references relevant to your sector.
+            Named case studies are published only once a client approves the details, so this page describes project types
+            and the supply workflow rather than claiming outcomes we cannot evidence. Ask the sales desk for references
+            relevant to your sector.
           </Lead>
           <div className="mt-8 flex flex-wrap gap-3">
             <QuoteButton label="Discuss a project" />
@@ -104,9 +89,7 @@ function Projects() {
             <Reveal key={item.title} delay={i * 80}>
               <Panel className="h-full">
                 <h2 className="text-xl font-semibold">{item.title}</h2>
-                <p className="mt-2 text-xs font-semibold uppercase tracking-[0.14em] text-ember">
-                  {item.scope}
-                </p>
+                <p className="mt-2 text-xs font-semibold uppercase tracking-[0.14em] text-ember">{item.scope}</p>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
               </Panel>
             </Reveal>
@@ -158,9 +141,8 @@ function Projects() {
             <div className="relative z-10">
               <Heading>Have a completed job we supplied?</Heading>
               <Lead className="mt-4">
-                If you are happy for it to be documented, send photographs and the technical
-                outcome. Approved case studies are published with your credit and a link back to
-                your business.
+                If you are happy for it to be documented, send photographs and the technical outcome. Approved case
+                studies are published with your credit and a link back to your business.
               </Lead>
               <div className="mt-7">
                 <QuoteButton label="Submit a case study" />
