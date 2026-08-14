@@ -131,9 +131,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
-        <div className="fluid-field" aria-hidden="true" />
-        <div className="field-drift" aria-hidden="true" />
-        <div className="flex min-h-screen flex-col">
+        <div className="flex min-h-screen flex-col bg-white">
           <Header />
           <main className="flex-1">
             {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}

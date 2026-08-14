@@ -3,7 +3,6 @@ import { ChevronDown, Menu, Phone, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import logo from "@/assets/eca-logo.png.asset.json";
 import { COMPANY, shopUrl, SOLUTIONS } from "@/lib/eca";
-import { ThemeToggle } from "./theme";
 
 const INDUSTRY_LINKS = [
   "Internet service providers",
@@ -14,12 +13,12 @@ const INDUSTRY_LINKS = [
   "Data centres and developers",
 ] as const;
 
-const SIMPLE_NAV = [
+const SIMPLE_LINKS = [
   { to: "/about", label: "Company" },
   { to: "/tools", label: "Tools" },
   { to: "/projects", label: "Projects" },
   { to: "/insights", label: "Insights" },
-  { to: "/price-list", label: "Price list" },
+  { to: "/price-list", label: "Price List" },
 ] as const;
 
 const MOBILE_NAV = [
@@ -29,7 +28,7 @@ const MOBILE_NAV = [
   { to: "/tools", label: "Tools" },
   { to: "/projects", label: "Projects" },
   { to: "/insights", label: "Insights" },
-  { to: "/price-list", label: "Price list" },
+  { to: "/price-list", label: "Price List" },
   { to: "/services", label: "Services" },
   { to: "/team", label: "Team" },
   { to: "/esg", label: "ESG" },
@@ -61,15 +60,18 @@ function MegaMenu({
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
-        className="relative z-10 inline-flex items-center gap-1 rounded-full px-3.5 py-1.5 text-sm font-medium text-foreground/75 transition hover:text-foreground"
+        className="inline-flex items-center gap-1 whitespace-nowrap text-sm font-medium text-white/80 transition-colors hover:text-white"
       >
         {label}
-        <ChevronDown className={`size-3.5 transition ${open ? "rotate-180" : ""}`} />
+        <ChevronDown className={`size-3.5 transition-transform ${open ? "rotate-180" : ""}`} />
       </button>
       {open ? (
-        <div className="absolute left-1/2 top-[calc(100%+0.85rem)] z-50 w-[26rem] -translate-x-1/2">
-          <div className="gloss rise rounded-3xl p-3">
-            <div className="relative z-10 grid gap-1">{children(() => setOpen(false))}</div>
+        <div className="absolute left-1/2 top-[calc(100%+0.75rem)] z-50 w-[24rem] -translate-x-1/2">
+          <div
+            className="bg-[#0B0C10] p-3"
+            style={{ border: "1px solid rgba(255,255,255,0.1)" }}
+          >
+            <div className="grid gap-1">{children(() => setOpen(false))}</div>
           </div>
         </div>
       ) : null}
@@ -79,14 +81,6 @@ function MegaMenu({
 
 export function Header() {
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 80);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -97,169 +91,165 @@ export function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-50 transition-[background-color,backdrop-filter,border-color] duration-300 ${
-        scrolled
-          ? "border-b border-border bg-background/80 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60"
-          : "border-b border-transparent"
-      }`}
+      className="fixed inset-x-0 top-0 z-[100] flex h-16 items-center bg-[#0B0C10] px-[clamp(24px,5vw,80px)]"
+      style={{ borderBottom: "1px solid rgba(255,255,255,0.1)" }}
     >
-      <div className="mx-auto flex w-full max-w-6xl items-center gap-3 px-5 py-4">
-        <Link to="/" className="flex items-center gap-3" aria-label={`${COMPANY.short} home`}>
-          <img src={logo.url} alt="ECA Networks logo" className="h-9 w-auto" width={144} height={48} />
-          <span className="sr-only">{COMPANY.short}</span>
+      {/* Logo left */}
+      <Link to="/" className="flex shrink-0 items-center" aria-label={`${COMPANY.short} home`}>
+        <img src={logo.url} alt="ECA Networks logo" className="h-8 w-auto" width={128} height={40} />
+      </Link>
+
+      {/* Nav links center */}
+      <nav className="mx-auto hidden items-center gap-7 lg:flex">
+        <Link
+          to="/about"
+          activeProps={{ className: "text-[#00D4FF]" }}
+          className="whitespace-nowrap text-sm font-medium text-white/80 transition-colors hover:text-white"
+        >
+          Company
         </Link>
 
-        <nav className="ml-auto hidden items-center gap-0.5 lg:flex">
-          <Link
-            to="/about"
-            activeProps={{ className: "text-primary" }}
-            className="whitespace-nowrap rounded-full px-3.5 py-1.5 text-sm font-medium text-foreground/75 transition hover:text-foreground"
-          >
-            Company
-          </Link>
-
-          <MegaMenu label="Solutions">
-            {(close) => (
-              <>
-                {SOLUTIONS.map((s) => (
-                  <Link
-                    key={s.slug}
-                    to="/solutions/$slug"
-                    params={{ slug: s.slug }}
-                    onClick={close}
-                    className="rounded-2xl px-3 py-2.5 hover:bg-primary/10"
-                  >
-                    <span className="block text-sm font-semibold">{s.title}</span>
-                    <span className="mt-0.5 block text-xs text-muted-foreground">{s.points.join(" · ")}</span>
-                  </Link>
-                ))}
+        <MegaMenu label="Solutions">
+          {(close) => (
+            <>
+              {SOLUTIONS.map((s) => (
                 <Link
-                  to="/solutions"
+                  key={s.slug}
+                  to="/solutions/$slug"
+                  params={{ slug: s.slug }}
                   onClick={close}
-                  className="mt-1 rounded-2xl px-3 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-ember hover:bg-ember/10"
+                  className="px-3 py-2.5 transition-colors hover:bg-white/5"
                 >
-                  All solutions
+                  <span className="block text-sm font-semibold text-white">{s.title}</span>
+                  <span className="mt-0.5 block text-xs text-white/50">{s.points.join(" · ")}</span>
                 </Link>
-              </>
-            )}
-          </MegaMenu>
+              ))}
+              <Link
+                to="/solutions"
+                onClick={close}
+                className="mt-1 px-3 py-2 text-xs font-bold uppercase tracking-[0.14em] text-[#00D4FF] transition-colors hover:bg-white/5"
+              >
+                All solutions
+              </Link>
+            </>
+          )}
+        </MegaMenu>
 
-          <MegaMenu label="Industries">
-            {(close) => (
-              <>
-                <div className="grid grid-cols-2 gap-1">
-                  {INDUSTRY_LINKS.map((label) => (
-                    <Link
-                      key={label}
-                      to="/industries"
-                      onClick={close}
-                      className="rounded-2xl px-3 py-2 text-sm font-medium text-foreground/80 hover:bg-primary/10 hover:text-primary"
-                    >
-                      {label}
-                    </Link>
-                  ))}
-                </div>
-              </>
-            )}
-          </MegaMenu>
+        <MegaMenu label="Industries">
+          {(close) => (
+            <div className="grid grid-cols-2 gap-1">
+              {INDUSTRY_LINKS.map((label) => (
+                <Link
+                  key={label}
+                  to="/industries"
+                  onClick={close}
+                  className="px-3 py-2 text-sm font-medium text-white/80 transition-colors hover:bg-white/5 hover:text-[#00D4FF]"
+                >
+                  {label}
+                </Link>
+              ))}
+            </div>
+          )}
+        </MegaMenu>
 
-          {SIMPLE_NAV.filter((n) => n.to !== "/about").map((item) => (
-            <Link
-              key={item.to}
-              to={item.to}
-              activeProps={{ className: "text-primary" }}
-              className="whitespace-nowrap rounded-full px-3.5 py-1.5 text-sm font-medium text-foreground/75 transition hover:text-foreground"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
-
-        <div className="ml-auto flex items-center gap-2 lg:ml-4">
-          <a
-            href={COMPANY.phoneHref}
-            className="hidden items-center gap-1.5 whitespace-nowrap text-sm font-semibold text-foreground/80 hover:text-primary xl:inline-flex"
-          >
-            <Phone className="size-4 text-ember" />
-            {COMPANY.phone}
-          </a>
-          <ThemeToggle />
-          <a
-            href={shopUrl("nav-button")}
-            target="_blank"
-            rel="noreferrer"
-            className="hidden whitespace-nowrap rounded-full border border-ember/50 px-4 py-2.5 text-sm font-semibold text-ember transition hover:bg-ember/10 sm:inline-flex"
-          >
-            Shop online
-          </a>
+        {SIMPLE_LINKS.filter((n) => n.to !== "/about").map((item) => (
           <Link
-            to="/contact"
-            className="ink-fill hidden whitespace-nowrap rounded-full px-4 py-2.5 text-sm font-semibold text-primary-foreground transition hover:brightness-110 md:inline-flex dark:text-background"
+            key={item.to}
+            to={item.to}
+            activeProps={{ className: "text-[#00D4FF]" }}
+            className="whitespace-nowrap text-sm font-medium text-white/80 transition-colors hover:text-white"
           >
-            Request a quote
+            {item.label}
           </Link>
-          <button
-            type="button"
-            onClick={() => setOpen(true)}
-            className="gloss grid size-10 place-items-center rounded-full lg:hidden"
-            aria-label="Open menu"
-            aria-expanded={open}
-          >
-            <Menu className="relative z-10 size-4" />
-          </button>
-        </div>
+        ))}
+      </nav>
+
+      {/* Right side */}
+      <div className="ml-auto flex items-center gap-4">
+        <a
+          href={COMPANY.phoneHref}
+          className="hidden items-center gap-1.5 whitespace-nowrap text-sm font-medium text-white/80 transition-colors hover:text-white xl:flex"
+        >
+          <Phone className="size-4 text-[#00D4FF]" />
+          {COMPANY.phone}
+        </a>
+        <a
+          href={shopUrl("nav-link")}
+          target="_blank"
+          rel="noreferrer"
+          className="hidden whitespace-nowrap text-sm font-medium text-white transition-colors hover:text-[#00D4FF] sm:inline"
+        >
+          Shop Online
+        </a>
+        <Link
+          to="/contact"
+          className="btn-radius whitespace-nowrap bg-[#00D4FF] px-4 py-2 text-sm font-semibold text-[#0B0C10] transition-opacity hover:opacity-90"
+        >
+          Request a Quote
+        </Link>
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          className="flex size-9 items-center justify-center text-white lg:hidden"
+          aria-label="Open menu"
+          aria-expanded={open}
+        >
+          <Menu className="size-5" />
+        </button>
       </div>
 
+      {/* Mobile full-screen overlay */}
       {open ? (
-        <div className="fixed inset-0 z-[999] flex flex-col bg-background lg:hidden">
-          <div className="fluid-field" aria-hidden />
-          <div className="flex items-center justify-between px-5 py-4">
-            <img src={logo.url} alt="ECA Networks logo" className="h-9 w-auto" width={144} height={48} />
+        <div className="fixed inset-0 z-[999] flex flex-col bg-[#0B0C10] lg:hidden">
+          <div className="flex h-16 items-center justify-between px-[clamp(24px,5vw,80px)]">
+            <Link to="/" onClick={() => setOpen(false)} className="flex items-center">
+              <img src={logo.url} alt="ECA Networks logo" className="h-8 w-auto" width={128} height={40} />
+            </Link>
             <button
               type="button"
               onClick={() => setOpen(false)}
-              className="gloss grid size-10 place-items-center rounded-full"
+              className="flex size-9 items-center justify-center text-white"
               aria-label="Close menu"
             >
-              <X className="relative z-10 size-4" />
+              <X className="size-5" />
             </button>
           </div>
-          <nav className="flex-1 overflow-y-auto px-5 pb-4">
+          <nav className="flex-1 overflow-y-auto px-[clamp(24px,5vw,80px)] py-4">
             <div className="grid gap-0.5">
               {MOBILE_NAV.map((item) => (
                 <Link
                   key={item.to}
                   to={item.to}
                   onClick={() => setOpen(false)}
-                  className="rounded-2xl px-2 py-3 text-2xl font-semibold tracking-tight text-foreground/85 hover:text-primary"
+                  className="border-b border-white/10 py-3 text-xl font-semibold text-white/85 transition-colors hover:text-[#00D4FF]"
                 >
                   {item.label}
                 </Link>
               ))}
             </div>
           </nav>
-          <div className="grid gap-2 px-5 pb-8">
+          <div className="grid gap-2 px-[clamp(24px,5vw,80px)] pb-8">
             <a
               href={COMPANY.phoneHref}
-              className="flex items-center justify-center gap-2 rounded-full border border-border py-3 text-sm font-semibold"
+              className="flex items-center justify-center gap-2 border border-white/20 py-3 text-sm font-semibold text-white"
             >
-              <Phone className="size-4 text-ember" />
+              <Phone className="size-4 text-[#00D4FF]" />
               {COMPANY.phone}
             </a>
             <a
               href={shopUrl("mobile-menu")}
               target="_blank"
               rel="noreferrer"
-              className="rounded-full bg-ember py-3.5 text-center text-sm font-semibold text-ember-foreground"
+              className="py-3.5 text-center text-sm font-semibold text-white"
             >
-              Shop online
+              Shop Online
             </a>
             <Link
               to="/contact"
               onClick={() => setOpen(false)}
-              className="ink-fill rounded-full py-3.5 text-center text-sm font-semibold text-primary-foreground dark:text-background"
+              className="btn-radius bg-[#00D4FF] py-3.5 text-center text-sm font-semibold text-[#0B0C10]"
             >
-              Request a quote
+              Request a Quote
             </Link>
           </div>
         </div>
