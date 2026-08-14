@@ -12,9 +12,10 @@ import {
 import warehouse from "@/assets/warehouse.jpg";
 import rack from "@/assets/rack.jpg";
 import splicing from "@/assets/splicing.jpg";
-import { COMPANY, FAQS, INDUSTRIES, SOLUTIONS, STATS } from "@/lib/eca";
+import { BRANDS, COMPANY, FAQS, INDUSTRIES, SOLUTIONS } from "@/lib/eca";
 import { FaqList } from "@/components/site/Faq";
 import {
+  CountUp,
   CtaBand,
   Eyebrow,
   Heading,
@@ -27,6 +28,13 @@ import {
   ShopButton,
   WhatsAppButton,
 } from "@/components/site/primitives";
+
+const HERO_STATS = [
+  { value: 10000, suffix: "+", label: "customers served" },
+  { value: 5000, suffix: "+", label: "products stocked" },
+  { value: 50, suffix: "+", label: "supported brands" },
+  { value: 47, suffix: "", label: "counties reached" },
+] as const;
 
 export const Route = createFileRoute("/")({
   head: () => ({
