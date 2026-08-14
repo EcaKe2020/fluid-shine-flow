@@ -12,7 +12,7 @@ export function Footer() {
             <img src={logo.url} alt="ECA Networks logo" className="h-9 w-auto" width={144} height={48} />
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{COMPANY.tagline}</p>
             <a
-              href={SHOP_URL}
+              href={shopUrl("footer")}
               target="_blank"
               rel="noreferrer"
               className="mt-5 inline-flex rounded-full bg-ember px-4 py-2.5 text-sm font-semibold text-ember-foreground"
