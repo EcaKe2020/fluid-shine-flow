@@ -97,58 +97,94 @@ function Home() {
       />
 
       {/* Hero */}
-      <Section className="pt-8 sm:pt-14">
-        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
-          <div className="rise">
-            <Eyebrow>Nairobi, serving all 47 counties</Eyebrow>
-            <Heading as="h1">
-              Fibre and network infrastructure, <span className="ink-text">priced, stocked and proven</span> before it
-              leaves Embakasi
-            </Heading>
-            <Lead className="mt-5">
-              ECA Networks supplies the cable, hardware and test equipment that internet providers, contractors and
-              corporate buyers in Kenya build networks with. Send the specification and the technical desk returns a
-              quotation you can defend in a procurement meeting.
-            </Lead>
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-              <QuoteButton />
-              <ShopButton label="Shop the online store" />
-              <WhatsAppButton />
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 lg:hidden">
+          <img
+            src={warehouse}
+            alt=""
+            aria-hidden="true"
+            className="size-full object-cover"
+            width={1600}
+            height={1104}
+          />
+          <div className="absolute inset-0 bg-background/80 dark:bg-background/85" />
+          <div className="absolute inset-0 bg-primary/10 mix-blend-color" />
+        </div>
+
+        <div className="relative grid items-stretch lg:grid-cols-[55%_45%]">
+          <div className="mx-auto w-full max-w-6xl px-5 py-14 sm:py-20 lg:ml-auto lg:mr-0 lg:max-w-[38rem] lg:pr-12">
+            <div className="rise">
+              <p className="mb-4 text-[0.6875rem] font-bold uppercase tracking-[0.2em] text-primary">
+                Nairobi · Embakasi · 47 counties
+              </p>
+              <h1 className="text-balance text-[clamp(2.4rem,5.4vw,4.2rem)] font-extrabold leading-[1.02] tracking-[-0.03em]">
+                The cable, hardware and test kit{" "}
+                <span className="ink-text">Kenyan networks</span> are built on
+              </h1>
+              <Lead className="mt-5">
+                Stocked in Embakasi. Quoted by engineers. Delivered with paperwork procurement can file. Send the
+                specification and the technical desk returns a priced list with stock status per line.
+              </Lead>
+              <div className="mt-8 flex flex-wrap items-center gap-3">
+                <QuoteButton />
+                <ShopButton label="Shop the online store" medium="hero" />
+                <WhatsAppButton />
+              </div>
+              <p className="mt-4 text-xs text-muted-foreground">{COMPANY.responseLine}</p>
+
+              <dl className="mt-10 grid grid-cols-2 gap-6 border-t border-border pt-6 sm:grid-cols-4">
+                {HERO_STATS.map((stat) => (
+                  <div key={stat.label}>
+                    <dt className="sr-only">{stat.label}</dt>
+                    <dd>
+                      <span className="block text-2xl font-extrabold tracking-tight text-primary sm:text-3xl">
+                        <CountUp value={stat.value} suffix={stat.suffix} />
+                      </span>
+                      <span className="text-xs text-muted-foreground">{stat.label}</span>
+                    </dd>
+                  </div>
+                ))}
+              </dl>
             </div>
-            <dl className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
-              {STATS.map((stat) => (
-                <div key={stat.label}>
-                  <dt className="sr-only">{stat.label}</dt>
-                  <dd>
-                    <span className="block text-2xl font-semibold text-foreground sm:text-3xl">{stat.value}</span>
-                    <span className="text-xs text-muted-foreground">{stat.label}</span>
-                  </dd>
-                </div>
-              ))}
-            </dl>
           </div>
 
-          <Reveal delay={120}>
-            <div className="gloss rounded-[2rem] p-3">
-              <img
-                src={warehouse}
-                alt="Warehouse racking stacked with drums of orange and black fibre optic cable"
-                width={1600}
-                height={1104}
-                className="relative z-10 aspect-[4/3] w-full rounded-[1.5rem] object-cover"
-              />
-              <div className="relative z-10 mt-3 flex flex-wrap items-center gap-4 px-3 pb-2 text-xs text-muted-foreground">
-                <span className="inline-flex items-center gap-1.5">
-                  <MapPin className="size-3.5 text-primary" /> {COMPANY.address}
-                </span>
-                <span className="inline-flex items-center gap-1.5">
-                  <Clock className="size-3.5 text-primary" /> {COMPANY.hours}
-                </span>
-              </div>
+          <div className="relative hidden lg:block">
+            <img
+              src={warehouse}
+              alt="Warehouse racking stacked with drums of orange and black fibre optic cable"
+              width={1600}
+              height={1104}
+              className="absolute inset-0 size-full object-cover saturate-[0.85]"
+            />
+            <div className="absolute inset-0 bg-primary/15 mix-blend-color" />
+            <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-background to-transparent" />
+            <div className="absolute bottom-5 left-5 right-5 flex flex-wrap gap-4 text-xs text-foreground/90">
+              <span className="gloss inline-flex items-center gap-1.5 rounded-full px-3 py-1.5">
+                <MapPin className="relative z-10 size-3.5 text-primary" />
+                <span className="relative z-10">{COMPANY.address}</span>
+              </span>
+              <span className="gloss inline-flex items-center gap-1.5 rounded-full px-3 py-1.5">
+                <Clock className="relative z-10 size-3.5 text-primary" />
+                <span className="relative z-10">{COMPANY.hours}</span>
+              </span>
             </div>
-          </Reveal>
+          </div>
         </div>
-      </Section>
+      </section>
+
+      {/* Brand strip */}
+      <div className="mx-auto w-full max-w-6xl px-5 py-6">
+        <div className="flex flex-wrap items-center gap-x-8 gap-y-3 border-y border-border py-5">
+          <span className="text-[0.6875rem] font-bold uppercase tracking-[0.18em] text-muted-foreground">
+            Brands stocked and supported
+          </span>
+          {BRANDS.map((brand) => (
+            <span key={brand} className="text-sm font-semibold tracking-tight text-foreground/55">
+              {brand}
+            </span>
+          ))}
+        </div>
+      </div>
 
       {/* Categories */}
       <Section id="solutions" className="pt-0">
