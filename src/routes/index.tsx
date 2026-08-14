@@ -1,114 +1,43 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
-  ArrowUpRight,
-  BadgeCheck,
-  Boxes,
-  Calculator,
-  Cable,
-  Headphones,
-  Truck,
-  Users,
-  Wrench,
-  ShieldCheck,
-  Building2,
-  GraduationCap,
-  Landmark,
-  Server,
+  ArrowUpRight, BadgeCheck, Boxes, Calculator, Cable, Headphones, Truck, Users, Wrench, ShieldCheck, Building2, GraduationCap, Landmark, Server,
 } from "lucide-react";
 import { BRANDS, COMPANY, FAQS, INDUSTRIES, SOLUTIONS } from "@/lib/eca";
 import { FaqList } from "@/components/site/Faq";
 import { HeroCarousel } from "@/components/site/HeroCarousel";
-import {
-  Eyebrow,
-  Heading,
-  Jsonld,
-  Lead,
-  QuoteButton,
-  Reveal,
-  Section,
-  ShopButton,
-  WhatsAppButton,
-} from "@/components/site/primitives";
+import { Eyebrow, Heading, Jsonld, Lead, QuoteButton, Reveal, Section, ShopButton, WhatsAppButton } from "@/components/site/primitives";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "ECA Networks | Fibre Optic and Networking Supplier in Kenya" },
-      {
-        name: "description",
-        content:
-          "Nairobi based supplier of fibre optic cable, ADSS, structured cabling, MikroTik and PoE networking, CCTV and PABX. Trade pricing, local warranty, delivery to all 47 counties.",
-      },
+      { name: "description", content: "Nairobi based supplier of fibre optic cable, ADSS, structured cabling, MikroTik and PoE networking, CCTV and PABX. Trade pricing, local warranty, delivery to all 47 counties." },
       { property: "og:title", content: "ECA Networks | Fibre and Networking Infrastructure, Kenya" },
-      {
-        property: "og:description",
-        content:
-          "Fibre, cabling, networking, CCTV and PABX equipment stocked in Embakasi, Nairobi and shipped nationwide. Request a quote or shop the online store.",
-      },
+      { property: "og:description", content: "Fibre, cabling, networking, CCTV and PABX equipment stocked in Embakasi, Nairobi and shipped nationwide. Request a quote or shop the online store." },
     ],
   }),
   component: Home,
 });
 
 const REASONS = [
-  {
-    icon: Boxes,
-    title: "Stock that is actually on the shelf",
-    body: "Reels, connectors, switches and consumables held in Embakasi, so a rollout is not waiting three weeks on a shipment.",
-  },
-  {
-    icon: Headphones,
-    title: "A technical desk, not a call centre",
-    body: "Engineers read your drawing, question the odd line and correct the quantities before the invoice goes out.",
-  },
-  {
-    icon: BadgeCheck,
-    title: "Warranty handled in Nairobi",
-    body: "Faulty units are assessed locally under supported brand terms instead of being freighted back overseas by the buyer.",
-  },
-  {
-    icon: Truck,
-    title: "Nationwide dispatch",
-    body: "Courier partners reach all 47 counties, with reel and cabinet freight quoted up front so budgets hold.",
-  },
+  { icon: Boxes, title: "Stock that is actually on the shelf", body: "Reels, connectors, switches and consumables held in Embakasi, so a rollout is not waiting three weeks on a shipment." },
+  { icon: Headphones, title: "A technical desk, not a call centre", body: "Engineers read your drawing, question the odd line and correct the quantities before the invoice goes out." },
+  { icon: BadgeCheck, title: "Warranty handled in Nairobi", body: "Faulty units are assessed locally under supported brand terms instead of being freighted back overseas by the buyer." },
+  { icon: Truck, title: "Nationwide dispatch", body: "Courier partners reach all 47 counties, with reel and cabinet freight quoted up front so budgets hold." },
 ];
 
 const INDUSTRY_ICONS = [Server, Wrench, Building2, GraduationCap, Landmark, Users];
 
 const TEAM_LEADERSHIP = [
-  {
-    name: "CEO",
-    title: "Chief Executive Officer",
-    image: "https://images.pexels.com/photos/28442318/pexels-photo-28442318.jpeg?auto=compress&cs=tinysrgb&w=400",
-  },
-  {
-    name: "COO",
-    title: "Chief Operating Officer",
-    image: "https://images.pexels.com/photos/33680700/pexels-photo-33680700.jpeg?auto=compress&cs=tinysrgb&w=400",
-  },
+  { name: "CEO", title: "Chief Executive Officer", image: "https://images.pexels.com/photos/28442318/pexels-photo-28442318.jpeg?auto=compress&cs=tinysrgb&w=400", bio: "Leads the company's vision and strategy, ensuring delivery of quality networking solutions across Kenya." },
+  { name: "COO", title: "Chief Operating Officer", image: "https://images.pexels.com/photos/33680700/pexels-photo-33680700.jpeg?auto=compress&cs=tinysrgb&w=400", bio: "Oversees daily operations, logistics and supply chain to keep stock moving and quotes accurate." },
 ];
 
 const TEAM_OPERATIONS = [
-  {
-    name: "Accounting",
-    title: "Finance & Accounts",
-    image: "https://images.pexels.com/photos/8312669/pexels-photo-8312669.jpeg?auto=compress&cs=tinysrgb&w=320",
-  },
-  {
-    name: "Digital Marketing",
-    title: "Marketing Lead",
-    image: "https://images.pexels.com/photos/38707525/pexels-photo-38707525.jpeg?auto=compress&cs=tinysrgb&w=320",
-  },
-  {
-    name: "Store Assistant",
-    title: "Warehouse Operations",
-    image: "https://images.pexels.com/photos/5308640/pexels-photo-5308640.jpeg?auto=compress&cs=tinysrgb&w=320",
-  },
-  {
-    name: "Driver",
-    title: "Logistics & Dispatch",
-    image: "https://images.pexels.com/photos/13392786/pexels-photo-13392786.png?auto=compress&cs=tinysrgb&w=320",
-  },
+  { name: "Accounting", title: "Finance & Accounts", image: "https://images.pexels.com/photos/8312669/pexels-photo-8312669.jpeg?auto=compress&cs=tinysrgb&w=320" },
+  { name: "Digital Marketing", title: "Marketing Lead", image: "https://images.pexels.com/photos/38707525/pexels-photo-38707525.jpeg?auto=compress&cs=tinysrgb&w=320" },
+  { name: "Store Assistant", title: "Warehouse Operations", image: "https://images.pexels.com/photos/5308640/pexels-photo-5308640.jpeg?auto=compress&cs=tinysrgb&w=320" },
+  { name: "Driver", title: "Logistics & Dispatch", image: "https://images.pexels.com/photos/13392786/pexels-photo-13392786.png?auto=compress&cs=tinysrgb&w=320" },
 ];
 
 const TEAM_SALES = [
@@ -126,64 +55,33 @@ function Home() {
     <>
       <Jsonld
         data={{
-          "@context": "https://schema.org",
-          "@type": ["Organization", "LocalBusiness"],
-          name: COMPANY.name,
-          alternateName: "ECA Networks",
-          description:
-            "Supplier of fibre optic, structured cabling, networking, CCTV and PABX infrastructure based in Nairobi, Kenya.",
-          telephone: COMPANY.phone,
-          email: COMPANY.email,
-          address: {
-            "@type": "PostalAddress",
-            streetAddress: "21, Amee Properties, Embakasi",
-            addressLocality: "Nairobi",
-            addressCountry: "KE",
-          },
+          "@context": "https://schema.org", "@type": ["Organization", "LocalBusiness"],
+          name: COMPANY.name, alternateName: "ECA Networks",
+          description: "Supplier of fibre optic, structured cabling, networking, CCTV and PABX infrastructure based in Nairobi, Kenya.",
+          telephone: COMPANY.phone, email: COMPANY.email,
+          address: { "@type": "PostalAddress", streetAddress: "21, Amee Properties, Embakasi", addressLocality: "Nairobi", addressCountry: "KE" },
           areaServed: { "@type": "Country", name: "Kenya" },
-          openingHours: "Mo-Fr 08:00-17:00",
-          foundingDate: String(COMPANY.founded),
-          priceRange: "KSh",
+          openingHours: "Mo-Fr 08:00-17:00", foundingDate: String(COMPANY.founded), priceRange: "KSh",
           brand: BRANDS.map((b) => ({ "@type": "Brand", name: b })),
           sameAs: ["https://ecanetworks.com"],
         }}
       />
-
-      {/* HERO — Dark zone */}
       <HeroCarousel />
 
-      {/* WHAT WE SUPPLY — White zone */}
-      <Section className="bg-white pt-24">
+      <Section className="pt-24">
         <Reveal>
           <Eyebrow>What we supply</Eyebrow>
           <Heading>Four supply lines, one delivery note</Heading>
-          <Lead className="mt-4">
-            Most projects touch more than one of these. Buying them from one counter keeps compatibility, warranty and
-            paperwork in a single place.
-          </Lead>
+          <Lead className="mt-4">Most projects touch more than one of these. Buying them from one counter keeps compatibility, warranty and paperwork in a single place.</Lead>
         </Reveal>
-        <div className="mt-12 grid gap-0 md:grid-cols-4">
+        <div className="mt-12 grid gap-4 md:grid-cols-4">
           {SOLUTIONS.map((solution, i) => (
             <Reveal key={solution.slug} delay={i * 80}>
-              <div
-                className={`p-6 ${i > 0 ? "md:border-l md:border-[#E5E5E5]" : ""} ${
-                  i < SOLUTIONS.length - 1 ? "border-b border-[#E5E5E5] md:border-b-0" : ""
-                }`}
-              >
-                {(() => {
-                  const Icon = SOLUTION_ICONS[i] ?? Cable;
-                  return <Icon className="size-6 text-[#00D4FF]" />;
-                })()}
-                <h3 className="mt-4 text-lg font-bold text-[#1A1A1A]">{solution.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-[#666666]">{solution.blurb}</p>
-                <Link
-                  to="/solutions/$slug"
-                  params={{ slug: solution.slug }}
-                  className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-[#00D4FF] hover:underline"
-                >
-                  Learn more
-                  <ArrowUpRight className="size-3.5" />
-                </Link>
+              <div className="supply-item h-full p-6">
+                {(() => { const Icon = SOLUTION_ICONS[i] ?? Cable; return (<div className="supply-icon"><Icon className="size-6" /></div>); })()}
+                <h3 className="mt-4 text-lg font-bold text-foreground">{solution.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{solution.blurb}</p>
+                <Link to="/solutions/$slug" params={{ slug: solution.slug }} className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline">Learn more <ArrowUpRight className="size-3.5" /></Link>
               </div>
             </Reveal>
           ))}
@@ -196,189 +94,138 @@ function Home() {
         </Reveal>
       </Section>
 
-      {/* THE LOCAL ADVANTAGE — White zone */}
-      <Section className="bg-white" style={{ borderTop: "1px solid #E5E5E5" } as React.CSSProperties}>
+      <Section className="!pt-0">
         <Reveal>
           <Eyebrow>The local advantage</Eyebrow>
           <Heading>Why buyers keep coming back to the Embakasi counter</Heading>
         </Reveal>
-        <div className="mt-12 grid gap-0 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid gap-4 sm:grid-cols-2">
           {REASONS.map((reason, i) => (
             <Reveal key={reason.title} delay={i * 80}>
-              <div
-                className={`p-6 ${i > 0 ? "lg:border-l lg:border-[#E5E5E5]" : ""} ${
-                  i < REASONS.length - 1 ? "border-b border-[#E5E5E5] sm:border-b-0" : ""
-                }`}
-              >
-                <reason.icon className="size-6 text-[#00D4FF]" />
-                <h3 className="mt-4 text-base font-bold text-[#1A1A1A]">{reason.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-[#666666]">{reason.body}</p>
+              <div className="local-advantage-cell h-full">
+                <div className="ink-fill grid size-8 place-items-center rounded-full text-xs font-bold">{String(i + 1).padStart(2, "0")}</div>
+                <h3 className="mt-4 text-xl font-bold text-foreground">{reason.title}</h3>
+                <p className="mt-2 text-base leading-relaxed text-muted-foreground">{reason.body}</p>
               </div>
             </Reveal>
           ))}
         </div>
       </Section>
 
-      {/* WHO WE SERVE — White zone */}
-      <Section className="bg-white" style={{ borderTop: "1px solid #E5E5E5" } as React.CSSProperties}>
+      <Section className="!pt-0">
         <Reveal>
           <Eyebrow>Who we serve</Eyebrow>
           <Heading>Built around how each buyer actually orders</Heading>
         </Reveal>
-        <div className="mt-12 grid gap-0 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {INDUSTRIES.map((item, i) => (
             <Reveal key={item.title} delay={i * 70}>
-              <div
-                className={`p-6 ${i % 3 > 0 ? "lg:border-l lg:border-[#E5E5E5]" : ""} ${
-                  i % 2 > 0 ? "sm:border-l sm:border-[#E5E5E5] lg:border-l-0" : ""
-                } ${
-                  i < INDUSTRIES.length - (INDUSTRIES.length % 3 || 3) ? "border-b border-[#E5E5E5]" : ""
-                }`}
-              >
-                {(() => {
-                  const Icon = INDUSTRY_ICONS[i] ?? Users;
-                  return <Icon className="size-6 text-[#00D4FF]" />;
-                })()}
-                <h3 className="mt-4 text-base font-bold text-[#1A1A1A]">{item.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-[#666666]">{item.body}</p>
+              <div className="serve-item h-full p-6">
+                {(() => { const Icon = INDUSTRY_ICONS[i] ?? Users; return <Icon className="size-6 text-primary" />; })()}
+                <h3 className="mt-4 text-base font-bold text-foreground">{item.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
               </div>
             </Reveal>
           ))}
         </div>
         <Reveal>
-          <Link to="/industries" className="mt-6 inline-flex text-sm font-semibold text-[#00D4FF] hover:underline">
-            See the full industry breakdown
-          </Link>
+          <Link to="/industries" className="mt-6 inline-flex text-sm font-semibold text-primary hover:underline">See the full industry breakdown</Link>
         </Reveal>
       </Section>
 
-      {/* MEET THE TEAM — White zone */}
-      <Section className="bg-white" style={{ borderTop: "1px solid #E5E5E5" } as React.CSSProperties}>
+      <Section className="!pt-0">
         <Reveal>
-          <Eyebrow>Meet the team</Eyebrow>
+          <Eyebrow>The people</Eyebrow>
           <Heading>The team behind the counter</Heading>
-          <Lead className="mt-4">
-            Engineers, buyers and support staff who keep stock moving and quotes accurate.
-          </Lead>
+          <Lead className="mt-4">Engineers, buyers and support staff who keep stock moving and quotes accurate.</Lead>
         </Reveal>
-
-        {/* Leadership tier */}
         <Reveal delay={80}>
-          <p className="mt-12 mb-4 text-xs font-bold uppercase tracking-[0.16em] text-[#666666]">Leadership</p>
-          <div className="grid gap-8 sm:grid-cols-2">
+          <div className="mt-12 grid gap-6 md:grid-cols-2">
             {TEAM_LEADERSHIP.map((member) => (
-              <div key={member.name}>
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  loading="lazy"
-                  className="aspect-square w-[200px] max-w-full object-cover"
-                />
-                <p className="mt-3 text-base font-bold text-[#1A1A1A]">{member.name}</p>
-                <p className="text-sm text-[#666666]">{member.title}</p>
+              <div key={member.name} className="lead-card">
+                <img src={member.image} alt={member.name} loading="lazy" className="lead-photo" />
+                <div>
+                  <p className="mt-0 font-bold text-[24px] text-foreground">{member.name}</p>
+                  <p className="mt-1 text-[14px] uppercase tracking-[1px] text-primary">{member.title}</p>
+                  <p className="mt-2 body-text">{member.bio}</p>
+                </div>
               </div>
             ))}
           </div>
         </Reveal>
-
-        {/* Operations tier */}
         <Reveal delay={120}>
-          <p className="mt-12 mb-4 text-xs font-bold uppercase tracking-[0.16em] text-[#666666]">Operations</p>
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          <p className="mt-12 mb-4 text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">Operations</p>
+          <div className="grid gap-6 md:grid-cols-4">
             {TEAM_OPERATIONS.map((member) => (
               <div key={member.name}>
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  loading="lazy"
-                  className="aspect-square w-[160px] max-w-full object-cover"
-                />
-                <p className="mt-3 text-sm font-bold text-[#1A1A1A]">{member.name}</p>
-                <p className="text-xs text-[#666666]">{member.title}</p>
+                <img src={member.image} alt={member.name} loading="lazy" className="ops-photo mx-auto" />
+                <div className="mt-4 text-center">
+                  <p className="font-bold text-[16px] text-foreground">{member.name}</p>
+                  <p className="mt-1 text-[13px] uppercase text-muted-foreground">{member.title}</p>
+                </div>
               </div>
             ))}
           </div>
         </Reveal>
-
-        {/* Sales tier */}
         <Reveal delay={160}>
-          <p className="mt-12 mb-4 text-xs font-bold uppercase tracking-[0.16em] text-[#666666]">Sales Team</p>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+          <p className="mt-12 mb-4 text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">Sales Team</p>
+          <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-5">
             {TEAM_SALES.map((member) => (
-              <div key={member.name}>
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  loading="lazy"
-                  className="aspect-square w-[120px] max-w-full object-cover"
-                />
-                <p className="mt-2 text-xs font-bold text-[#1A1A1A]">{member.name}</p>
-                <p className="text-xs text-[#666666]">{member.title}</p>
+              <div key={member.name} className="text-center">
+                <img src={member.image} alt={member.name} loading="lazy" className="sales-photo mx-auto" />
+                <div className="mt-3">
+                  <p className="font-bold text-[14px] text-foreground">{member.name}</p>
+                  <p className="mt-0 text-[12px] uppercase text-muted-foreground">{member.title}</p>
+                </div>
               </div>
             ))}
           </div>
         </Reveal>
       </Section>
 
-      {/* INTERACTIVE TOOLS — White zone */}
-      <Section className="bg-white" style={{ borderTop: "1px solid #E5E5E5" } as React.CSSProperties}>
+      <Section className="!pt-0">
         <Reveal>
           <Eyebrow>Interactive tools</Eyebrow>
           <Heading>Cost the job before you call anyone</Heading>
-          <Lead className="mt-4">
-            Two calculators built from the questions the sales desk answers every week.
-          </Lead>
+          <Lead className="mt-4">Two calculators built from the questions the sales desk answers every week.</Lead>
         </Reveal>
-        <div className="mt-12 grid gap-0 md:grid-cols-2">
+        <div className="mt-12 grid gap-6 md:grid-cols-2">
           {[
             { title: "Project bill of materials", desc: "Turn outlet counts into a rough BOM with waste allowance.", to: "/tools" as const },
             { title: "Fibre cable selector", desc: "Answer four questions and get the right cable family for the route.", to: "/tools" as const },
           ].map((tool, i) => (
             <Reveal key={tool.title} delay={i * 80}>
-              <div className={`p-6 ${i > 0 ? "md:border-l md:border-[#E5E5E5]" : ""} ${i < 1 ? "border-b border-[#E5E5E5] md:border-b-0" : ""}`}>
-                <Calculator className="size-6 text-[#00D4FF]" />
-                <h3 className="mt-4 text-lg font-bold text-[#1A1A1A]">{tool.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-[#666666]">{tool.desc}</p>
-                <Link
-                  to={tool.to}
-                  className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-[#00D4FF] hover:underline"
-                >
-                  Open calculator
-                  <ArrowUpRight className="size-3.5" />
-                </Link>
+              <div className="card-interactive p-6">
+                <Calculator className="size-6 text-primary" />
+                <h3 className="mt-4 text-lg font-bold text-foreground">{tool.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{tool.desc}</p>
+                <Link to={tool.to} className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary">Open calculator <ArrowUpRight className="size-3.5" /></Link>
               </div>
             </Reveal>
           ))}
         </div>
       </Section>
 
-      {/* FAQ — White zone */}
-      <Section className="bg-white" style={{ borderTop: "1px solid #E5E5E5" } as React.CSSProperties}>
+      <Section className="!pt-0">
         <Reveal>
           <Eyebrow>Straight answers</Eyebrow>
           <Heading>Questions buyers ask before they order</Heading>
-          <Lead className="mt-4">
-            Short answers first, then the detail an engineer needs.
-          </Lead>
+          <Lead className="mt-4">Short answers first, then the detail an engineer needs.</Lead>
         </Reveal>
-        <div className="mt-10">
-          <FaqList items={FAQS} />
-        </div>
+        <div className="mt-10"><FaqList items={FAQS} /></div>
       </Section>
 
-      {/* FOOTER CTA — White zone */}
-      <Section className="bg-white" style={{ borderTop: "1px solid #E5E5E5" } as React.CSSProperties}>
+      <Section className="!pt-0">
         <Reveal>
-          <div className="max-w-2xl">
-            <Heading>Tell us what the site needs and the list comes back priced</Heading>
-            <Lead className="mt-4">
-              Send a drawing, a rough part list or a site photograph. The technical desk checks the specification,
-              confirms stock and returns a quotation you can hand to procurement.
-            </Lead>
-            <div className="mt-8 flex flex-wrap items-center gap-4">
-              <QuoteButton />
-              <ShopButton />
-              <WhatsAppButton />
+          <div className="gloss rounded-[var(--radius-3xl)] p-8 sm:p-12 lg:p-16">
+            <div className="relative z-10 max-w-2xl">
+              <Heading>Tell us what the site needs and the list comes back priced</Heading>
+              <Lead className="mt-4">Send a drawing, a rough part list or a site photograph. The technical desk checks the specification, confirms stock and returns a quotation you can hand to procurement.</Lead>
+              <div className="mt-8 flex flex-wrap items-center gap-4">
+                <QuoteButton />
+                <ShopButton />
+                <WhatsAppButton />
+              </div>
             </div>
           </div>
         </Reveal>

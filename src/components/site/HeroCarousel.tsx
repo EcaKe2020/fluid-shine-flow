@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight, MessageCircle } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { COMPANY, shopUrl, WHATSAPP_URL } from "@/lib/eca";
+import { shopUrl, WHATSAPP_URL } from "@/lib/eca";
 
 type Slide = {
   image: string;
@@ -16,19 +16,17 @@ type Slide = {
 
 const SLIDES: Slide[] = [
   {
-    image:
-      "https://images.pexels.com/photos/4280696/pexels-photo-4280696.jpeg?auto=compress&cs=tinysrgb&w=1920",
+    image: "https://images.pexels.com/photos/4280696/pexels-photo-4280696.jpeg?auto=compress&cs=tinysrgb&w=1920",
     alt: "Fibre optic connectors and pigtails on a patch panel",
     eyebrow: "Fibre Optic Infrastructure",
-    title: "The cable and test kit",
+    title: "The cable and test kit behind",
     highlight: "Kenyan networks",
     body: "ADSS, figure 8, closures, pigtails and fusion splicers stocked in Embakasi. Send the route and the desk returns a priced list with stock status per line.",
     shopLabel: "Shop fibre products",
     shopMedium: "hero-fibre",
   },
   {
-    image:
-      "https://images.pexels.com/photos/1148820/pexels-photo-1148820.jpeg?auto=compress&cs=tinysrgb&w=1920",
+    image: "https://images.pexels.com/photos/1148820/pexels-photo-1148820.jpeg?auto=compress&cs=tinysrgb&w=1920",
     alt: "Server rack with glowing indicator lights in a data centre",
     eyebrow: "Networking and ISP Hardware",
     title: "Routing, switching and",
@@ -38,19 +36,18 @@ const SLIDES: Slide[] = [
     shopMedium: "hero-networking",
   },
   {
-    image:
-      "https://images.pexels.com/photos/96612/pexels-photo-96612.jpeg?auto=compress&cs=tinysrgb&w=1920",
+    image: "https://images.pexels.com/photos/96612/pexels-photo-96612.jpeg?auto=compress&cs=tinysrgb&w=1920",
     alt: "Outdoor security cameras mounted on a pole against blue sky",
     eyebrow: "CCTV, Security and PABX",
-    title: "Surveillance and voice over the",
-    highlight: "cabling you already own",
+    title: "Surveillance and voice over",
+    highlight: "the cabling you already own",
     body: "IP cameras, NVR storage sizing, access control and IP telephony that land on the same infrastructure. PoE budget and retention period calculated before hardware ships.",
     shopLabel: "Shop security systems",
     shopMedium: "hero-security",
   },
 ];
 
-const AUTO_ADVANCE_MS = 7000;
+const AUTO_ADVANCE_MS = 6500;
 
 const HERO_STATS = [
   { value: "10,000+", label: "customers" },
@@ -73,124 +70,95 @@ export function HeroCarousel() {
     timerRef.current = setTimeout(() => {
       setActive((current) => (current + 1) % SLIDES.length);
     }, AUTO_ADVANCE_MS);
-    return () => {
-      if (timerRef.current) clearTimeout(timerRef.current);
-    };
+    return () => { if (timerRef.current) clearTimeout(timerRef.current); };
   }, [active, paused]);
 
   return (
     <section
-      className="relative min-h-screen bg-[#0B0C10] pt-16"
+      className="relative min-h-screen overflow-hidden bg-[#0a0b0f]"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="flex min-h-[calc(100vh-4rem)] flex-col lg:flex-row">
-        {/* Text left 55% */}
-        <div className="flex w-full items-center px-[clamp(24px,5vw,80px)] py-12 lg:w-[55%] lg:py-0">
-          <div className="w-full max-w-2xl">
+      <div className="absolute inset-0">
+        {SLIDES.map((slide, i) => (
+          <div
+            key={slide.eyebrow}
+            className={`absolute inset-0 transition-all duration-[1200ms] ease-out ${
+              i === active ? "opacity-100 scale-100" : "opacity-0 scale-105"
+            }`}
+            aria-hidden={i !== active}
+          >
+            <img src={slide.image} alt={slide.alt} className="size-full object-cover" loading={i === 0 ? "eager" : "lazy"} />
+          </div>
+        ))}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0b0f] via-[#0a0b0f]/85 to-[#0a0b0f]/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0b0f] via-transparent to-[#0a0b0f]/30" />
+      </div>
+
+      <div className="hero-blob" style={{ width: 500, height: 500, top: "-10%", left: "5%", background: "radial-gradient(circle, #0066ff, transparent 70%)" }} />
+      <div className="hero-blob" style={{ width: 400, height: 400, bottom: "10%", right: "10%", background: "radial-gradient(circle, #ff6b1a, transparent 70%)", animationDelay: "4s" }} />
+
+      <div className="relative z-10 flex min-h-screen flex-col">
+        <div className="flex flex-1 items-center px-[clamp(24px,5vw,80px)] pt-24 pb-12">
+          <div className="w-full max-w-3xl">
             {SLIDES.map((slide, i) => (
-              <div key={slide.eyebrow} className={i === active ? "block" : "hidden"}>
-                <p
-                  className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-[#00D4FF]"
-                >
-                  NAIROBI, SERVING ALL 47 COUNTIES
-                </p>
-                <h1 className="text-balance text-[clamp(2rem,4.5vw,3.8rem)] font-extrabold leading-[1.05] tracking-[-0.03em] text-white">
-                  {slide.title}{" "}
-                  <span className="text-[#00D4FF]">{slide.highlight}</span>
+              <div
+                key={slide.eyebrow}
+                className={i === active ? "block" : "hidden"}
+                style={i === active ? { animation: "rise 0.8s cubic-bezier(0.16,1,0.3,1) both" } : undefined}
+              >
+                <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 backdrop-blur-md">
+                  <span className="size-2 rounded-full bg-[#00d4ff]" style={{ animation: "pulse-glow 2s ease-in-out infinite" }} />
+                  <span className="text-xs font-semibold uppercase tracking-[0.16em] text-white/80">Nairobi, serving all 47 counties</span>
+                </div>
+                <h1 className="text-balance text-[clamp(2.2rem,5vw,4.2rem)] font-extrabold leading-[1.04] tracking-[-0.03em] text-white">
+                  {slide.title} <span className="ink-text">{slide.highlight}</span>
                 </h1>
-                <p className="mt-5 max-w-xl text-pretty text-base leading-relaxed text-[#8B8F98] sm:text-lg">
-                  {slide.body}
-                </p>
-                <div className="mt-8 flex flex-wrap items-center gap-4">
-                  <Link
-                    to="/contact"
-                    className="btn-radius inline-flex items-center gap-2 bg-[#00D4FF] px-6 py-3 text-sm font-semibold text-[#0B0C10] transition-opacity hover:opacity-90"
-                  >
-                    Request a quote
-                    <ArrowRight className="size-4" />
+                <p className="mt-6 max-w-xl text-pretty text-base leading-relaxed text-white/70 sm:text-lg">{slide.body}</p>
+                <div className="mt-10 flex flex-wrap items-center gap-4">
+                  <Link to="/contact" className="btn-radius inline-flex items-center gap-2 bg-[#0066ff] px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-[#0066ff]/30 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-[#0066ff]/40">
+                    Request a quote <ArrowRight className="size-4" />
                   </Link>
-                  <a
-                    href={shopUrl(slide.shopMedium)}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-white transition-colors hover:text-[#00D4FF]"
-                  >
-                    {slide.shopLabel}
-                    <ArrowUpRight className="size-4 text-[#00D4FF]" />
+                  <a href={shopUrl(slide.shopMedium)} target="_blank" rel="noreferrer" className="btn-radius inline-flex items-center gap-2 border border-white/20 bg-white/5 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur-md transition-all hover:-translate-y-0.5 hover:border-white/40 hover:bg-white/10">
+                    {slide.shopLabel} <ArrowUpRight className="size-4 text-[#00d4ff]" />
                   </a>
-                  <a
-                    href={WHATSAPP_URL}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 text-sm text-white/60 transition-colors hover:text-[#00D4FF]"
-                  >
-                    <MessageCircle className="size-4" />
-                    Chat with a technician
+                  <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 text-sm text-white/60 transition-colors hover:text-[#00d4ff]">
+                    <MessageCircle className="size-4" /> Chat with a technician
                   </a>
                 </div>
               </div>
             ))}
-
-            {/* Carousel indicators */}
-            <div className="mt-10 flex items-center gap-2">
+            <div className="mt-12 flex items-center gap-3">
               {SLIDES.map((slide, i) => (
                 <button
                   key={slide.eyebrow}
                   type="button"
                   onClick={() => goTo(i)}
                   aria-label={`Show slide ${i + 1}: ${slide.eyebrow}`}
-                  className="relative h-0.5 overflow-hidden bg-white/20 transition-all"
+                  className="group relative h-1.5 overflow-hidden rounded-full bg-white/15 transition-all"
                   style={{ width: i === active ? "3rem" : "1.5rem" }}
                 >
                   {i === active && !paused ? (
-                    <span
-                      key={active}
-                      className="absolute inset-0 origin-left bg-[#00D4FF]"
-                      style={{ animation: `hero-progress ${AUTO_ADVANCE_MS}ms linear forwards` }}
-                    />
+                    <span key={active} className="absolute inset-0 origin-left rounded-full bg-[#00d4ff]" style={{ animation: `hero-progress ${AUTO_ADVANCE_MS}ms linear forwards` }} />
                   ) : i === active ? (
-                    <span className="absolute inset-0 bg-[#00D4FF]" />
+                    <span className="absolute inset-0 rounded-full bg-[#00d4ff]" />
                   ) : null}
                 </button>
               ))}
+              <span className="ml-3 text-xs font-medium text-white/40">
+                {String(active + 1).padStart(2, "0")} / {String(SLIDES.length).padStart(2, "0")}
+              </span>
             </div>
           </div>
         </div>
-
-        {/* Image right 45% — full-bleed to right edge */}
-        <div className="relative w-full overflow-hidden lg:w-[45%]">
-          {SLIDES.map((slide, i) => (
-            <div
-              key={slide.eyebrow}
-              className={`absolute inset-0 transition-opacity duration-700 ${
-                i === active ? "opacity-100" : "opacity-0"
-              }`}
-              aria-hidden={i !== active}
-            >
-              <img
-                src={slide.image}
-                alt={slide.alt}
-                className="size-full object-cover"
-                loading={i === 0 ? "eager" : "lazy"}
-              />
+        <div className="flex flex-wrap items-center gap-6 px-[clamp(24px,5vw,80px)] py-8 text-white sm:gap-12 lg:gap-16" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+          {HERO_STATS.map((stat, idx) => (
+            <div key={stat.label} className="flex items-baseline gap-2" style={idx < HERO_STATS.length - 1 ? { paddingRight: 12, marginRight: 12, borderRight: "1px solid rgba(255,255,255,0.1)" } : undefined}>
+              <span className="stat-number text-white">{stat.value}</span>
+              <span className="stat-label text-white/50">{stat.label}</span>
             </div>
           ))}
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#0B0C10] via-transparent to-transparent lg:from-[#0B0C10]/60" />
         </div>
-      </div>
-
-      {/* Stats row — full width, no card, no background */}
-      <div
-        className="flex flex-wrap items-center gap-8 px-[clamp(24px,5vw,80px)] py-8 text-white lg:gap-16"
-        style={{ borderTop: "1px solid rgba(255,255,255,0.1)" }}
-      >
-        {HERO_STATS.map((stat) => (
-          <div key={stat.label} className="flex items-baseline gap-2">
-            <span className="text-2xl font-extrabold tracking-tight sm:text-3xl">{stat.value}</span>
-            <span className="text-xs text-[#8B8F98]">{stat.label}</span>
-          </div>
-        ))}
       </div>
     </section>
   );
