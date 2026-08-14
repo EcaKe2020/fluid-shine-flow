@@ -4,16 +4,16 @@ import {
   BadgeCheck,
   Boxes,
   Calculator,
-  Clock,
   Headphones,
   MapPin,
   Truck,
 } from "lucide-react";
-import warehouse from "@/assets/warehouse.jpg";
-import rack from "@/assets/rack.jpg";
 import splicing from "@/assets/splicing.jpg";
+import rack from "@/assets/rack.jpg";
+import warehouse from "@/assets/warehouse.jpg";
 import { BRANDS, COMPANY, FAQS, INDUSTRIES, SOLUTIONS } from "@/lib/eca";
 import { FaqList } from "@/components/site/Faq";
+import { HeroCarousel } from "@/components/site/HeroCarousel";
 import {
   CountUp,
   CtaBand,
@@ -35,6 +35,13 @@ const HERO_STATS = [
   { value: 50, suffix: "+", label: "supported brands" },
   { value: 47, suffix: "", label: "counties reached" },
 ] as const;
+
+const SOLUTION_IMAGES: Record<string, string> = {
+  "fibre-optic": splicing,
+  "structured-cabling": rack,
+  "networking-isp": warehouse,
+  "security-communications": rack,
+};
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -107,85 +114,25 @@ function Home() {
         }}
       />
 
-      {/* Hero */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 lg:hidden">
-          <img
-            src={warehouse}
-            alt=""
-            aria-hidden="true"
-            className="size-full object-cover"
-            width={1600}
-            height={1104}
-          />
-          <div className="absolute inset-0 bg-background/80 dark:bg-background/85" />
-          <div className="absolute inset-0 bg-primary/10 mix-blend-color" />
-        </div>
+      <HeroCarousel />
 
-        <div className="relative grid items-stretch lg:grid-cols-[55%_45%]">
-          <div className="mx-auto w-full max-w-6xl px-5 py-14 sm:py-20 lg:ml-auto lg:mr-0 lg:max-w-[38rem] lg:pr-12">
-            <div className="rise">
-              <p className="mb-4 text-[0.6875rem] font-bold uppercase tracking-[0.2em] text-primary">
-                Nairobi · Embakasi · 47 counties
-              </p>
-              <h1 className="text-balance text-[clamp(2.4rem,5.4vw,4.2rem)] font-extrabold leading-[1.02] tracking-[-0.03em]">
-                The cable, hardware and test kit{" "}
-                <span className="ink-text">Kenyan networks</span> are built on
-              </h1>
-              <Lead className="mt-5">
-                Stocked in Embakasi. Quoted by engineers. Delivered with paperwork procurement can file. Send the
-                specification and the technical desk returns a priced list with stock status per line.
-              </Lead>
-              <div className="mt-8 flex flex-wrap items-center gap-3">
-                <QuoteButton />
-                <ShopButton label="Shop the online store" medium="hero" />
-                <WhatsAppButton />
-              </div>
-              <p className="mt-4 text-xs text-muted-foreground">{COMPANY.responseLine}</p>
-
-              <dl className="mt-10 grid grid-cols-2 gap-6 border-t border-border pt-6 sm:grid-cols-4">
-                {HERO_STATS.map((stat) => (
-                  <div key={stat.label}>
-                    <dt className="sr-only">{stat.label}</dt>
-                    <dd>
-                      <span className="block text-2xl font-extrabold tracking-tight text-primary sm:text-3xl">
-                        <CountUp value={stat.value} suffix={stat.suffix} />
-                      </span>
-                      <span className="text-xs text-muted-foreground">{stat.label}</span>
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
-          </div>
-
-          <div className="relative hidden lg:block">
-            <img
-              src={warehouse}
-              alt="Warehouse racking stacked with drums of orange and black fibre optic cable"
-              width={1600}
-              height={1104}
-              className="absolute inset-0 size-full object-cover saturate-[0.85]"
-            />
-            <div className="absolute inset-0 bg-primary/15 mix-blend-color" />
-            <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-background to-transparent" />
-            <div className="absolute bottom-5 left-5 right-5 flex flex-wrap gap-4 text-xs text-foreground/90">
-              <span className="gloss inline-flex items-center gap-1.5 rounded-full px-3 py-1.5">
-                <MapPin className="relative z-10 size-3.5 text-primary" />
-                <span className="relative z-10">{COMPANY.address}</span>
+      {/* Stats band */}
+      <div className="mx-auto w-full max-w-6xl px-5">
+        <div className="gloss -mt-10 relative z-20 grid grid-cols-2 gap-px overflow-hidden rounded-3xl sm:grid-cols-4">
+          {HERO_STATS.map((stat) => (
+            <div key={stat.label} className="bg-card/60 p-6 text-center backdrop-blur-xl">
+              <span className="block text-3xl font-extrabold tracking-tight text-primary">
+                <CountUp value={stat.value} suffix={stat.suffix} />
               </span>
-              <span className="gloss inline-flex items-center gap-1.5 rounded-full px-3 py-1.5">
-                <Clock className="relative z-10 size-3.5 text-primary" />
-                <span className="relative z-10">{COMPANY.hours}</span>
-              </span>
+              <span className="text-xs text-muted-foreground">{stat.label}</span>
             </div>
-          </div>
+          ))}
         </div>
-      </section>
+      </div>
 
       {/* Brand strip */}
-      <div className="mx-auto w-full max-w-6xl px-5 py-6">
-        <div className="flex flex-wrap items-center gap-x-8 gap-y-3 border-y border-border py-5">
+      <div className="mx-auto w-full max-w-6xl px-5 py-8">
+        <div className="flex flex-wrap items-center gap-x-8 gap-y-3 py-4">
           <span className="text-[0.6875rem] font-bold uppercase tracking-[0.18em] text-muted-foreground">
             Brands stocked and supported
           </span>
@@ -197,7 +144,7 @@ function Home() {
         </div>
       </div>
 
-      {/* Categories */}
+      {/* Solutions with imagery */}
       <Section id="solutions" className="pt-0">
         <Reveal>
           <Eyebrow>What we supply</Eyebrow>
@@ -211,22 +158,35 @@ function Home() {
           {SOLUTIONS.map((solution, i) => (
             <Reveal key={solution.slug} delay={i * 90}>
               <Link to="/solutions/$slug" params={{ slug: solution.slug }} className="block h-full">
-                <Panel className="h-full">
-                  <div className="flex items-start justify-between gap-4">
-                    <h3 className="text-xl font-semibold">{solution.title}</h3>
-                    <ArrowUpRight className="mt-1 size-5 shrink-0 text-ember" />
+                <Panel className="group h-full overflow-hidden p-0">
+                  <div className="relative aspect-[16/8] overflow-hidden">
+                    <img
+                      src={SOLUTION_IMAGES[solution.slug]}
+                      alt={solution.title}
+                      loading="lazy"
+                      className="absolute inset-0 size-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent" />
+                    <div className="absolute right-4 top-4">
+                      <span className="gloss grid size-9 place-items-center rounded-full">
+                        <ArrowUpRight className="relative z-10 size-4 text-ember" />
+                      </span>
+                    </div>
                   </div>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{solution.blurb}</p>
-                  <ul className="mt-5 flex flex-wrap gap-2">
-                    {solution.points.map((point) => (
-                      <li
-                        key={point}
-                        className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary"
-                      >
-                        {point}
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="p-6">
+                    <h3 className="text-xl font-semibold">{solution.title}</h3>
+                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{solution.blurb}</p>
+                    <ul className="mt-5 flex flex-wrap gap-2">
+                      {solution.points.map((point) => (
+                        <li
+                          key={point}
+                          className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary"
+                        >
+                          {point}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </Panel>
               </Link>
             </Reveal>
