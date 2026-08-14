@@ -96,8 +96,8 @@ function Services() {
             The part of the order that <span className="ink-text">does not fit in a box</span>
           </Heading>
           <Lead className="mt-5">
-            Hardware is easy to buy anywhere. What changes the outcome of a job is somebody reading
-            the specification properly before the invoice, and answering the phone after it.
+            Hardware is easy to buy anywhere. What changes the outcome of a job is somebody reading the specification
+            properly before the invoice, and answering the phone after it.
           </Lead>
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <QuoteButton label="Talk to an expert" />

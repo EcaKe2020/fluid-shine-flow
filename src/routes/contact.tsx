@@ -62,10 +62,8 @@ function Contact() {
     details: "",
   });
 
-  const set =
-    (k: keyof typeof form) =>
-    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
-      setForm((f) => ({ ...f, [k]: e.target.value }));
+  const set = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
+    setForm((f) => ({ ...f, [k]: e.target.value }));
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -117,43 +115,29 @@ function Contact() {
               Tell us about the site and we will <span className="ink-text">price it properly</span>
             </Heading>
             <Lead className="mt-5">
-              A request that includes distances, quantities and the county gets a complete answer
-              first time. Everything else takes an extra phone call, and we would rather skip it.
+              A request that includes distances, quantities and the county gets a complete answer first time. Everything
+              else takes an extra phone call, and we would rather skip it.
             </Lead>
 
             <div className="mt-8 grid gap-3 sm:grid-cols-2">
-              <a
-                href={COMPANY.phoneHref}
-                className="gloss rounded-2xl p-5 transition hover:-translate-y-0.5"
-              >
+              <a href={COMPANY.phoneHref} className="gloss rounded-2xl p-5 transition hover:-translate-y-0.5">
                 <Phone className="relative z-10 size-5 text-ember" />
-                <p className="relative z-10 mt-3 text-xs uppercase tracking-[0.14em] text-muted-foreground">
-                  Phone
-                </p>
+                <p className="relative z-10 mt-3 text-xs uppercase tracking-[0.14em] text-muted-foreground">Phone</p>
                 <p className="relative z-10 font-semibold">{COMPANY.phone}</p>
               </a>
-              <a
-                href={`mailto:${COMPANY.email}`}
-                className="gloss rounded-2xl p-5 transition hover:-translate-y-0.5"
-              >
+              <a href={`mailto:${COMPANY.email}`} className="gloss rounded-2xl p-5 transition hover:-translate-y-0.5">
                 <Mail className="relative z-10 size-5 text-ember" />
-                <p className="relative z-10 mt-3 text-xs uppercase tracking-[0.14em] text-muted-foreground">
-                  Email
-                </p>
+                <p className="relative z-10 mt-3 text-xs uppercase tracking-[0.14em] text-muted-foreground">Email</p>
                 <p className="relative z-10 font-semibold">{COMPANY.email}</p>
               </a>
               <div className="gloss rounded-2xl p-5">
                 <MapPin className="relative z-10 size-5 text-ember" />
-                <p className="relative z-10 mt-3 text-xs uppercase tracking-[0.14em] text-muted-foreground">
-                  Counter
-                </p>
+                <p className="relative z-10 mt-3 text-xs uppercase tracking-[0.14em] text-muted-foreground">Counter</p>
                 <p className="relative z-10 text-sm font-semibold">{COMPANY.address}</p>
               </div>
               <div className="gloss rounded-2xl p-5">
                 <Clock className="relative z-10 size-5 text-ember" />
-                <p className="relative z-10 mt-3 text-xs uppercase tracking-[0.14em] text-muted-foreground">
-                  Hours
-                </p>
+                <p className="relative z-10 mt-3 text-xs uppercase tracking-[0.14em] text-muted-foreground">Hours</p>
                 <p className="relative z-10 text-sm font-semibold">{COMPANY.hours}</p>
               </div>
             </div>
@@ -168,8 +152,7 @@ function Contact() {
             <Panel className="p-6 sm:p-8">
               <h2 className="text-xl font-semibold">Request a quotation</h2>
               <p className="mt-2 text-sm text-muted-foreground">
-                Submitting opens your mail client with the details formatted for the desk. Prefer to
-                talk? Use WhatsApp.
+                Submitting opens your mail client with the details formatted for the desk. Prefer to talk? Use WhatsApp.
               </p>
               <form onSubmit={submit} className="mt-6 space-y-4">
                 <div className="grid gap-4 sm:grid-cols-2">
@@ -183,13 +166,7 @@ function Contact() {
                   </label>
                   <label className="block text-sm font-medium">
                     Email
-                    <input
-                      required
-                      type="email"
-                      value={form.email}
-                      onChange={set("email")}
-                      className={field}
-                    />
+                    <input required type="email" value={form.email} onChange={set("email")} className={field} />
                   </label>
                   <label className="block text-sm font-medium">
                     Phone
@@ -208,12 +185,7 @@ function Contact() {
                   </label>
                   <label className="block text-sm font-medium">
                     County
-                    <input
-                      value={form.county}
-                      onChange={set("county")}
-                      className={field}
-                      placeholder="Nairobi"
-                    />
+                    <input value={form.county} onChange={set("county")} className={field} placeholder="Nairobi" />
                   </label>
                 </div>
                 <label className="block text-sm font-medium">
@@ -235,8 +207,7 @@ function Contact() {
                 </button>
                 {sent ? (
                   <p className="text-sm text-ember">
-                    Your mail client should be open. If nothing happened, email {COMPANY.email}{" "}
-                    directly.
+                    Your mail client should be open. If nothing happened, email {COMPANY.email} directly.
                   </p>
                 ) : null}
               </form>
