@@ -195,10 +195,16 @@ export function QuoteButton({ label = "Request a quote" }: { label?: string }) {
   );
 }
 
-export function ShopButton({ label = "Shop online" }: { label?: string }) {
+export function ShopButton({
+  label = "Shop online",
+  medium = "body-button",
+}: {
+  label?: string;
+  medium?: string;
+}) {
   return (
     <a
-      href={SHOP_URL}
+      href={shopUrl(medium)}
       target="_blank"
       rel="noreferrer"
       className="gloss gloss-hover inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-foreground"
