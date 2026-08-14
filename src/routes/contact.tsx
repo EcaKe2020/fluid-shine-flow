@@ -22,7 +22,7 @@ export const Route = createFileRoute("/contact")({
       {
         name: "description",
         content:
-          "Reach the ECA Networks technical desk in Embakasi, Nairobi. Send a request for quotation with your site details and get pricing, stock status and specification advice back.",
+          "Reach the ECA Networks technical desk in Embakasi, Nairobi. Send a request for quotation with your site details and get pricing, stock status and specification advice.",
       },
       { property: "og:title", content: "Contact ECA Networks Nairobi" },
       {
