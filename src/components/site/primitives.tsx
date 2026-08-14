@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, ArrowUpRight, MessageCircle } from "lucide-react";
+import { ArrowRight, ArrowUpRight, MessageCircle, Linkedin, Mail, MapPin } from "lucide-react";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { shopUrl, WHATSAPP_URL } from "@/lib/eca";
 
@@ -229,4 +229,59 @@ export function CtaBand({
 
 export function Jsonld({ data }: { data: Record<string, unknown> }) {
   return <script type="application/ld+json">{JSON.stringify(data)}</script>;
+}
+
+export { PriceTable } from "./PriceTable";
+
+interface TeamMember {
+  name: string;
+  title: string;
+  image: string;
+}
+
+interface TeamCardProps {
+  member: TeamMember;
+  delay?: number;
+}
+
+export function TeamCard({ member, delay = 0 }: TeamCardProps) {
+  return (
+    <Reveal delay={delay}>
+      <div className="group relative bg-white rounded-2xl border border-[#E5E5E5] overflow-hidden transition-all duration-300 hover:border-[#00D4FF]/50 hover:shadow-[0_20px_40px_rgba(0,212,255,0.08)] hover:-translate-y-1">
+        <div className="relative aspect-square overflow-hidden">
+          <img
+            src={member.image}
+            alt={member.name}
+            loading="lazy"
+            className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+            <div className="flex items-center gap-2">
+              <a
+                href={`https://linkedin.com/in/${member.name.toLowerCase().replace(/\s+/g, '-')}`}
+                target="_blank"
+                rel="noreferrer"
+                className="p-1.5 rounded-full bg-white/90 text-[#1A1A1A] hover:bg-white transition-colors"
+                aria-label={`Connect with ${member.name} on LinkedIn`}
+              >
+                <Linkedin className="size-4" />
+              </a>
+              <a
+                href={`mailto:${member.name.toLowerCase().replace(/\s+/g, '.')}@ecanetworks.co.ke`}
+                className="p-1.5 rounded-full bg-white/90 text-[#1A1A1A] hover:bg-white transition-colors"
+                aria-label={`Email ${member.name}`}
+              >
+                <Mail className="size-4" />
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="p-4">
+          <p className="font-bold text-[#1A1A1A] group-hover:text-[#00D4FF] transition-colors">{member.name}</p>
+          <p className="text-sm text-[#666666] mt-1">{member.title}</p>
+        </div>
+      </div>
+    </Reveal>
+  );
 }

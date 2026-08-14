@@ -14,6 +14,9 @@ import {
   GraduationCap,
   Landmark,
   Server,
+  Linkedin,
+  Mail,
+  MapPin,
 } from "lucide-react";
 import { BRANDS, COMPANY, FAQS, INDUSTRIES, SOLUTIONS } from "@/lib/eca";
 import { FaqList } from "@/components/site/Faq";
@@ -28,6 +31,7 @@ import {
   Section,
   ShopButton,
   WhatsAppButton,
+  TeamCard,
 } from "@/components/site/primitives";
 
 export const Route = createFileRoute("/")({
@@ -262,60 +266,21 @@ function Home() {
           </Lead>
         </Reveal>
 
-        {/* Leadership tier */}
+        {/* All team members in a unified grid */}
         <Reveal delay={80}>
-          <p className="mt-12 mb-4 text-xs font-bold uppercase tracking-[0.16em] text-[#666666]">Leadership</p>
-          <div className="grid gap-8 sm:grid-cols-2">
-            {TEAM_LEADERSHIP.map((member) => (
-              <div key={member.name}>
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  loading="lazy"
-                  className="aspect-square w-[200px] max-w-full object-cover"
-                />
-                <p className="mt-3 text-base font-bold text-[#1A1A1A]">{member.name}</p>
-                <p className="text-sm text-[#666666]">{member.title}</p>
-              </div>
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+            {[...TEAM_LEADERSHIP, ...TEAM_OPERATIONS, ...TEAM_SALES].map((member, idx) => (
+              <TeamCard key={`${member.name}-${idx}`} member={member} delay={idx * 40} />
             ))}
           </div>
         </Reveal>
 
-        {/* Operations tier */}
-        <Reveal delay={120}>
-          <p className="mt-12 mb-4 text-xs font-bold uppercase tracking-[0.16em] text-[#666666]">Operations</p>
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {TEAM_OPERATIONS.map((member) => (
-              <div key={member.name}>
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  loading="lazy"
-                  className="aspect-square w-[160px] max-w-full object-cover"
-                />
-                <p className="mt-3 text-sm font-bold text-[#1A1A1A]">{member.name}</p>
-                <p className="text-xs text-[#666666]">{member.title}</p>
-              </div>
-            ))}
-          </div>
-        </Reveal>
-
-        {/* Sales tier */}
-        <Reveal delay={160}>
-          <p className="mt-12 mb-4 text-xs font-bold uppercase tracking-[0.16em] text-[#666666]">Sales Team</p>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
-            {TEAM_SALES.map((member) => (
-              <div key={member.name}>
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  loading="lazy"
-                  className="aspect-square w-[120px] max-w-full object-cover"
-                />
-                <p className="mt-2 text-xs font-bold text-[#1A1A1A]">{member.name}</p>
-                <p className="text-xs text-[#666666]">{member.title}</p>
-              </div>
-            ))}
+        <Reveal delay={200}>
+          <div className="mt-10 text-center">
+            <Link to="/team" className="inline-flex items-center gap-2 text-sm font-semibold text-[#00D4FF] hover:underline">
+              View full team and careers
+              <ArrowUpRight className="size-4" />
+            </Link>
           </div>
         </Reveal>
       </Section>

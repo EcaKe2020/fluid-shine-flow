@@ -155,6 +155,17 @@
     background: #00D4FF;
     color: #0B0C10;
   }
+
+  /* Focus visible for accessibility */
+  *:focus-visible {
+    outline: 2px solid #00D4FF;
+    outline-offset: 2px;
+  }
+
+  /* Smooth transitions for interactive elements */
+  a, button, [role="button"], input, select, textarea {
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
 }
 
 /* Full-width section utility with clamp side padding */
@@ -188,7 +199,108 @@
   }
 }
 
+/* Staggered entrance for grid items */
+@utility stagger-children {
+  > * {
+    animation: rise 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  > *:nth-child(1) { animation-delay: 0ms; }
+  > *:nth-child(2) { animation-delay: 60ms; }
+  > *:nth-child(3) { animation-delay: 120ms; }
+  > *:nth-child(4) { animation-delay: 180ms; }
+  > *:nth-child(5) { animation-delay: 240ms; }
+  > *:nth-child(6) { animation-delay: 300ms; }
+  > *:nth-child(7) { animation-delay: 360ms; }
+  > *:nth-child(8) { animation-delay: 420ms; }
+  > *:nth-child(9) { animation-delay: 480ms; }
+  > *:nth-child(10) { animation-delay: 540ms; }
+}
+
+/* Gloss/glass effect for feature panels */
+@utility gloss {
+  background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.6) 100%);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.3);
+  box-shadow:
+    0 4px 24px rgba(0,0,0,0.04),
+    0 1px 3px rgba(0,0,0,0.03),
+    inset 0 1px 0 rgba(255,255,255,0.5);
+}
+
+.dark .gloss {
+  background: linear-gradient(135deg, rgba(11,12,16,0.9) 0%, rgba(11,12,16,0.6) 100%);
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow:
+    0 4px 24px rgba(0,0,0,0.3),
+    0 1px 3px rgba(0,0,0,0.2),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+/* Gradient text utility */
+@utility ink-text {
+  background: linear-gradient(135deg, #00D4FF 0%, #00B8E0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Hero progress bar */
 @keyframes hero-progress {
   from { transform: scaleX(0); }
   to { transform: scaleX(1); }
+}
+
+/* Smooth scroll for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #00D4FF;
+  border-radius: 4px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00B8E0;
+  background-clip: content-box;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --border: #000;
+    --ring: #000;
+  }
+  .dark {
+    --border: #fff;
+    --ring: #fff;
+  }
 }

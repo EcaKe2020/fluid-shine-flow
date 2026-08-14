@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { QrCode, ShoppingCart, Truck, Wallet } from "lucide-react";
 import { COMPANY, SHOP_URL } from "@/lib/eca";
 import { FaqList } from "@/components/site/Faq";
+import { PriceTable } from "@/components/site/PriceTable";
 import {
   CtaBand,
   Eyebrow,
@@ -107,6 +108,19 @@ function PriceList() {
               </Panel>
             </Reveal>
           ))}
+        </div>
+      </Section>
+
+      <Section className="pt-0">
+        <Reveal>
+          <Eyebrow>Price list</Eyebrow>
+          <Heading>Browse current stock pricing</Heading>
+          <Lead className="mt-4 max-w-2xl">
+            Search, filter, and sort across all stocked lines. Prices update in real-time from the store.
+          </Lead>
+        </Reveal>
+        <div className="mt-8">
+          <PriceTable />
         </div>
       </Section>
 
