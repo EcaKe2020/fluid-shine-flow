@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import logo from "@/assets/eca-logo.png.asset.json";
-import { COMPANY, SHOP_URL, SOLUTIONS, WHATSAPP_URL } from "@/lib/eca";
+import { COMPANY, shopUrl, SOLUTIONS, WHATSAPP_URL } from "@/lib/eca";
 
 export function Footer() {
   return (
@@ -12,7 +12,7 @@ export function Footer() {
             <img src={logo.url} alt="ECA Networks logo" className="h-9 w-auto" width={144} height={48} />
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{COMPANY.tagline}</p>
             <a
-              href={SHOP_URL}
+              href={shopUrl("footer")}
               target="_blank"
               rel="noreferrer"
               className="mt-5 inline-flex rounded-full bg-ember px-4 py-2.5 text-sm font-semibold text-ember-foreground"
@@ -72,11 +72,17 @@ export function Footer() {
           </address>
         </div>
 
-        <div className="relative z-10 mt-10 flex flex-wrap items-center justify-between gap-3 text-xs text-muted-foreground">
-          <p>
-            {COMPANY.name}, Nairobi, Kenya. Corporate site for partners, contractors and procurement teams.
+        <div className="relative z-10 mt-10 border-t border-border pt-6">
+          <p className="text-sm font-semibold text-foreground/80">
+            Serving Kenya since {COMPANY.founded}
           </p>
-          <p>Ordering and stock live on the e commerce store.</p>
+          <div className="mt-3 flex flex-wrap items-center justify-between gap-3 text-xs text-muted-foreground">
+            <p>
+              {COMPANY.name}, registered in Kenya. Company registration and KRA PIN are stated on every quotation,
+              invoice and delivery note.
+            </p>
+            <p>Ordering and stock live on the e commerce store.</p>
+          </div>
         </div>
       </div>
     </footer>

@@ -1,7 +1,97 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, ArrowUpRight, MessageCircle } from "lucide-react";
+import { ArrowRight, ArrowUpRight, ChevronRight, MessageCircle } from "lucide-react";
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { SHOP_URL, WHATSAPP_URL } from "@/lib/eca";
+import { shopUrl, WHATSAPP_URL } from "@/lib/eca";
+
+/** Small caps section label used above every H2. */
+export function Label({ children }: { children: ReactNode }) {
+  return (
+    <p className="mb-3 text-[0.6875rem] font-bold uppercase tracking-[0.18em] text-ember">{children}</p>
+  );
+}
+
+/** Counts a numeric value up once it scrolls into view. */
+export function CountUp({
+  value,
+  suffix = "",
+  className = "",
+}: {
+  value: number;
+  suffix?: string;
+  className?: string;
+}) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const [shown, setShown] = useState(0);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+    let frame = 0;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry?.isIntersecting) return;
+        observer.disconnect();
+        const start = performance.now();
+        const tick = (now: number) => {
+          const t = Math.min(1, (now - start) / 1100);
+          const eased = 1 - Math.pow(1 - t, 3);
+          setShown(Math.round(value * eased));
+          if (t < 1) frame = requestAnimationFrame(tick);
+        };
+        frame = requestAnimationFrame(tick);
+      },
+      { rootMargin: "-30px" },
+    );
+    observer.observe(node);
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(frame);
+    };
+  }, [value]);
+
+  return (
+    <span ref={ref} className={className}>
+      {shown.toLocaleString("en-KE")}
+      {suffix}
+    </span>
+  );
+}
+
+export function Breadcrumbs({ items }: { items: { label: string; to?: string }[] }) {
+  return (
+    <>
+      <nav aria-label="Breadcrumb" className="mb-5 flex flex-wrap items-center gap-1.5 text-xs text-muted-foreground">
+        <Link to="/" className="hover:text-primary">
+          Home
+        </Link>
+        {items.map((item) => (
+          <span key={item.label} className="flex items-center gap-1.5">
+            <ChevronRight className="size-3" />
+            {item.to ? (
+              <Link to={item.to} className="hover:text-primary">
+                {item.label}
+              </Link>
+            ) : (
+              <span className="text-foreground/80">{item.label}</span>
+            )}
+          </span>
+        ))}
+      </nav>
+      <Jsonld
+        data={{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [{ label: "Home", to: "/" }, ...items].map((item, i) => ({
+            "@type": "ListItem",
+            position: i + 1,
+            name: item.label,
+            ...(item.to ? { item: `https://ecanetworks.co.ke${item.to}` } : {}),
+          })),
+        }}
+      />
+    </>
+  );
+}
 
 export function Section({
   children,
@@ -105,10 +195,16 @@ export function QuoteButton({ label = "Request a quote" }: { label?: string }) {
   );
 }
 
-export function ShopButton({ label = "Shop online" }: { label?: string }) {
+export function ShopButton({
+  label = "Shop online",
+  medium = "body-button",
+}: {
+  label?: string;
+  medium?: string;
+}) {
   return (
     <a
-      href={SHOP_URL}
+      href={shopUrl(medium)}
       target="_blank"
       rel="noreferrer"
       className="gloss gloss-hover inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-foreground"

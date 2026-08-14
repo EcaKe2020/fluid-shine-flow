@@ -1,16 +1,35 @@
 export const SHOP_URL = "https://ecanetworks.com";
 export const WHATSAPP_URL = "https://wa.me/254720309309";
+export const MAPS_URL =
+  "https://www.google.com/maps/search/?api=1&query=Amee+Properties+Embakasi+Nairobi";
+
+/** Shop link tagged with the section it was clicked from. */
+export const shopUrl = (medium: string) =>
+  `${SHOP_URL}?utm_source=corporate-site&utm_medium=${encodeURIComponent(medium)}`;
 
 export const COMPANY = {
   name: "ECA Networks Ltd",
   short: "ECA Networks",
+  founded: 2020,
   phone: "+254 720 309 309",
   phoneHref: "tel:+254720309309",
   email: "info@ecanetworks.com",
   address: "21, Amee Properties, Embakasi, Nairobi",
   hours: "Monday to Friday, 8:00 AM to 5:00 PM",
   tagline: "Fibre and network infrastructure, stocked in Nairobi, shipped across Kenya.",
+  responseLine: "Technical desk responds within two business hours.",
 } as const;
+
+export const BRANDS = [
+  "MikroTik",
+  "HSGQ",
+  "Hikvision",
+  "Dahua",
+  "Ubiquiti",
+  "Starlink",
+  "TP-Link",
+  "Yealink",
+] as const;
 
 export const STATS = [
   { value: "10,000+", label: "customers served" },
