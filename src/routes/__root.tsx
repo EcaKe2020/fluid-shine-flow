@@ -139,6 +139,7 @@ function RootComponent() {
             <Outlet />
           </main>
           <Footer />
+          <FloatingActions />
         </div>
       </ThemeProvider>
     </QueryClientProvider>
