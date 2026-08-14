@@ -39,7 +39,10 @@ export const Route = createFileRoute("/")({
         content:
           "Nairobi based supplier of fibre optic cable, ADSS, structured cabling, MikroTik and PoE networking, CCTV and PABX. Trade pricing, local warranty, delivery to all 47 counties.",
       },
-      { property: "og:title", content: "ECA Networks | Fibre and Networking Infrastructure, Kenya" },
+      {
+        property: "og:title",
+        content: "ECA Networks | Fibre and Networking Infrastructure, Kenya",
+      },
       {
         property: "og:description",
         content:
@@ -79,12 +82,16 @@ const TEAM_LEADERSHIP = [
   {
     name: "CEO",
     title: "Chief Executive Officer",
-    image: "https://images.pexels.com/photos/28442318/pexels-photo-28442318.jpeg?auto=compress&cs=tinysrgb&w=400",
+    image:
+      "https://images.pexels.com/photos/28442318/pexels-photo-28442318.jpeg?auto=compress&cs=tinysrgb&w=400",
+    bio: "Leads the company's vision and strategy, ensuring delivery of quality networking solutions across Kenya.",
   },
   {
     name: "COO",
     title: "Chief Operating Officer",
-    image: "https://images.pexels.com/photos/33680700/pexels-photo-33680700.jpeg?auto=compress&cs=tinysrgb&w=400",
+    image:
+      "https://images.pexels.com/photos/33680700/pexels-photo-33680700.jpeg?auto=compress&cs=tinysrgb&w=400",
+    bio: "Oversees daily operations, logistics and supply chain to keep stock moving and quotes accurate.",
   },
 ];
 
@@ -92,31 +99,60 @@ const TEAM_OPERATIONS = [
   {
     name: "Accounting",
     title: "Finance & Accounts",
-    image: "https://images.pexels.com/photos/8312669/pexels-photo-8312669.jpeg?auto=compress&cs=tinysrgb&w=320",
+    image:
+      "https://images.pexels.com/photos/8312669/pexels-photo-8312669.jpeg?auto=compress&cs=tinysrgb&w=320",
   },
   {
     name: "Digital Marketing",
     title: "Marketing Lead",
-    image: "https://images.pexels.com/photos/38707525/pexels-photo-38707525.jpeg?auto=compress&cs=tinysrgb&w=320",
+    image:
+      "https://images.pexels.com/photos/38707525/pexels-photo-38707525.jpeg?auto=compress&cs=tinysrgb&w=320",
   },
   {
     name: "Store Assistant",
     title: "Warehouse Operations",
-    image: "https://images.pexels.com/photos/5308640/pexels-photo-5308640.jpeg?auto=compress&cs=tinysrgb&w=320",
+    image:
+      "https://images.pexels.com/photos/5308640/pexels-photo-5308640.jpeg?auto=compress&cs=tinysrgb&w=320",
   },
   {
     name: "Driver",
     title: "Logistics & Dispatch",
-    image: "https://images.pexels.com/photos/13392786/pexels-photo-13392786.png?auto=compress&cs=tinysrgb&w=320",
+    image:
+      "https://images.pexels.com/photos/13392786/pexels-photo-13392786.png?auto=compress&cs=tinysrgb&w=320",
   },
 ];
 
 const TEAM_SALES = [
-  { name: "Sales Rep 1", title: "Sales Representative", image: "https://images.pexels.com/photos/11156392/pexels-photo-11156392.jpeg?auto=compress&cs=tinysrgb&w=240" },
-  { name: "Sales Rep 2", title: "Sales Representative", image: "https://images.pexels.com/photos/14950779/pexels-photo-14950779.jpeg?auto=compress&cs=tinysrgb&w=240" },
-  { name: "Sales Rep 3", title: "Sales Representative", image: "https://images.pexels.com/photos/31422830/pexels-photo-31422830.png?auto=compress&cs=tinysrgb&w=240" },
-  { name: "Sales Rep 4", title: "Sales Representative", image: "https://images.pexels.com/photos/26150470/pexels-photo-26150470.jpeg?auto=compress&cs=tinysrgb&w=240" },
-  { name: "Sales Rep 5", title: "Sales Representative", image: "https://images.pexels.com/photos/38652616/pexels-photo-38652616.jpeg?auto=compress&cs=tinysrgb&w=240" },
+  {
+    name: "Sales Rep 1",
+    title: "Sales Representative",
+    image:
+      "https://images.pexels.com/photos/11156392/pexels-photo-11156392.jpeg?auto=compress&cs=tinysrgb&w=240",
+  },
+  {
+    name: "Sales Rep 2",
+    title: "Sales Representative",
+    image:
+      "https://images.pexels.com/photos/14950779/pexels-photo-14950779.jpeg?auto=compress&cs=tinysrgb&w=240",
+  },
+  {
+    name: "Sales Rep 3",
+    title: "Sales Representative",
+    image:
+      "https://images.pexels.com/photos/31422830/pexels-photo-31422830.png?auto=compress&cs=tinysrgb&w=240",
+  },
+  {
+    name: "Sales Rep 4",
+    title: "Sales Representative",
+    image:
+      "https://images.pexels.com/photos/26150470/pexels-photo-26150470.jpeg?auto=compress&cs=tinysrgb&w=240",
+  },
+  {
+    name: "Sales Rep 5",
+    title: "Sales Representative",
+    image:
+      "https://images.pexels.com/photos/38652616/pexels-photo-38652616.jpeg?auto=compress&cs=tinysrgb&w=240",
+  },
 ];
 
 const SOLUTION_ICONS = [Cable, Wrench, Server, ShieldCheck];
@@ -155,27 +191,31 @@ function Home() {
       {/* WHAT WE SUPPLY — White zone */}
       <Section className="bg-white pt-24">
         <Reveal>
-          <Eyebrow>What we supply</Eyebrow>
-          <Heading>Four supply lines, one delivery note</Heading>
-          <Lead className="mt-4">
-            Most projects touch more than one of these. Buying them from one counter keeps compatibility, warranty and
-            paperwork in a single place.
+          <Eyebrow className="eyebrow">What we supply</Eyebrow>
+          <Heading className="headline">Four supply lines, one delivery note</Heading>
+          <Lead className="mt-4 body-text">
+            Most projects touch more than one of these. Buying them from one counter keeps
+            compatibility, warranty and paperwork in a single place.
           </Lead>
         </Reveal>
         <div className="mt-12 grid gap-0 md:grid-cols-4">
           {SOLUTIONS.map((solution, i) => (
             <Reveal key={solution.slug} delay={i * 80}>
-              <div
-                className={`p-6 ${i > 0 ? "md:border-l md:border-[#E5E5E5]" : ""} ${
-                  i < SOLUTIONS.length - 1 ? "border-b border-[#E5E5E5] md:border-b-0" : ""
-                }`}
-              >
+              <div className={`p-6 supply-item ${i > 0 ? "md:border-l md:border-[#E5E5E5]" : ""}`}>
                 {(() => {
                   const Icon = SOLUTION_ICONS[i] ?? Cable;
-                  return <Icon className="size-6 text-[#00D4FF]" />;
+                  return (
+                    <div className="supply-icon">
+                      <Icon className="size-6" />
+                    </div>
+                  );
                 })()}
-                <h3 className="mt-4 text-lg font-bold text-[#1A1A1A]">{solution.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-[#666666]">{solution.blurb}</p>
+                <h3 className="mt-4" style={{ fontSize: 18, fontWeight: 700 }}>
+                  {solution.title}
+                </h3>
+                <p className="mt-2" style={{ fontSize: 15, color: "#555555" }}>
+                  {solution.blurb}
+                </p>
                 <Link
                   to="/solutions/$slug"
                   params={{ slug: solution.slug }}
@@ -197,22 +237,39 @@ function Home() {
       </Section>
 
       {/* THE LOCAL ADVANTAGE — White zone */}
-      <Section className="bg-white" style={{ borderTop: "1px solid #E5E5E5" } as React.CSSProperties}>
+      <Section
+        className="bg-white"
+        style={{ borderTop: "1px solid #E5E5E5" } as React.CSSProperties}
+      >
         <Reveal>
           <Eyebrow>The local advantage</Eyebrow>
           <Heading>Why buyers keep coming back to the Embakasi counter</Heading>
         </Reveal>
-        <div className="mt-12 grid gap-0 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid gap-0 sm:grid-cols-2 lg:grid-cols-2">
           {REASONS.map((reason, i) => (
             <Reveal key={reason.title} delay={i * 80}>
-              <div
-                className={`p-6 ${i > 0 ? "lg:border-l lg:border-[#E5E5E5]" : ""} ${
-                  i < REASONS.length - 1 ? "border-b border-[#E5E5E5] sm:border-b-0" : ""
-                }`}
-              >
-                <reason.icon className="size-6 text-[#00D4FF]" />
-                <h3 className="mt-4 text-base font-bold text-[#1A1A1A]">{reason.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-[#666666]">{reason.body}</p>
+              <div className={`local-advantage-cell`}>
+                <div
+                  style={{
+                    width: 32,
+                    height: 32,
+                    borderRadius: 16,
+                    background: "#00D4FF",
+                    color: "#fff",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontWeight: 700,
+                  }}
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </div>
+                <h3 className="mt-4" style={{ fontSize: 20, fontWeight: 700 }}>
+                  {reason.title}
+                </h3>
+                <p className="mt-2" style={{ fontSize: 16, color: "#444444" }}>
+                  {reason.body}
+                </p>
               </div>
             </Reveal>
           ))}
@@ -220,7 +277,10 @@ function Home() {
       </Section>
 
       {/* WHO WE SERVE — White zone */}
-      <Section className="bg-white" style={{ borderTop: "1px solid #E5E5E5" } as React.CSSProperties}>
+      <Section
+        className="bg-white"
+        style={{ borderTop: "1px solid #E5E5E5" } as React.CSSProperties}
+      >
         <Reveal>
           <Eyebrow>Who we serve</Eyebrow>
           <Heading>Built around how each buyer actually orders</Heading>
@@ -228,13 +288,7 @@ function Home() {
         <div className="mt-12 grid gap-0 sm:grid-cols-2 lg:grid-cols-3">
           {INDUSTRIES.map((item, i) => (
             <Reveal key={item.title} delay={i * 70}>
-              <div
-                className={`p-6 ${i % 3 > 0 ? "lg:border-l lg:border-[#E5E5E5]" : ""} ${
-                  i % 2 > 0 ? "sm:border-l sm:border-[#E5E5E5] lg:border-l-0" : ""
-                } ${
-                  i < INDUSTRIES.length - (INDUSTRIES.length % 3 || 3) ? "border-b border-[#E5E5E5]" : ""
-                }`}
-              >
+              <div className={`p-6 serve-item`}>
                 {(() => {
                   const Icon = INDUSTRY_ICONS[i] ?? Users;
                   return <Icon className="size-6 text-[#00D4FF]" />;
@@ -246,36 +300,41 @@ function Home() {
           ))}
         </div>
         <Reveal>
-          <Link to="/industries" className="mt-6 inline-flex text-sm font-semibold text-[#00D4FF] hover:underline">
+          <Link
+            to="/industries"
+            className="mt-6 inline-flex text-sm font-semibold text-[#00D4FF] hover:underline"
+          >
             See the full industry breakdown
           </Link>
         </Reveal>
       </Section>
 
       {/* MEET THE TEAM — White zone */}
-      <Section className="bg-white" style={{ borderTop: "1px solid #E5E5E5" } as React.CSSProperties}>
+      <Section
+        className="bg-white"
+        style={{ borderTop: "1px solid #E5E5E5" } as React.CSSProperties}
+      >
         <Reveal>
-          <Eyebrow>Meet the team</Eyebrow>
-          <Heading>The team behind the counter</Heading>
-          <Lead className="mt-4">
+          <Eyebrow className="eyebrow">THE PEOPLE</Eyebrow>
+          <Heading className="headline">The team behind the counter</Heading>
+          <Lead className="mt-4 body-text">
             Engineers, buyers and support staff who keep stock moving and quotes accurate.
           </Lead>
         </Reveal>
 
         {/* Leadership tier */}
         <Reveal delay={80}>
-          <p className="mt-12 mb-4 text-xs font-bold uppercase tracking-[0.16em] text-[#666666]">Leadership</p>
-          <div className="grid gap-8 sm:grid-cols-2">
+          <div className="mt-12 grid gap-6 md:grid-cols-2">
             {TEAM_LEADERSHIP.map((member) => (
-              <div key={member.name}>
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  loading="lazy"
-                  className="aspect-square w-[200px] max-w-full object-cover"
-                />
-                <p className="mt-3 text-base font-bold text-[#1A1A1A]">{member.name}</p>
-                <p className="text-sm text-[#666666]">{member.title}</p>
+              <div key={member.name} className="lead-card">
+                <img src={member.image} alt={member.name} loading="lazy" className="lead-photo" />
+                <div>
+                  <p className="mt-0 font-bold text-[24px]">{member.name}</p>
+                  <p className="mt-1 text-[14px] uppercase tracking-[1px] text-[#00D4FF]">
+                    {member.title}
+                  </p>
+                  <p className="mt-2 body-text">{member.bio}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -283,37 +342,37 @@ function Home() {
 
         {/* Operations tier */}
         <Reveal delay={120}>
-          <p className="mt-12 mb-4 text-xs font-bold uppercase tracking-[0.16em] text-[#666666]">Operations</p>
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          <p className="mt-12 mb-4 text-xs font-bold uppercase tracking-[0.16em] text-[#666666]">
+            Operations
+          </p>
+          <div className="mt-12 grid gap-6 md:grid-cols-4">
             {TEAM_OPERATIONS.map((member) => (
               <div key={member.name}>
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  loading="lazy"
-                  className="aspect-square w-[160px] max-w-full object-cover"
-                />
-                <p className="mt-3 text-sm font-bold text-[#1A1A1A]">{member.name}</p>
-                <p className="text-xs text-[#666666]">{member.title}</p>
+                <img src={member.image} alt={member.name} loading="lazy" className="ops-photo" />
+                <div className="mt-4 text-center">
+                  <p className="font-bold text-[16px]">{member.name}</p>
+                  <p className="mt-1 text-[13px] uppercase text-[#666666]">{member.title}</p>
+                </div>
               </div>
             ))}
           </div>
+          {/* Thin 1px #E5E5E5 divider below each row */}
+          <div className="mt-4 border-t border-[#E5E5E5]" />
         </Reveal>
 
         {/* Sales tier */}
         <Reveal delay={160}>
-          <p className="mt-12 mb-4 text-xs font-bold uppercase tracking-[0.16em] text-[#666666]">Sales Team</p>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+          <p className="mt-12 mb-4 text-xs font-bold uppercase tracking-[0.16em] text-[#666666]">
+            Sales Team
+          </p>
+          <div className="mt-12 grid gap-4 md:grid-cols-5">
             {TEAM_SALES.map((member) => (
               <div key={member.name}>
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  loading="lazy"
-                  className="aspect-square w-[120px] max-w-full object-cover"
-                />
-                <p className="mt-2 text-xs font-bold text-[#1A1A1A]">{member.name}</p>
-                <p className="text-xs text-[#666666]">{member.title}</p>
+                <img src={member.image} alt={member.name} loading="lazy" className="sales-photo" />
+                <div className="mt-2 text-center">
+                  <p className="font-bold text-[14px]">{member.name}</p>
+                  <p className="mt-0 text-[12px] uppercase text-[#888888]">{member.title}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -321,7 +380,10 @@ function Home() {
       </Section>
 
       {/* INTERACTIVE TOOLS — White zone */}
-      <Section className="bg-white" style={{ borderTop: "1px solid #E5E5E5" } as React.CSSProperties}>
+      <Section
+        className="bg-white"
+        style={{ borderTop: "1px solid #E5E5E5" } as React.CSSProperties}
+      >
         <Reveal>
           <Eyebrow>Interactive tools</Eyebrow>
           <Heading>Cost the job before you call anyone</Heading>
@@ -329,19 +391,27 @@ function Home() {
             Two calculators built from the questions the sales desk answers every week.
           </Lead>
         </Reveal>
-        <div className="mt-12 grid gap-0 md:grid-cols-2">
+        <div className="mt-12 grid gap-6 md:grid-cols-2">
           {[
-            { title: "Project bill of materials", desc: "Turn outlet counts into a rough BOM with waste allowance.", to: "/tools" as const },
-            { title: "Fibre cable selector", desc: "Answer four questions and get the right cable family for the route.", to: "/tools" as const },
+            {
+              title: "Project bill of materials",
+              desc: "Turn outlet counts into a rough BOM with waste allowance.",
+              to: "/tools" as const,
+            },
+            {
+              title: "Fibre cable selector",
+              desc: "Answer four questions and get the right cable family for the route.",
+              to: "/tools" as const,
+            },
           ].map((tool, i) => (
             <Reveal key={tool.title} delay={i * 80}>
-              <div className={`p-6 ${i > 0 ? "md:border-l md:border-[#E5E5E5]" : ""} ${i < 1 ? "border-b border-[#E5E5E5] md:border-b-0" : ""}`}>
+              <div className={`p-6 card-interactive`}>
                 <Calculator className="size-6 text-[#00D4FF]" />
                 <h3 className="mt-4 text-lg font-bold text-[#1A1A1A]">{tool.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-[#666666]">{tool.desc}</p>
                 <Link
                   to={tool.to}
-                  className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-[#00D4FF] hover:underline"
+                  className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-[#00D4FF]"
                 >
                   Open calculator
                   <ArrowUpRight className="size-3.5" />
@@ -353,13 +423,14 @@ function Home() {
       </Section>
 
       {/* FAQ — White zone */}
-      <Section className="bg-white" style={{ borderTop: "1px solid #E5E5E5" } as React.CSSProperties}>
+      <Section
+        className="bg-white"
+        style={{ borderTop: "1px solid #E5E5E5" } as React.CSSProperties}
+      >
         <Reveal>
           <Eyebrow>Straight answers</Eyebrow>
           <Heading>Questions buyers ask before they order</Heading>
-          <Lead className="mt-4">
-            Short answers first, then the detail an engineer needs.
-          </Lead>
+          <Lead className="mt-4">Short answers first, then the detail an engineer needs.</Lead>
         </Reveal>
         <div className="mt-10">
           <FaqList items={FAQS} />
@@ -367,13 +438,16 @@ function Home() {
       </Section>
 
       {/* FOOTER CTA — White zone */}
-      <Section className="bg-white" style={{ borderTop: "1px solid #E5E5E5" } as React.CSSProperties}>
+      <Section
+        className="bg-white"
+        style={{ borderTop: "1px solid #E5E5E5" } as React.CSSProperties}
+      >
         <Reveal>
           <div className="max-w-2xl">
             <Heading>Tell us what the site needs and the list comes back priced</Heading>
             <Lead className="mt-4">
-              Send a drawing, a rough part list or a site photograph. The technical desk checks the specification,
-              confirms stock and returns a quotation you can hand to procurement.
+              Send a drawing, a rough part list or a site photograph. The technical desk checks the
+              specification, confirms stock and returns a quotation you can hand to procurement.
             </Lead>
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <QuoteButton />

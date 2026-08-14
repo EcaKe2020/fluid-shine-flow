@@ -80,24 +80,21 @@ export function HeroCarousel() {
 
   return (
     <section
-      className="relative min-h-screen bg-[#0B0C10] pt-16"
+      className="relative min-h-screen bg-[#0B0C10] section-vertical"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
       <div className="flex min-h-[calc(100vh-4rem)] flex-col lg:flex-row">
         {/* Text left 55% */}
         <div className="flex w-full items-center px-[clamp(24px,5vw,80px)] py-12 lg:w-[55%] lg:py-0">
-          <div className="w-full max-w-2xl">
+          <div className="w-full max-w-2xl text-col">
             {SLIDES.map((slide, i) => (
               <div key={slide.eyebrow} className={i === active ? "block" : "hidden"}>
-                <p
-                  className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-[#00D4FF]"
-                >
+                <p className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-[#00D4FF]">
                   NAIROBI, SERVING ALL 47 COUNTIES
                 </p>
                 <h1 className="text-balance text-[clamp(2rem,4.5vw,3.8rem)] font-extrabold leading-[1.05] tracking-[-0.03em] text-white">
-                  {slide.title}{" "}
-                  <span className="text-[#00D4FF]">{slide.highlight}</span>
+                  {slide.title} <span className="text-[#00D4FF]">{slide.highlight}</span>
                 </h1>
                 <p className="mt-5 max-w-xl text-pretty text-base leading-relaxed text-[#8B8F98] sm:text-lg">
                   {slide.body}
@@ -159,7 +156,7 @@ export function HeroCarousel() {
         </div>
 
         {/* Image right 45% — full-bleed to right edge */}
-        <div className="relative w-full overflow-hidden lg:w-[45%]">
+        <div className="relative w-full overflow-hidden lg:w-[45%] hero-image-curve">
           {SLIDES.map((slide, i) => (
             <div
               key={slide.eyebrow}
@@ -176,7 +173,12 @@ export function HeroCarousel() {
               />
             </div>
           ))}
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#0B0C10] via-transparent to-transparent lg:from-[#0B0C10]/60" />
+          <div
+            className="pointer-events-none absolute inset-0"
+            style={{
+              background: "linear-gradient(to right, rgba(11,12,16,0.8) 0%, transparent 20%)",
+            }}
+          />
         </div>
       </div>
 
@@ -185,10 +187,22 @@ export function HeroCarousel() {
         className="flex flex-wrap items-center gap-8 px-[clamp(24px,5vw,80px)] py-8 text-white lg:gap-16"
         style={{ borderTop: "1px solid rgba(255,255,255,0.1)" }}
       >
-        {HERO_STATS.map((stat) => (
-          <div key={stat.label} className="flex items-baseline gap-2">
-            <span className="text-2xl font-extrabold tracking-tight sm:text-3xl">{stat.value}</span>
-            <span className="text-xs text-[#8B8F98]">{stat.label}</span>
+        {HERO_STATS.map((stat, idx) => (
+          <div
+            key={stat.label}
+            className="flex items-baseline gap-2"
+            style={
+              idx < HERO_STATS.length - 1
+                ? {
+                    paddingRight: 16,
+                    marginRight: 16,
+                    borderRight: "1px solid rgba(255,255,255,0.15)",
+                  }
+                : undefined
+            }
+          >
+            <span className="stat-number">{stat.value}</span>
+            <span className="stat-label">{stat.label}</span>
           </div>
         ))}
       </div>

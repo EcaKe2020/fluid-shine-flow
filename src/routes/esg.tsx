@@ -89,8 +89,8 @@ function Esg() {
             Written so a <span className="ink-text">procurement officer</span> can tick the box
           </Heading>
           <Lead className="mt-5">
-            Public and institutional buyers need more than a price. This page sets out how the company sources, handles
-            waste, protects people and evidences all of it on paper.
+            Public and institutional buyers need more than a price. This page sets out how the
+            company sources, handles waste, protects people and evidences all of it on paper.
           </Lead>
           <div className="mt-8">
             <QuoteButton label="Request the compliance pack" />
@@ -118,8 +118,8 @@ function Esg() {
                 <Eyebrow>Documentation</Eyebrow>
                 <Heading>What ships with a tender submission</Heading>
                 <Lead className="mt-4">
-                  Tell the desk which tender you are bidding and the pack is assembled to that list rather than sent as a
-                  generic bundle.
+                  Tell the desk which tender you are bidding and the pack is assembled to that list
+                  rather than sent as a generic bundle.
                 </Lead>
               </div>
               <ul className="space-y-3">

@@ -51,62 +51,148 @@ const FUNCTIONS = [
 ];
 
 const CAREERS = [
-  { title: "Fibre and network sales", body: "For people who can hold a technical conversation and follow through on paperwork." },
-  { title: "Technical support engineer", body: "Splicing, testing, switching and routing knowledge, with the patience to explain it." },
-  { title: "Warehouse and logistics", body: "Accuracy under pressure, because a wrong pick becomes a wasted site visit." },
+  {
+    title: "Fibre and network sales",
+    body: "For people who can hold a technical conversation and follow through on paperwork.",
+  },
+  {
+    title: "Technical support engineer",
+    body: "Splicing, testing, switching and routing knowledge, with the patience to explain it.",
+  },
+  {
+    title: "Warehouse and logistics",
+    body: "Accuracy under pressure, because a wrong pick becomes a wasted site visit.",
+  },
 ];
 
 function Team() {
+  const TEAM = [
+    {
+      name: "CEO",
+      title: "Chief Executive Officer",
+      tier: "lead",
+      bio: "Leads strategy and supplier relationships.",
+    },
+    {
+      name: "COO",
+      title: "Chief Operating Officer",
+      tier: "lead",
+      bio: "Oversees operations and logistics.",
+    },
+    { name: "Accounting", title: "Accounting", tier: "ops" },
+    { name: "Digital Marketing", title: "Digital Marketing", tier: "ops" },
+    { name: "Store Assistant", title: "Store Assistant", tier: "ops" },
+    { name: "Driver", title: "Driver", tier: "ops" },
+    // sales reps x5
+    { name: "Sales Rep 1", title: "Sales Representative", tier: "sales" },
+    { name: "Sales Rep 2", title: "Sales Representative", tier: "sales" },
+    { name: "Sales Rep 3", title: "Sales Representative", tier: "sales" },
+    { name: "Sales Rep 4", title: "Sales Representative", tier: "sales" },
+    { name: "Sales Rep 5", title: "Sales Representative", tier: "sales" },
+  ];
+
+  const leadership = TEAM.filter((t) => t.tier === "lead");
+  const operations = TEAM.filter((t) => t.tier === "ops");
+  const sales = TEAM.filter((t) => t.tier === "sales");
+
   return (
     <>
-      <Section className="pt-10 sm:pt-16">
-        <div className="rise">
-          <Eyebrow>Team and careers</Eyebrow>
-          <Heading as="h1">
-            People who have <span className="ink-text">held the splicer</span>, not just the price list
+      <Section className="section-vertical">
+        <div>
+          <Eyebrow className="eyebrow">THE PEOPLE</Eyebrow>
+          <Heading as="h1" className="headline mt-3">
+            The team behind the counter
           </Heading>
-          <Lead className="mt-5">
-            Individual biographies are published once each team member approves their profile, so this page describes the
-            functions you actually deal with. Ask for a named contact and you will be introduced directly.
+          <Lead className="mt-4 body-text">
+            Engineers, buyers and support staff who keep stock moving and quotes accurate.
           </Lead>
         </div>
 
-        <div className="mt-12 grid gap-4 sm:grid-cols-2">
-          {FUNCTIONS.map((f, i) => (
-            <Reveal key={f.role} delay={i * 80}>
-              <Panel className="h-full">
-                <h2 className="text-lg font-semibold">{f.role}</h2>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{f.body}</p>
-              </Panel>
-            </Reveal>
-          ))}
-        </div>
-      </Section>
-
-      <Section className="pt-0">
-        <Reveal>
-          <div className="gloss rounded-[2rem] p-8 sm:p-12">
-            <div className="relative z-10">
-              <Eyebrow>Careers</Eyebrow>
-              <Heading>Roles we keep an eye out for</Heading>
-              <Lead className="mt-4">
-                Applications are welcome even when nothing is formally advertised. Send a short note about what you have
-                built or supplied to {COMPANY.email} with the role in the subject line.
-              </Lead>
-              <div className="mt-8 grid gap-4 sm:grid-cols-3">
-                {CAREERS.map((c) => (
-                  <div key={c.title} className="rounded-2xl bg-primary/8 p-5">
-                    <h3 className="text-base font-semibold">{c.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{c.body}</p>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-8">
-                <QuoteButton label="Get in touch" />
+        {/* Leadership */}
+        <div className="mt-12 grid gap-8">
+          {leadership.map((p) => (
+            <div key={p.name} className="lead-card">
+              <img
+                src={`https://picsum.photos/seed/${encodeURIComponent(p.name)}/600/600`}
+                alt={p.name}
+                className="lead-photo"
+              />
+              <div>
+                <h3 style={{ fontSize: 24, fontWeight: 700 }}>{p.name}</h3>
+                <div
+                  style={{
+                    fontSize: 14,
+                    textTransform: "uppercase",
+                    color: "#00D4FF",
+                    letterSpacing: "1px",
+                    marginTop: 8,
+                  }}
+                >
+                  {p.title}
+                </div>
+                <p style={{ marginTop: 12, fontSize: 16, lineHeight: 1.5 }}>
+                  {p.bio || "Part of the team that keeps things running."}
+                </p>
               </div>
             </div>
+          ))}
+        </div>
+
+        {/* Operations */}
+        <div className="mt-12">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {operations.map((p) => (
+              <div key={p.name} className="text-center py-6">
+                <img
+                  src={`https://picsum.photos/seed/${encodeURIComponent(p.name)}/400/400`}
+                  alt={p.name}
+                  className="ops-photo mx-auto"
+                />
+                <div className="mt-4">
+                  <div style={{ fontSize: 16, fontWeight: 700 }}>{p.name}</div>
+                  <div
+                    style={{
+                      fontSize: 13,
+                      textTransform: "uppercase",
+                      color: "#666666",
+                      marginTop: 6,
+                    }}
+                  >
+                    {p.title}
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
-        </Reveal>
+        </div>
+
+        {/* Sales */}
+        <div className="mt-12">
+          <div className="grid gap-6 grid-cols-2 sm:grid-cols-3 md:grid-cols-5">
+            {sales.map((p) => (
+              <div key={p.name} className="text-center py-4">
+                <img
+                  src={`https://picsum.photos/seed/${encodeURIComponent(p.name)}/300/300`}
+                  alt={p.name}
+                  className="sales-photo mx-auto"
+                />
+                <div className="mt-3">
+                  <div style={{ fontSize: 14, fontWeight: 700 }}>{p.name}</div>
+                  <div
+                    style={{
+                      fontSize: 12,
+                      textTransform: "uppercase",
+                      color: "#888888",
+                      marginTop: 6,
+                    }}
+                  >
+                    {p.title}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </Section>
 
       <CtaBand />

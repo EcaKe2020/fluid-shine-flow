@@ -60,10 +60,7 @@ export function Section({
   id?: string;
 }) {
   return (
-    <section
-      id={id}
-      className={`section-pad py-20 ${className}`}
-    >
+    <section id={id} className={`section-pad py-20 ${className}`}>
       {children}
     </section>
   );
@@ -110,9 +107,7 @@ export function Reveal({
 
 export function Eyebrow({ children }: { children: ReactNode }) {
   return (
-    <p className="mb-4 text-xs font-bold uppercase tracking-[0.18em] text-[#00D4FF]">
-      {children}
-    </p>
+    <p className="mb-4 text-xs font-bold uppercase tracking-[0.18em] text-[#00D4FF]">{children}</p>
   );
 }
 
@@ -136,7 +131,9 @@ export function Heading({
 
 export function Lead({ children, className = "" }: { children: ReactNode; className?: string }) {
   return (
-    <p className={`max-w-2xl text-pretty text-base leading-relaxed text-[#666666] sm:text-lg ${className}`}>
+    <p
+      className={`max-w-2xl text-pretty text-base leading-relaxed text-[#666666] sm:text-lg ${className}`}
+    >
       {children}
     </p>
   );
@@ -198,11 +195,7 @@ export function Panel({
   className?: string;
   hover?: boolean;
 }) {
-  return (
-    <div className={className}>
-      {children}
-    </div>
-  );
+  return <div className={className}>{children}</div>;
 }
 
 export function CtaBand({

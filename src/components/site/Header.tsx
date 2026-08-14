@@ -67,10 +67,7 @@ function MegaMenu({
       </button>
       {open ? (
         <div className="absolute left-1/2 top-[calc(100%+0.75rem)] z-50 w-[24rem] -translate-x-1/2">
-          <div
-            className="bg-[#0B0C10] p-3"
-            style={{ border: "1px solid rgba(255,255,255,0.1)" }}
-          >
+          <div className="bg-[#0B0C10] p-3" style={{ border: "1px solid rgba(255,255,255,0.1)" }}>
             <div className="grid gap-1">{children(() => setOpen(false))}</div>
           </div>
         </div>
@@ -96,7 +93,13 @@ export function Header() {
     >
       {/* Logo left */}
       <Link to="/" className="flex shrink-0 items-center" aria-label={`${COMPANY.short} home`}>
-        <img src={logo.url} alt="ECA Networks logo" className="h-8 w-auto" width={128} height={40} />
+        <img
+          src={logo.url}
+          alt="ECA Networks logo"
+          className="h-8 w-auto"
+          width={128}
+          height={40}
+        />
       </Link>
 
       {/* Nav links center */}
@@ -203,7 +206,13 @@ export function Header() {
         <div className="fixed inset-0 z-[999] flex flex-col bg-[#0B0C10] lg:hidden">
           <div className="flex h-16 items-center justify-between px-[clamp(24px,5vw,80px)]">
             <Link to="/" onClick={() => setOpen(false)} className="flex items-center">
-              <img src={logo.url} alt="ECA Networks logo" className="h-8 w-auto" width={128} height={40} />
+              <img
+                src={logo.url}
+                alt="ECA Networks logo"
+                className="h-8 w-auto"
+                width={128}
+                height={40}
+              />
             </Link>
             <button
               type="button"
