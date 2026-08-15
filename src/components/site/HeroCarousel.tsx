@@ -122,7 +122,7 @@ export function HeroCarousel() {
     };
   }, [active, paused, isHovering, startProgress, resetProgress]);
 
-  const activeSlide = SLIDES[active];
+  const activeSlide = SLIDES[active] ?? SLIDES[0]!;
 
   return (
     <section
