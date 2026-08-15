@@ -114,7 +114,7 @@ export function Reveal({
 
 export function Eyebrow({ children }: { children: ReactNode }) {
   return (
-    <p className="mb-4 text-xs font-bold uppercase tracking-[0.18em] text-[#00D4FF]">
+    <p className="mb-4 text-xs font-bold uppercase tracking-[0.18em] text-primary">
       {children}
     </p>
   );
@@ -131,7 +131,7 @@ export function Heading({
 }) {
   return (
     <Tag
-      className={`text-balance text-3xl font-bold leading-tight tracking-[-0.02em] text-[#1A1A1A] sm:text-4xl lg:text-[2.5rem] ${className}`}
+      className={`text-balance text-3xl font-bold leading-tight tracking-[-0.03em] text-foreground sm:text-4xl lg:text-[2.75rem] ${className}`}
     >
       {children}
     </Tag>
@@ -140,11 +140,12 @@ export function Heading({
 
 export function Lead({ children, className = "" }: { children: ReactNode; className?: string }) {
   return (
-    <p className={`max-w-2xl text-pretty text-base leading-relaxed text-[#666666] sm:text-lg ${className}`}>
+    <p className={`max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg ${className}`}>
       {children}
     </p>
   );
 }
+
 
 export function QuoteButton({ label = "Request a quote" }: { label?: string }) {
   return (
