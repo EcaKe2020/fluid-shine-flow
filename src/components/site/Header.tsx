@@ -70,12 +70,16 @@ function MegaMenu({
       {open ? (
         <div className="absolute left-1/2 top-[calc(100%+0.75rem)] z-50 w-[24rem] -translate-x-1/2">
           <div
-            className="bg-[#0B0C10] p-3"
-            style={{ border: "1px solid rgba(255,255,255,0.1)" }}
+            className="rounded-2xl bg-[#0B0C10]/92 p-3 backdrop-blur-xl"
+            style={{
+              border: "1px solid rgba(0,212,255,0.22)",
+              boxShadow: "0 30px 70px -40px rgba(0,212,255,0.6)",
+            }}
           >
             <div className="grid gap-1">{children(() => setOpen(false))}</div>
           </div>
         </div>
+
       ) : null}
     </div>
   );
