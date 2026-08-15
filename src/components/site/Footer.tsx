@@ -5,7 +5,7 @@ import { COMPANY, LOCATIONS, shopUrl, SOLUTIONS, WHATSAPP_URL } from "@/lib/eca"
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-[#05070C] pb-10 pt-24 text-white">
+    <footer className="site-footer relative overflow-hidden bg-[#05070C] pb-10 pt-24 text-white">
       {/* Liquid blue field */}
       <div
         aria-hidden
@@ -14,6 +14,14 @@ export function Footer() {
           background:
             "radial-gradient(900px 420px at 12% 0%, rgba(0,212,255,0.28), transparent 62%), radial-gradient(700px 380px at 88% 12%, rgba(255,122,26,0.16), transparent 64%), linear-gradient(180deg, #0A1220 0%, #05070C 70%)",
         }}
+      />
+
+      {/* Light-mode footer art (hidden in dark mode) */}
+      <img
+        src="/images/6918261_23592 copy 3.jpg"
+        alt=""
+        aria-hidden="true"
+        className="light-footer-art pointer-events-none absolute inset-x-0 bottom-0 h-full w-full object-cover"
       />
 
       {/* Topographic wave crests */}

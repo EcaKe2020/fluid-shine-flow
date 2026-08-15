@@ -175,6 +175,20 @@
   a, button, [role="button"], input, select, textarea {
     transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   }
+
+  /* Header: transparent over hero, solid elsewhere. Links adapt to context. */
+  .site-header .nav-link { color: rgba(255, 255, 255, 0.82); }
+  .site-header .nav-link:hover { color: #fff; }
+  .site-header:not(.header-transparent) .nav-link { color: var(--color-muted-foreground); }
+  .site-header:not(.header-transparent) .nav-link:hover { color: var(--color-foreground); }
+
+  /* Footer: light mode shows the supplied art; dark mode keeps the deep field. */
+  .light-footer-art { opacity: 0; }
+  :root:not(.dark) .light-footer-art { opacity: 0.06; }
+  .dark .light-footer-art { display: none; }
+
+  /* Consistent page top spacing under the fixed header */
+  .page-pad { padding-top: 7rem !important; }
 }
 
 /* Full-width section utility with clamp side padding */

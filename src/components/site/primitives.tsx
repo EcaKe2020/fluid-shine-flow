@@ -65,7 +65,7 @@ export function Section({
     <section
       id={id}
       style={style}
-      className={`section-pad py-20 ${className}`}
+      className={`section-pad page-pad py-20 ${className}`}
     >
       {children}
     </section>

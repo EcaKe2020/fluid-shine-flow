@@ -69,7 +69,7 @@ export function PriceTable({ className = "" }: PriceTableProps) {
   };
 
   const getSortIcon = (key: keyof PriceRow) => {
-    if (sortConfig.key !== key) return <ChevronUp className="size-4 text-[#666666]" />;
+    if (sortConfig.key !== key) return <ChevronUp className="size-4 text-muted-foreground" />;
     return sortConfig.direction === "asc" ? (
       <ChevronUp className="size-4 text-[#00D4FF]" />
     ) : (
@@ -88,24 +88,24 @@ export function PriceTable({ className = "" }: PriceTableProps) {
       {/* Controls */}
       <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
         <div className="relative w-full sm:w-80">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-[#666666]" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
           <input
             type="text"
             placeholder="Search products..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-10 pr-4 py-2.5 bg-white border border-[#E5E5E5] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#00D4FF]/20 focus:border-[#00D4FF] transition-all"
+            className="w-full pl-10 pr-4 py-2.5 bg-background border border-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#00D4FF]/20 focus:border-[#00D4FF] transition-all"
           />
         </div>
         <div className="flex items-center gap-2">
-          <Filter className="size-4 text-[#666666]" />
+          <Filter className="size-4 text-muted-foreground" />
           <select
             value={categoryFilter}
             onChange={(e) => {
               setCategoryFilter(e.target.value);
               setCurrentPage(1);
             }}
-            className="px-4 py-2.5 bg-white border border-[#E5E5E5] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#00D4FF]/20 focus:border-[#00D4FF] transition-all appearance-none bg-no-repeat bg-right pr-10"
+            className="px-4 py-2.5 bg-background border border-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#00D4FF]/20 focus:border-[#00D4FF] transition-all appearance-none bg-no-repeat bg-right pr-10"
             style={{
               backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23666666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E")`,
               backgroundPosition: "right 0.75rem center",
@@ -125,7 +125,7 @@ export function PriceTable({ className = "" }: PriceTableProps) {
                 setCategoryFilter("all");
                 setCurrentPage(1);
               }}
-              className="p-2.5 rounded-xl bg-[#E5E5E5] text-[#666666] hover:bg-[#D4D4D4] transition-colors"
+              className="p-2.5 rounded-xl bg-muted text-muted-foreground hover:bg-muted/80 transition-colors"
               aria-label="Clear filters"
             >
               <X className="size-4" />
@@ -135,14 +135,14 @@ export function PriceTable({ className = "" }: PriceTableProps) {
       </div>
 
       {/* Results info */}
-      <div className="text-sm text-[#666666]">
+      <div className="text-sm text-muted-foreground">
         Showing {paginatedRows.length} of {filteredAndSortedRows.length} products
       </div>
 
       {/* Table */}
-      <div className="overflow-x-auto rounded-2xl border border-[#E5E5E5] bg-white">
+      <div className="overflow-x-auto rounded-2xl border border-border bg-background">
         <table className="w-full" role="table">
-          <thead className="bg-[#F5F5F5]">
+          <thead className="bg-muted">
             <tr>
               {[
                 { key: "sku", label: "SKU" },
@@ -155,7 +155,7 @@ export function PriceTable({ className = "" }: PriceTableProps) {
                 <th
                   key={col.key}
                   scope="col"
-                  className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-[0.1em] text-[#666666] cursor-pointer hover:text-[#00D4FF] transition-colors select-none"
+                  className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-[0.1em] text-muted-foreground cursor-pointer hover:text-[#00D4FF] transition-colors select-none"
                   onClick={() => handleSort(col.key as keyof PriceRow)}
                   style={{ userSelect: "none" }}
                 >
@@ -167,10 +167,10 @@ export function PriceTable({ className = "" }: PriceTableProps) {
               ))}
             </tr>
           </thead>
-          <tbody className="divide-y divide-[#E5E5E5]">
+          <tbody className="divide-y divide-border">
             {paginatedRows.length === 0 ? (
               <tr>
-                <td colSpan={6} className="px-4 py-12 text-center text-[#666666]">
+                <td colSpan={6} className="px-4 py-12 text-center text-muted-foreground">
                   No products match your filters.
                 </td>
               </tr>
@@ -178,14 +178,14 @@ export function PriceTable({ className = "" }: PriceTableProps) {
               paginatedRows.map((row, idx) => (
                 <tr
                   key={row.sku}
-                  className="transition-colors hover:bg-[#F5F5F5]/50"
+                  className="transition-colors hover:bg-muted/50"
                   style={{ animationDelay: `${idx * 30}ms` }}
                 >
-                  <td className="px-4 py-3 text-sm font-mono text-[#1A1A1A]">{row.sku}</td>
-                  <td className="px-4 py-3 text-sm font-medium text-[#1A1A1A]">{row.name}</td>
-                  <td className="px-4 py-3 text-sm text-[#666666]">{row.category}</td>
-                  <td className="px-4 py-3 text-sm text-[#666666]">{row.unit}</td>
-                  <td className="px-4 py-3 text-sm font-semibold text-[#1A1A1A] tabular-nums">
+                  <td className="px-4 py-3 text-sm font-mono text-foreground">{row.sku}</td>
+                  <td className="px-4 py-3 text-sm font-medium text-foreground">{row.name}</td>
+                  <td className="px-4 py-3 text-sm text-muted-foreground">{row.category}</td>
+                  <td className="px-4 py-3 text-sm text-muted-foreground">{row.unit}</td>
+                  <td className="px-4 py-3 text-sm font-semibold text-foreground tabular-nums">
                     {KES(row.price)}
                   </td>
                   <td className="px-4 py-3">
@@ -208,7 +208,7 @@ export function PriceTable({ className = "" }: PriceTableProps) {
           <button
             onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
             disabled={currentPage === 1}
-            className="p-2 rounded-xl bg-white border border-[#E5E5E5] text-[#666666] hover:border-[#00D4FF] hover:text-[#00D4FF] disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+            className="p-2 rounded-xl bg-background border border-border text-muted-foreground hover:border-[#00D4FF] hover:text-[#00D4FF] disabled:opacity-50 disabled:cursor-not-allowed transition-all"
             aria-label="Previous page"
           >
             <ChevronLeft className="size-4" />
@@ -232,7 +232,7 @@ export function PriceTable({ className = "" }: PriceTableProps) {
                   className={`w-10 h-10 rounded-xl text-sm font-medium transition-all ${
                     currentPage === pageNum
                       ? "bg-[#00D4FF] text-[#0B0C10] shadow-[0_4px_14px_rgba(0,212,255,0.3)]"
-                      : "text-[#666666] hover:bg-[#F5F5F5] hover:text-[#1A1A1A]"
+                      : "text-muted-foreground hover:bg-muted hover:text-foreground"
                   }`}
                   aria-label={`Page ${pageNum}`}
                   aria-current={currentPage === pageNum ? "page" : undefined}
@@ -245,7 +245,7 @@ export function PriceTable({ className = "" }: PriceTableProps) {
           <button
             onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
             disabled={currentPage === totalPages}
-            className="p-2 rounded-xl bg-white border border-[#E5E5E5] text-[#666666] hover:border-[#00D4FF] hover:text-[#00D4FF] disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+            className="p-2 rounded-xl bg-background border border-border text-muted-foreground hover:border-[#00D4FF] hover:text-[#00D4FF] disabled:opacity-50 disabled:cursor-not-allowed transition-all"
             aria-label="Next page"
           >
             <ChevronRight className="size-4" />
