@@ -54,20 +54,24 @@ export function Section({
   children,
   className = "",
   id,
+  style,
 }: {
   children: ReactNode;
   className?: string;
   id?: string;
+  style?: React.CSSProperties;
 }) {
   return (
     <section
       id={id}
+      style={style}
       className={`section-pad py-20 ${className}`}
     >
       {children}
     </section>
   );
 }
+
 
 export function Reveal({
   children,
