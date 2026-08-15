@@ -197,12 +197,21 @@ export function WhatsAppButton({ label = "Chat with a technician" }: { label?: s
 export function Panel({
   children,
   className = "",
+  hover = false,
 }: {
   children: ReactNode;
   className?: string;
+  hover?: boolean;
 }) {
-  return <div className={`sheen ${className}`}>{children}</div>;
+  return (
+    <div
+      className={`sheen ${hover ? "transition-transform duration-300 hover:-translate-y-1" : ""} ${className}`}
+    >
+      {children}
+    </div>
+  );
 }
+
 
 
 export function CtaBand({
