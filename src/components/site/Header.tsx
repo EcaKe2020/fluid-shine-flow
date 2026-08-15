@@ -81,6 +81,14 @@ function MegaMenu({
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -91,13 +99,35 @@ export function Header() {
 
   return (
     <header
-      className="fixed inset-x-0 top-0 z-[100] flex h-16 items-center bg-[#0B0C10] px-[clamp(24px,5vw,80px)]"
-      style={{ borderBottom: "1px solid rgba(255,255,255,0.1)" }}
+      className={`fixed inset-x-0 top-0 z-[100] flex h-16 items-center px-[clamp(24px,6vw,120px)] transition-all duration-500 ${
+        scrolled
+          ? "bg-[#0B0C10]/85 backdrop-blur-xl shadow-[0_10px_40px_-24px_rgba(0,212,255,0.55)]"
+          : "bg-transparent"
+      }`}
     >
+      {/* Cyan glow line that appears once the page moves */}
+      <span
+        aria-hidden
+        className={`pointer-events-none absolute inset-x-0 bottom-0 h-px transition-opacity duration-500 ${
+          scrolled ? "opacity-100" : "opacity-0"
+        }`}
+        style={{
+          background:
+            "linear-gradient(90deg, transparent, rgba(0,212,255,0.75) 20%, rgba(255,122,26,0.55) 55%, rgba(0,212,255,0.75) 82%, transparent)",
+        }}
+      />
+
       {/* Logo left */}
       <Link to="/" className="flex shrink-0 items-center" aria-label={`${COMPANY.short} home`}>
-        <img src={logo.url} alt="ECA Networks logo" className="h-8 w-auto" width={128} height={40} />
+        <img
+          src={logo.url}
+          alt="ECA Networks logo"
+          className="h-8 w-auto drop-shadow-[0_0_18px_rgba(0,212,255,0.45)]"
+          width={128}
+          height={40}
+        />
       </Link>
+
 
       {/* Nav links center */}
       <nav className="mx-auto hidden items-center gap-7 lg:flex">
