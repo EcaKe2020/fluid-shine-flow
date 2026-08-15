@@ -151,7 +151,7 @@ export function QuoteButton({ label = "Request a quote" }: { label?: string }) {
   return (
     <Link
       to="/contact"
-      className="btn-radius inline-flex items-center gap-2 bg-[#00D4FF] px-6 py-3 text-sm font-semibold text-[#0B0C10] transition-opacity hover:opacity-90"
+      className="btn-radius inline-flex items-center gap-2 bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-[0_14px_36px_-16px_rgba(0,212,255,0.9)] transition-transform hover:-translate-y-0.5"
     >
       {label}
       <ArrowRight className="size-4" />
@@ -171,10 +171,10 @@ export function ShopButton({
       href={shopUrl(medium)}
       target="_blank"
       rel="noreferrer"
-      className="inline-flex items-center gap-2 text-sm font-semibold text-[#1A1A1A] transition-colors hover:text-[#00D4FF]"
+      className="btn-radius inline-flex items-center gap-2 border border-ember/50 px-5 py-2.5 text-sm font-semibold text-foreground transition-colors hover:border-ember hover:text-ember"
     >
       {label}
-      <ArrowUpRight className="size-4 text-[#00D4FF]" />
+      <ArrowUpRight className="size-4 text-ember" />
     </a>
   );
 }
@@ -185,7 +185,7 @@ export function WhatsAppButton({ label = "Chat with a technician" }: { label?: s
       href={WHATSAPP_URL}
       target="_blank"
       rel="noreferrer"
-      className="inline-flex items-center gap-2 text-sm text-[#666666] transition-colors hover:text-[#00D4FF]"
+      className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
     >
       <MessageCircle className="size-4" />
       {label}
@@ -193,22 +193,17 @@ export function WhatsAppButton({ label = "Chat with a technician" }: { label?: s
   );
 }
 
-/** Flat panel — no card, no shadow, no border. Just a div. */
+/** Glossy floating panel that sits on the fluid background. */
 export function Panel({
   children,
   className = "",
-  hover = false,
 }: {
   children: ReactNode;
   className?: string;
-  hover?: boolean;
 }) {
-  return (
-    <div className={className}>
-      {children}
-    </div>
-  );
+  return <div className={`sheen ${className}`}>{children}</div>;
 }
+
 
 export function CtaBand({
   title = "Tell us what the site needs and the list comes back priced",
