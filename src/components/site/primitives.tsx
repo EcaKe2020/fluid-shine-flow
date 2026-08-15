@@ -54,20 +54,24 @@ export function Section({
   children,
   className = "",
   id,
+  style,
 }: {
   children: ReactNode;
   className?: string;
   id?: string;
+  style?: React.CSSProperties;
 }) {
   return (
     <section
       id={id}
+      style={style}
       className={`section-pad py-20 ${className}`}
     >
       {children}
     </section>
   );
 }
+
 
 export function Reveal({
   children,
@@ -110,7 +114,7 @@ export function Reveal({
 
 export function Eyebrow({ children }: { children: ReactNode }) {
   return (
-    <p className="mb-4 text-xs font-bold uppercase tracking-[0.18em] text-[#00D4FF]">
+    <p className="mb-4 text-xs font-bold uppercase tracking-[0.18em] text-primary">
       {children}
     </p>
   );
@@ -127,7 +131,7 @@ export function Heading({
 }) {
   return (
     <Tag
-      className={`text-balance text-3xl font-bold leading-tight tracking-[-0.02em] text-[#1A1A1A] sm:text-4xl lg:text-[2.5rem] ${className}`}
+      className={`text-balance text-3xl font-bold leading-tight tracking-[-0.03em] text-foreground sm:text-4xl lg:text-[2.75rem] ${className}`}
     >
       {children}
     </Tag>
@@ -136,17 +140,18 @@ export function Heading({
 
 export function Lead({ children, className = "" }: { children: ReactNode; className?: string }) {
   return (
-    <p className={`max-w-2xl text-pretty text-base leading-relaxed text-[#666666] sm:text-lg ${className}`}>
+    <p className={`max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg ${className}`}>
       {children}
     </p>
   );
 }
 
+
 export function QuoteButton({ label = "Request a quote" }: { label?: string }) {
   return (
     <Link
       to="/contact"
-      className="btn-radius inline-flex items-center gap-2 bg-[#00D4FF] px-6 py-3 text-sm font-semibold text-[#0B0C10] transition-opacity hover:opacity-90"
+      className="btn-radius inline-flex items-center gap-2 bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-[0_14px_36px_-16px_rgba(0,212,255,0.9)] transition-transform hover:-translate-y-0.5"
     >
       {label}
       <ArrowRight className="size-4" />
@@ -166,10 +171,10 @@ export function ShopButton({
       href={shopUrl(medium)}
       target="_blank"
       rel="noreferrer"
-      className="inline-flex items-center gap-2 text-sm font-semibold text-[#1A1A1A] transition-colors hover:text-[#00D4FF]"
+      className="btn-radius inline-flex items-center gap-2 border border-ember/50 px-5 py-2.5 text-sm font-semibold text-foreground transition-colors hover:border-ember hover:text-ember"
     >
       {label}
-      <ArrowUpRight className="size-4 text-[#00D4FF]" />
+      <ArrowUpRight className="size-4 text-ember" />
     </a>
   );
 }
@@ -180,7 +185,7 @@ export function WhatsAppButton({ label = "Chat with a technician" }: { label?: s
       href={WHATSAPP_URL}
       target="_blank"
       rel="noreferrer"
-      className="inline-flex items-center gap-2 text-sm text-[#666666] transition-colors hover:text-[#00D4FF]"
+      className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
     >
       <MessageCircle className="size-4" />
       {label}
@@ -188,7 +193,7 @@ export function WhatsAppButton({ label = "Chat with a technician" }: { label?: s
   );
 }
 
-/** Flat panel — no card, no shadow, no border. Just a div. */
+/** Glossy floating panel that sits on the fluid background. */
 export function Panel({
   children,
   className = "",
@@ -199,11 +204,15 @@ export function Panel({
   hover?: boolean;
 }) {
   return (
-    <div className={className}>
+    <div
+      className={`sheen ${hover ? "transition-transform duration-300 hover:-translate-y-1" : ""} ${className}`}
+    >
       {children}
     </div>
   );
 }
+
+
 
 export function CtaBand({
   title = "Tell us what the site needs and the list comes back priced",
@@ -213,19 +222,20 @@ export function CtaBand({
   body?: string;
 }) {
   return (
-    <Section style={{ borderTop: "1px solid #E5E5E5" } as React.CSSProperties}>
-      <div className="max-w-2xl">
+    <Section>
+      <div className="sheen max-w-3xl p-8 sm:p-12">
         <Heading>{title}</Heading>
         <Lead className="mt-4">{body}</Lead>
         <div className="mt-8 flex flex-wrap items-center gap-4">
           <QuoteButton />
-          <ShopButton />
+          <ShopButton medium="cta-band" />
           <WhatsAppButton />
         </div>
       </div>
     </Section>
   );
 }
+
 
 export function Jsonld({ data }: { data: Record<string, unknown> }) {
   return <script type="application/ld+json">{JSON.stringify(data)}</script>;
@@ -247,7 +257,7 @@ interface TeamCardProps {
 export function TeamCard({ member, delay = 0 }: TeamCardProps) {
   return (
     <Reveal delay={delay}>
-      <div className="group relative bg-white rounded-2xl border border-[#E5E5E5] overflow-hidden transition-all duration-300 hover:border-[#00D4FF]/50 hover:shadow-[0_20px_40px_rgba(0,212,255,0.08)] hover:-translate-y-1">
+      <div className="sheen group relative overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_28px_60px_-30px_rgba(0,212,255,0.55)]">
         <div className="relative aspect-square overflow-hidden">
           <img
             src={member.image}
@@ -278,9 +288,10 @@ export function TeamCard({ member, delay = 0 }: TeamCardProps) {
           </div>
         </div>
         <div className="p-4">
-          <p className="font-bold text-[#1A1A1A] group-hover:text-[#00D4FF] transition-colors">{member.name}</p>
-          <p className="text-sm text-[#666666] mt-1">{member.title}</p>
+          <p className="font-bold text-foreground transition-colors group-hover:text-primary">{member.name}</p>
+          <p className="mt-1 text-sm text-muted-foreground">{member.title}</p>
         </div>
+
       </div>
     </Reveal>
   );

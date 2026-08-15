@@ -22,10 +22,11 @@ export function FloatingActions() {
       <a
         href={COMPANY.phoneHref}
         aria-label={`Call ${COMPANY.phone}`}
-        className="btn-radius flex size-11 items-center justify-center border border-[#E5E5E5] bg-white text-[#00D4FF]"
+        className="btn-radius sheen flex size-11 items-center justify-center text-primary"
       >
         <Phone className="size-4" />
       </a>
+
       <a
         href={WHATSAPP_URL}
         target="_blank"
