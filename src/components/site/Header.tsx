@@ -211,12 +211,14 @@ export function Header() {
         >
           Shop Online
         </a>
+        <ThemeToggle />
         <Link
           to="/contact"
-          className="btn-radius whitespace-nowrap bg-[#00D4FF] px-4 py-2 text-sm font-semibold text-[#0B0C10] transition-opacity hover:opacity-90"
+          className="btn-radius whitespace-nowrap bg-[#00D4FF] px-4 py-2 text-sm font-semibold text-[#0B0C10] shadow-[0_8px_26px_-10px_rgba(0,212,255,0.8)] transition-opacity hover:opacity-90"
         >
           Request a Quote
         </Link>
+
         <button
           type="button"
           onClick={() => setOpen(true)}
