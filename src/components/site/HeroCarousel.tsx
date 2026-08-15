@@ -22,7 +22,7 @@ const SLIDES: Slide[] = [
     eyebrow: "Fibre Optic Infrastructure",
     title: "The cable and test kit",
     highlight: "Kenyan networks",
-    body: "ADSS, figure 8, closures, pigtails and fusion splicers stocked in Embakasi. Send the route and the desk returns a priced list with stock status per line.",
+    body: "ADSS, figure 8, closures, pigtails and fusion splicers stocked in Nairobi and Eldoret. Send the route and the desk returns a priced list with stock status per line.",
     shopLabel: "Shop fibre products",
     shopMedium: "hero-fibre",
   },
