@@ -217,19 +217,20 @@ export function CtaBand({
   body?: string;
 }) {
   return (
-    <Section style={{ borderTop: "1px solid #E5E5E5" } as React.CSSProperties}>
-      <div className="max-w-2xl">
+    <Section>
+      <div className="sheen max-w-3xl p-8 sm:p-12">
         <Heading>{title}</Heading>
         <Lead className="mt-4">{body}</Lead>
         <div className="mt-8 flex flex-wrap items-center gap-4">
           <QuoteButton />
-          <ShopButton />
+          <ShopButton medium="cta-band" />
           <WhatsAppButton />
         </div>
       </div>
     </Section>
   );
 }
+
 
 export function Jsonld({ data }: { data: Record<string, unknown> }) {
   return <script type="application/ld+json">{JSON.stringify(data)}</script>;
