@@ -3,6 +3,8 @@ import { ChevronDown, Menu, Phone, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import logo from "@/assets/eca-logo.png.asset.json";
 import { COMPANY, shopUrl, SOLUTIONS } from "@/lib/eca";
+import { ThemeToggle } from "@/components/site/theme";
+
 
 const INDUSTRY_LINKS = [
   "Internet service providers",
