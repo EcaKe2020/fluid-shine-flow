@@ -288,9 +288,10 @@ export function TeamCard({ member, delay = 0 }: TeamCardProps) {
           </div>
         </div>
         <div className="p-4">
-          <p className="font-bold text-[#1A1A1A] group-hover:text-[#00D4FF] transition-colors">{member.name}</p>
-          <p className="text-sm text-[#666666] mt-1">{member.title}</p>
+          <p className="font-bold text-foreground transition-colors group-hover:text-primary">{member.name}</p>
+          <p className="mt-1 text-sm text-muted-foreground">{member.title}</p>
         </div>
+
       </div>
     </Reveal>
   );
