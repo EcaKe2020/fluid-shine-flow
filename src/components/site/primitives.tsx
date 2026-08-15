@@ -257,7 +257,7 @@ interface TeamCardProps {
 export function TeamCard({ member, delay = 0 }: TeamCardProps) {
   return (
     <Reveal delay={delay}>
-      <div className="group relative bg-white rounded-2xl border border-[#E5E5E5] overflow-hidden transition-all duration-300 hover:border-[#00D4FF]/50 hover:shadow-[0_20px_40px_rgba(0,212,255,0.08)] hover:-translate-y-1">
+      <div className="sheen group relative overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_28px_60px_-30px_rgba(0,212,255,0.55)]">
         <div className="relative aspect-square overflow-hidden">
           <img
             src={member.image}
