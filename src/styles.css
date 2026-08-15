@@ -179,19 +179,35 @@
 
 /* Full-width section utility with clamp side padding */
 @utility section-pad {
-  padding-left: clamp(24px, 5vw, 80px);
-  padding-right: clamp(24px, 5vw, 80px);
+  padding-left: clamp(24px, 6vw, 120px);
+  padding-right: clamp(24px, 6vw, 120px);
 }
 
-/* Button radius: 4px max per spec */
+/* Button radius per spec */
 @utility btn-radius {
-  border-radius: 4px;
+  border-radius: 8px;
 }
 
-/* Section divider */
-@utility section-rule {
-  border-top: 1px solid #E5E5E5;
+/* Soft squircle for photography */
+@utility squircle {
+  border-radius: 16px;
+  overflow: hidden;
 }
+
+/* Glossy surface that floats on the fluid background */
+@utility sheen {
+  background: linear-gradient(
+    140deg,
+    color-mix(in oklab, var(--card) 92%, transparent) 0%,
+    color-mix(in oklab, var(--card) 74%, transparent) 100%
+  );
+  backdrop-filter: blur(18px) saturate(1.1);
+  border-radius: 16px;
+  box-shadow:
+    0 1px 0 0 color-mix(in oklab, var(--foreground) 6%, transparent) inset,
+    0 18px 45px -30px color-mix(in oklab, var(--primary) 55%, transparent);
+}
+
 
 @utility rise {
   animation: rise 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
