@@ -17,7 +17,8 @@ export const COMPANY = {
   email: "info@ecanetworks.com",
   address: "Gaberone Plaza, 1st Floor, Shop F14, Nairobi",
   hours: "Monday to Friday, 8:00 AM to 5:00 PM",
-  tagline: "Fibre and network infrastructure, stocked in Nairobi and Eldoret, shipped across Kenya.",
+  tagline:
+    "Fibre and network infrastructure, stocked in Nairobi and Eldoret, shipped across Kenya.",
   responseLine: "Technical desk responds within two business hours.",
 } as const;
 
@@ -30,8 +31,7 @@ export const LOCATIONS = [
     phoneHref: "tel:+254702309309",
     whatsapp: "https://wa.me/254702309309",
     hours: "Monday to Friday, 8:00 AM to 5:00 PM. Saturday, 9:00 AM to 1:00 PM",
-    maps:
-      "https://www.google.com/maps/search/?api=1&query=Gaberone+Plaza+Moi+Avenue+Nairobi",
+    maps: "https://www.google.com/maps/search/?api=1&query=Gaberone+Plaza+Moi+Avenue+Nairobi",
   },
   {
     city: "Eldoret",
@@ -44,7 +44,6 @@ export const LOCATIONS = [
     maps: "https://www.google.com/maps/search/?api=1&query=Veecam+House+Eldoret",
   },
 ] as const;
-
 
 export const BRANDS = [
   "MikroTik",

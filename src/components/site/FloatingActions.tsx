@@ -22,7 +22,8 @@ const CANNED: { match: RegExp; reply: string }[] = [
   },
   {
     match: /warranty|faulty|rma/i,
-    reply: "Warranty assessment happens locally in Nairobi under the supported brand terms, so units do not leave Kenya.",
+    reply:
+      "Warranty assessment happens locally in Nairobi under the supported brand terms, so units do not leave Kenya.",
   },
 ];
 
@@ -39,7 +40,10 @@ export function FloatingActions() {
   const [chatOpen, setChatOpen] = useState(false);
   const [draft, setDraft] = useState("");
   const [messages, setMessages] = useState<Msg[]>([
-    { role: "bot", text: "Hello. Ask about stock, pricing or a specification and I will point you the right way." },
+    {
+      role: "bot",
+      text: "Hello. Ask about stock, pricing or a specification and I will point you the right way.",
+    },
   ]);
   const listEnd = useRef<HTMLDivElement>(null);
 

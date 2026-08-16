@@ -18,16 +18,76 @@ type Product = {
 };
 
 const PRODUCTS: Product[] = [
-  { name: "Fibre Optic Spool", category: "Cabling", price: 580, image: spool, alt: "Fibre optic cable spool" },
-  { name: "Nexus-7000 Switch", category: "Access Layer", price: 12500, image: switchImg, alt: "Managed network switch" },
-  { name: "Core Router", category: "Backbone Routing", price: 68000, image: router, alt: "Enterprise network router" },
-  { name: "Data Center Server Rack", category: "Compute Node", price: 18500, image: cabinet, alt: "Data center server rack" },
-  { name: "Fusion Splicer Kit", category: "Deployment Tools", price: 98000, image: splicer, alt: "Fibre fusion splicer kit" },
-  { name: "GPON OLT 4-Port HSGQ", category: "Active Equipment", price: 68000, image: router, alt: "GPON optical line terminal" },
-  { name: "Managed PoE Switch", category: "Networking", price: 12500, image: switchImg, alt: "Managed PoE switch" },
-  { name: "Data Cabinet 12U", category: "Enclosures", price: 18500, image: cabinet, alt: "12U data cabinet" },
-  { name: "Fibre Toolkit Complete", category: "Test Equipment", price: 9800, image: splicer, alt: "Complete fibre toolkit" },
-  { name: "ADSS 24-Core Cable", category: "Outdoor Fibre", price: 580, image: spool, alt: "ADSS outdoor fibre cable" },
+  {
+    name: "Fibre Optic Spool",
+    category: "Cabling",
+    price: 580,
+    image: spool,
+    alt: "Fibre optic cable spool",
+  },
+  {
+    name: "Nexus-7000 Switch",
+    category: "Access Layer",
+    price: 12500,
+    image: switchImg,
+    alt: "Managed network switch",
+  },
+  {
+    name: "Core Router",
+    category: "Backbone Routing",
+    price: 68000,
+    image: router,
+    alt: "Enterprise network router",
+  },
+  {
+    name: "Data Center Server Rack",
+    category: "Compute Node",
+    price: 18500,
+    image: cabinet,
+    alt: "Data center server rack",
+  },
+  {
+    name: "Fusion Splicer Kit",
+    category: "Deployment Tools",
+    price: 98000,
+    image: splicer,
+    alt: "Fibre fusion splicer kit",
+  },
+  {
+    name: "GPON OLT 4-Port HSGQ",
+    category: "Active Equipment",
+    price: 68000,
+    image: router,
+    alt: "GPON optical line terminal",
+  },
+  {
+    name: "Managed PoE Switch",
+    category: "Networking",
+    price: 12500,
+    image: switchImg,
+    alt: "Managed PoE switch",
+  },
+  {
+    name: "Data Cabinet 12U",
+    category: "Enclosures",
+    price: 18500,
+    image: cabinet,
+    alt: "12U data cabinet",
+  },
+  {
+    name: "Fibre Toolkit Complete",
+    category: "Test Equipment",
+    price: 9800,
+    image: splicer,
+    alt: "Complete fibre toolkit",
+  },
+  {
+    name: "ADSS 24-Core Cable",
+    category: "Outdoor Fibre",
+    price: 580,
+    image: spool,
+    alt: "ADSS outdoor fibre cable",
+  },
 ];
 
 const AUTO_ADVANCE_MS = 4500;
@@ -53,7 +113,10 @@ export function Hero() {
     };
   }, [active, next, paused]);
 
-  const visibleProducts = Array.from({ length: 5 }, (_, index) => PRODUCTS[(active + index) % PRODUCTS.length]);
+  const visibleProducts = Array.from(
+    { length: 5 },
+    (_, index) => PRODUCTS[(active + index) % PRODUCTS.length],
+  );
 
   return (
     <section className="relative overflow-hidden pb-14 pt-[7.5rem] sm:pb-16">
@@ -64,8 +127,8 @@ export function Hero() {
         </h1>
 
         <p className="mx-auto mt-6 max-w-[620px] text-center text-base leading-[1.55] text-muted-foreground sm:text-[17px]">
-          Providing robust hardware solutions for the backbone of modern enterprise networking, available 24/7 for
-          deployment and configuration.
+          Providing robust hardware solutions for the backbone of modern enterprise networking,
+          available 24/7 for deployment and configuration.
         </p>
 
         <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
@@ -109,7 +172,9 @@ export function Hero() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-[#062A4D]/75 via-transparent to-[#062A4D]/90" />
                     <div className="absolute inset-x-0 top-0 p-4 text-center text-white">
-                      <p className="text-sm font-semibold uppercase tracking-[0.03em]">{product.name}</p>
+                      <p className="text-sm font-semibold uppercase tracking-[0.03em]">
+                        {product.name}
+                      </p>
                       <p className="mt-0.5 text-xs text-white/70">{product.category}</p>
                     </div>
                     <div className="absolute inset-x-4 bottom-4 flex items-end justify-between gap-2">
@@ -162,6 +227,3 @@ export function Hero() {
     </section>
   );
 }
-
-
-export { Hero }

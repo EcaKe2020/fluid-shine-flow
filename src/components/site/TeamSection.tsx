@@ -3,67 +3,78 @@ const TEAM = [
     name: "Sarafina",
     title: "Sales",
     h: 200,
-    image: "https://images.pexels.com/photos/11156392/pexels-photo-11156392.jpeg?auto=compress&cs=tinysrgb&w=400",
+    image:
+      "https://images.pexels.com/photos/11156392/pexels-photo-11156392.jpeg?auto=compress&cs=tinysrgb&w=400",
   },
   {
     name: "Kevin",
     title: "Sales",
     h: 280,
-    image: "https://images.pexels.com/photos/14950779/pexels-photo-14950779.jpeg?auto=compress&cs=tinysrgb&w=400",
+    image:
+      "https://images.pexels.com/photos/14950779/pexels-photo-14950779.jpeg?auto=compress&cs=tinysrgb&w=400",
   },
   {
     name: "Veronica",
     title: "Accounting",
     h: 320,
-    image: "https://images.pexels.com/photos/8312669/pexels-photo-8312669.jpeg?auto=compress&cs=tinysrgb&w=400",
+    image:
+      "https://images.pexels.com/photos/8312669/pexels-photo-8312669.jpeg?auto=compress&cs=tinysrgb&w=400",
   },
   {
     name: "Conrad Omwenga",
     title: "Chief operating officer",
     h: 360,
-    image: "https://images.pexels.com/photos/33680700/pexels-photo-33680700.jpeg?auto=compress&cs=tinysrgb&w=500",
+    image:
+      "https://images.pexels.com/photos/33680700/pexels-photo-33680700.jpeg?auto=compress&cs=tinysrgb&w=500",
   },
   {
     name: "Chief executive",
     title: "Chief executive officer",
     h: 320,
-    image: "https://images.pexels.com/photos/28442318/pexels-photo-28442318.jpeg?auto=compress&cs=tinysrgb&w=500",
+    image:
+      "https://images.pexels.com/photos/28442318/pexels-photo-28442318.jpeg?auto=compress&cs=tinysrgb&w=500",
   },
   {
     name: "Stella",
     title: "Sales",
     h: 280,
-    image: "https://images.pexels.com/photos/31422830/pexels-photo-31422830.png?auto=compress&cs=tinysrgb&w=400",
+    image:
+      "https://images.pexels.com/photos/31422830/pexels-photo-31422830.png?auto=compress&cs=tinysrgb&w=400",
   },
   {
     name: "Sales desk",
     title: "Sales",
     h: 180,
-    image: "https://images.pexels.com/photos/38652616/pexels-photo-38652616.jpeg?auto=compress&cs=tinysrgb&w=400",
+    image:
+      "https://images.pexels.com/photos/38652616/pexels-photo-38652616.jpeg?auto=compress&cs=tinysrgb&w=400",
   },
   {
     name: "Dispatch",
     title: "Driver and logistics",
     h: 220,
-    image: "https://images.pexels.com/photos/13392786/pexels-photo-13392786.png?auto=compress&cs=tinysrgb&w=400",
+    image:
+      "https://images.pexels.com/photos/13392786/pexels-photo-13392786.png?auto=compress&cs=tinysrgb&w=400",
   },
   {
     name: "Denzel",
     title: "Sales",
     h: 260,
-    image: "https://images.pexels.com/photos/26150470/pexels-photo-26150470.jpeg?auto=compress&cs=tinysrgb&w=400",
+    image:
+      "https://images.pexels.com/photos/26150470/pexels-photo-26150470.jpeg?auto=compress&cs=tinysrgb&w=400",
   },
   {
     name: "Store counter",
     title: "Store assistant",
     h: 220,
-    image: "https://images.pexels.com/photos/5308640/pexels-photo-5308640.jpeg?auto=compress&cs=tinysrgb&w=400",
+    image:
+      "https://images.pexels.com/photos/5308640/pexels-photo-5308640.jpeg?auto=compress&cs=tinysrgb&w=400",
   },
   {
     name: "Fadhili",
     title: "Digital marketing",
     h: 180,
-    image: "https://images.pexels.com/photos/38707525/pexels-photo-38707525.jpeg?auto=compress&cs=tinysrgb&w=400",
+    image:
+      "https://images.pexels.com/photos/38707525/pexels-photo-38707525.jpeg?auto=compress&cs=tinysrgb&w=400",
   },
 ] as const;
 
@@ -79,7 +90,9 @@ export function TeamSection() {
       </div>
 
       <div className="mt-10 flex flex-col items-center leading-[0.95]">
-        <span className="font-serif text-[clamp(34px,4.4vw,48px)] italic text-foreground">meet</span>
+        <span className="font-serif text-[clamp(34px,4.4vw,48px)] italic text-foreground">
+          meet
+        </span>
         <span className="flex items-baseline gap-3 text-[clamp(34px,4.4vw,48px)] font-bold tracking-tight">
           <span className="text-foreground">our</span>
           <span className="text-primary">team</span>
@@ -113,7 +126,9 @@ export function TeamSection() {
               />
               <figcaption className="absolute inset-x-4 bottom-4 z-10 transition-transform duration-300 group-hover:-translate-y-1">
                 <p className="text-[17px] font-bold leading-tight text-white">{m.name}</p>
-                <p className="mt-1 text-[11px] uppercase leading-tight tracking-[0.08em] text-white/70">{m.title}</p>
+                <p className="mt-1 text-[11px] uppercase leading-tight tracking-[0.08em] text-white/70">
+                  {m.title}
+                </p>
               </figcaption>
             </figure>
           ))}

@@ -112,12 +112,14 @@ export function Header() {
       }`}
     >
       {/* Left: logo */}
-      <Link
-        to="/"
-        className="flex shrink-0 items-center"
-        aria-label={`${COMPANY.short} home`}
-      >
-        <img src={logo.url} alt="ECA Networks logo" className="h-8 w-auto" width={128} height={40} />
+      <Link to="/" className="flex shrink-0 items-center" aria-label={`${COMPANY.short} home`}>
+        <img
+          src={logo.url}
+          alt="ECA Networks logo"
+          className="h-8 w-auto"
+          width={128}
+          height={40}
+        />
       </Link>
 
       {/* Center: primary navigation */}
@@ -134,7 +136,9 @@ export function Header() {
                   className="rounded-lg px-3 py-2.5 transition-colors hover:bg-primary/10"
                 >
                   <span className="block text-sm font-semibold text-foreground">{s.title}</span>
-                  <span className="mt-0.5 block text-xs text-muted-foreground">{s.points.join(" · ")}</span>
+                  <span className="mt-0.5 block text-xs text-muted-foreground">
+                    {s.points.join(" · ")}
+                  </span>
                 </Link>
               ))}
               <Link
@@ -243,7 +247,13 @@ export function Header() {
         <div className="fixed inset-0 z-[999] flex flex-col bg-background lg:hidden">
           <div className="flex h-16 items-center justify-between px-[clamp(24px,5vw,80px)]">
             <Link to="/" onClick={() => setOpen(false)} className="flex items-center">
-              <img src={logo.url} alt="ECA Networks logo" className="h-8 w-auto" width={128} height={40} />
+              <img
+                src={logo.url}
+                alt="ECA Networks logo"
+                className="h-8 w-auto"
+                width={128}
+                height={40}
+              />
             </Link>
             <button
               type="button"

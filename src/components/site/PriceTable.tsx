@@ -1,7 +1,15 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { ChevronUp, ChevronDown, Search, ListFilter as Filter, X, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  ChevronUp,
+  ChevronDown,
+  Search,
+  ListFilter as Filter,
+  X,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 import { PRICE_ROWS, PRICE_CATEGORIES, KES, type PriceRow } from "@/lib/price-list";
 
 type SortDirection = "asc" | "desc" | null;
@@ -30,7 +38,7 @@ export function PriceTable({ className = "" }: PriceTableProps) {
           row.sku.toLowerCase().includes(s) ||
           row.name.toLowerCase().includes(s) ||
           row.category.toLowerCase().includes(s) ||
-          row.unit.toLowerCase().includes(s)
+          row.unit.toLowerCase().includes(s),
       );
     }
 
@@ -54,7 +62,7 @@ export function PriceTable({ className = "" }: PriceTableProps) {
   const totalPages = Math.ceil(filteredAndSortedRows.length / itemsPerPage);
   const paginatedRows = filteredAndSortedRows.slice(
     (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
+    currentPage * itemsPerPage,
   );
 
   const handleSort = (key: keyof PriceRow) => {

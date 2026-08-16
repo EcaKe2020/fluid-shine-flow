@@ -62,16 +62,11 @@ export function Section({
   style?: React.CSSProperties;
 }) {
   return (
-    <section
-      id={id}
-      style={style}
-      className={`section-pad page-pad py-20 ${className}`}
-    >
+    <section id={id} style={style} className={`section-pad page-pad py-20 ${className}`}>
       {children}
     </section>
   );
 }
-
 
 export function Reveal({
   children,
@@ -114,9 +109,7 @@ export function Reveal({
 
 export function Eyebrow({ children }: { children: ReactNode }) {
   return (
-    <p className="mb-4 text-xs font-bold uppercase tracking-[0.18em] text-primary">
-      {children}
-    </p>
+    <p className="mb-4 text-xs font-bold uppercase tracking-[0.18em] text-primary">{children}</p>
   );
 }
 
@@ -140,12 +133,13 @@ export function Heading({
 
 export function Lead({ children, className = "" }: { children: ReactNode; className?: string }) {
   return (
-    <p className={`max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg ${className}`}>
+    <p
+      className={`max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg ${className}`}
+    >
       {children}
     </p>
   );
 }
-
 
 export function QuoteButton({ label = "Request a quote" }: { label?: string }) {
   return (
@@ -212,8 +206,6 @@ export function Panel({
   );
 }
 
-
-
 export function CtaBand({
   title = "Tell us what the site needs and the list comes back priced",
   body = "Send a drawing, a rough part list or a site photograph. The technical desk checks the specification, confirms stock and returns a quotation you can hand to procurement.",
@@ -235,7 +227,6 @@ export function CtaBand({
     </Section>
   );
 }
-
 
 export function Jsonld({ data }: { data: Record<string, unknown> }) {
   return <script type="application/ld+json">{JSON.stringify(data)}</script>;
@@ -269,7 +260,7 @@ export function TeamCard({ member, delay = 0 }: TeamCardProps) {
           <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
             <div className="flex items-center gap-2">
               <a
-                href={`https://linkedin.com/in/${member.name.toLowerCase().replace(/\s+/g, '-')}`}
+                href={`https://linkedin.com/in/${member.name.toLowerCase().replace(/\s+/g, "-")}`}
                 target="_blank"
                 rel="noreferrer"
                 className="p-1.5 rounded-full bg-white/90 text-[#1A1A1A] hover:bg-white transition-colors"
@@ -278,7 +269,7 @@ export function TeamCard({ member, delay = 0 }: TeamCardProps) {
                 <Linkedin className="size-4" />
               </a>
               <a
-                href={`mailto:${member.name.toLowerCase().replace(/\s+/g, '.')}@ecanetworks.co.ke`}
+                href={`mailto:${member.name.toLowerCase().replace(/\s+/g, ".")}@ecanetworks.co.ke`}
                 className="p-1.5 rounded-full bg-white/90 text-[#1A1A1A] hover:bg-white transition-colors"
                 aria-label={`Email ${member.name}`}
               >
@@ -288,10 +279,11 @@ export function TeamCard({ member, delay = 0 }: TeamCardProps) {
           </div>
         </div>
         <div className="p-4">
-          <p className="font-bold text-foreground transition-colors group-hover:text-primary">{member.name}</p>
+          <p className="font-bold text-foreground transition-colors group-hover:text-primary">
+            {member.name}
+          </p>
           <p className="mt-1 text-sm text-muted-foreground">{member.title}</p>
         </div>
-
       </div>
     </Reveal>
   );

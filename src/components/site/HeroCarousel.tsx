@@ -1,5 +1,13 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, ArrowUpRight, MessageCircle, ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  MessageCircle,
+  ChevronLeft,
+  ChevronRight,
+  Pause,
+  Play,
+} from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { COMPANY, shopUrl, WHATSAPP_URL } from "@/lib/eca";
 
@@ -165,12 +173,18 @@ export function HeroCarousel() {
           <div className="w-full max-w-4xl">
             <div className="relative max-w-3xl">
               {/* Eyebrow */}
-              <p className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-[#00D4FF] rise" style={{ animationDelay: "0ms" }}>
+              <p
+                className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-[#00D4FF] rise"
+                style={{ animationDelay: "0ms" }}
+              >
                 NAIROBI, SERVING ALL 47 COUNTIES
               </p>
 
               {/* Title with highlight */}
-              <h1 className="text-balance text-[clamp(2.5rem,5vw,4.5rem)] font-extrabold leading-[1.02] tracking-[-0.03em] text-white rise" style={{ animationDelay: "100ms" }}>
+              <h1
+                className="text-balance text-[clamp(2.5rem,5vw,4.5rem)] font-extrabold leading-[1.02] tracking-[-0.03em] text-white rise"
+                style={{ animationDelay: "100ms" }}
+              >
                 {activeSlide.title}{" "}
                 <span className="relative text-[#00D4FF]">
                   {activeSlide.highlight}
@@ -179,12 +193,18 @@ export function HeroCarousel() {
               </h1>
 
               {/* Body */}
-              <p className="mt-6 max-w-2xl text-pretty text-base leading-relaxed text-[#A0A4AE] sm:text-lg rise" style={{ animationDelay: "200ms" }}>
+              <p
+                className="mt-6 max-w-2xl text-pretty text-base leading-relaxed text-[#A0A4AE] sm:text-lg rise"
+                style={{ animationDelay: "200ms" }}
+              >
                 {activeSlide.body}
               </p>
 
               {/* CTAs */}
-              <div className="mt-10 flex flex-wrap items-center gap-4 rise" style={{ animationDelay: "300ms" }}>
+              <div
+                className="mt-10 flex flex-wrap items-center gap-4 rise"
+                style={{ animationDelay: "300ms" }}
+              >
                 <Link
                   to="/contact"
                   className="btn-radius inline-flex items-center gap-2 bg-[#00D4FF] px-7 py-3.5 text-sm font-semibold text-[#0B0C10] transition-all hover:opacity-90 hover:scale-[1.02] active:scale-[0.98] shadow-[0_8px_30px_rgba(0,212,255,0.3)]"
@@ -266,7 +286,9 @@ export function HeroCarousel() {
 
           {/* Pause/Play + slide counter */}
           <div className="flex items-center gap-4 text-xs text-white/50">
-            <span>{String(active + 1).padStart(2, "0")} / {String(SLIDES.length).padStart(2, "0")}</span>
+            <span>
+              {String(active + 1).padStart(2, "0")} / {String(SLIDES.length).padStart(2, "0")}
+            </span>
             <button
               type="button"
               onClick={togglePause}
@@ -290,7 +312,9 @@ export function HeroCarousel() {
                 className="flex items-baseline gap-2 text-center"
                 style={{ animationDelay: `${i * 100 + 400}ms` }}
               >
-                <span className="text-2xl font-extrabold tracking-tight sm:text-3xl">{stat.value}</span>
+                <span className="text-2xl font-extrabold tracking-tight sm:text-3xl">
+                  {stat.value}
+                </span>
                 <span className="text-xs text-[#8B8F98]">{stat.label}</span>
               </div>
             ))}

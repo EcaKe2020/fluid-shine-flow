@@ -114,8 +114,8 @@ function Insights() {
             Short answers to the questions that <span className="ink-text">cost site visits</span>
           </Heading>
           <Lead className="mt-5">
-            Each piece opens with the answer, then explains the reasoning. Written for people who are ordering material
-            this week, not for a search engine.
+            Each piece opens with the answer, then explains the reasoning. Written for people who
+            are ordering material this week, not for a search engine.
           </Lead>
           <div className="mt-8 flex flex-wrap gap-3">
             <ShopButton label="Browse the store" />
@@ -132,9 +132,13 @@ function Insights() {
           {ARTICLES.map((a, i) => (
             <Reveal key={a.title} delay={i * 70}>
               <Panel className="h-full">
-                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-ember">{a.read}</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-ember">
+                  {a.read}
+                </p>
                 <h2 className="mt-3 text-xl font-semibold">{a.title}</h2>
-                <p className="mt-3 rounded-2xl bg-primary/8 p-4 text-sm font-medium leading-relaxed">{a.answer}</p>
+                <p className="mt-3 rounded-2xl bg-primary/8 p-4 text-sm font-medium leading-relaxed">
+                  {a.answer}
+                </p>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{a.body}</p>
               </Panel>
             </Reveal>

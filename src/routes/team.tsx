@@ -52,7 +52,7 @@ const FUNCTIONS = [
     highlight: "Accuracy you can trace",
   },
   {
-    icon: michael,
+    icon: Zap,
     role: "After sales support",
     body: "Handles warranty assessment, replacements and the follow up questions that arrive once equipment is powered on.",
     highlight: "Support that actually responds",
@@ -78,13 +78,29 @@ const CAREERS = [
 ];
 
 const VALUES = [
-  { icon: UserCheck, title: "Technical first", desc: "Every role requires hands-on product knowledge, not just catalog familiarity." },
-  { icon: Award, title: "Accountability", desc: "Names on delivery notes, not ticket numbers. You know who packed your order." },
-  { icon: Zap, title: "Speed with precision", desc: "Same-day quotes for clear lists. Drawing reviews acknowledged within hours." },
-  { icon: Briefcase, title: "Career growth", desc: "Internal promotion is the norm. The COO started on the warehouse floor." },
+  {
+    icon: UserCheck,
+    title: "Technical first",
+    desc: "Every role requires hands-on product knowledge, not just catalog familiarity.",
+  },
+  {
+    icon: Award,
+    title: "Accountability",
+    desc: "Names on delivery notes, not ticket numbers. You know who packed your order.",
+  },
+  {
+    icon: Zap,
+    title: "Speed with precision",
+    desc: "Same-day quotes for clear lists. Drawing reviews acknowledged within hours.",
+  },
+  {
+    icon: Briefcase,
+    title: "Career growth",
+    desc: "Internal promotion is the norm. The COO started on the warehouse floor.",
+  },
 ];
 
-function FunctionCard({ func, delay = 0 }: { func: typeof FUNCTIONS[0]; delay?: number }) {
+function FunctionCard({ func, delay = 0 }: { func: (typeof FUNCTIONS)[0]; delay?: number }) {
   const Icon = func.icon;
   return (
     <Reveal delay={delay}>
@@ -106,7 +122,7 @@ function FunctionCard({ func, delay = 0 }: { func: typeof FUNCTIONS[0]; delay?: 
   );
 }
 
-function CareerCard({ career, delay = 0 }: { career: typeof CAREERS[0]; delay?: number }) {
+function CareerCard({ career, delay = 0 }: { career: (typeof CAREERS)[0]; delay?: number }) {
   return (
     <Reveal delay={delay}>
       <div className="group h-full bg-white rounded-2xl border border-[#E5E5E5] p-6 sm:p-8 transition-all duration-300 hover:border-[#00D4FF]/50 hover:shadow-[0_20px_40px_rgba(0,212,255,0.08)] hover:-translate-y-1">
@@ -125,7 +141,7 @@ function CareerCard({ career, delay = 0 }: { career: typeof CAREERS[0]; delay?: 
   );
 }
 
-function ValueCard({ value, delay = 0 }: { value: typeof VALUES[0]; delay?: number }) {
+function ValueCard({ value, delay = 0 }: { value: (typeof VALUES)[0]; delay?: number }) {
   const Icon = value.icon;
   return (
     <Reveal delay={delay}>
@@ -147,11 +163,13 @@ function Team() {
         <div className="rise">
           <Eyebrow>Team and careers</Eyebrow>
           <Heading as="h1">
-            People who have <span className="ink-text">held the splicer</span>, not just the price list
+            People who have <span className="ink-text">held the splicer</span>, not just the price
+            list
           </Heading>
           <Lead className="mt-5">
-            Individual biographies are published once each team member approves their profile, so this page describes the
-            functions you actually deal with. Ask for a named contact and you will be introduced directly.
+            Individual biographies are published once each team member approves their profile, so
+            this page describes the functions you actually deal with. Ask for a named contact and
+            you will be introduced directly.
           </Lead>
         </div>
 
@@ -184,8 +202,9 @@ function Team() {
               <Eyebrow>Careers</Eyebrow>
               <Heading>Roles we keep an eye out for</Heading>
               <Lead className="mt-4">
-                Applications are welcome even when nothing is formally advertised. Send a short note about what you have
-                built or supplied to {COMPANY.email} with the role in the subject line.
+                Applications are welcome even when nothing is formally advertised. Send a short note
+                about what you have built or supplied to {COMPANY.email} with the role in the
+                subject line.
               </Lead>
               <div className="mt-8 grid gap-6 sm:grid-cols-3">
                 {CAREERS.map((c, i) => (
@@ -219,18 +238,37 @@ function Team() {
                 </div>
                 <div className="p-4 rounded-xl bg-white/50">
                   <dt className="font-semibold text-[#1A1A1A] flex items-center justify-center gap-2">
-                    <svg className="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    <svg
+                      className="size-4"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <circle cx="12" cy="12" r="10" />
+                      <polyline points="12 6 12 12 16 14" />
+                    </svg>
                     Hours
                   </dt>
                   <dd className="text-[#666666] mt-1">{COMPANY.hours}</dd>
                 </div>
                 <div className="p-4 rounded-xl bg-white/50">
                   <dt className="font-semibold text-[#1A1A1A] flex items-center justify-center gap-2">
-                    <svg className="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    <svg
+                      className="size-4"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                    </svg>
                     Phone
                   </dt>
                   <dd className="text-[#666666] mt-1">
-                    <a href={COMPANY.phoneHref} className="hover:text-[#00D4FF]">{COMPANY.phone}</a>
+                    <a href={COMPANY.phoneHref} className="hover:text-[#00D4FF]">
+                      {COMPANY.phone}
+                    </a>
                   </dd>
                 </div>
               </dl>

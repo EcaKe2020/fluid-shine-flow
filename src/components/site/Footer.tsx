@@ -1,7 +1,14 @@
 import { Link } from "@tanstack/react-router";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import logo from "@/assets/eca-logo.png.asset.json";
-import { COMPANY, LOCATIONS, shopUrl, SOLUTIONS, WHATSAPP_URL, WHATSAPP_URL_ELDORET } from "@/lib/eca";
+import {
+  COMPANY,
+  LOCATIONS,
+  shopUrl,
+  SOLUTIONS,
+  WHATSAPP_URL,
+  WHATSAPP_URL_ELDORET,
+} from "@/lib/eca";
 
 export function Footer() {
   return (
@@ -57,7 +64,9 @@ export function Footer() {
 
           {/* Solutions */}
           <nav aria-label="Solutions">
-            <h2 className="text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">Solutions</h2>
+            <h2 className="text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">
+              Solutions
+            </h2>
             <ul className="mt-4 space-y-2.5">
               {SOLUTIONS.map((s) => (
                 <li key={s.slug}>
@@ -75,22 +84,58 @@ export function Footer() {
 
           {/* Resources */}
           <nav aria-label="Resources">
-            <h2 className="text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">Resources</h2>
+            <h2 className="text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">
+              Resources
+            </h2>
             <ul className="mt-4 space-y-2.5">
-              <li><Link to="/about" className="text-sm text-muted-foreground hover:text-primary">About ECA Networks</Link></li>
-              <li><Link to="/services" className="text-sm text-muted-foreground hover:text-primary">Services and support</Link></li>
-              <li><Link to="/projects" className="text-sm text-muted-foreground hover:text-primary">Projects</Link></li>
-              <li><Link to="/team" className="text-sm text-muted-foreground hover:text-primary">Team and careers</Link></li>
-              <li><Link to="/esg" className="text-sm text-muted-foreground hover:text-primary">ESG and sustainability</Link></li>
-              <li><Link to="/insights" className="text-sm text-muted-foreground hover:text-primary">Insights</Link></li>
-              <li><Link to="/price-list" className="text-sm text-muted-foreground hover:text-primary">Price list</Link></li>
-              <li><Link to="/privacy" className="text-sm text-muted-foreground hover:text-primary">Privacy and terms</Link></li>
+              <li>
+                <Link to="/about" className="text-sm text-muted-foreground hover:text-primary">
+                  About ECA Networks
+                </Link>
+              </li>
+              <li>
+                <Link to="/services" className="text-sm text-muted-foreground hover:text-primary">
+                  Services and support
+                </Link>
+              </li>
+              <li>
+                <Link to="/projects" className="text-sm text-muted-foreground hover:text-primary">
+                  Projects
+                </Link>
+              </li>
+              <li>
+                <Link to="/team" className="text-sm text-muted-foreground hover:text-primary">
+                  Team and careers
+                </Link>
+              </li>
+              <li>
+                <Link to="/esg" className="text-sm text-muted-foreground hover:text-primary">
+                  ESG and sustainability
+                </Link>
+              </li>
+              <li>
+                <Link to="/insights" className="text-sm text-muted-foreground hover:text-primary">
+                  Insights
+                </Link>
+              </li>
+              <li>
+                <Link to="/price-list" className="text-sm text-muted-foreground hover:text-primary">
+                  Price list
+                </Link>
+              </li>
+              <li>
+                <Link to="/privacy" className="text-sm text-muted-foreground hover:text-primary">
+                  Privacy and terms
+                </Link>
+              </li>
             </ul>
           </nav>
 
           {/* Reach us — two locations */}
           <div className="space-y-6">
-            <h2 className="text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">Reach us</h2>
+            <h2 className="text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">
+              Reach us
+            </h2>
             {LOCATIONS.map((loc) => (
               <address key={loc.city} className="space-y-2 not-italic">
                 <p className="text-sm font-bold text-foreground">{loc.city}</p>
@@ -100,7 +145,9 @@ export function Footer() {
                 </p>
                 <p className="flex items-center gap-2.5 text-sm text-muted-foreground">
                   <Phone className="size-4 shrink-0 text-primary" />
-                  <a href={loc.phoneHref} className="font-medium hover:text-primary">{loc.phone}</a>
+                  <a href={loc.phoneHref} className="font-medium hover:text-primary">
+                    {loc.phone}
+                  </a>
                 </p>
                 <p className="flex items-start gap-2.5 text-sm text-muted-foreground">
                   <Clock className="mt-0.5 size-4 shrink-0 text-primary" />
@@ -118,7 +165,9 @@ export function Footer() {
             ))}
             <p className="flex items-center gap-2.5 text-sm text-muted-foreground">
               <Mail className="size-4 shrink-0 text-primary" />
-              <a href={`mailto:${COMPANY.email}`} className="hover:text-primary">{COMPANY.email}</a>
+              <a href={`mailto:${COMPANY.email}`} className="hover:text-primary">
+                {COMPANY.email}
+              </a>
             </p>
           </div>
         </div>
@@ -130,8 +179,8 @@ export function Footer() {
           </p>
           <div className="mt-2 flex flex-wrap items-center justify-between gap-3 text-xs text-muted-foreground">
             <p>
-              {COMPANY.name}, registered in Kenya. Company registration and KRA PIN are stated on every quotation,
-              invoice and delivery note.
+              {COMPANY.name}, registered in Kenya. Company registration and KRA PIN are stated on
+              every quotation, invoice and delivery note.
             </p>
             <p>Ordering and stock live on ecanetworks.com</p>
           </div>

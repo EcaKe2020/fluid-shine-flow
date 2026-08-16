@@ -20,10 +20,7 @@ export function FaqList({ items }: { items: readonly Item[] }) {
         }}
       />
       {items.map((item) => (
-        <details
-          key={item.q}
-          className="group border-b border-border py-6"
-        >
+        <details key={item.q} className="group border-b border-border py-6">
           <summary className="flex cursor-pointer items-start justify-between gap-4 text-base font-semibold text-foreground">
             {item.q}
             <span className="mt-0.5 shrink-0 text-xl font-light text-primary transition-transform group-open:rotate-45">

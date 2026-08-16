@@ -42,7 +42,10 @@ export const Route = createFileRoute("/")({
         content:
           "Nairobi and Eldoret supplier of fibre optic cable, ADSS, structured cabling, MikroTik and PoE networking, CCTV and PABX. Trade pricing, local warranty, delivery to all 47 counties.",
       },
-      { property: "og:title", content: "ECA Networks | Fibre and Networking Infrastructure, Kenya" },
+      {
+        property: "og:title",
+        content: "ECA Networks | Fibre and Networking Infrastructure, Kenya",
+      },
       {
         property: "og:description",
         content:
@@ -130,8 +133,8 @@ function Home() {
           <Eyebrow>What we supply</Eyebrow>
           <Heading>Four supply lines, one delivery note</Heading>
           <Lead className="mt-4">
-            Most projects touch more than one of these. Buying them from one counter keeps compatibility, warranty and
-            paperwork in a single place.
+            Most projects touch more than one of these. Buying them from one counter keeps
+            compatibility, warranty and paperwork in a single place.
           </Lead>
         </Reveal>
         <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
@@ -144,7 +147,9 @@ function Home() {
                     <Icon className="size-5" />
                   </span>
                   <h3 className="mt-5 text-lg font-bold text-foreground">{solution.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{solution.blurb}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                    {solution.blurb}
+                  </p>
                   <Link
                     to="/solutions/$slug"
                     params={{ slug: solution.slug }}
@@ -182,7 +187,9 @@ function Home() {
                 <div>
                   <reason.icon className="size-5 text-ember" />
                   <h3 className="mt-3 text-base font-bold text-foreground">{reason.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{reason.body}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                    {reason.body}
+                  </p>
                 </div>
               </div>
             </Reveal>
@@ -211,7 +218,10 @@ function Home() {
           })}
         </div>
         <Reveal>
-          <Link to="/industries" className="mt-8 inline-flex text-sm font-semibold text-primary hover:underline">
+          <Link
+            to="/industries"
+            className="mt-8 inline-flex text-sm font-semibold text-primary hover:underline"
+          >
             See the full industry breakdown
           </Link>
         </Reveal>
@@ -223,15 +233,17 @@ function Home() {
           <Eyebrow>Where to find us</Eyebrow>
           <Heading>Two counters, one stock position</Heading>
           <Lead className="mt-4">
-            Walk in with a list in Nairobi or Eldoret. Whatever is not on that shelf is transferred between branches
-            rather than reordered from scratch.
+            Walk in with a list in Nairobi or Eldoret. Whatever is not on that shelf is transferred
+            between branches rather than reordered from scratch.
           </Lead>
         </Reveal>
         <div className="mt-12 grid gap-5 lg:grid-cols-2">
           {LOCATIONS.map((loc, i) => (
             <Reveal key={loc.city} delay={i * 90}>
               <div className="sheen h-full p-7">
-                <p className="text-xs font-bold uppercase tracking-[0.18em] text-ember">{loc.label}</p>
+                <p className="text-xs font-bold uppercase tracking-[0.18em] text-ember">
+                  {loc.label}
+                </p>
                 <h3 className="mt-2 text-2xl font-bold text-foreground">{loc.city}</h3>
                 <dl className="mt-5 space-y-3 text-sm">
                   <div className="flex items-start gap-3">
@@ -241,7 +253,10 @@ function Home() {
                   <div className="flex items-start gap-3">
                     <Phone className="mt-0.5 size-4 shrink-0 text-primary" />
                     <dd>
-                      <a href={loc.phoneHref} className="font-semibold text-foreground hover:text-primary">
+                      <a
+                        href={loc.phoneHref}
+                        className="font-semibold text-foreground hover:text-primary"
+                      >
                         {loc.phone}
                       </a>
                     </dd>
@@ -313,8 +328,8 @@ function Home() {
           <div className="sheen max-w-3xl p-8 sm:p-12">
             <Heading>Tell us what the site needs and the list comes back priced</Heading>
             <Lead className="mt-4">
-              Send a drawing, a rough part list or a site photograph. The technical desk checks the specification,
-              confirms stock and returns a quotation you can hand to procurement.
+              Send a drawing, a rough part list or a site photograph. The technical desk checks the
+              specification, confirms stock and returns a quotation you can hand to procurement.
             </Lead>
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <QuoteButton />

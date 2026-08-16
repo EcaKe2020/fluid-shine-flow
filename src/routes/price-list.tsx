@@ -88,8 +88,9 @@ function PriceList() {
             Prices that are <span className="ink-text">current</span>, not printed last quarter
           </Heading>
           <Lead className="mt-5">
-            The store carries live prices for every stocked line. For project volumes, phased rollouts or tender
-            submissions, the desk issues a dated quotation with stock status per line.
+            The store carries live prices for every stocked line. For project volumes, phased
+            rollouts or tender submissions, the desk issues a dated quotation with stock status per
+            line.
           </Lead>
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <ShopButton label="See live prices" />
@@ -116,7 +117,8 @@ function PriceList() {
           <Eyebrow>Price list</Eyebrow>
           <Heading>Browse current stock pricing</Heading>
           <Lead className="mt-4 max-w-2xl">
-            Search, filter, and sort across all stocked lines. Prices update in real-time from the store.
+            Search, filter, and sort across all stocked lines. Prices update in real-time from the
+            store.
           </Lead>
         </Reveal>
         <div className="mt-8">
@@ -132,8 +134,8 @@ function PriceList() {
                 <Eyebrow>Counter and collection</Eyebrow>
                 <Heading>Buying in person</Heading>
                 <Lead className="mt-4">
-                  Walk in with a list and leave with the goods. Bulk reels are cut to length at the counter and checked
-                  against your quotation before they are loaded.
+                  Walk in with a list and leave with the goods. Bulk reels are cut to length at the
+                  counter and checked against your quotation before they are loaded.
                 </Lead>
               </div>
               <dl className="space-y-3 text-sm">

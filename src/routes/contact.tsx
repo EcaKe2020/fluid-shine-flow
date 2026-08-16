@@ -132,14 +132,16 @@ function Contact() {
               Send the specification and the technical desk returns a quotation
             </Heading>
             <Lead className="mt-5">
-              A request that includes distances, quantities and the county gets a complete answer first time. Everything
-              else takes an extra phone call, and we would rather skip it.
+              A request that includes distances, quantities and the county gets a complete answer
+              first time. Everything else takes an extra phone call, and we would rather skip it.
             </Lead>
 
             <div className="mt-10 grid gap-5 sm:grid-cols-2">
               {LOCATIONS.map((loc) => (
                 <div key={loc.city} className="sheen p-6">
-                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-ember">{loc.label}</p>
+                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-ember">
+                    {loc.label}
+                  </p>
                   <h2 className="mt-2 text-xl font-bold text-foreground">{loc.city}</h2>
                   <p className="mt-4 flex items-start gap-2.5 text-sm text-muted-foreground">
                     <MapPin className="mt-0.5 size-4 shrink-0 text-primary" />
@@ -147,7 +149,10 @@ function Contact() {
                   </p>
                   <p className="mt-2.5 flex items-center gap-2.5 text-sm">
                     <Phone className="size-4 shrink-0 text-primary" />
-                    <a href={loc.phoneHref} className="font-semibold text-foreground hover:text-primary">
+                    <a
+                      href={loc.phoneHref}
+                      className="font-semibold text-foreground hover:text-primary"
+                    >
                       {loc.phone}
                     </a>
                   </p>
@@ -170,7 +175,10 @@ function Contact() {
 
             <p className="mt-6 flex items-center gap-2.5 text-sm">
               <Mail className="size-4 shrink-0 text-primary" />
-              <a href={`mailto:${COMPANY.email}`} className="font-semibold text-foreground hover:text-primary">
+              <a
+                href={`mailto:${COMPANY.email}`}
+                className="font-semibold text-foreground hover:text-primary"
+              >
                 {COMPANY.email}
               </a>
             </p>
@@ -185,8 +193,8 @@ function Contact() {
             <div className="sheen p-6 sm:p-8">
               <h2 className="text-xl font-bold text-foreground">Request for quotation</h2>
               <p className="mt-2 text-sm text-muted-foreground">
-                Seven fields, one reference number. Submitting opens your mail client with everything formatted for the
-                desk.
+                Seven fields, one reference number. Submitting opens your mail client with
+                everything formatted for the desk.
               </p>
               <form onSubmit={submit} className="mt-6 space-y-4">
                 <div className="grid gap-4 sm:grid-cols-2">
@@ -200,11 +208,22 @@ function Contact() {
                   </label>
                   <label className="block text-sm font-medium">
                     Email
-                    <input required type="email" value={form.email} onChange={set("email")} className={field} />
+                    <input
+                      required
+                      type="email"
+                      value={form.email}
+                      onChange={set("email")}
+                      className={field}
+                    />
                   </label>
                   <label className="block text-sm font-medium">
                     Phone
-                    <input value={form.phone} onChange={set("phone")} className={field} placeholder="07xx xxx xxx" />
+                    <input
+                      value={form.phone}
+                      onChange={set("phone")}
+                      className={field}
+                      placeholder="07xx xxx xxx"
+                    />
                   </label>
                 </div>
                 <label className="block text-sm font-medium">
@@ -245,8 +264,8 @@ function Contact() {
                 </button>
                 {sentRef ? (
                   <p className="text-sm text-ember">
-                    Your reference is {sentRef}. If your mail client did not open, email {COMPANY.email} with that
-                    reference in the subject line.
+                    Your reference is {sentRef}. If your mail client did not open, email{" "}
+                    {COMPANY.email} with that reference in the subject line.
                   </p>
                 ) : null}
               </form>
