@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X, Phone } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import logo from "@/assets/eca-logo.png.asset.json";
 import { COMPANY, shopUrl, SOLUTIONS } from "@/lib/eca";
@@ -15,25 +15,24 @@ const INDUSTRY_LINKS = [
 ] as const;
 
 const RESOURCE_LINKS = [
-  { to: "/tools", label: "Interactive tools", desc: "Bill of materials and cable selector" },
+  { to: "/about", label: "About ECA Networks", desc: "Who we are and who you deal with" },
   { to: "/projects", label: "Projects", desc: "Rollouts the counter has supplied" },
+  { to: "/team", label: "Team & Careers", desc: "The people behind the counter" },
+  { to: "/esg", label: "ESG & Sustainability", desc: "How the business handles waste and people" },
   { to: "/insights", label: "Insights", desc: "Field notes from the technical desk" },
-  { to: "/services", label: "Services", desc: "Installation, testing and support" },
-  { to: "/esg", label: "ESG", desc: "How the business handles waste and people" },
-  { to: "/about", label: "Company", desc: "Who we are and who you deal with" },
 ] as const;
 
 const MOBILE_NAV = [
-  { to: "/about", label: "Company" },
   { to: "/solutions", label: "Solutions" },
   { to: "/industries", label: "Industries" },
-  { to: "/price-list", label: "Pricing" },
+  { to: "/about", label: "Resources" },
   { to: "/tools", label: "Tools" },
+  { to: "/price-list", label: "Prices" },
   { to: "/projects", label: "Projects" },
-  { to: "/insights", label: "Insights" },
-  { to: "/services", label: "Services" },
   { to: "/team", label: "Team" },
   { to: "/esg", label: "ESG" },
+  { to: "/insights", label: "Insights" },
+  { to: "/services", label: "Services" },
   { to: "/contact", label: "Contact" },
 ] as const;
 
@@ -64,7 +63,7 @@ function MegaMenu({
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
-        className="nav-link inline-flex items-center gap-1 whitespace-nowrap text-sm transition-colors"
+        className="nav-link inline-flex items-center gap-1 whitespace-nowrap text-sm font-medium transition-colors"
       >
         {label}
         <ChevronDown className={`size-3.5 transition-transform ${open ? "rotate-180" : ""}`} />
@@ -72,11 +71,10 @@ function MegaMenu({
       {open ? (
         <div className="absolute left-0 top-[calc(100%+0.75rem)] z-50" style={{ width }}>
           <div
-            className="bg-popover/95 p-3 text-popover-foreground backdrop-blur-xl"
+            className="glass-panel p-3"
             style={{
-              borderRadius: 20,
-              border: "1px solid rgba(0,212,255,0.18)",
-              boxShadow: "0 30px 70px -40px rgba(0,0,0,0.45)",
+              borderRadius: 16,
+              boxShadow: "0 30px 70px -40px rgba(0,0,0,0.25)",
             }}
           >
             <div className="grid gap-1">{children(() => setOpen(false))}</div>
@@ -108,29 +106,23 @@ export function Header() {
   return (
     <header
       className={`site-header fixed inset-x-0 top-0 z-[100] flex h-[4.5rem] items-center px-[clamp(20px,6vw,120px)] transition-all duration-500 ${
-        scrolled ? "bg-background/85 backdrop-blur-xl" : "bg-transparent"
+        scrolled
+          ? "bg-background/90 backdrop-blur-xl shadow-[0_4px_24px_-12px_rgba(11,50,79,0.15)]"
+          : "bg-background/60 backdrop-blur-md"
       }`}
     >
-      {/* Left: primary navigation */}
-      <nav className="hidden flex-1 items-center gap-7 lg:flex">
-        <MegaMenu label="Industries" width="26rem">
-          {(close) => (
-            <div className="grid grid-cols-2 gap-1">
-              {INDUSTRY_LINKS.map((label) => (
-                <Link
-                  key={label}
-                  to="/industries"
-                  onClick={close}
-                  className="rounded-xl px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-primary/10 hover:text-primary"
-                >
-                  {label}
-                </Link>
-              ))}
-            </div>
-          )}
-        </MegaMenu>
+      {/* Left: logo */}
+      <Link
+        to="/"
+        className="flex shrink-0 items-center"
+        aria-label={`${COMPANY.short} home`}
+      >
+        <img src={logo.url} alt="ECA Networks logo" className="h-8 w-auto" width={128} height={40} />
+      </Link>
 
-        <MegaMenu label="Solutions">
+      {/* Center: primary navigation */}
+      <nav className="mx-auto hidden items-center gap-7 lg:flex">
+        <MegaMenu label="Solutions" width="24rem">
           {(close) => (
             <>
               {SOLUTIONS.map((s) => (
@@ -139,9 +131,9 @@ export function Header() {
                   to="/solutions/$slug"
                   params={{ slug: s.slug }}
                   onClick={close}
-                  className="rounded-xl px-3 py-2.5 transition-colors hover:bg-primary/10"
+                  className="rounded-lg px-3 py-2.5 transition-colors hover:bg-primary/10"
                 >
-                  <span className="block text-sm font-semibold">{s.title}</span>
+                  <span className="block text-sm font-semibold text-foreground">{s.title}</span>
                   <span className="mt-0.5 block text-xs text-muted-foreground">{s.points.join(" · ")}</span>
                 </Link>
               ))}
@@ -156,15 +148,24 @@ export function Header() {
           )}
         </MegaMenu>
 
-        <Link
-          to="/price-list"
-          activeProps={{ className: "text-primary" }}
-          className="nav-link whitespace-nowrap text-sm transition-colors"
-        >
-          Pricing
-        </Link>
+        <MegaMenu label="Industries" width="26rem">
+          {(close) => (
+            <div className="grid grid-cols-2 gap-1">
+              {INDUSTRY_LINKS.map((label) => (
+                <Link
+                  key={label}
+                  to="/industries"
+                  onClick={close}
+                  className="rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-primary/10 hover:text-primary"
+                >
+                  {label}
+                </Link>
+              ))}
+            </div>
+          )}
+        </MegaMenu>
 
-        <MegaMenu label="Resources">
+        <MegaMenu label="Resources" width="24rem">
           {(close) => (
             <>
               {RESOURCE_LINKS.map((r) => (
@@ -172,58 +173,69 @@ export function Header() {
                   key={r.to}
                   to={r.to}
                   onClick={close}
-                  className="rounded-xl px-3 py-2.5 transition-colors hover:bg-primary/10"
+                  className="rounded-lg px-3 py-2.5 transition-colors hover:bg-primary/10"
                 >
-                  <span className="block text-sm font-semibold">{r.label}</span>
+                  <span className="block text-sm font-semibold text-foreground">{r.label}</span>
                   <span className="mt-0.5 block text-xs text-muted-foreground">{r.desc}</span>
                 </Link>
               ))}
             </>
           )}
         </MegaMenu>
+
+        <Link
+          to="/tools"
+          activeProps={{ className: "text-primary" }}
+          className="nav-link whitespace-nowrap text-sm font-medium transition-colors"
+        >
+          Tools
+        </Link>
+
+        <Link
+          to="/price-list"
+          activeProps={{ className: "text-primary" }}
+          className="nav-link whitespace-nowrap text-sm font-medium transition-colors"
+        >
+          Prices
+        </Link>
       </nav>
 
-      {/* Mobile hamburger left */}
-      <button
-        type="button"
-        onClick={() => setOpen(true)}
-        className="nav-link flex size-9 items-center justify-center lg:hidden"
-        aria-label="Open menu"
-        aria-expanded={open}
-      >
-        <Menu className="size-5" />
-      </button>
-
-      {/* Center: logo */}
-      <Link
-        to="/"
-        className="absolute left-1/2 -translate-x-1/2 items-center lg:static lg:flex lg:translate-x-0"
-        aria-label={`${COMPANY.short} home`}
-      >
-        <img src={logo.url} alt="ECA Networks logo" className="h-8 w-auto" width={128} height={40} />
-      </Link>
-
-      {/* Right: quiet links plus one solid action */}
-      <div className="flex flex-1 items-center justify-end gap-5">
-        <Link to="/solutions" className="nav-link hidden text-sm transition-colors md:inline">
-          Explore
-        </Link>
+      {/* Right: phone, theme toggle, shop, quote */}
+      <div className="ml-auto flex items-center gap-4">
         <a
-          href={shopUrl("nav-signin")}
-          target="_blank"
-          rel="noreferrer"
-          className="nav-link hidden text-sm transition-colors md:inline"
+          href={COMPANY.phoneHref}
+          className={`nav-link hidden items-center gap-1.5 whitespace-nowrap text-sm font-medium transition-colors xl:flex ${
+            scrolled ? "opacity-100" : "opacity-0 pointer-events-none"
+          }`}
         >
-          Sign in
+          <Phone className="size-4 text-primary" />
+          {COMPANY.phone}
         </a>
         <ThemeToggle />
+        <a
+          href={shopUrl("nav-shop")}
+          target="_blank"
+          rel="noreferrer"
+          className="nav-link hidden whitespace-nowrap text-sm font-medium transition-colors hover:text-primary sm:inline"
+        >
+          Shop Online
+        </a>
         <Link
           to="/contact"
-          className="whitespace-nowrap bg-foreground px-5 py-2.5 text-sm font-medium text-background transition-opacity hover:opacity-90"
-          style={{ borderRadius: 24 }}
+          className="btn-radius whitespace-nowrap bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-[0_8px_26px_-10px_rgba(14,165,233,0.6)] transition-opacity hover:opacity-90"
         >
-          Contact Sales
+          Request a Quote
         </Link>
+
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          className="nav-link flex size-9 items-center justify-center lg:hidden"
+          aria-label="Open menu"
+          aria-expanded={open}
+        >
+          <Menu className="size-5" />
+        </button>
       </div>
 
       {/* Mobile overlay */}
@@ -261,17 +273,16 @@ export function Header() {
               href={shopUrl("mobile-menu")}
               target="_blank"
               rel="noreferrer"
-              className="py-3.5 text-center text-sm font-semibold text-foreground"
+              className="btn-radius border border-border py-3.5 text-center text-sm font-semibold text-foreground"
             >
-              Visit the shop
+              Shop Online
             </a>
             <Link
               to="/contact"
               onClick={() => setOpen(false)}
-              className="bg-foreground py-3.5 text-center text-sm font-medium text-background"
-              style={{ borderRadius: 24 }}
+              className="btn-radius bg-primary py-3.5 text-center text-sm font-semibold text-primary-foreground"
             >
-              Contact Sales
+              Request a Quote
             </Link>
           </div>
         </div>

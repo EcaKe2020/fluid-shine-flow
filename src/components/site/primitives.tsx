@@ -151,7 +151,7 @@ export function QuoteButton({ label = "Request a quote" }: { label?: string }) {
   return (
     <Link
       to="/contact"
-      className="btn-radius inline-flex items-center gap-2 bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-[0_14px_36px_-16px_rgba(0,212,255,0.9)] transition-transform hover:-translate-y-0.5"
+      className="btn-radius inline-flex items-center gap-2 bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-[0_14px_36px_-16px_rgba(14,165,233,0.6)] transition-transform hover:-translate-y-0.5"
     >
       {label}
       <ArrowRight className="size-4" />
@@ -171,10 +171,10 @@ export function ShopButton({
       href={shopUrl(medium)}
       target="_blank"
       rel="noreferrer"
-      className="btn-radius inline-flex items-center gap-2 border border-ember/50 px-5 py-2.5 text-sm font-semibold text-foreground transition-colors hover:border-ember hover:text-ember"
+      className="btn-radius inline-flex items-center gap-2 border border-primary/40 px-5 py-3.5 text-sm font-semibold text-foreground transition-colors hover:border-primary hover:text-primary"
     >
       {label}
-      <ArrowUpRight className="size-4 text-ember" />
+      <ArrowUpRight className="size-4 text-primary" />
     </a>
   );
 }

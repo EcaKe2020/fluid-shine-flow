@@ -69,86 +69,64 @@ const TEAM = [
 
 export function TeamSection() {
   return (
-    <section className="relative overflow-hidden bg-[#F5F5F0] py-20 dark:bg-[#101318]">
-      {/* Framing curves, cropped by the viewport edges */}
-      <svg
-        aria-hidden
-        viewBox="0 0 400 800"
-        className="pointer-events-none absolute -left-24 top-1/2 z-0 h-[88%] w-auto -translate-y-1/2 opacity-70"
-      >
-        <path
-          d="M400 0 C120 90 60 300 60 400 C60 500 120 710 400 800 L400 660 C210 590 175 490 175 400 C175 310 210 210 400 140 Z"
-          fill="#0047AB"
-          opacity="0.9"
-        />
-      </svg>
-      <svg
-        aria-hidden
-        viewBox="0 0 400 800"
-        className="pointer-events-none absolute -right-24 top-1/2 z-0 h-[88%] w-auto -translate-y-1/2 rotate-180 opacity-70"
-      >
-        <path
-          d="M400 0 C120 90 60 300 60 400 C60 500 120 710 400 800 L400 660 C210 590 175 490 175 400 C175 310 210 210 400 140 Z"
-          fill="#0057B8"
-          opacity="0.85"
-        />
-      </svg>
+    <section className="section-pad page-pad py-20">
+      <p className="text-center text-xs font-bold uppercase tracking-[0.18em] text-primary">
+        The people
+      </p>
 
-      <div className="relative z-10 section-pad">
-        <p className="text-center text-[11px] uppercase tracking-[0.12em] text-[#888888]">The people</p>
-        <div className="mx-auto mt-4 h-px w-full bg-[#E5E5E5] dark:bg-white/10" />
+      <div className="mx-auto mt-6 max-w-3xl">
+        <div className="h-px w-full bg-border" />
+      </div>
 
-        <div className="mt-10 flex flex-col items-center leading-[0.95]">
-          <span className="font-serif text-[clamp(34px,4.4vw,48px)] italic text-foreground">meet</span>
-          <span className="flex items-baseline gap-3 text-[clamp(34px,4.4vw,48px)] font-bold tracking-tight">
-            <span className="text-foreground">our</span>
-            <span className="text-[#0047AB] dark:text-[#4D93F0]">team</span>
-          </span>
+      <div className="mt-10 flex flex-col items-center leading-[0.95]">
+        <span className="font-serif text-[clamp(34px,4.4vw,48px)] italic text-foreground">meet</span>
+        <span className="flex items-baseline gap-3 text-[clamp(34px,4.4vw,48px)] font-bold tracking-tight">
+          <span className="text-foreground">our</span>
+          <span className="text-primary">team</span>
+        </span>
+      </div>
+
+      {[TEAM.slice(0, 6), TEAM.slice(6)].map((row, r) => (
+        <div
+          key={r}
+          className={`flex flex-wrap items-end justify-center gap-4 lg:flex-nowrap ${r === 0 ? "mt-14" : "mt-4"}`}
+        >
+          {row.map((m) => (
+            <figure
+              key={m.name}
+              className="group relative w-[calc(50%-0.5rem)] overflow-hidden sm:w-[calc(33.333%-0.75rem)] lg:min-w-[150px] lg:flex-1"
+              style={{ height: m.h, borderRadius: 16 }}
+            >
+              <img
+                src={m.image}
+                alt={`${m.name}, ${m.title} at ECA Networks`}
+                loading="lazy"
+                className="size-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+              />
+              <span
+                aria-hidden
+                className="absolute inset-0 opacity-90 transition-opacity duration-500 group-hover:opacity-100"
+                style={{
+                  background:
+                    "linear-gradient(to top, rgba(11,76,135,0.85) 0%, rgba(11,76,135,0.4) 40%, transparent 100%)",
+                }}
+              />
+              <figcaption className="absolute inset-x-4 bottom-4 z-10 transition-transform duration-300 group-hover:-translate-y-1">
+                <p className="text-[17px] font-bold leading-tight text-white">{m.name}</p>
+                <p className="mt-1 text-[11px] uppercase leading-tight tracking-[0.08em] text-white/70">{m.title}</p>
+              </figcaption>
+            </figure>
+          ))}
         </div>
+      ))}
 
-        {[TEAM.slice(0, 6), TEAM.slice(6)].map((row, r) => (
-          <div
-            key={r}
-            className={`flex flex-wrap items-end justify-center gap-4 lg:flex-nowrap ${r === 0 ? "mt-14" : "mt-4"}`}
-          >
-            {row.map((m) => (
-              <figure
-                key={m.name}
-                className="group relative w-[calc(50%-0.5rem)] overflow-hidden sm:w-[calc(33.333%-0.75rem)] lg:w-auto lg:min-w-[150px] lg:flex-1"
-                style={{ height: m.h, borderRadius: 16 }}
-              >
-                <img
-                  src={m.image}
-                  alt={`${m.name}, ${m.title} at ECA Networks`}
-                  loading="lazy"
-                  className="size-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                />
-                <span
-                  aria-hidden
-                  className="absolute inset-0 opacity-90 transition-opacity duration-500 group-hover:opacity-100"
-                  style={{
-                    background:
-                      "linear-gradient(to top, rgba(0,71,171,0.85) 0%, rgba(0,71,171,0.4) 40%, transparent 100%)",
-                  }}
-                />
-                <figcaption className="absolute inset-x-4 bottom-4 z-10 transition-transform duration-300 group-hover:-translate-y-1">
-                  <p className="text-[17px] font-bold leading-tight text-white">{m.name}</p>
-                  <p className="mt-1 text-[11px] uppercase leading-tight tracking-[0.08em] text-white/70">{m.title}</p>
-                </figcaption>
-              </figure>
-            ))}
-          </div>
-        ))}
-
-
-        <div className="mt-12 text-center">
-          <a
-            href="mailto:info@ecanetworks.com?subject=Career%20Enquiry"
-            className="text-[16px] font-medium text-[#0047AB] hover:underline dark:text-[#4D93F0]"
-          >
-            Join the team →
-          </a>
-        </div>
+      <div className="mt-12 text-center">
+        <a
+          href="mailto:info@ecanetworks.com?subject=Career%20Enquiry"
+          className="text-[16px] font-medium text-primary hover:underline"
+        >
+          Join the team →
+        </a>
       </div>
     </section>
   );
