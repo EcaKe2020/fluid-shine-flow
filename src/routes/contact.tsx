@@ -1,14 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Clock, Mail, MapPin, Phone } from "lucide-react";
-import { COMPANY, SOLUTIONS } from "@/lib/eca";
+import { ArrowUpRight, Clock, Mail, MapPin, Paperclip, Phone } from "lucide-react";
+import { COMPANY, LOCATIONS, SOLUTIONS } from "@/lib/eca";
 import { FaqList } from "@/components/site/Faq";
 import {
   Eyebrow,
   Heading,
   Jsonld,
   Lead,
-  Panel,
   Reveal,
   Section,
   ShopButton,
@@ -18,27 +17,33 @@ import {
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact ECA Networks | Request a Quote in Nairobi" },
+      { title: "Contact ECA Networks | Request a Quotation in Nairobi or Eldoret" },
       {
         name: "description",
         content:
-          "Reach the ECA Networks technical desk in Embakasi, Nairobi. Send a request for quotation with your site details and get pricing, stock status and specification advice.",
+          "Reach the ECA Networks technical desk at Gaberone Plaza Nairobi or Veecam House Eldoret. Send a request for quotation and get pricing, stock status and specification advice.",
       },
-      { property: "og:title", content: "Contact ECA Networks Nairobi" },
+      { property: "og:title", content: "Contact ECA Networks Nairobi and Eldoret" },
       {
         property: "og:description",
         content:
-          "Phone, WhatsApp, email and counter details for ECA Networks, plus a request for quotation form built around what the desk actually needs to price a job.",
+          "Phone, WhatsApp, email and counter details for both ECA Networks branches, plus a lean request for quotation form built around what the desk needs to price a job.",
       },
     ],
   }),
   component: Contact,
 });
 
+const PROJECT_TYPES = [
+  ...SOLUTIONS.map((s) => s.title),
+  "Mixed project or tender",
+  "General enquiry",
+];
+
 const FAQS = [
   {
     q: "Where is ECA Networks located?",
-    a: `${COMPANY.name} operates from ${COMPANY.address}, open ${COMPANY.hours}. Orders are dispatched countrywide by courier and can be collected at the counter.`,
+    a: `${COMPANY.name} runs two counters: Gaberone Plaza on Moi Avenue in Nairobi and Veecam House in Eldoret. Orders are dispatched countrywide by courier and can also be collected at either counter.`,
   },
   {
     q: "What details should a request for quotation include?",
@@ -50,42 +55,54 @@ const FAQS = [
   },
 ];
 
+function reference() {
+  const now = new Date();
+  const stamp = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, "0")}${String(now.getDate()).padStart(2, "0")}`;
+  const seq = String(Math.floor(Math.random() * 9000) + 1000);
+  return `RFQ-${stamp}-${seq}`;
+}
+
 function Contact() {
-  const [sent, setSent] = useState(false);
+  const [sentRef, setSentRef] = useState<string | null>(null);
+  const [fileName, setFileName] = useState("");
   const [form, setForm] = useState({
     name: "",
     company: "",
     email: "",
     phone: "",
-    category: SOLUTIONS[0]?.title ?? "General enquiry",
-    county: "",
-    details: "",
+    projectType: PROJECT_TYPES[0] ?? "General enquiry",
+    message: "",
   });
 
-  const set = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
-    setForm((f) => ({ ...f, [k]: e.target.value }));
+  const set =
+    (k: keyof typeof form) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
+      setForm((f) => ({ ...f, [k]: e.target.value }));
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
+    const ref = reference();
     const body = [
+      `Reference: ${ref}`,
       `Name: ${form.name}`,
       `Company: ${form.company}`,
       `Email: ${form.email}`,
       `Phone: ${form.phone}`,
-      `Category: ${form.category}`,
-      `County: ${form.county}`,
+      `Project type: ${form.projectType}`,
+      fileName ? `Attachment to follow: ${fileName}` : "",
       "",
-      form.details,
-    ].join("\n");
-    const href = `mailto:${COMPANY.email}?subject=${encodeURIComponent(
-      `RFQ from ${form.company || form.name}`,
+      form.message,
+    ]
+      .filter(Boolean)
+      .join("\n");
+    window.location.href = `mailto:${COMPANY.email}?subject=${encodeURIComponent(
+      `${ref} from ${form.company || form.name}`,
     )}&body=${encodeURIComponent(body)}`;
-    window.location.href = href;
-    setSent(true);
+    setSentRef(ref);
   };
 
   const field =
-    "mt-1.5 w-full rounded-xl border border-primary/20 bg-background/70 px-4 py-2.5 text-sm outline-none transition focus:border-ember/60 focus:ring-2 focus:ring-ember/25";
+    "mt-1.5 w-full rounded-lg border border-border bg-background/70 px-4 py-2.5 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/25";
 
   return (
     <>
@@ -96,68 +113,85 @@ function Contact() {
           name: COMPANY.name,
           telephone: COMPANY.phone,
           email: COMPANY.email,
-          address: {
+          address: LOCATIONS.map((l) => ({
             "@type": "PostalAddress",
-            streetAddress: "21, Amee Properties, Embakasi",
-            addressLocality: "Nairobi",
+            streetAddress: l.address,
+            addressLocality: l.city,
             addressCountry: "KE",
-          },
+          })),
           openingHours: "Mo-Fr 08:00-17:00",
           areaServed: "Kenya",
         }}
       />
 
-      <Section className="pt-10 sm:pt-16">
-        <div className="grid gap-10 lg:grid-cols-[1.05fr_1fr]">
+      <Section className="pt-28 sm:pt-32">
+        <div className="grid gap-10 lg:grid-cols-[1fr_1fr]">
           <div className="rise">
-            <Eyebrow>Contact</Eyebrow>
+            <Eyebrow>Get a quotation</Eyebrow>
             <Heading as="h1">
-              Tell us about the site and we will <span className="ink-text">price it properly</span>
+              Send the specification and the technical desk returns a quotation
             </Heading>
             <Lead className="mt-5">
               A request that includes distances, quantities and the county gets a complete answer first time. Everything
               else takes an extra phone call, and we would rather skip it.
             </Lead>
 
-            <div className="mt-8 grid gap-3 sm:grid-cols-2">
-              <a href={COMPANY.phoneHref} className="gloss rounded-2xl p-5 transition hover:-translate-y-0.5">
-                <Phone className="relative z-10 size-5 text-ember" />
-                <p className="relative z-10 mt-3 text-xs uppercase tracking-[0.14em] text-muted-foreground">Phone</p>
-                <p className="relative z-10 font-semibold">{COMPANY.phone}</p>
-              </a>
-              <a href={`mailto:${COMPANY.email}`} className="gloss rounded-2xl p-5 transition hover:-translate-y-0.5">
-                <Mail className="relative z-10 size-5 text-ember" />
-                <p className="relative z-10 mt-3 text-xs uppercase tracking-[0.14em] text-muted-foreground">Email</p>
-                <p className="relative z-10 font-semibold">{COMPANY.email}</p>
-              </a>
-              <div className="gloss rounded-2xl p-5">
-                <MapPin className="relative z-10 size-5 text-ember" />
-                <p className="relative z-10 mt-3 text-xs uppercase tracking-[0.14em] text-muted-foreground">Counter</p>
-                <p className="relative z-10 text-sm font-semibold">{COMPANY.address}</p>
-              </div>
-              <div className="gloss rounded-2xl p-5">
-                <Clock className="relative z-10 size-5 text-ember" />
-                <p className="relative z-10 mt-3 text-xs uppercase tracking-[0.14em] text-muted-foreground">Hours</p>
-                <p className="relative z-10 text-sm font-semibold">{COMPANY.hours}</p>
-              </div>
+            <div className="mt-10 grid gap-5 sm:grid-cols-2">
+              {LOCATIONS.map((loc) => (
+                <div key={loc.city} className="sheen p-6">
+                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-ember">{loc.label}</p>
+                  <h2 className="mt-2 text-xl font-bold text-foreground">{loc.city}</h2>
+                  <p className="mt-4 flex items-start gap-2.5 text-sm text-muted-foreground">
+                    <MapPin className="mt-0.5 size-4 shrink-0 text-primary" />
+                    {loc.address}
+                  </p>
+                  <p className="mt-2.5 flex items-center gap-2.5 text-sm">
+                    <Phone className="size-4 shrink-0 text-primary" />
+                    <a href={loc.phoneHref} className="font-semibold text-foreground hover:text-primary">
+                      {loc.phone}
+                    </a>
+                  </p>
+                  <p className="mt-2.5 flex items-start gap-2.5 text-sm text-muted-foreground">
+                    <Clock className="mt-0.5 size-4 shrink-0 text-primary" />
+                    {loc.hours}
+                  </p>
+                  <a
+                    href={loc.maps}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
+                  >
+                    Directions
+                    <ArrowUpRight className="size-3.5" />
+                  </a>
+                </div>
+              ))}
             </div>
 
-            <div className="mt-6 flex flex-wrap items-center gap-3">
+            <p className="mt-6 flex items-center gap-2.5 text-sm">
+              <Mail className="size-4 shrink-0 text-primary" />
+              <a href={`mailto:${COMPANY.email}`} className="font-semibold text-foreground hover:text-primary">
+                {COMPANY.email}
+              </a>
+            </p>
+
+            <div className="mt-6 flex flex-wrap items-center gap-5">
               <WhatsAppButton />
-              <ShopButton />
+              <ShopButton medium="contact-page" />
             </div>
           </div>
 
           <Reveal>
-            <Panel className="p-6 sm:p-8">
-              <h2 className="text-xl font-semibold">Request a quotation</h2>
+            <div className="sheen p-6 sm:p-8">
+              <h2 className="text-xl font-bold text-foreground">Request for quotation</h2>
               <p className="mt-2 text-sm text-muted-foreground">
-                Submitting opens your mail client with the details formatted for the desk. Prefer to talk? Use WhatsApp.
+                Seven fields, one reference number. Submitting opens your mail client with everything formatted for the
+                desk.
               </p>
               <form onSubmit={submit} className="mt-6 space-y-4">
                 <div className="grid gap-4 sm:grid-cols-2">
                   <label className="block text-sm font-medium">
-                    Your name
+                    Name
                     <input required value={form.name} onChange={set("name")} className={field} />
                   </label>
                   <label className="block text-sm font-medium">
@@ -170,53 +204,58 @@ function Contact() {
                   </label>
                   <label className="block text-sm font-medium">
                     Phone
-                    <input value={form.phone} onChange={set("phone")} className={field} />
-                  </label>
-                  <label className="block text-sm font-medium">
-                    Category
-                    <select value={form.category} onChange={set("category")} className={field}>
-                      {SOLUTIONS.map((s) => (
-                        <option key={s.title} value={s.title}>
-                          {s.title}
-                        </option>
-                      ))}
-                      <option value="General enquiry">General enquiry</option>
-                    </select>
-                  </label>
-                  <label className="block text-sm font-medium">
-                    County
-                    <input value={form.county} onChange={set("county")} className={field} placeholder="Nairobi" />
+                    <input value={form.phone} onChange={set("phone")} className={field} placeholder="07xx xxx xxx" />
                   </label>
                 </div>
                 <label className="block text-sm font-medium">
-                  Site details, quantities and distances
+                  Project type
+                  <select value={form.projectType} onChange={set("projectType")} className={field}>
+                    {PROJECT_TYPES.map((t) => (
+                      <option key={t} value={t}>
+                        {t}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                <label className="block text-sm font-medium">
+                  Message
                   <textarea
                     required
                     rows={5}
-                    value={form.details}
-                    onChange={set("details")}
+                    value={form.message}
+                    onChange={set("message")}
                     className={field}
                     placeholder="Example: 2.4 km aerial route, 12 core ADSS, longest span 110 m, 8 closures, 40 subscriber drops, delivery to Nakuru."
                   />
                 </label>
+                <label className="flex cursor-pointer items-center gap-3 rounded-lg border border-dashed border-border px-4 py-3 text-sm text-muted-foreground transition hover:border-primary hover:text-foreground">
+                  <Paperclip className="size-4 text-primary" />
+                  {fileName || "Attach a drawing or part list, optional"}
+                  <input
+                    type="file"
+                    className="hidden"
+                    onChange={(e) => setFileName(e.target.files?.[0]?.name ?? "")}
+                  />
+                </label>
                 <button
                   type="submit"
-                  className="ink-fill inline-flex w-full items-center justify-center rounded-full px-6 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition hover:-translate-y-0.5 dark:text-background"
+                  className="btn-radius inline-flex w-full items-center justify-center bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-[0_14px_36px_-16px_rgba(0,212,255,0.9)] transition hover:-translate-y-0.5"
                 >
                   Send request
                 </button>
-                {sent ? (
+                {sentRef ? (
                   <p className="text-sm text-ember">
-                    Your mail client should be open. If nothing happened, email {COMPANY.email} directly.
+                    Your reference is {sentRef}. If your mail client did not open, email {COMPANY.email} with that
+                    reference in the subject line.
                   </p>
                 ) : null}
               </form>
-            </Panel>
+            </div>
           </Reveal>
         </div>
       </Section>
 
-      <Section className="pt-0">
+      <Section>
         <Reveal>
           <Eyebrow>Answers</Eyebrow>
           <Heading>Before you write</Heading>

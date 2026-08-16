@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { ChevronUp, ChevronDown, Search, Filter, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronUp, ChevronDown, Search, ListFilter as Filter, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { PRICE_ROWS, PRICE_CATEGORIES, KES, type PriceRow } from "@/lib/price-list";
 
 type SortDirection = "asc" | "desc" | null;
@@ -23,7 +23,6 @@ export function PriceTable({ className = "" }: PriceTableProps) {
   const filteredAndSortedRows = useMemo(() => {
     let rows = [...PRICE_ROWS];
 
-    // Search filter
     if (search) {
       const s = search.toLowerCase();
       rows = rows.filter(
@@ -35,12 +34,10 @@ export function PriceTable({ className = "" }: PriceTableProps) {
       );
     }
 
-    // Category filter
     if (categoryFilter !== "all") {
       rows = rows.filter((row) => row.category === categoryFilter);
     }
 
-    // Sort
     if (sortConfig.direction) {
       rows.sort((a, b) => {
         const aVal = a[sortConfig.key];
@@ -69,18 +66,18 @@ export function PriceTable({ className = "" }: PriceTableProps) {
   };
 
   const getSortIcon = (key: keyof PriceRow) => {
-    if (sortConfig.key !== key) return <ChevronUp className="size-4 text-[#666666]" />;
+    if (sortConfig.key !== key) return <ChevronUp className="size-4 text-muted-foreground" />;
     return sortConfig.direction === "asc" ? (
-      <ChevronUp className="size-4 text-[#00D4FF]" />
+      <ChevronUp className="size-4 text-primary" />
     ) : (
-      <ChevronDown className="size-4 text-[#00D4FF]" />
+      <ChevronDown className="size-4 text-primary" />
     );
   };
 
-  const statusColors = {
-    "In stock": "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400",
-    "Low stock": "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400",
-    "On order": "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400",
+  const statusColors: Record<string, string> = {
+    "In stock": "bg-primary/15 text-primary",
+    "Low stock": "bg-warning/15 text-warning",
+    "On order": "bg-muted text-muted-foreground",
   };
 
   return (
@@ -88,26 +85,26 @@ export function PriceTable({ className = "" }: PriceTableProps) {
       {/* Controls */}
       <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
         <div className="relative w-full sm:w-80">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-[#666666]" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
           <input
             type="text"
             placeholder="Search products..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-10 pr-4 py-2.5 bg-white border border-[#E5E5E5] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#00D4FF]/20 focus:border-[#00D4FF] transition-all"
+            className="w-full rounded-xl border border-border bg-background pl-10 pr-4 py-3 text-sm text-foreground transition-all focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
           />
         </div>
         <div className="flex items-center gap-2">
-          <Filter className="size-4 text-[#666666]" />
+          <Filter className="size-4 text-muted-foreground" />
           <select
             value={categoryFilter}
             onChange={(e) => {
               setCategoryFilter(e.target.value);
               setCurrentPage(1);
             }}
-            className="px-4 py-2.5 bg-white border border-[#E5E5E5] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#00D4FF]/20 focus:border-[#00D4FF] transition-all appearance-none bg-no-repeat bg-right pr-10"
+            className="rounded-xl border border-border bg-background px-4 py-3 text-sm text-foreground transition-all focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 appearance-none bg-no-repeat bg-right pr-10"
             style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23666666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E")`,
+              backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235B7186' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E")`,
               backgroundPosition: "right 0.75rem center",
             }}
           >
@@ -125,7 +122,7 @@ export function PriceTable({ className = "" }: PriceTableProps) {
                 setCategoryFilter("all");
                 setCurrentPage(1);
               }}
-              className="p-2.5 rounded-xl bg-[#E5E5E5] text-[#666666] hover:bg-[#D4D4D4] transition-colors"
+              className="rounded-xl bg-muted p-2.5 text-muted-foreground transition-colors hover:bg-muted/80"
               aria-label="Clear filters"
             >
               <X className="size-4" />
@@ -135,14 +132,14 @@ export function PriceTable({ className = "" }: PriceTableProps) {
       </div>
 
       {/* Results info */}
-      <div className="text-sm text-[#666666]">
+      <div className="text-sm text-muted-foreground">
         Showing {paginatedRows.length} of {filteredAndSortedRows.length} products
       </div>
 
       {/* Table */}
-      <div className="overflow-x-auto rounded-2xl border border-[#E5E5E5] bg-white">
+      <div className="overflow-x-auto rounded-2xl border border-border bg-card">
         <table className="w-full" role="table">
-          <thead className="bg-[#F5F5F5]">
+          <thead className="bg-muted/50">
             <tr>
               {[
                 { key: "sku", label: "SKU" },
@@ -155,7 +152,7 @@ export function PriceTable({ className = "" }: PriceTableProps) {
                 <th
                   key={col.key}
                   scope="col"
-                  className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-[0.1em] text-[#666666] cursor-pointer hover:text-[#00D4FF] transition-colors select-none"
+                  className="cursor-pointer select-none px-4 py-3.5 text-left text-xs font-semibold uppercase tracking-[0.1em] text-muted-foreground transition-colors hover:text-primary"
                   onClick={() => handleSort(col.key as keyof PriceRow)}
                   style={{ userSelect: "none" }}
                 >
@@ -167,10 +164,10 @@ export function PriceTable({ className = "" }: PriceTableProps) {
               ))}
             </tr>
           </thead>
-          <tbody className="divide-y divide-[#E5E5E5]">
+          <tbody className="divide-y divide-border">
             {paginatedRows.length === 0 ? (
               <tr>
-                <td colSpan={6} className="px-4 py-12 text-center text-[#666666]">
+                <td colSpan={6} className="px-4 py-12 text-center text-muted-foreground">
                   No products match your filters.
                 </td>
               </tr>
@@ -178,19 +175,19 @@ export function PriceTable({ className = "" }: PriceTableProps) {
               paginatedRows.map((row, idx) => (
                 <tr
                   key={row.sku}
-                  className="transition-colors hover:bg-[#F5F5F5]/50"
+                  className="transition-colors hover:bg-muted/40"
                   style={{ animationDelay: `${idx * 30}ms` }}
                 >
-                  <td className="px-4 py-3 text-sm font-mono text-[#1A1A1A]">{row.sku}</td>
-                  <td className="px-4 py-3 text-sm font-medium text-[#1A1A1A]">{row.name}</td>
-                  <td className="px-4 py-3 text-sm text-[#666666]">{row.category}</td>
-                  <td className="px-4 py-3 text-sm text-[#666666]">{row.unit}</td>
-                  <td className="px-4 py-3 text-sm font-semibold text-[#1A1A1A] tabular-nums">
+                  <td className="px-4 py-3 text-sm font-mono text-foreground">{row.sku}</td>
+                  <td className="px-4 py-3 text-sm font-medium text-foreground">{row.name}</td>
+                  <td className="px-4 py-3 text-sm text-muted-foreground">{row.category}</td>
+                  <td className="px-4 py-3 text-sm text-muted-foreground">{row.unit}</td>
+                  <td className="px-4 py-3 text-sm font-semibold text-foreground tabular-nums">
                     {KES(row.price)}
                   </td>
                   <td className="px-4 py-3">
                     <span
-                      className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${statusColors[row.status]}`}
+                      className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium ${statusColors[row.status] ?? ""}`}
                     >
                       {row.status}
                     </span>
@@ -208,7 +205,7 @@ export function PriceTable({ className = "" }: PriceTableProps) {
           <button
             onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
             disabled={currentPage === 1}
-            className="p-2 rounded-xl bg-white border border-[#E5E5E5] text-[#666666] hover:border-[#00D4FF] hover:text-[#00D4FF] disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+            className="rounded-xl border border-border p-2 text-muted-foreground transition-all hover:border-primary hover:text-primary disabled:cursor-not-allowed disabled:opacity-50"
             aria-label="Previous page"
           >
             <ChevronLeft className="size-4" />
@@ -229,10 +226,10 @@ export function PriceTable({ className = "" }: PriceTableProps) {
                 <button
                   key={pageNum}
                   onClick={() => setCurrentPage(pageNum)}
-                  className={`w-10 h-10 rounded-xl text-sm font-medium transition-all ${
+                  className={`h-10 w-10 rounded-xl text-sm font-medium transition-all ${
                     currentPage === pageNum
-                      ? "bg-[#00D4FF] text-[#0B0C10] shadow-[0_4px_14px_rgba(0,212,255,0.3)]"
-                      : "text-[#666666] hover:bg-[#F5F5F5] hover:text-[#1A1A1A]"
+                      ? "bg-primary text-primary-foreground shadow-[0_4px_14px_-4px_rgba(14,165,233,0.5)]"
+                      : "text-muted-foreground hover:bg-muted hover:text-foreground"
                   }`}
                   aria-label={`Page ${pageNum}`}
                   aria-current={currentPage === pageNum ? "page" : undefined}
@@ -245,7 +242,7 @@ export function PriceTable({ className = "" }: PriceTableProps) {
           <button
             onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
             disabled={currentPage === totalPages}
-            className="p-2 rounded-xl bg-white border border-[#E5E5E5] text-[#666666] hover:border-[#00D4FF] hover:text-[#00D4FF] disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+            className="rounded-xl border border-border p-2 text-muted-foreground transition-all hover:border-primary hover:text-primary disabled:cursor-not-allowed disabled:opacity-50"
             aria-label="Next page"
           >
             <ChevronRight className="size-4" />

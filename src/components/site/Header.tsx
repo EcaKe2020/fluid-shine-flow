@@ -1,8 +1,9 @@
 import { Link } from "@tanstack/react-router";
-import { ChevronDown, Menu, Phone, X } from "lucide-react";
+import { ChevronDown, Menu, X, Phone } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import logo from "@/assets/eca-logo.png.asset.json";
 import { COMPANY, shopUrl, SOLUTIONS } from "@/lib/eca";
+import { ThemeToggle } from "@/components/site/theme";
 
 const INDUSTRY_LINKS = [
   "Internet service providers",
@@ -13,33 +14,35 @@ const INDUSTRY_LINKS = [
   "Data centres and developers",
 ] as const;
 
-const SIMPLE_LINKS = [
-  { to: "/about", label: "Company" },
-  { to: "/tools", label: "Tools" },
-  { to: "/projects", label: "Projects" },
-  { to: "/insights", label: "Insights" },
-  { to: "/price-list", label: "Price List" },
+const RESOURCE_LINKS = [
+  { to: "/about", label: "About ECA Networks", desc: "Who we are and who you deal with" },
+  { to: "/projects", label: "Projects", desc: "Rollouts the counter has supplied" },
+  { to: "/team", label: "Team & Careers", desc: "The people behind the counter" },
+  { to: "/esg", label: "ESG & Sustainability", desc: "How the business handles waste and people" },
+  { to: "/insights", label: "Insights", desc: "Field notes from the technical desk" },
 ] as const;
 
 const MOBILE_NAV = [
-  { to: "/about", label: "Company" },
   { to: "/solutions", label: "Solutions" },
   { to: "/industries", label: "Industries" },
+  { to: "/about", label: "Resources" },
   { to: "/tools", label: "Tools" },
+  { to: "/price-list", label: "Prices" },
   { to: "/projects", label: "Projects" },
-  { to: "/insights", label: "Insights" },
-  { to: "/price-list", label: "Price List" },
-  { to: "/services", label: "Services" },
   { to: "/team", label: "Team" },
   { to: "/esg", label: "ESG" },
+  { to: "/insights", label: "Insights" },
+  { to: "/services", label: "Services" },
   { to: "/contact", label: "Contact" },
 ] as const;
 
 function MegaMenu({
   label,
+  width = "24rem",
   children,
 }: {
   label: string;
+  width?: string;
   children: (close: () => void) => React.ReactNode;
 }) {
   const [open, setOpen] = useState(false);
@@ -60,16 +63,19 @@ function MegaMenu({
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
-        className="inline-flex items-center gap-1 whitespace-nowrap text-sm font-medium text-white/80 transition-colors hover:text-white"
+        className="nav-link inline-flex items-center gap-1 whitespace-nowrap text-sm font-medium transition-colors"
       >
         {label}
         <ChevronDown className={`size-3.5 transition-transform ${open ? "rotate-180" : ""}`} />
       </button>
       {open ? (
-        <div className="absolute left-1/2 top-[calc(100%+0.75rem)] z-50 w-[24rem] -translate-x-1/2">
+        <div className="absolute left-0 top-[calc(100%+0.75rem)] z-50" style={{ width }}>
           <div
-            className="bg-[#0B0C10] p-3"
-            style={{ border: "1px solid rgba(255,255,255,0.1)" }}
+            className="glass-panel p-3"
+            style={{
+              borderRadius: 16,
+              boxShadow: "0 30px 70px -40px rgba(0,0,0,0.25)",
+            }}
           >
             <div className="grid gap-1">{children(() => setOpen(false))}</div>
           </div>
@@ -81,6 +87,14 @@ function MegaMenu({
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -91,25 +105,24 @@ export function Header() {
 
   return (
     <header
-      className="fixed inset-x-0 top-0 z-[100] flex h-16 items-center bg-[#0B0C10] px-[clamp(24px,5vw,80px)]"
-      style={{ borderBottom: "1px solid rgba(255,255,255,0.1)" }}
+      className={`site-header fixed inset-x-0 top-0 z-[100] flex h-[4.5rem] items-center px-[clamp(20px,6vw,120px)] transition-all duration-500 ${
+        scrolled
+          ? "bg-background/90 backdrop-blur-xl shadow-[0_4px_24px_-12px_rgba(11,50,79,0.15)]"
+          : "bg-background/60 backdrop-blur-md"
+      }`}
     >
-      {/* Logo left */}
-      <Link to="/" className="flex shrink-0 items-center" aria-label={`${COMPANY.short} home`}>
+      {/* Left: logo */}
+      <Link
+        to="/"
+        className="flex shrink-0 items-center"
+        aria-label={`${COMPANY.short} home`}
+      >
         <img src={logo.url} alt="ECA Networks logo" className="h-8 w-auto" width={128} height={40} />
       </Link>
 
-      {/* Nav links center */}
+      {/* Center: primary navigation */}
       <nav className="mx-auto hidden items-center gap-7 lg:flex">
-        <Link
-          to="/about"
-          activeProps={{ className: "text-[#00D4FF]" }}
-          className="whitespace-nowrap text-sm font-medium text-white/80 transition-colors hover:text-white"
-        >
-          Company
-        </Link>
-
-        <MegaMenu label="Solutions">
+        <MegaMenu label="Solutions" width="24rem">
           {(close) => (
             <>
               {SOLUTIONS.map((s) => (
@@ -118,16 +131,16 @@ export function Header() {
                   to="/solutions/$slug"
                   params={{ slug: s.slug }}
                   onClick={close}
-                  className="px-3 py-2.5 transition-colors hover:bg-white/5"
+                  className="rounded-lg px-3 py-2.5 transition-colors hover:bg-primary/10"
                 >
-                  <span className="block text-sm font-semibold text-white">{s.title}</span>
-                  <span className="mt-0.5 block text-xs text-white/50">{s.points.join(" · ")}</span>
+                  <span className="block text-sm font-semibold text-foreground">{s.title}</span>
+                  <span className="mt-0.5 block text-xs text-muted-foreground">{s.points.join(" · ")}</span>
                 </Link>
               ))}
               <Link
                 to="/solutions"
                 onClick={close}
-                className="mt-1 px-3 py-2 text-xs font-bold uppercase tracking-[0.14em] text-[#00D4FF] transition-colors hover:bg-white/5"
+                className="mt-1 px-3 py-2 text-xs font-bold uppercase tracking-[0.14em] text-primary transition-colors hover:bg-primary/10"
               >
                 All solutions
               </Link>
@@ -135,7 +148,7 @@ export function Header() {
           )}
         </MegaMenu>
 
-        <MegaMenu label="Industries">
+        <MegaMenu label="Industries" width="26rem">
           {(close) => (
             <div className="grid grid-cols-2 gap-1">
               {INDUSTRY_LINKS.map((label) => (
@@ -143,7 +156,7 @@ export function Header() {
                   key={label}
                   to="/industries"
                   onClick={close}
-                  className="px-3 py-2 text-sm font-medium text-white/80 transition-colors hover:bg-white/5 hover:text-[#00D4FF]"
+                  className="rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-primary/10 hover:text-primary"
                 >
                   {label}
                 </Link>
@@ -152,45 +165,72 @@ export function Header() {
           )}
         </MegaMenu>
 
-        {SIMPLE_LINKS.filter((n) => n.to !== "/about").map((item) => (
-          <Link
-            key={item.to}
-            to={item.to}
-            activeProps={{ className: "text-[#00D4FF]" }}
-            className="whitespace-nowrap text-sm font-medium text-white/80 transition-colors hover:text-white"
-          >
-            {item.label}
-          </Link>
-        ))}
+        <MegaMenu label="Resources" width="24rem">
+          {(close) => (
+            <>
+              {RESOURCE_LINKS.map((r) => (
+                <Link
+                  key={r.to}
+                  to={r.to}
+                  onClick={close}
+                  className="rounded-lg px-3 py-2.5 transition-colors hover:bg-primary/10"
+                >
+                  <span className="block text-sm font-semibold text-foreground">{r.label}</span>
+                  <span className="mt-0.5 block text-xs text-muted-foreground">{r.desc}</span>
+                </Link>
+              ))}
+            </>
+          )}
+        </MegaMenu>
+
+        <Link
+          to="/tools"
+          activeProps={{ className: "text-primary" }}
+          className="nav-link whitespace-nowrap text-sm font-medium transition-colors"
+        >
+          Tools
+        </Link>
+
+        <Link
+          to="/price-list"
+          activeProps={{ className: "text-primary" }}
+          className="nav-link whitespace-nowrap text-sm font-medium transition-colors"
+        >
+          Prices
+        </Link>
       </nav>
 
-      {/* Right side */}
+      {/* Right: phone, theme toggle, shop, quote */}
       <div className="ml-auto flex items-center gap-4">
         <a
           href={COMPANY.phoneHref}
-          className="hidden items-center gap-1.5 whitespace-nowrap text-sm font-medium text-white/80 transition-colors hover:text-white xl:flex"
+          className={`nav-link hidden items-center gap-1.5 whitespace-nowrap text-sm font-medium transition-colors xl:flex ${
+            scrolled ? "opacity-100" : "opacity-0 pointer-events-none"
+          }`}
         >
-          <Phone className="size-4 text-[#00D4FF]" />
+          <Phone className="size-4 text-primary" />
           {COMPANY.phone}
         </a>
+        <ThemeToggle />
         <a
-          href={shopUrl("nav-link")}
+          href={shopUrl("nav-shop")}
           target="_blank"
           rel="noreferrer"
-          className="hidden whitespace-nowrap text-sm font-medium text-white transition-colors hover:text-[#00D4FF] sm:inline"
+          className="nav-link hidden whitespace-nowrap text-sm font-medium transition-colors hover:text-primary sm:inline"
         >
           Shop Online
         </a>
         <Link
           to="/contact"
-          className="btn-radius whitespace-nowrap bg-[#00D4FF] px-4 py-2 text-sm font-semibold text-[#0B0C10] transition-opacity hover:opacity-90"
+          className="btn-radius whitespace-nowrap bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-[0_8px_26px_-10px_rgba(14,165,233,0.6)] transition-opacity hover:opacity-90"
         >
           Request a Quote
         </Link>
+
         <button
           type="button"
           onClick={() => setOpen(true)}
-          className="flex size-9 items-center justify-center text-white lg:hidden"
+          className="nav-link flex size-9 items-center justify-center lg:hidden"
           aria-label="Open menu"
           aria-expanded={open}
         >
@@ -198,9 +238,9 @@ export function Header() {
         </button>
       </div>
 
-      {/* Mobile full-screen overlay */}
+      {/* Mobile overlay */}
       {open ? (
-        <div className="fixed inset-0 z-[999] flex flex-col bg-[#0B0C10] lg:hidden">
+        <div className="fixed inset-0 z-[999] flex flex-col bg-background lg:hidden">
           <div className="flex h-16 items-center justify-between px-[clamp(24px,5vw,80px)]">
             <Link to="/" onClick={() => setOpen(false)} className="flex items-center">
               <img src={logo.url} alt="ECA Networks logo" className="h-8 w-auto" width={128} height={40} />
@@ -208,7 +248,7 @@ export function Header() {
             <button
               type="button"
               onClick={() => setOpen(false)}
-              className="flex size-9 items-center justify-center text-white"
+              className="flex size-9 items-center justify-center text-foreground"
               aria-label="Close menu"
             >
               <X className="size-5" />
@@ -221,7 +261,7 @@ export function Header() {
                   key={item.to}
                   to={item.to}
                   onClick={() => setOpen(false)}
-                  className="border-b border-white/10 py-3 text-xl font-semibold text-white/85 transition-colors hover:text-[#00D4FF]"
+                  className="border-b border-border py-3 text-xl font-semibold text-foreground/85 transition-colors hover:text-primary"
                 >
                   {item.label}
                 </Link>
@@ -230,24 +270,17 @@ export function Header() {
           </nav>
           <div className="grid gap-2 px-[clamp(24px,5vw,80px)] pb-8">
             <a
-              href={COMPANY.phoneHref}
-              className="flex items-center justify-center gap-2 border border-white/20 py-3 text-sm font-semibold text-white"
-            >
-              <Phone className="size-4 text-[#00D4FF]" />
-              {COMPANY.phone}
-            </a>
-            <a
               href={shopUrl("mobile-menu")}
               target="_blank"
               rel="noreferrer"
-              className="py-3.5 text-center text-sm font-semibold text-white"
+              className="btn-radius border border-border py-3.5 text-center text-sm font-semibold text-foreground"
             >
               Shop Online
             </a>
             <Link
               to="/contact"
               onClick={() => setOpen(false)}
-              className="btn-radius bg-[#00D4FF] py-3.5 text-center text-sm font-semibold text-[#0B0C10]"
+              className="btn-radius bg-primary py-3.5 text-center text-sm font-semibold text-primary-foreground"
             >
               Request a Quote
             </Link>

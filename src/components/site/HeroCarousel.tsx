@@ -22,7 +22,7 @@ const SLIDES: Slide[] = [
     eyebrow: "Fibre Optic Infrastructure",
     title: "The cable and test kit",
     highlight: "Kenyan networks",
-    body: "ADSS, figure 8, closures, pigtails and fusion splicers stocked in Embakasi. Send the route and the desk returns a priced list with stock status per line.",
+    body: "ADSS, figure 8, closures, pigtails and fusion splicers stocked in Nairobi and Eldoret. Send the route and the desk returns a priced list with stock status per line.",
     shopLabel: "Shop fibre products",
     shopMedium: "hero-fibre",
   },
@@ -122,7 +122,7 @@ export function HeroCarousel() {
     };
   }, [active, paused, isHovering, startProgress, resetProgress]);
 
-  const activeSlide = SLIDES[active];
+  const activeSlide = SLIDES[active] ?? SLIDES[0]!;
 
   return (
     <section
@@ -146,10 +146,11 @@ export function HeroCarousel() {
               className="size-full object-cover"
               loading={i === 0 ? "eager" : "lazy"}
             />
-            {/* Dark overlay for text readability */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0B0C10]/90 via-[#0B0C10]/60 to-[#0B0C10]/30" />
-            {/* Subtle vignette */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0B0C10]/60 via-transparent to-transparent" />
+            {/* Side gradient for text readability - fades toward the right */}
+            <div className="absolute inset-0 bg-[#07111c]/25" />
+            <div className="absolute inset-y-0 left-0 w-full max-w-[58rem] bg-gradient-to-r from-[#07111c]/95 via-[#07111c]/72 to-transparent" />
+            {/* Subtle bottom vignette */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#07111c]/60 via-transparent to-transparent" />
           </div>
         ))}
       </div>
@@ -160,9 +161,9 @@ export function HeroCarousel() {
         <div className="h-16" />
 
         {/* Main content area - centered vertically */}
-        <main className="flex-1 flex items-center px-[clamp(24px,5vw,80px)] py-20">
+        <main className="flex-1 flex items-center px-[clamp(24px,5vw,80px)] pb-36 pt-24 sm:pb-40 sm:pt-28">
           <div className="w-full max-w-4xl">
-            <div className="relative overflow-hidden">
+            <div className="relative max-w-3xl">
               {/* Eyebrow */}
               <p className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-[#00D4FF] rise" style={{ animationDelay: "0ms" }}>
                 NAIROBI, SERVING ALL 47 COUNTIES
@@ -195,16 +196,16 @@ export function HeroCarousel() {
                   href={shopUrl(activeSlide.shopMedium)}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-white/90 transition-colors hover:text-[#00D4FF]"
+                  className="btn-radius inline-flex items-center gap-2 border border-white/35 bg-white/10 px-4 py-3 text-sm font-semibold text-white backdrop-blur-sm transition-colors hover:border-[#00D4FF] hover:bg-[#00D4FF] hover:text-[#07111c]"
                 >
                   {activeSlide.shopLabel}
-                  <ArrowUpRight className="size-4 text-[#00D4FF]" />
+                  <ArrowUpRight className="size-4" />
                 </a>
                 <a
                   href={WHATSAPP_URL}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 text-sm text-white/60 transition-colors hover:text-[#00D4FF]"
+                  className="inline-flex items-center gap-1.5 text-sm text-white/80 transition-colors hover:text-[#00D4FF]"
                 >
                   <MessageCircle className="size-4" />
                   Chat with a technician
@@ -215,7 +216,7 @@ export function HeroCarousel() {
         </main>
 
         {/* Carousel controls - bottom center */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 mb-10 flex flex-col items-center gap-6 w-full px-4">
+        <div className="absolute bottom-0 left-1/2 mb-8 flex w-full -translate-x-1/2 flex-col items-center gap-5 px-4 sm:mb-10">
           {/* Progress indicators */}
           <div className="flex items-center gap-3">
             <button

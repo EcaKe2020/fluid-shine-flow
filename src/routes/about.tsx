@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import warehouse from "@/assets/warehouse.jpg";
 import { COMPANY, STATS } from "@/lib/eca";
+import { TeamSection } from "@/components/site/TeamSection";
 import {
   CtaBand,
   Eyebrow,
@@ -142,6 +143,8 @@ function About() {
           </div>
         </Reveal>
       </Section>
+
+      <TeamSection />
 
       <CtaBand
         title="Want the company profile for a tender file?"

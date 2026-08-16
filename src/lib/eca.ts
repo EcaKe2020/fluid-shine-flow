@@ -1,7 +1,8 @@
 export const SHOP_URL = "https://ecanetworks.com";
-export const WHATSAPP_URL = "https://wa.me/254720309309";
+export const WHATSAPP_URL = "https://wa.me/254702309309";
+export const WHATSAPP_URL_ELDORET = "https://wa.me/254720309309";
 export const MAPS_URL =
-  "https://www.google.com/maps/search/?api=1&query=Amee+Properties+Embakasi+Nairobi";
+  "https://www.google.com/maps/search/?api=1&query=Gaberone+Plaza+Moi+Avenue+Nairobi";
 
 /** Shop link tagged with the section it was clicked from. */
 export const shopUrl = (medium: string) =>
@@ -11,14 +12,39 @@ export const COMPANY = {
   name: "ECA Networks Ltd",
   short: "ECA Networks",
   founded: 2020,
-  phone: "+254 720 309 309",
-  phoneHref: "tel:+254720309309",
+  phone: "+254 702 309 309",
+  phoneHref: "tel:+254702309309",
   email: "info@ecanetworks.com",
-  address: "21, Amee Properties, Embakasi, Nairobi",
+  address: "Gaberone Plaza, 1st Floor, Shop F14, Nairobi",
   hours: "Monday to Friday, 8:00 AM to 5:00 PM",
-  tagline: "Fibre and network infrastructure, stocked in Nairobi, shipped across Kenya.",
+  tagline: "Fibre and network infrastructure, stocked in Nairobi and Eldoret, shipped across Kenya.",
   responseLine: "Technical desk responds within two business hours.",
 } as const;
+
+export const LOCATIONS = [
+  {
+    city: "Nairobi",
+    label: "Head office and main counter",
+    address: "Gaberone Plaza, 1st Floor, Shop F14",
+    phone: "+254 702 309 309",
+    phoneHref: "tel:+254702309309",
+    whatsapp: "https://wa.me/254702309309",
+    hours: "Monday to Friday, 8:00 AM to 5:00 PM. Saturday, 9:00 AM to 1:00 PM",
+    maps:
+      "https://www.google.com/maps/search/?api=1&query=Gaberone+Plaza+Moi+Avenue+Nairobi",
+  },
+  {
+    city: "Eldoret",
+    label: "Rift Valley branch",
+    address: "Veecam House, Ground Floor, Shop 5",
+    phone: "+254 720 309 309",
+    phoneHref: "tel:+254720309309",
+    whatsapp: "https://wa.me/254720309309",
+    hours: "Monday to Friday, 8:00 AM to 5:00 PM",
+    maps: "https://www.google.com/maps/search/?api=1&query=Veecam+House+Eldoret",
+  },
+] as const;
+
 
 export const BRANDS = [
   "MikroTik",
@@ -76,7 +102,7 @@ export const INDUSTRIES = [
   },
   {
     title: "Contractors and installers",
-    body: "Same day pick up in Embakasi, bulk pricing tiers and a technical desk that checks the BOM before it ships.",
+    body: "Same day pick up in Nairobi, bulk pricing tiers and a technical desk that checks the BOM before it ships.",
   },
   {
     title: "Corporates and integrators",
@@ -114,7 +140,7 @@ export const FAQS = [
   },
   {
     q: "Do you deliver outside Nairobi?",
-    a: "Yes. Orders ship nationwide across the 47 counties using courier partners, with Nairobi collection available from the Embakasi counter during working hours.",
+    a: "Yes. Orders ship nationwide across the 47 counties using courier partners, with Nairobi collection available from the counter during working hours.",
     long: "Delivery timelines depend on the courier route and the size of the consignment. Reel sized fibre and cabinets are quoted with freight included so a project budget holds.",
   },
   {
