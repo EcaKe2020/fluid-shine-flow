@@ -52,7 +52,7 @@ const FUNCTIONS = [
     highlight: "Accuracy you can trace",
   },
   {
-    icon: Zap,
+    icon: michael,
     role: "After sales support",
     body: "Handles warranty assessment, replacements and the follow up questions that arrive once equipment is powered on.",
     highlight: "Support that actually responds",
