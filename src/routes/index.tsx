@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 import { BRANDS, COMPANY, FAQS, INDUSTRIES, LOCATIONS, SOLUTIONS } from "@/lib/eca";
 import { FaqList } from "@/components/site/Faq";
-import { HeroCarousel } from "@/components/site/HeroCarousel";
+import { Hero } from "@/components/site/Hero";
 import {
   Eyebrow,
   Heading,
@@ -31,7 +31,6 @@ import {
   Section,
   ShopButton,
   WhatsAppButton,
-  TeamCard,
 } from "@/components/site/primitives";
 
 export const Route = createFileRoute("/")({
@@ -79,50 +78,6 @@ const REASONS = [
 
 const INDUSTRY_ICONS = [Server, Wrench, Building2, GraduationCap, Landmark, Users];
 
-const TEAM_LEADERSHIP = [
-  {
-    name: "CEO",
-    title: "Chief Executive Officer",
-    image: "https://images.pexels.com/photos/28442318/pexels-photo-28442318.jpeg?auto=compress&cs=tinysrgb&w=400",
-  },
-  {
-    name: "COO",
-    title: "Chief Operating Officer",
-    image: "https://images.pexels.com/photos/33680700/pexels-photo-33680700.jpeg?auto=compress&cs=tinysrgb&w=400",
-  },
-];
-
-const TEAM_OPERATIONS = [
-  {
-    name: "Accounting",
-    title: "Finance and Accounts",
-    image: "https://images.pexels.com/photos/8312669/pexels-photo-8312669.jpeg?auto=compress&cs=tinysrgb&w=320",
-  },
-  {
-    name: "Digital Marketing",
-    title: "Marketing Lead",
-    image: "https://images.pexels.com/photos/38707525/pexels-photo-38707525.jpeg?auto=compress&cs=tinysrgb&w=320",
-  },
-  {
-    name: "Store Assistant",
-    title: "Warehouse Operations",
-    image: "https://images.pexels.com/photos/5308640/pexels-photo-5308640.jpeg?auto=compress&cs=tinysrgb&w=320",
-  },
-  {
-    name: "Driver",
-    title: "Logistics and Dispatch",
-    image: "https://images.pexels.com/photos/13392786/pexels-photo-13392786.png?auto=compress&cs=tinysrgb&w=320",
-  },
-];
-
-const TEAM_SALES = [
-  { name: "Sales Rep 1", title: "Sales Representative", image: "https://images.pexels.com/photos/11156392/pexels-photo-11156392.jpeg?auto=compress&cs=tinysrgb&w=240" },
-  { name: "Sales Rep 2", title: "Sales Representative", image: "https://images.pexels.com/photos/14950779/pexels-photo-14950779.jpeg?auto=compress&cs=tinysrgb&w=240" },
-  { name: "Sales Rep 3", title: "Sales Representative", image: "https://images.pexels.com/photos/31422830/pexels-photo-31422830.png?auto=compress&cs=tinysrgb&w=240" },
-  { name: "Sales Rep 4", title: "Sales Representative", image: "https://images.pexels.com/photos/26150470/pexels-photo-26150470.jpeg?auto=compress&cs=tinysrgb&w=240" },
-  { name: "Sales Rep 5", title: "Sales Representative", image: "https://images.pexels.com/photos/38652616/pexels-photo-38652616.jpeg?auto=compress&cs=tinysrgb&w=240" },
-];
-
 const SOLUTION_ICONS = [Cable, Wrench, Server, ShieldCheck];
 
 const TOOLS = [
@@ -167,7 +122,7 @@ function Home() {
       />
 
       {/* HERO */}
-      <HeroCarousel />
+      <Hero />
 
       {/* WHAT WE SUPPLY */}
       <Section className="pt-24">
@@ -309,34 +264,6 @@ function Home() {
             </Reveal>
           ))}
         </div>
-      </Section>
-
-      {/* MEET THE TEAM */}
-      <Section>
-        <Reveal>
-          <Eyebrow>Meet the team</Eyebrow>
-          <Heading>The team behind the counter</Heading>
-          <Lead className="mt-4">
-            Engineers, buyers and support staff who keep stock moving and quotes accurate.
-          </Lead>
-        </Reveal>
-
-        <Reveal delay={80}>
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-            {[...TEAM_LEADERSHIP, ...TEAM_OPERATIONS, ...TEAM_SALES].map((member, idx) => (
-              <TeamCard key={`${member.name}-${idx}`} member={member} delay={idx * 40} />
-            ))}
-          </div>
-        </Reveal>
-
-        <Reveal delay={200}>
-          <div className="mt-10 text-center">
-            <Link to="/team" className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline">
-              View full team and careers
-              <ArrowUpRight className="size-4" />
-            </Link>
-          </div>
-        </Reveal>
       </Section>
 
       {/* INTERACTIVE TOOLS */}

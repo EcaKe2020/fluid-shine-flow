@@ -7,6 +7,8 @@
 @theme inline {
   --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
+
   --radius-sm: 0px;
   --radius-md: 0px;
   --radius-lg: 0px;
@@ -177,10 +179,10 @@
   }
 
   /* Header: transparent over hero, solid elsewhere. Links adapt to context. */
-  .site-header .nav-link { color: rgba(255, 255, 255, 0.82); }
-  .site-header .nav-link:hover { color: #fff; }
-  .site-header:not(.header-transparent) .nav-link { color: var(--color-muted-foreground); }
-  .site-header:not(.header-transparent) .nav-link:hover { color: var(--color-foreground); }
+  /* Header sits on the page background in both themes */
+  .site-header .nav-link { color: var(--color-muted-foreground); }
+  .site-header .nav-link:hover { color: var(--color-foreground); }
+
 
   /* Footer: light mode shows the supplied art; dark mode keeps the deep field. */
   .light-footer-art { opacity: 0; }
