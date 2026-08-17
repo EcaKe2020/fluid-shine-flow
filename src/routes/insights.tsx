@@ -10,6 +10,8 @@ import {
   Reveal,
   Section,
   ShopButton,
+  Content,
+  CardContentWrapper,
 } from "@/components/site/primitives";
 
 export const Route = createFileRoute("/insights")({
@@ -136,63 +138,71 @@ function Insights() {
       />
 
       <Section className="pt-10 sm:pt-16">
-        <div className="rise">
-          <Eyebrow>Insights</Eyebrow>
-          <Heading as="h1">
-            Short answers to the questions that <span className="ink-text">cost site visits</span>
-          </Heading>
-          <Lead className="mt-5">
-            Each piece opens with the answer, then explains the reasoning. Written for people who
-            are ordering material this week, not for a search engine.
-          </Lead>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <ShopButton label="Browse the store" />
-            <Link
-              to="/tools"
-              className="inline-flex items-center rounded-full border border-primary/25 px-5 py-2.5 text-sm font-semibold transition hover:bg-primary/10"
-            >
-              Try the calculators
-            </Link>
+        <Content>
+          <div className="rise text-center">
+            <Eyebrow center>Insights</Eyebrow>
+            <Heading as="h1" center>
+              Short answers to the questions that <span className="ink-text">cost site visits</span>
+            </Heading>
+            <Lead center className="mt-5">
+              Each piece opens with the answer, then explains the reasoning. Written for people who
+              are ordering material this week, not for a search engine.
+            </Lead>
+            <div className="mt-8 flex flex-wrap justify-center gap-3">
+              <ShopButton label="Browse the store" />
+              <Link
+                to="/tools"
+                className="inline-flex items-center rounded-full border border-primary/25 px-5 py-2.5 text-sm font-semibold transition hover:bg-primary/10"
+              >
+                Try the calculators
+              </Link>
+            </div>
           </div>
-        </div>
 
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {CATEGORIES.map((c, i) => (
-            <Reveal key={c.name} delay={i * 60}>
-              <div className="sheen h-full p-5">
-                <h2 className="text-base font-bold text-foreground">{c.name}</h2>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{c.body}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
+          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 content-left">
+            {CATEGORIES.map((c, i) => (
+              <Reveal key={c.name} delay={i * 60}>
+                <CardContentWrapper>
+                  <div className="sheen h-full p-5">
+                    <h2 className="text-base font-bold text-foreground">{c.name}</h2>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{c.body}</p>
+                  </div>
+                </CardContentWrapper>
+              </Reveal>
+            ))}
+          </div>
 
-        <div className="mt-6 grid gap-4 lg:grid-cols-2">
-          {ARTICLES.map((a, i) => (
-            <Reveal key={a.title} delay={i * 70}>
-              <Panel className="h-full">
-                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-ember">
-                  {ARTICLE_CATEGORY[i] ?? "Technical guides"} · {a.read}
-                </p>
-                <h2 className="mt-3 text-xl font-semibold">{a.title}</h2>
-                <p className="mt-3 rounded-2xl bg-primary/8 p-4 text-sm font-medium leading-relaxed">
-                  {a.answer}
-                </p>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{a.body}</p>
-              </Panel>
-            </Reveal>
-          ))}
-        </div>
+          <div className="mt-6 grid gap-4 lg:grid-cols-2 content-left">
+            {ARTICLES.map((a, i) => (
+              <Reveal key={a.title} delay={i * 70}>
+                <CardContentWrapper>
+                  <Panel className="h-full">
+                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-ember">
+                      {ARTICLE_CATEGORY[i] ?? "Technical guides"} · {a.read}
+                    </p>
+                    <h2 className="mt-3 text-xl font-semibold">{a.title}</h2>
+                    <p className="mt-3 rounded-2xl bg-primary/8 p-4 text-sm font-medium leading-relaxed">
+                      {a.answer}
+                    </p>
+                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{a.body}</p>
+                  </Panel>
+                </CardContentWrapper>
+              </Reveal>
+            ))}
+          </div>
+        </Content>
       </Section>
 
       <Section className="pt-0">
-        <Reveal>
-          <Eyebrow>Answers</Eyebrow>
-          <Heading>About this section</Heading>
-        </Reveal>
-        <div className="mt-8">
-          <FaqList items={FAQS} />
-        </div>
+        <Content>
+          <Reveal>
+            <Eyebrow center>Answers</Eyebrow>
+            <Heading center>About this section</Heading>
+          </Reveal>
+          <div className="mt-8">
+            <FaqList items={FAQS} />
+          </div>
+        </Content>
       </Section>
 
       <CtaBand />

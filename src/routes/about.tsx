@@ -8,8 +8,11 @@ import {
   Heading,
   Lead,
   Panel,
+  QuoteButton,
   Reveal,
   Section,
+  Content,
+  CardContentWrapper,
 } from "@/components/site/primitives";
 
 export const Route = createFileRoute("/about")({
@@ -54,24 +57,26 @@ const PRINCIPLES = [
 function About() {
   return (
     <>
-      <Section className="pt-10 sm:pt-16">
-        <div className="rise">
-          <Eyebrow>About the company</Eyebrow>
-          <Heading as="h1">
-            A supply desk built for people who{" "}
-            <span className="ink-text">install networks for a living</span>
-          </Heading>
-          <Lead className="mt-5">
-            {COMPANY.name} supplies fibre optic and network infrastructure from Embakasi, Nairobi to
-            internet providers, contractors, integrators, institutions and public sector projects
-            across Kenya. The counter, the warehouse and the technical desk sit in the same
-            building, which is why a corrected bill of materials can turn into a packed consignment
-            the same day.
-          </Lead>
-        </div>
+      <Section className="pt-16 sm:pt-24">
+        <Content>
+          <div className="rise text-center">
+            <Eyebrow center>About the company</Eyebrow>
+            <Heading as="h1" center>
+              A supply desk built for people who{" "}
+              <span className="ink-text">install networks for a living</span>
+            </Heading>
+            <Lead center className="mt-6">
+              {COMPANY.name} supplies fibre optic and network infrastructure from Embakasi, Nairobi
+              to internet providers, contractors, integrators, institutions and public sector
+              projects across Kenya. The counter, the warehouse and the technical desk sit in the
+              same building, which is why a corrected bill of materials can turn into a packed
+              consignment the same day.
+            </Lead>
+          </div>
+        </Content>
 
         <Reveal delay={100}>
-          <div className="gloss mt-10 rounded-[2rem] p-3">
+          <div className="gloss mt-12 rounded-[2rem] p-3">
             <img
               src={warehouse}
               alt="Aisle of warehouse racking holding fibre optic cable drums"
@@ -83,7 +88,7 @@ function About() {
           </div>
         </Reveal>
 
-        <dl className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
+        <dl className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-4">
           {STATS.map((stat, i) => (
             <Reveal key={stat.label} delay={i * 70}>
               <Panel className="h-full text-center">
@@ -99,34 +104,36 @@ function About() {
       </Section>
 
       <Section className="pt-0">
-        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
-          <Reveal>
-            <div>
-              <Eyebrow>How we work</Eyebrow>
-              <Heading>Four habits that shape every order</Heading>
-              <Lead className="mt-4">
-                None of this is unusual in engineering. It is unusual in distribution, which is
-                exactly the gap the business exists to close.
-              </Lead>
+        <Content>
+          <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
+            <Reveal>
+              <div>
+                <Eyebrow center>How we work</Eyebrow>
+                <Heading center>Four habits that shape every order</Heading>
+                <Lead center className="mt-5">
+                  None of this is unusual in engineering. It is unusual in distribution, which is
+                  exactly the gap the business exists to close.
+                </Lead>
+              </div>
+            </Reveal>
+            <div className="grid gap-5 sm:grid-cols-2">
+              {PRINCIPLES.map((p, i) => (
+                <Reveal key={p.title} delay={i * 80}>
+                  <CardContentWrapper>
+                    <h3 className="text-base font-semibold">{p.title}</h3>
+                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
+                  </CardContentWrapper>
+                </Reveal>
+              ))}
             </div>
-          </Reveal>
-          <div className="grid gap-4 sm:grid-cols-2">
-            {PRINCIPLES.map((p, i) => (
-              <Reveal key={p.title} delay={i * 80}>
-                <Panel className="h-full">
-                  <h3 className="text-base font-semibold">{p.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
-                </Panel>
-              </Reveal>
-            ))}
           </div>
-        </div>
+        </Content>
       </Section>
 
       <Section className="pt-0">
         <Reveal>
-          <div className="gloss rounded-[2rem] p-8 sm:p-12">
-            <div className="relative z-10 grid gap-8 md:grid-cols-2">
+          <div className="gloss rounded-[2rem] p-8 sm:p-12 text-center">
+            <div className="relative z-10 grid gap-8 md:grid-cols-2 text-center">
               <div>
                 <h2 className="text-xl font-semibold">Mission</h2>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
@@ -152,17 +159,17 @@ function About() {
 
       <Section className="pt-0">
         <Reveal>
-          <Eyebrow>Certifications and partners</Eyebrow>
-          <Heading>The paperwork behind the counter</Heading>
-          <Lead className="mt-4">
+          <Eyebrow center>Certifications and partners</Eyebrow>
+          <Heading center>The paperwork behind the counter</Heading>
+          <Lead center className="mt-4">
             Buyers ask for evidence before they ask for a discount, so here is what backs a
             quotation from us.
           </Lead>
         </Reveal>
-        <div className="mt-12 grid gap-4 sm:grid-cols-2">
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 text-center">
           {CERTIFICATIONS.map((c, i) => (
             <Reveal key={c.title} delay={i * 70}>
-              <Panel className="h-full">
+              <Panel className="h-full text-center">
                 <h3 className="text-lg font-semibold">{c.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{c.body}</p>
               </Panel>
@@ -170,7 +177,7 @@ function About() {
           ))}
         </div>
         <Reveal delay={120}>
-          <div className="mt-8 flex flex-wrap gap-2.5">
+          <div className="mt-8 flex flex-wrap justify-center gap-2.5">
             {BRANDS.map((b) => (
               <span
                 key={b}
@@ -185,17 +192,17 @@ function About() {
 
       <Section className="pt-0">
         <Reveal>
-          <Eyebrow>Careers</Eyebrow>
-          <Heading>Room for people who like getting it right</Heading>
-          <Lead className="mt-4">
+          <Eyebrow center>Careers</Eyebrow>
+          <Heading center>Room for people who like getting it right</Heading>
+          <Lead center className="mt-4">
             Open roles are listed here as they come up. Speculative applications are read, so send
             one anyway if the work fits you.
           </Lead>
         </Reveal>
-        <div className="mt-12 grid gap-4 lg:grid-cols-3">
+        <div className="mt-12 grid gap-4 lg:grid-cols-3 text-center">
           {CAREERS.map((role, i) => (
             <Reveal key={role.role} delay={i * 70}>
-              <Panel className="h-full">
+              <Panel className="h-full text-center">
                 <p className="text-xs font-bold uppercase tracking-[0.16em] text-ember">
                   {role.place}
                 </p>
@@ -212,8 +219,6 @@ function About() {
           ))}
         </div>
       </Section>
-
-
 
       <CtaBand
         title="Want the company profile for a tender file?"

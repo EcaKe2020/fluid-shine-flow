@@ -118,14 +118,13 @@ export function Hero() {
     return item!;
   });
 
-
   return (
     <section className="relative overflow-hidden pb-14 pt-[7.5rem] sm:pb-16">
       <div className="section-pad">
-        <h1 className="mx-auto max-w-[920px] text-center font-serif text-[clamp(42px,5.7vw,76px)] font-semibold leading-[0.98] tracking-[-0.035em] text-foreground">
-          Enterprise Infrastructure.
-          <span className="block">Ready on Demand.</span>
-        </h1>
+  <h1 className="mx-auto max-w-[920px] text-center font-serif text-[clamp(42px,5.7vw,76px)] font-light leading-[0.98] tracking-[0.02em] text-foreground">
+    Enterprise Infrastructure.
+    <span className="block">Ready on Demand.</span>
+  </h1>
 
         <p className="mx-auto mt-6 max-w-[620px] text-center text-base leading-[1.55] text-muted-foreground sm:text-[17px]">
           Providing robust hardware solutions for the backbone of modern enterprise networking,

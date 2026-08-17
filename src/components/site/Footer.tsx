@@ -38,7 +38,7 @@ export function Footer() {
       </svg>
 
       <div className="section-pad relative">
-        <div className="grid gap-10 md:grid-cols-4">
+        <div className="grid gap-10 md:grid-cols-4 content-left">
           {/* Brand */}
           <div>
             <img
@@ -183,7 +183,7 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-14 border-t border-border pt-6">
+        <div className="mt-14 border-t border-border pt-6 content-left">
           <p className="text-sm font-semibold text-foreground">
             {COMPANY.name}. Nairobi and Eldoret, Kenya.
           </p>

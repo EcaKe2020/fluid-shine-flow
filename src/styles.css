@@ -202,8 +202,188 @@
 /* ===== Utilities ===== */
 
 @utility section-pad {
-  padding-left: clamp(24px, 6vw, 120px);
-  padding-right: clamp(24px, 6vw, 120px);
+  padding-left: clamp(24px, 5vw, 80px);
+  padding-right: clamp(24px, 5vw, 80px);
+}
+
+/* ===== Typography & Layout Alignment System ===== */
+
+/* Section Introductions - Centered */
+@utility section-intro {
+  text-align: center;
+}
+
+@utility section-intro-eyebrow {
+  text-align: center;
+}
+
+@utility section-intro-heading {
+  text-align: center;
+}
+
+@utility section-intro-lead {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Content Containers & Cards - Left-Aligned */
+@utility content-left {
+  text-align: left;
+}
+
+@utility card-content {
+  text-align: left;
+}
+
+@utility card-title {
+  text-align: left;
+}
+
+@utility card-body {
+  text-align: left;
+}
+
+@utility card-list {
+  text-align: left;
+}
+
+@utility card-cta {
+  text-align: left;
+}
+
+/* Form Elements - Left-Aligned */
+@utility form-field {
+  text-align: left;
+}
+
+@utility form-label {
+  text-align: left;
+  display: block;
+}
+
+@utility form-input {
+  text-align: left;
+  width: 100%;
+}
+
+@utility form-select {
+  text-align: left;
+  width: 100%;
+}
+
+@utility form-textarea {
+  text-align: left;
+  width: 100%;
+}
+
+/* Table & Data Grid Alignment */
+@utility table-header {
+  text-align: left;
+}
+
+@utility table-cell {
+  text-align: left;
+}
+
+@utility table-cell-numeric {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Accordion & FAQ - Left-Aligned */
+@utility accordion-header {
+  text-align: left;
+}
+
+@utility accordion-content {
+  text-align: left;
+}
+
+/* Closing CTAs - Centered */
+@utility cta-banner {
+  text-align: center;
+}
+
+@utility cta-heading {
+  text-align: center;
+}
+
+@utility cta-lead {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@utility cta-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* Footer - Column headers left-aligned above link lists */
+@utility footer-column-header {
+  text-align: left;
+  display: block;
+}
+
+@utility footer-column-links {
+  text-align: left;
+}
+
+/* Improved Card Spacing System */
+@utility card-spacing {
+  padding: 1.5rem;
+}
+
+@utility card-spacing-lg {
+  padding: 2rem;
+}
+
+@utility card-gap {
+  gap: 1rem;
+}
+
+@utility card-gap-lg {
+  gap: 1.5rem;
+}
+
+@utility content-gap {
+  gap: 1.25rem;
+}
+
+@utility content-gap-lg {
+  gap: 1.75rem;
+}
+
+/* Section Content Spacing */
+@utility section-content-gap {
+  gap: 1.5rem;
+}
+
+@utility section-content-gap-lg {
+  gap: 2rem;
+}
+
+/* Grid Item Spacing */
+@utility grid-item {
+  display: flex;
+  flex-direction: column;
+}
+
+@utility grid-item-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+@utility grid-item-gap {
+  gap: 1rem;
+}
+
+@utility grid-item-gap-lg {
+  gap: 1.5rem;
 }
 
 @utility btn-radius {

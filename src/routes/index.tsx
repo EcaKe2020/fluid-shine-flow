@@ -18,15 +18,7 @@ import {
   Landmark,
   Server,
 } from "lucide-react";
-import {
-  BRANDS,
-  CASE_STUDIES,
-  COMPANY,
-  FAQS,
-  INDUSTRIES,
-  LOCATIONS,
-  SOLUTIONS,
-} from "@/lib/eca";
+import { BRANDS, CASE_STUDIES, COMPANY, FAQS, INDUSTRIES, LOCATIONS, SOLUTIONS } from "@/lib/eca";
 
 import { FaqList } from "@/components/site/Faq";
 import { Hero } from "@/components/site/Hero";
@@ -40,6 +32,9 @@ import {
   Section,
   ShopButton,
   WhatsAppButton,
+  GridItem,
+  CardContentWrapper,
+  CtaBanner,
 } from "@/components/site/primitives";
 
 export const Route = createFileRoute("/")({
@@ -139,68 +134,75 @@ function Home() {
       {/* WHAT WE SUPPLY */}
       <Section className="pt-24">
         <Reveal>
-          <Eyebrow>What we supply</Eyebrow>
-          <Heading>Four supply lines, one delivery note</Heading>
-          <Lead className="mt-4">
+          <Eyebrow center>What we supply</Eyebrow>
+          <Heading center>Four supply lines, one delivery note</Heading>
+          <Lead center className="mt-4">
             Most projects touch more than one of these. Buying them from one counter keeps
             compatibility, warranty and paperwork in a single place.
           </Lead>
         </Reveal>
-        <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+        <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4 content-left">
           {SOLUTIONS.map((solution, i) => {
             const Icon = SOLUTION_ICONS[i] ?? Cable;
             return (
               <Reveal key={solution.slug} delay={i * 80}>
-                <div className="sheen group h-full p-6 transition-transform duration-300 hover:-translate-y-1">
-                  <span className="flex size-11 items-center justify-center rounded-xl bg-primary/12 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
-                    <Icon className="size-5" />
-                  </span>
-                  <h3 className="mt-5 text-lg font-bold text-foreground">{solution.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                    {solution.blurb}
-                  </p>
-                  <Link
-                    to="/solutions/$slug"
-                    params={{ slug: solution.slug }}
-                    className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline"
-                  >
-                    Learn more
-                    <ArrowUpRight className="size-3.5" />
-                  </Link>
-                </div>
+                <CardContentWrapper>
+                  <div className="sheen group h-full p-6 transition-transform duration-300 hover:-translate-y-1">
+                    <span className="flex size-11 items-center justify-center rounded-xl bg-primary/12 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                      <Icon className="size-5" />
+                    </span>
+                    <h3 className="mt-5 text-lg font-bold text-foreground">{solution.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                      {solution.blurb}
+                    </p>
+                    <Link
+                      to="/solutions/$slug"
+                      params={{ slug: solution.slug }}
+                      className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline"
+                    >
+                      Learn more
+                      <ArrowUpRight className="size-3.5" />
+                    </Link>
+                  </div>
+                </CardContentWrapper>
               </Reveal>
             );
           })}
         </div>
         <Reveal delay={120}>
-          <div className="mt-10 flex flex-wrap items-center gap-4">
-            <QuoteButton label="Request a project quote" />
-            <ShopButton label="Buy stocked items online" medium="supply-section" />
-          </div>
+          <CtaBanner>
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+              <QuoteButton label="Request a project quote" />
+              <ShopButton label="Buy stocked items online" medium="supply-section" />
+              <WhatsAppButton />
+            </div>
+          </CtaBanner>
         </Reveal>
       </Section>
 
       {/* THE LOCAL ADVANTAGE */}
       <Section>
         <Reveal>
-          <Eyebrow>The local advantage</Eyebrow>
-          <Heading>Why buyers keep coming back to the counter</Heading>
+          <Eyebrow center>The local advantage</Eyebrow>
+          <Heading center>Why buyers keep coming back to the counter</Heading>
         </Reveal>
-        <div className="mt-12 grid gap-5 sm:grid-cols-2">
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 content-left">
           {REASONS.map((reason, i) => (
             <Reveal key={reason.title} delay={i * 80}>
-              <div className="sheen flex h-full gap-5 p-6">
-                <span className="text-3xl font-black tabular-nums text-primary/25">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div>
-                  <reason.icon className="size-5 text-ember" />
-                  <h3 className="mt-3 text-base font-bold text-foreground">{reason.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                    {reason.body}
-                  </p>
+              <CardContentWrapper>
+                <div className="sheen flex h-full flex-col items-center gap-5 p-6">
+                  <span className="text-3xl font-black tabular-nums text-primary/25">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <reason.icon className="mx-auto size-5 text-ember" />
+                    <h3 className="mt-3 text-base font-bold text-foreground">{reason.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                      {reason.body}
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </CardContentWrapper>
             </Reveal>
           ))}
         </div>
@@ -209,52 +211,58 @@ function Home() {
       {/* WHO WE SERVE */}
       <Section>
         <Reveal>
-          <Eyebrow>Who we serve</Eyebrow>
-          <Heading>Built around how each buyer actually orders</Heading>
+          <Eyebrow center>Who we serve</Eyebrow>
+          <Heading center>Built around how each buyer actually orders</Heading>
         </Reveal>
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 content-left">
           {INDUSTRIES.map((item, i) => {
             const Icon = INDUSTRY_ICONS[i] ?? Users;
             return (
               <Reveal key={item.title} delay={i * 70}>
-                <div className="sheen h-full p-6">
-                  <Icon className="size-6 text-primary" />
-                  <h3 className="mt-4 text-base font-bold text-foreground">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
-                </div>
+                <CardContentWrapper>
+                  <div className="sheen h-full p-6">
+                    <Icon className="mx-auto size-6 text-primary" />
+                    <h3 className="mt-4 text-base font-bold text-foreground">{item.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                      {item.body}
+                    </p>
+                  </div>
+                </CardContentWrapper>
               </Reveal>
             );
           })}
         </div>
         <Reveal>
-          <Link
-            to="/industries"
-            className="mt-8 inline-flex text-sm font-semibold text-primary hover:underline"
-          >
-            See the full industry breakdown
-          </Link>
+          <div className="mt-8 text-center">
+            <Link
+              to="/industries"
+              className="inline-flex text-sm font-semibold text-primary hover:underline"
+            >
+              See the full industry breakdown
+            </Link>
+          </div>
         </Reveal>
       </Section>
 
       {/* PROOF */}
       <Section>
         <Reveal>
-          <Eyebrow>Proof of work</Eyebrow>
-          <Heading>Jobs that shipped, with the before and after</Heading>
-          <Lead className="mt-4">
+          <Eyebrow center>Proof of work</Eyebrow>
+          <Heading center>Jobs that shipped, with the before and after</Heading>
+          <Lead center className="mt-4">
             Published with client approval. Each one started as a drawing or a photograph sent to
             the technical desk.
           </Lead>
         </Reveal>
-        <div className="mt-12 grid gap-5 lg:grid-cols-3">
+        <div className="mt-12 grid gap-5 lg:grid-cols-3 text-center">
           {CASE_STUDIES.map((cs, i) => (
             <Reveal key={cs.title} delay={i * 80}>
-              <article className="sheen h-full p-6">
+              <article className="sheen h-full p-6 text-center">
                 <p className="text-xs font-bold uppercase tracking-[0.16em] text-ember">
                   {cs.client}
                 </p>
                 <h3 className="mt-3 text-lg font-bold text-foreground">{cs.title}</h3>
-                <dl className="mt-4 space-y-3 text-sm">
+                <dl className="mt-4 space-y-3 text-sm text-center">
                   <div>
                     <dt className="font-semibold text-foreground">Before</dt>
                     <dd className="text-muted-foreground">{cs.before}</dd>
@@ -270,40 +278,41 @@ function Home() {
           ))}
         </div>
         <Reveal>
-          <Link
-            to="/projects"
-            className="mt-8 inline-flex text-sm font-semibold text-primary hover:underline"
-          >
-            Read the full case studies
-          </Link>
+          <div className="mt-8 text-center">
+            <Link
+              to="/projects"
+              className="inline-flex text-sm font-semibold text-primary hover:underline"
+            >
+              Read the full case studies
+            </Link>
+          </div>
         </Reveal>
       </Section>
-
 
       {/* LOCATIONS */}
       <Section>
         <Reveal>
-          <Eyebrow>Where to find us</Eyebrow>
-          <Heading>Two counters, one stock position</Heading>
-          <Lead className="mt-4">
+          <Eyebrow center>Where to find us</Eyebrow>
+          <Heading center>Two counters, one stock position</Heading>
+          <Lead center className="mt-4">
             Walk in with a list in Nairobi or Eldoret. Whatever is not on that shelf is transferred
             between branches rather than reordered from scratch.
           </Lead>
         </Reveal>
-        <div className="mt-12 grid gap-5 lg:grid-cols-2">
+        <div className="mt-12 grid gap-5 lg:grid-cols-2 text-center">
           {LOCATIONS.map((loc, i) => (
             <Reveal key={loc.city} delay={i * 90}>
-              <div className="sheen h-full p-7">
+              <div className="sheen h-full p-7 text-center">
                 <p className="text-xs font-bold uppercase tracking-[0.18em] text-ember">
                   {loc.label}
                 </p>
                 <h3 className="mt-2 text-2xl font-bold text-foreground">{loc.city}</h3>
-                <dl className="mt-5 space-y-3 text-sm">
-                  <div className="flex items-start gap-3">
+                <dl className="mt-5 space-y-3 text-sm text-center">
+                  <div className="flex items-center justify-center gap-3">
                     <MapPin className="mt-0.5 size-4 shrink-0 text-primary" />
                     <dd className="text-muted-foreground">{loc.address}</dd>
                   </div>
-                  <div className="flex items-start gap-3">
+                  <div className="flex items-center justify-center gap-3">
                     <Phone className="mt-0.5 size-4 shrink-0 text-primary" />
                     <dd>
                       <a
@@ -314,7 +323,7 @@ function Home() {
                       </a>
                     </dd>
                   </div>
-                  <div className="flex items-start gap-3">
+                  <div className="flex items-center justify-center gap-3">
                     <Clock className="mt-0.5 size-4 shrink-0 text-primary" />
                     <dd className="text-muted-foreground">{loc.hours}</dd>
                   </div>
@@ -337,17 +346,17 @@ function Home() {
       {/* INTERACTIVE TOOLS */}
       <Section>
         <Reveal>
-          <Eyebrow>Interactive tools</Eyebrow>
-          <Heading>Cost the job before you call anyone</Heading>
-          <Lead className="mt-4">
+          <Eyebrow center>Interactive tools</Eyebrow>
+          <Heading center>Cost the job before you call anyone</Heading>
+          <Lead center className="mt-4">
             Two calculators built from the questions the sales desk answers every week.
           </Lead>
         </Reveal>
-        <div className="mt-12 grid gap-5 md:grid-cols-2">
+        <div className="mt-12 grid gap-5 md:grid-cols-2 text-center">
           {TOOLS.map((tool, i) => (
             <Reveal key={tool.title} delay={i * 80}>
-              <div className="sheen h-full p-7">
-                <Calculator className="size-6 text-primary" />
+              <div className="sheen h-full p-7 text-center">
+                <Calculator className="mx-auto size-6 text-primary" />
                 <h3 className="mt-4 text-lg font-bold text-foreground">{tool.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{tool.desc}</p>
                 <Link
@@ -366,11 +375,13 @@ function Home() {
       {/* FAQ */}
       <Section>
         <Reveal>
-          <Eyebrow>Straight answers</Eyebrow>
-          <Heading>Questions buyers ask before they order</Heading>
-          <Lead className="mt-4">Short answers first, then the detail an engineer needs.</Lead>
+          <Eyebrow center>Straight answers</Eyebrow>
+          <Heading center>Questions buyers ask before they order</Heading>
+          <Lead center className="mt-4">
+            Short answers first, then the detail an engineer needs.
+          </Lead>
         </Reveal>
-        <div className="mt-10">
+        <div className="mt-10 text-center">
           <FaqList items={FAQS} />
         </div>
       </Section>
@@ -378,13 +389,13 @@ function Home() {
       {/* CLOSING CTA */}
       <Section>
         <Reveal>
-          <div className="sheen max-w-3xl p-8 sm:p-12">
+          <div className="sheen max-w-3xl mx-auto p-8 sm:p-12 text-center">
             <Heading>Tell us what the site needs and the list comes back priced</Heading>
             <Lead className="mt-4">
               Send a drawing, a rough part list or a site photograph. The technical desk checks the
               specification, confirms stock and returns a quotation you can hand to procurement.
             </Lead>
-            <div className="mt-8 flex flex-wrap items-center gap-4">
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
               <QuoteButton />
               <ShopButton medium="home-closing" />
               <WhatsAppButton />

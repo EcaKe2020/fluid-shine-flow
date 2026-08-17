@@ -16,7 +16,10 @@ import {
   Section,
   ShopButton,
   WhatsAppButton,
+  Content,
+  CardContentWrapper,
 } from "@/components/site/primitives";
+import clsx from "clsx";
 
 type Detail = {
   image: string;
@@ -137,7 +140,7 @@ const DETAIL: Record<string, Detail> = {
       },
       {
         title: "Subscriber and satellite",
-        body: "Customer premises routers, ONUs, drop hardware and Starlink equipment for sites where terrestrial backhaul is not viable yet.",
+        body: "Customer premises routers, ONUs, drop hardware and Starlink equipment for sites where terrestrial backhaul is not yet available or where a site needs diverse backup connectivity.",
       },
       {
         title: "Power and protection",
@@ -157,7 +160,7 @@ const DETAIL: Record<string, Detail> = {
         long: "Send the site plan and expected subscriber count to the technical desk and the model options will come back with reasoning rather than a single part number.",
       },
       {
-        q: "Do you supply Starlink equipment in Kenya?",
+        q: "Do you supply Starllink equipment in Kenya?",
         a: "Yes, satellite hardware is part of the ISP and remote site line, typically specified where a terrestrial link is not yet available or where a site needs diverse backup connectivity.",
       },
       {
@@ -166,7 +169,7 @@ const DETAIL: Record<string, Detail> = {
       },
     ],
   },
-  "security": {
+  security: {
     image: rack,
     intro:
       "IP surveillance, recording, access control and telephony that run over the cabling infrastructure you already paid for.",
@@ -255,41 +258,43 @@ function SolutionPage() {
         }}
       />
 
-      <Section className="pt-10 sm:pt-16">
-        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
-          <div className="rise">
-            <Eyebrow>Products and solutions</Eyebrow>
-            <Heading as="h1">{solution.title}</Heading>
-            <Lead className="mt-5">{detail.intro}</Lead>
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-              <QuoteButton label="Price this line" />
-              <ShopButton />
-              <WhatsAppButton />
+      <Section className="pt-16 sm:pt-24 content-left">
+        <Content>
+          <div className="grid items-center gap-8 lg:grid-cols-[1.05fr_0.95fr]">
+            <div className="rise">
+              <Eyebrow>Products and solutions</Eyebrow>
+              <Heading as="h1">{solution.title}</Heading>
+              <Lead className="mt-6">{detail.intro}</Lead>
+              <div className="mt-10 flex flex-wrap items-center gap-3">
+                <QuoteButton label="Price this line" />
+                <ShopButton />
+                <WhatsAppButton />
+              </div>
             </div>
+            <Reveal delay={100}>
+              <div className="gloss rounded-[2rem] p-4">
+                <img
+                  src={detail.image}
+                  alt={solution.title}
+                  width={1408}
+                  height={1008}
+                  loading="lazy"
+                  className="relative z-10 aspect-[4/3] w-full rounded-[1.5rem] object-cover"
+                />
+              </div>
+            </Reveal>
           </div>
-          <Reveal delay={100}>
-            <div className="gloss rounded-[2rem] p-3">
-              <img
-                src={detail.image}
-                alt={solution.title}
-                width={1408}
-                height={1008}
-                loading="lazy"
-                className="relative z-10 aspect-[4/3] w-full rounded-[1.5rem] object-cover"
-              />
-            </div>
-          </Reveal>
-        </div>
+        </Content>
       </Section>
 
       <Section className="pt-0">
         <Reveal>
-          <Panel hover={false}>
+          <CardContentWrapper className="space-y-6">
             <h2 className="text-xl font-semibold">In one paragraph</h2>
             <p className="mt-3 max-w-3xl text-base leading-relaxed text-foreground/85">
               {detail.answer}
             </p>
-          </Panel>
+          </CardContentWrapper>
         </Reveal>
       </Section>
 
@@ -297,50 +302,53 @@ function SolutionPage() {
         <Reveal>
           <Heading>What the range covers</Heading>
         </Reveal>
-        <div className="mt-8 grid gap-4 sm:grid-cols-2">
-          {detail.range.map((item, i) => (
-            <Reveal key={item.title} delay={i * 80}>
-              <Panel className="h-full">
-                <h3 className="text-base font-semibold">{item.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
-              </Panel>
-            </Reveal>
-          ))}
-        </div>
+        <Content>
+          <div className="mt-10 grid gap-5 sm:grid-cols-2">
+            {detail.range.map((item, i) => (
+              <Reveal key={item.title} delay={i * 80}>
+                <CardContentWrapper>
+                  <h3 className="text-base font-semibold">What the range covers</h3>
+                  <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
+                </CardContentWrapper>
+              </Reveal>
+            ))}
+          </div>
+        </Content>
       </Section>
 
       <Section className="pt-0">
-        <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-          <Reveal>
-            <div>
-              <Eyebrow>Before you request pricing</Eyebrow>
-              <Heading>Four details that make a quotation accurate</Heading>
-              <Lead className="mt-4">
-                Send these with your enquiry and the list usually comes back the same working day.
-              </Lead>
-              <div className="mt-6">
-                <QuoteButton />
-              </div>
+        <Reveal>
+          <Content>
+            <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+              <Reveal>
+                <div>
+                  <Eyebrow>Before you request pricing</Eyebrow>
+                  <Heading>Four details that make a quotation accurate</Heading>
+                  <Lead className="mt-6">
+                    Send these with your enquiry and the list usually comes back the same working day.
+                  </Lead>
+                  <div className="mt-8">
+                    <QuoteButton />
+                  </div>
+                </div>
+              </Reveal>
+              <Reveal delay={90}>
+                <CardContentWrapper>
+                  <ol className="space-y-4">
+                    {detail.specify.map((item, i) => (
+                      <li key={i} className="flex gap-4 text-sm leading-relaxed text-muted-foreground">
+                        <span className="ink-fill grid size-7 shrink-0 place-items-center rounded-full text-xs font-semibold text-primary-foreground dark:text-background">
+                          {i + 1}
+                        </span>
+                        {item}
+                      </li>
+                    ))}
+                  </ol>
+                </CardContentWrapper>
+              </Reveal>
             </div>
-          </Reveal>
-          <Reveal delay={90}>
-            <Panel hover={false}>
-              <ol className="space-y-4">
-                {detail.specify.map((item, i) => (
-                  <li
-                    key={item}
-                    className="flex gap-4 text-sm leading-relaxed text-muted-foreground"
-                  >
-                    <span className="ink-fill grid size-7 shrink-0 place-items-center rounded-full text-xs font-semibold text-primary-foreground dark:text-background">
-                      {i + 1}
-                    </span>
-                    {item}
-                  </li>
-                ))}
-              </ol>
-            </Panel>
-          </Reveal>
-        </div>
+          </Content>
+        </Reveal>
       </Section>
 
       <Section className="pt-0">
@@ -348,7 +356,7 @@ function SolutionPage() {
           <Eyebrow>Answers</Eyebrow>
           <Heading>Common questions on this line</Heading>
         </Reveal>
-        <div className="mt-8">
+        <div className="mt-10">
           <FaqList items={detail.faqs} />
         </div>
       </Section>

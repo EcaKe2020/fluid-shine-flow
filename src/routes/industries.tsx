@@ -10,6 +10,8 @@ import {
   Reveal,
   Section,
   ShopButton,
+  Content,
+  CardContentWrapper,
 } from "@/components/site/primitives";
 
 export const Route = createFileRoute("/industries")({
@@ -53,11 +55,7 @@ const DEEP = [
     title: "Corporates and system integrators",
     need: "Documentation procurement can file",
     body: "Quotations, delivery notes, warranty statements and specification sheets arrive in a form that satisfies finance and audit, with a single point of contact for the account.",
-    points: [
-      "Formal quotations and LPO handling",
-      "Warranty terms per line item",
-      "One account contact",
-    ],
+    points: ["Formal quotations and LPO handling", "Warranty terms per line item", "One account contact"],
   },
   {
     title: "Schools and educational institutions",
@@ -82,70 +80,87 @@ const DEEP = [
 function Industries() {
   return (
     <>
-      <Section className="pt-10 sm:pt-16">
-        <div className="rise">
-          <Eyebrow>Industries served</Eyebrow>
-          <Heading as="h1">
-            Same warehouse, <span className="ink-text">different buying rhythm</span>
-          </Heading>
-          <Lead className="mt-5">
-            An ISP buying a reel every week does not want the same process as a county office
-            running a tender. These are the patterns the desk is set up for.
-          </Lead>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <QuoteButton />
-            <ShopButton />
-          </div>
-        </div>
-
-        <div className="mt-12 grid gap-4 lg:grid-cols-2">
-          {DEEP.map((item, i) => (
-            <Reveal key={item.title} delay={i * 70}>
-              <Panel className="h-full">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-ember">
-                  {item.need}
-                </p>
-                <h2 className="mt-2 text-xl font-semibold">{item.title}</h2>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
-                <ul className="mt-5 flex flex-wrap gap-2">
-                  {item.points.map((p) => (
-                    <li
-                      key={p}
-                      className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary"
-                    >
-                      {p}
-                    </li>
-                  ))}
-                </ul>
-              </Panel>
+      <Section className="pt-16 sm:pt-20 lg:pt-24 content-left">
+        <Content>
+          <div className="grid items-center gap-8 lg:grid-cols-[1.05fr_0.95fr]">
+            <div className="rise">
+              <Eyebrow>Industries served</Eyebrow>
+              <Heading as="h1" center className="mb-6">
+                Same warehouse, <span className="ink-text">different buying rhythm</span>
+              </Heading>
+              <Lead className="mt-6">
+                An ISP buying a reel every week does not want the same process as a county office
+                running a tender. These are the patterns the desk is set up for.
+              </Lead>
+              <div className="mt-8 flex flex-wrap justify-center gap-6">
+                <QuoteButton />
+                <ShopButton />
+              </div>
+            </div>
+            <Reveal delay={100}>
+              <div className="grid gap-6 sm:grid-cols-2 content-left">
+                {DEEP.map((item, i) => (
+                  <Reveal key={item.title} delay={i * 80}>
+                    <CardContentWrapper>
+                      <Panel className="h-full text-center">
+                        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-ember mb-4">
+                          {item.need}
+                        </p>
+                        <h2 className="mt-4 text-xl font-semibold mb-3">
+                          {item.title}
+                        </h2>
+                        <p className="mt-3 text-sm leading-relaxed text-muted-foreground flex-1">
+                          {item.body}
+                        </p>
+                        <ul className="mt-5 flex flex-wrap justify-center gap-4">
+                          {item.points.map((p) => (
+                            <li
+                              key={p}
+                              className="rounded-full bg-primary-50 px-4 py-2 text-xs font-medium text-primary"
+                            >
+                              {p}
+                            </li>
+                          ))}
+                        </ul>
+                      </Panel>
+                    </CardContentWrapper>
+                  </Reveal>
+                ))}
+              </div>
             </Reveal>
-          ))}
-        </div>
+          </div>
+        </Content>
       </Section>
 
       <Section className="pt-0">
-        <Reveal>
-          <div className="gloss rounded-[2rem] p-8 sm:p-12">
-            <div className="relative z-10">
-              <Heading>Not on the list?</Heading>
-              <Lead className="mt-4">
-                Hotels, hospitals, manufacturers, churches and estates all buy from the same
-                shelves. Describe the site and the technical desk will work out which of the four
-                supply lines it touches.
-              </Lead>
-              <ul className="mt-6 grid gap-3 sm:grid-cols-2">
-                {INDUSTRIES.map((i) => (
-                  <li key={i.title} className="text-sm text-muted-foreground">
-                    <span className="font-medium text-foreground">{i.title}.</span> {i.body}
-                  </li>
-                ))}
-              </ul>
+        <Content>
+          <Reveal>
+            <div className="gloss rounded-[2rem] p-8 sm:p-12 text-center">
+              <div className="relative z-10">
+                <Heading center className="mb-4">Not on the list?</Heading>
+                <Lead center className="mt-4">
+                  Hotels, hospitals, manufacturers, churches and estates all buy from the same
+                  shelves. Describe the site and the technical desk will work out which of the four
+                  supply lines it touches.
+                </Lead>
+                <ul className="mt-6 grid gap-3 sm:grid-cols-2 text-center">
+                  {INDUSTRIES.map((i) => (
+                    <li key={i.title} className="text-sm text-muted-foreground">
+                      <span className="font-medium text-foreground">{i.title}.</span> {i.body}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
-          </div>
-        </Reveal>
+          </Reveal>
+        </Content>
       </Section>
 
-      <CtaBand />
+      <CtaBand
+        title="Not listed here?"
+        label="Custom procurement options"
+        body="Contact us for tailored quotes and documentation specific to your organization"
+      />
     </>
   );
 }

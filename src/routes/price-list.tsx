@@ -14,6 +14,8 @@ import {
   Section,
   ShopButton,
   WhatsAppButton,
+  Content,
+  CardContentWrapper,
 } from "@/components/site/primitives";
 
 export const Route = createFileRoute("/price-list")({
@@ -81,48 +83,44 @@ const FAQS = [
 function PriceList() {
   return (
     <>
-      <Section className="pt-10 sm:pt-16">
-        <div className="rise">
-          <Eyebrow>Pricing</Eyebrow>
-          <Heading as="h1">
-            Prices that are <span className="ink-text">current</span>, not printed last quarter
-          </Heading>
-          <Lead className="mt-5">
-            The store carries live prices for every stocked line. For project volumes, phased
-            rollouts or tender submissions, the desk issues a dated quotation with stock status per
-            line.
-          </Lead>
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <ShopButton label="See live prices" />
-            <QuoteButton label="Request a quotation" />
-            <WhatsAppButton label="Ask about a price" />
+      <Section className="pt-16 sm:pt-24">
+        <Content>
+          <div className="rise text-center">
+            <Eyebrow center>Pricing</Eyebrow>
+            <Heading as="h1" center>
+              Prices that are <span className="ink-text">current</span>, not printed last quarter
+            </Heading>
+            <Lead center className="mt-6">
+              The store carries live prices for every stocked line. For project volumes, phased
+              rollouts or tender submissions, the desk issues a dated quotation with stock status
+              per line.
+            </Lead>
+            <div className="mt-12 flex flex-wrap justify-center items-center gap-3">
+              <ShopButton label="See live prices" />
+              <QuoteButton label="Request a quotation" />
+              <WhatsAppButton label="Ask about a price" />
+            </div>
           </div>
-        </div>
-
-        <div className="mt-12 grid gap-4 sm:grid-cols-2">
-          {ROUTES.map((r, i) => (
-            <Reveal key={r.title} delay={i * 80}>
-              <Panel className="h-full">
-                <r.icon className="size-5 text-ember" />
-                <h2 className="mt-4 text-lg font-semibold">{r.title}</h2>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{r.body}</p>
-              </Panel>
-            </Reveal>
-          ))}
-        </div>
+        </Content>
       </Section>
 
       <Section className="pt-0">
         <Reveal>
-          <Eyebrow>Price list</Eyebrow>
-          <Heading>Browse current stock pricing</Heading>
-          <Lead className="mt-4 max-w-2xl">
+          <Eyebrow center>Price list</Eyebrow>
+          <Heading center>Browse current stock pricing</Heading>
+          <Lead center className="mt-6 max-w-2xl">
             Search, filter, and sort across all stocked lines. Prices update in real-time from the
             store.
           </Lead>
         </Reveal>
-        <div className="mt-8">
+        <div className="mt-12">
           <PriceTable />
+        </div>
+        <div className="mt-12">
+          <QrCode className="mx-auto" />
+          <p className="text-center text-sm text-muted-foreground mt-4">
+            Scan to visit the store
+          </p>
         </div>
       </Section>
 
@@ -131,14 +129,14 @@ function PriceList() {
           <div className="gloss rounded-[2rem] p-8 sm:p-12">
             <div className="relative z-10 grid gap-6 lg:grid-cols-[1.2fr_1fr] lg:items-center">
               <div>
-                <Eyebrow>Counter and collection</Eyebrow>
-                <Heading>Buying in person</Heading>
-                <Lead className="mt-4">
+                <Eyebrow center>Counter and collection</Eyebrow>
+                <Heading center>Buying in person</Heading>
+                <Lead center className="mt-4">
                   Walk in with a list and leave with the goods. Bulk reels are cut to length at the
                   counter and checked against your quotation before they are loaded.
                 </Lead>
               </div>
-              <dl className="space-y-3 text-sm">
+              <dl className="space-y-3 text-sm content-left mx-auto">
                 <div>
                   <dt className="font-semibold">Address</dt>
                   <dd className="text-muted-foreground">{COMPANY.address}</dd>
@@ -163,10 +161,10 @@ function PriceList() {
 
       <Section className="pt-0">
         <Reveal>
-          <Eyebrow>Answers</Eyebrow>
-          <Heading>Pricing questions</Heading>
+          <Eyebrow center>Pricing questions</Eyebrow>
+          <Heading center>Pricing questions</Heading>
         </Reveal>
-        <div className="mt-8">
+        <div className="mt-12">
           <FaqList items={FAQS} />
         </div>
       </Section>

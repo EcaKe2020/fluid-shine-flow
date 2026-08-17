@@ -12,6 +12,8 @@ import {
   Reveal,
   Section,
   ShopButton,
+  Content,
+  CardContentWrapper,
 } from "@/components/site/primitives";
 
 export const Route = createFileRoute("/projects")({
@@ -83,123 +85,94 @@ const FLOW = [
 function Projects() {
   return (
     <>
-      <Section className="pt-10 sm:pt-16">
-        <div className="rise">
-          <Eyebrow>Projects and case studies</Eyebrow>
-          <Heading as="h1">
-            The work behind the <span className="ink-text">delivery note</span>
-          </Heading>
-          <Lead className="mt-5">
-            Named case studies are published only once a client approves the details, so this page
-            describes project types and the supply workflow rather than claiming outcomes we cannot
-            evidence. Ask the sales desk for references relevant to your sector.
-          </Lead>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <QuoteButton label="Discuss a project" />
-            <ShopButton />
+      <Section className="pt-16 sm:pt-20 lg:pt-24 content-left">
+        <Content>
+          <div className="grid items-center gap-8 lg:grid-cols-[1.05fr_0.95fr]">
+            <div className="rise">
+              <Eyebrow>Projects and case studies</Eyebrow>
+              <Heading as="h1" center className="mb-6">
+                The work behind the <span className="ink-text">delivery note</span>
+              </Heading>
+              <Lead className="mt-6">
+                Named case studies are published only once a client approves the details, so this page
+                describes project types and the supply workflow rather than claiming outcomes we
+                cannot evidence. Ask the sales desk for references relevant to your sector.
+              </Lead>
+              <div className="mt-8 flex flex-wrap justify-center gap-6">
+                <QuoteButton label="Discuss a project" />
+                <ShopButton />
+              </div>
+            </div>
+            <Reveal delay={100}>
+              <div className="grid gap-6 sm:grid-cols-2 content-left">
+                {CASE_STUDIES.map((cs, i) => (
+                  <Reveal key={cs.title} delay={i * 70}>
+                    <CardContentWrapper>
+                      <article className="sheen h-full p-6 text-center">
+                        <p className="text-xs font-bold uppercase tracking-[0.16em] text-ember mb-4">
+                          {cs.client}
+                        </p>
+                        <h2 className="mt-3 text-xl font-semibold mb-3">{cs.title}</h2>
+                        <p className="mt-2 text-sm text-muted-foreground mb-5">{cs.scope}</p>
+                        <dl className="mt-5 grid gap-4 sm:grid-cols-2">
+                          <div className="rounded-2xl bg-muted/60 p-4">
+                            <dt className="text-xs font-bold uppercase tracking-[0.14em] text-muted-foreground mb-2">
+                              Before
+                            </dt>
+                            <dd className="mt-2 text-sm leading-relaxed text-foreground">
+                              {cs.before}
+                            </dd>
+                          </div>
+                          <div className="rounded-2xl bg-primary/8 p-4">
+                            <dt className="text-xs font-bold uppercase tracking-[0.14em] text-primary mb-2">
+                              After
+                            </dt>
+                            <dd className="mt-2 text-sm leading-relaxed text-foreground">{cs.after}</dd>
+                          </div>
+                        </dl>
+                        <p className="mt-4 text-sm font-semibold text-primary">{cs.result}</p>
+                      </article>
+                    </CardContentWrapper>
+                  </Reveal>
+                ))}
+              </div>
+            </Reveal>
           </div>
-        </div>
-
-        <div className="mt-12 grid gap-4 lg:grid-cols-2">
-          {CASE_STUDIES.map((cs, i) => (
-            <Reveal key={cs.title} delay={i * 70}>
-              <article className="sheen h-full p-6">
-                <p className="text-xs font-bold uppercase tracking-[0.16em] text-ember">
-                  {cs.client}
-                </p>
-                <h2 className="mt-3 text-xl font-semibold">{cs.title}</h2>
-                <p className="mt-2 text-sm text-muted-foreground">{cs.scope}</p>
-                <dl className="mt-5 grid gap-4 sm:grid-cols-2">
-                  <div className="rounded-2xl bg-muted/60 p-4">
-                    <dt className="text-xs font-bold uppercase tracking-[0.14em] text-muted-foreground">
-                      Before
-                    </dt>
-                    <dd className="mt-2 text-sm leading-relaxed text-foreground">{cs.before}</dd>
-                  </div>
-                  <div className="rounded-2xl bg-primary/8 p-4">
-                    <dt className="text-xs font-bold uppercase tracking-[0.14em] text-primary">
-                      After
-                    </dt>
-                    <dd className="mt-2 text-sm leading-relaxed text-foreground">{cs.after}</dd>
-                  </div>
-                </dl>
-                <p className="mt-4 text-sm font-semibold text-primary">{cs.result}</p>
-              </article>
-            </Reveal>
-          ))}
-        </div>
-
-        <h2 className="mt-16 text-2xl font-bold">Project types we supply every month</h2>
-        <div className="mt-6 grid gap-4 lg:grid-cols-2">
-          {TYPES.map((item, i) => (
-            <Reveal key={item.title} delay={i * 80}>
-              <Panel className="h-full">
-                <h3 className="text-xl font-semibold">{item.title}</h3>
-                <p className="mt-2 text-xs font-semibold uppercase tracking-[0.14em] text-ember">
-                  {item.scope}
-                </p>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
-              </Panel>
-            </Reveal>
-          ))}
-        </div>
+        </Content>
       </Section>
 
       <Section className="pt-0">
-        <div className="grid gap-8 lg:grid-cols-2 lg:items-center">
+        <Content>
           <Reveal>
-            <div className="gloss rounded-[2rem] p-3">
-              <img
-                src={splicing}
-                alt="Fibre splicing work on a project route"
-                width={1408}
-                height={1008}
-                loading="lazy"
-                className="relative z-10 aspect-[4/3] w-full rounded-[1.5rem] object-cover"
-              />
-            </div>
+            <Eyebrow center>Project types</Eyebrow>
+            <Heading center className="mb-4">Project types we supply every month</Heading>
           </Reveal>
-          <div>
-            <Reveal>
-              <Eyebrow>How a project runs</Eyebrow>
-              <Heading>Five stages, no surprises</Heading>
-            </Reveal>
-            <ol className="mt-8 space-y-4">
-              {FLOW.map((item, i) => (
-                <Reveal key={item.step} delay={i * 70}>
-                  <li className="flex gap-4">
-                    <span className="ink-fill mt-0.5 grid size-7 shrink-0 place-items-center rounded-full text-xs font-semibold text-primary-foreground dark:text-background">
-                      {i + 1}
-                    </span>
-                    <span>
-                      <span className="font-semibold">{item.step}.</span>{" "}
-                      <span className="text-sm text-muted-foreground">{item.body}</span>
-                    </span>
-                  </li>
-                </Reveal>
-              ))}
-            </ol>
+          <div className="mt-8 grid gap-6 lg:grid-cols-2 content-left">
+            {TYPES.map((item, i) => (
+              <Reveal key={item.title} delay={i * 80}>
+                <CardContentWrapper>
+                  <Panel className="h-full text-center">
+                    <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
+                    <p className="mt-2 text-xs font-semibold uppercase tracking-[0.14em] text-ember mb-3">
+                      {item.scope}
+                    </p>
+                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                      {item.body}
+                    </p>
+                  </Panel>
+                </CardContentWrapper>
+              </Reveal>
+            ))}
           </div>
-        </div>
+        </Content>
       </Section>
 
       <Section className="pt-0">
         <Reveal>
-          <div className="gloss grid gap-8 rounded-[2rem] p-8 sm:p-12 lg:grid-cols-2 lg:items-center">
-            <div className="relative z-10">
-              <Heading>Have a completed job we supplied?</Heading>
-              <Lead className="mt-4">
-                If you are happy for it to be documented, send photographs and the technical
-                outcome. Approved case studies are published with your credit and a link back to
-                your business.
-              </Lead>
-              <div className="mt-7">
-                <QuoteButton label="Submit a case study" />
-              </div>
-            </div>
+          <div className="gloss rounded-[2rem] p-3">
             <img
-              src={rack}
-              alt="Completed rack installation"
+              src={splicing}
+              alt="Fibre splicing work on a project route"
               width={1408}
               height={1008}
               loading="lazy"
@@ -207,6 +180,39 @@ function Projects() {
             />
           </div>
         </Reveal>
+        <Content>
+          <Reveal>
+            <div className="gloss rounded-[2rem] p-3">
+              <div className="relative z-10 text-center">
+                <Eyebrow center>How a project runs</Eyebrow>
+                <Heading center className="mb-4">Five stages, no surprises</Heading>
+                <ol className="mt-8 space-y-6 text-left">
+                  {FLOW.map((item, i) => (
+                    <Reveal key={item.step} delay={i * 70}>
+                      <li className="flex gap-4">
+                        <span className="ink-fill mt-0.5 mx-auto grid size-7 shrink-0 place-items-center rounded-full text-xs font-semibold text-primary-foreground dark:text-background">
+                          {i + 1}
+                        </span>
+                        <span>
+                          <span className="font-semibold">{item.step}.</span>{" "}
+                          <span className="text-sm text-muted-foreground">{item.body}</span>
+                        </span>
+                      </li>
+                    </Reveal>
+                  ))}
+                </ol>
+              </div>
+              <img
+                src={rack}
+                alt="Completed rack installation"
+                width={1408}
+                height={1008}
+                loading="lazy"
+                className="relative z-10 aspect-[4/3] w-full rounded-[1.5rem] object-cover"
+              />
+            </div>
+          </Reveal>
+        </Content>
       </Section>
 
       <CtaBand />

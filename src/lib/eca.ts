@@ -187,7 +187,8 @@ export const CASE_STUDIES = [
     client: "County facility, Western Kenya",
     title: "Surveillance retrofit sized around a 30 day retention rule",
     scope: "IP cameras, NVR and storage sizing, PoE switching, access readers",
-    before: "A recorder that filled in eleven days and switches without the PoE budget for night mode.",
+    before:
+      "A recorder that filled in eleven days and switches without the PoE budget for night mode.",
     after:
       "Storage calculated from bitrate, camera count and retention, and switch budgets set with headroom for illuminators.",
     result: "30 day retention held through the first full quarter, no power brownouts logged",

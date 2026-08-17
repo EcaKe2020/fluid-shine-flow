@@ -12,6 +12,8 @@ import {
   Reveal,
   Section,
   ShopButton,
+  Content,
+  CardContentWrapper,
 } from "@/components/site/primitives";
 
 export const Route = createFileRoute("/tools")({
@@ -305,27 +307,38 @@ function CableSelector() {
 function Tools() {
   return (
     <>
-      <Section className="pt-10 sm:pt-16">
-        <div className="rise">
-          <Eyebrow>Interactive tools</Eyebrow>
-          <Heading as="h1">
-            Do the rough numbers yourself, <span className="ink-text">then let us check them</span>
-          </Heading>
-          <Lead className="mt-5">
-            These calculators give an estimate good enough for a budget conversation. They are not a
-            substitute for a site survey, and the technical desk will review anything before it
-            becomes an order.
-          </Lead>
-        </div>
-
-        <div className="mt-12 grid gap-4 lg:grid-cols-2">
-          <Reveal>
-            <BomCalculator />
-          </Reveal>
-          <Reveal delay={100}>
-            <CableSelector />
-          </Reveal>
-        </div>
+      <Section className="pt-16 sm:pt-20 lg:pt-24 content-left">
+        <Content>
+          <div className="grid items-center gap-8 lg:grid-cols-[1.05fr_0.95fr]">
+            <div className="rise">
+              <Eyebrow>Interactive tools</Eyebrow>
+              <Heading as="h1" center className="mb-6">
+                Do the rough numbers yourself,{" "}
+                <span className="ink-text">then let us check them</span>
+              </Heading>
+              <Lead className="mt-6">
+                These calculators give an estimate good enough for a budget conversation. They are not
+                a substitute for a site survey, and the technical desk will review anything before it
+                becomes an order.
+              </Lead>
+              <div className="mt-8 flex flex-wrap justify-center gap-6">
+                <ShopButton label="Browse the store" />
+                <Link
+                  to="/tools"
+                  className="inline-flex items-center rounded-full border border-primary/25 px-5 py-2.5 text-sm font-semibold transition hover:bg-primary/10"
+                >
+                  Try the calculators
+                </Link>
+              </div>
+            </div>
+            <Reveal delay={100}>
+              <div className="grid gap-6 sm:grid-cols-2 content-left">
+                <BomCalculator />
+                <CableSelector />
+              </div>
+            </Reveal>
+          </div>
+        </Content>
       </Section>
 
       <CtaBand

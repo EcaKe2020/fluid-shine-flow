@@ -62,7 +62,7 @@ export function Section({
   style?: React.CSSProperties;
 }) {
   return (
-    <section id={id} style={style} className={`section-pad page-pad py-20 ${className}`}>
+    <section id={id} style={style} className={`section-pad py-16 md:py-20 ${className}`}>
       {children}
     </section>
   );
@@ -107,9 +107,21 @@ export function Reveal({
   );
 }
 
-export function Eyebrow({ children }: { children: ReactNode }) {
+export function Eyebrow({
+  children,
+  center = false,
+  className = "",
+}: {
+  children: ReactNode;
+  center?: boolean;
+  className?: string;
+}) {
   return (
-    <p className="mb-4 text-xs font-bold uppercase tracking-[0.18em] text-primary">{children}</p>
+    <p
+      className={`mb-4 text-xs font-bold uppercase tracking-[0.18em] text-primary ${center ? "text-center" : "text-left"} ${className}`}
+    >
+      {children}
+    </p>
   );
 }
 
@@ -117,24 +129,34 @@ export function Heading({
   children,
   as: Tag = "h2",
   className = "",
+  center = false,
 }: {
   children: ReactNode;
   as?: "h1" | "h2" | "h3";
   className?: string;
+  center?: boolean;
 }) {
   return (
     <Tag
-      className={`text-balance text-3xl font-bold leading-tight tracking-[-0.03em] text-foreground sm:text-4xl lg:text-[2.75rem] ${className}`}
+      className={`text-balance text-3xl font-bold leading-tight tracking-[-0.03em] text-foreground sm:text-4xl lg:text-[2.75rem] ${center ? "text-center" : "text-left"} ${className}`}
     >
       {children}
     </Tag>
   );
 }
 
-export function Lead({ children, className = "" }: { children: ReactNode; className?: string }) {
+export function Lead({
+  children,
+  className = "",
+  center = false,
+}: {
+  children: ReactNode;
+  className?: string;
+  center?: boolean;
+}) {
   return (
     <p
-      className={`max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg ${className}`}
+      className={`max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg mx-auto ${center ? "text-center" : "text-left"} ${className}`}
     >
       {children}
     </p>
@@ -151,6 +173,119 @@ export function QuoteButton({ label = "Request a quote" }: { label?: string }) {
       <ArrowRight className="size-4" />
     </Link>
   );
+}
+
+/** Section introduction wrapper - centers eyebrow, heading, and lead */
+export function SectionIntro({
+  children,
+  className = "",
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return <div className={`section-intro ${className}`}>{children}</div>;
+}
+
+/** Content wrapper - left-aligns content inside cards, grids, forms, etc. */
+export function Content({
+  children,
+  className = "",
+  gap = "md",
+}: {
+  children: ReactNode;
+  className?: string;
+  gap?: "sm" | "md" | "lg";
+}) {
+  const gapClasses = {
+    sm: "content-gap",
+    md: "section-content-gap",
+    lg: "section-content-gap-lg",
+  };
+  return <div className={`content-left ${gapClasses[gap]} ${className}`}>{children}</div>;
+}
+
+/** Card content wrapper - left-aligns with proper spacing */
+export function CardContentWrapper({
+  children,
+  className = "",
+  padding = "md",
+  gap = "md",
+}: {
+  children: ReactNode;
+  className?: string;
+  padding?: "sm" | "md" | "lg";
+  gap?: "sm" | "md" | "lg";
+}) {
+  const paddingClasses = {
+    sm: "card-spacing",
+    md: "card-spacing",
+    lg: "card-spacing-lg",
+  };
+  const gapClasses = {
+    sm: "card-gap",
+    md: "card-gap",
+    lg: "card-gap-lg",
+  };
+  return (
+    <div className={`card-content ${paddingClasses[padding]} ${gapClasses[gap]} ${className}`}>
+      {children}
+    </div>
+  );
+}
+
+/** Grid item wrapper - left-aligns content in grid tiles */
+export function GridItem({
+  children,
+  className = "",
+  gap = "md",
+}: {
+  children: ReactNode;
+  className?: string;
+  gap?: "sm" | "md" | "lg";
+}) {
+  const gapClasses = {
+    sm: "grid-item-gap",
+    md: "grid-item-gap",
+    lg: "grid-item-gap-lg",
+  };
+  return (
+    <article className={`grid-item ${gapClasses[gap]} ${className}`}>
+      <div className="grid-item-content content-left">{children}</div>
+    </article>
+  );
+}
+
+/** CTA Banner wrapper - centers heading, lead, and buttons */
+export function CtaBanner({
+  children,
+  className = "",
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return <div className={`cta-banner ${className}`}>{children}</div>;
+}
+
+/** Footer column wrapper - left-aligns header above links */
+export function FooterColumn({
+  children,
+  className = "",
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return <div className="footer-column-links">{children}</div>;
+}
+
+/** Form field wrapper - left-aligns labels and inputs */
+export function FormField({
+  children,
+  className = "",
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return <div className="form-field">{children}</div>;
 }
 
 export function ShopButton({
