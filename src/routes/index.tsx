@@ -18,7 +18,16 @@ import {
   Landmark,
   Server,
 } from "lucide-react";
-import { BRANDS, COMPANY, FAQS, INDUSTRIES, LOCATIONS, SOLUTIONS } from "@/lib/eca";
+import {
+  BRANDS,
+  CASE_STUDIES,
+  COMPANY,
+  FAQS,
+  INDUSTRIES,
+  LOCATIONS,
+  SOLUTIONS,
+} from "@/lib/eca";
+
 import { FaqList } from "@/components/site/Faq";
 import { Hero } from "@/components/site/Hero";
 import {
