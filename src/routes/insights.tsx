@@ -77,6 +77,34 @@ const ARTICLES = [
   },
 ];
 
+const CATEGORIES = [
+  {
+    name: "Technical guides",
+    body: "Span ratings, power budgets, storage maths and the standards that decide a layout.",
+  },
+  {
+    name: "Procurement guides",
+    body: "Building a defensible bill of materials, comparing grades and writing a tender line item.",
+  },
+  {
+    name: "Company news",
+    body: "Branch updates, new stock lines and brand partnerships as they land at the counters.",
+  },
+  {
+    name: "Industry updates",
+    body: "Kenyan fibre rollouts, licensing shifts and hardware supply changes worth planning around.",
+  },
+] as const;
+
+const ARTICLE_CATEGORY = [
+  "Technical guides",
+  "Technical guides",
+  "Technical guides",
+  "Technical guides",
+  "Procurement guides",
+  "Procurement guides",
+] as const;
+
 const FAQS = [
   {
     q: "How often is new technical content published?",
@@ -128,12 +156,23 @@ function Insights() {
           </div>
         </div>
 
-        <div className="mt-12 grid gap-4 lg:grid-cols-2">
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {CATEGORIES.map((c, i) => (
+            <Reveal key={c.name} delay={i * 60}>
+              <div className="sheen h-full p-5">
+                <h2 className="text-base font-bold text-foreground">{c.name}</h2>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{c.body}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+
+        <div className="mt-6 grid gap-4 lg:grid-cols-2">
           {ARTICLES.map((a, i) => (
             <Reveal key={a.title} delay={i * 70}>
               <Panel className="h-full">
                 <p className="text-xs font-semibold uppercase tracking-[0.14em] text-ember">
-                  {a.read}
+                  {ARTICLE_CATEGORY[i] ?? "Technical guides"} · {a.read}
                 </p>
                 <h2 className="mt-3 text-xl font-semibold">{a.title}</h2>
                 <p className="mt-3 rounded-2xl bg-primary/8 p-4 text-sm font-medium leading-relaxed">

@@ -113,10 +113,11 @@ export function Hero() {
     };
   }, [active, next, paused]);
 
-  const visibleProducts = Array.from(
-    { length: 5 },
-    (_, index) => PRODUCTS[(active + index) % PRODUCTS.length],
-  );
+  const visibleProducts = Array.from({ length: 5 }, (_, index) => {
+    const item = PRODUCTS[(active + index) % PRODUCTS.length];
+    return item!;
+  });
+
 
   return (
     <section className="relative overflow-hidden pb-14 pt-[7.5rem] sm:pb-16">

@@ -120,7 +120,7 @@ const DETAIL: Record<string, Detail> = {
       },
     ],
   },
-  "networking-isp": {
+  "networking-wireless": {
     image: warehouse,
     intro:
       "Routing, switching, wireless backhaul and satellite hardware for operators and integrators who are measured on uptime.",
@@ -166,7 +166,7 @@ const DETAIL: Record<string, Detail> = {
       },
     ],
   },
-  "security-communications": {
+  "security": {
     image: rack,
     intro:
       "IP surveillance, recording, access control and telephony that run over the cabling infrastructure you already paid for.",
