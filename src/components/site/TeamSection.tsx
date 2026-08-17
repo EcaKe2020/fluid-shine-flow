@@ -7,7 +7,7 @@ const TEAM = [
       "https://images.pexels.com/photos/11156392/pexels-photo-11156392.jpeg?auto=compress&cs=tinysrgb&w=400",
   },
   {
-    name: "Kevin",
+    name: "Kevin Maingi",
     title: "Sales",
     h: 280,
     image:
@@ -28,42 +28,42 @@ const TEAM = [
       "https://images.pexels.com/photos/33680700/pexels-photo-33680700.jpeg?auto=compress&cs=tinysrgb&w=500",
   },
   {
-    name: "Chief executive",
+    name: "Timothy",
     title: "Chief executive officer",
     h: 320,
     image:
       "https://images.pexels.com/photos/28442318/pexels-photo-28442318.jpeg?auto=compress&cs=tinysrgb&w=500",
   },
   {
-    name: "Stella",
+    name: "Stella ",
     title: "Sales",
     h: 280,
     image:
       "https://images.pexels.com/photos/31422830/pexels-photo-31422830.png?auto=compress&cs=tinysrgb&w=400",
   },
   {
-    name: "Sales desk",
+    name: "Ann Murage",
     title: "Sales",
     h: 180,
     image:
       "https://images.pexels.com/photos/38652616/pexels-photo-38652616.jpeg?auto=compress&cs=tinysrgb&w=400",
   },
   {
-    name: "Dispatch",
+    name: "Patrick",
     title: "Driver and logistics",
     h: 220,
     image:
       "https://images.pexels.com/photos/13392786/pexels-photo-13392786.png?auto=compress&cs=tinysrgb&w=400",
   },
   {
-    name: "Denzel",
+    name: "Tanzania",
     title: "Sales",
     h: 260,
     image:
       "https://images.pexels.com/photos/26150470/pexels-photo-26150470.jpeg?auto=compress&cs=tinysrgb&w=400",
   },
   {
-    name: "Store counter",
+    name: "Mayo",
     title: "Store assistant",
     h: 220,
     image:
