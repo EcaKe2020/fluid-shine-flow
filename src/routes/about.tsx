@@ -150,6 +150,71 @@ function About() {
 
       <TeamSection />
 
+      <Section className="pt-0">
+        <Reveal>
+          <Eyebrow>Certifications and partners</Eyebrow>
+          <Heading>The paperwork behind the counter</Heading>
+          <Lead className="mt-4">
+            Buyers ask for evidence before they ask for a discount, so here is what backs a
+            quotation from us.
+          </Lead>
+        </Reveal>
+        <div className="mt-12 grid gap-4 sm:grid-cols-2">
+          {CERTIFICATIONS.map((c, i) => (
+            <Reveal key={c.title} delay={i * 70}>
+              <Panel className="h-full">
+                <h3 className="text-lg font-semibold">{c.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{c.body}</p>
+              </Panel>
+            </Reveal>
+          ))}
+        </div>
+        <Reveal delay={120}>
+          <div className="mt-8 flex flex-wrap gap-2.5">
+            {BRANDS.map((b) => (
+              <span
+                key={b}
+                className="rounded-full border border-border px-4 py-1.5 text-xs font-semibold text-muted-foreground"
+              >
+                {b}
+              </span>
+            ))}
+          </div>
+        </Reveal>
+      </Section>
+
+      <Section className="pt-0">
+        <Reveal>
+          <Eyebrow>Careers</Eyebrow>
+          <Heading>Room for people who like getting it right</Heading>
+          <Lead className="mt-4">
+            Open roles are listed here as they come up. Speculative applications are read, so send
+            one anyway if the work fits you.
+          </Lead>
+        </Reveal>
+        <div className="mt-12 grid gap-4 lg:grid-cols-3">
+          {CAREERS.map((role, i) => (
+            <Reveal key={role.role} delay={i * 70}>
+              <Panel className="h-full">
+                <p className="text-xs font-bold uppercase tracking-[0.16em] text-ember">
+                  {role.place}
+                </p>
+                <h3 className="mt-3 text-lg font-semibold">{role.role}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{role.body}</p>
+                <a
+                  href={`mailto:${COMPANY.email}?subject=${encodeURIComponent(`Application: ${role.role} (${role.place})`)}`}
+                  className="mt-4 inline-flex text-sm font-semibold text-primary hover:underline"
+                >
+                  Apply by email
+                </a>
+              </Panel>
+            </Reveal>
+          ))}
+        </div>
+      </Section>
+
+
+
       <CtaBand
         title="Want the company profile for a tender file?"
         body="The sales desk can package company details, supported brands and delivery terms in the format your procurement pack requires."
