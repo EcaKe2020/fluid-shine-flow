@@ -79,14 +79,14 @@ export const SOLUTIONS = [
     points: ["CAT6 and CAT6A channels", "Racks, trays and containment", "Certified link testing"],
   },
   {
-    slug: "networking-isp",
+    slug: "networking-wireless",
     title: "Networking, Wireless and ISP",
     blurb:
       "MikroTik routing, PoE switching, point to point radios and Starlink hardware for operators who bill by the uptime hour.",
     points: ["MikroTik and PoE switching", "PtP and PtMP wireless", "Starlink and ISP kit"],
   },
   {
-    slug: "security-communications",
+    slug: "security",
     title: "CCTV, Security and PABX",
     blurb:
       "IP surveillance, recording and storage sizing, access control and IP telephony that lands on the same cabling you already own.",
