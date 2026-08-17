@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import warehouse from "@/assets/warehouse.jpg";
-import { COMPANY, STATS } from "@/lib/eca";
+import { BRANDS, CAREERS, CERTIFICATIONS, COMPANY, STATS } from "@/lib/eca";
 import { TeamSection } from "@/components/site/TeamSection";
 import {
   CtaBand,
