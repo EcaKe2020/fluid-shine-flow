@@ -276,6 +276,47 @@ function Contact() {
 
       <Section>
         <Reveal>
+          <Eyebrow>Directions</Eyebrow>
+          <Heading>Find the counter without calling for landmarks</Heading>
+          <Lead className="mt-4">
+            Both branches sit on main routes with parking for a pickup. Tap a map to open live
+            directions on your phone.
+          </Lead>
+        </Reveal>
+        <div className="mt-10 grid gap-5 lg:grid-cols-2">
+          {LOCATIONS.map((loc, i) => (
+            <Reveal key={`map-${loc.city}`} delay={i * 80}>
+              <div className="sheen overflow-hidden p-2">
+                <iframe
+                  title={`Map of ECA Networks ${loc.city}`}
+                  src={`https://www.google.com/maps?q=${encodeURIComponent(`${loc.address}, ${loc.city}, Kenya`)}&output=embed`}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="h-[300px] w-full rounded-[14px] border-0"
+                />
+                <div className="flex flex-wrap items-center justify-between gap-3 p-4">
+                  <p className="text-sm font-bold text-foreground">
+                    {loc.city}
+                    <span className="ml-2 font-normal text-muted-foreground">{loc.address}</span>
+                  </p>
+                  <a
+                    href={loc.maps}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
+                  >
+                    Get directions
+                    <ArrowUpRight className="size-3.5" />
+                  </a>
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </Section>
+
+      <Section>
+        <Reveal>
           <Eyebrow>Answers</Eyebrow>
           <Heading>Before you write</Heading>
         </Reveal>

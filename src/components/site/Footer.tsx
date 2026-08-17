@@ -125,7 +125,17 @@ export function Footer() {
               </li>
               <li>
                 <Link to="/privacy" className="text-sm text-muted-foreground hover:text-primary">
-                  Privacy and terms
+                  Privacy policy
+                </Link>
+              </li>
+              <li>
+                <Link to="/terms" className="text-sm text-muted-foreground hover:text-primary">
+                  Terms and conditions
+                </Link>
+              </li>
+              <li>
+                <Link to="/cookies" className="text-sm text-muted-foreground hover:text-primary">
+                  Cookie policy
                 </Link>
               </li>
             </ul>
