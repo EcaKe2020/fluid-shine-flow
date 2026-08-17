@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { CASE_STUDIES } from "@/lib/eca";
 import rack from "@/assets/rack.jpg";
 import splicing from "@/assets/splicing.jpg";
 import {
@@ -100,10 +101,40 @@ function Projects() {
         </div>
 
         <div className="mt-12 grid gap-4 lg:grid-cols-2">
+          {CASE_STUDIES.map((cs, i) => (
+            <Reveal key={cs.title} delay={i * 70}>
+              <article className="sheen h-full p-6">
+                <p className="text-xs font-bold uppercase tracking-[0.16em] text-ember">
+                  {cs.client}
+                </p>
+                <h2 className="mt-3 text-xl font-semibold">{cs.title}</h2>
+                <p className="mt-2 text-sm text-muted-foreground">{cs.scope}</p>
+                <dl className="mt-5 grid gap-4 sm:grid-cols-2">
+                  <div className="rounded-2xl bg-muted/60 p-4">
+                    <dt className="text-xs font-bold uppercase tracking-[0.14em] text-muted-foreground">
+                      Before
+                    </dt>
+                    <dd className="mt-2 text-sm leading-relaxed text-foreground">{cs.before}</dd>
+                  </div>
+                  <div className="rounded-2xl bg-primary/8 p-4">
+                    <dt className="text-xs font-bold uppercase tracking-[0.14em] text-primary">
+                      After
+                    </dt>
+                    <dd className="mt-2 text-sm leading-relaxed text-foreground">{cs.after}</dd>
+                  </div>
+                </dl>
+                <p className="mt-4 text-sm font-semibold text-primary">{cs.result}</p>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+
+        <h2 className="mt-16 text-2xl font-bold">Project types we supply every month</h2>
+        <div className="mt-6 grid gap-4 lg:grid-cols-2">
           {TYPES.map((item, i) => (
             <Reveal key={item.title} delay={i * 80}>
               <Panel className="h-full">
-                <h2 className="text-xl font-semibold">{item.title}</h2>
+                <h3 className="text-xl font-semibold">{item.title}</h3>
                 <p className="mt-2 text-xs font-semibold uppercase tracking-[0.14em] text-ember">
                   {item.scope}
                 </p>

@@ -18,7 +18,16 @@ import {
   Landmark,
   Server,
 } from "lucide-react";
-import { BRANDS, COMPANY, FAQS, INDUSTRIES, LOCATIONS, SOLUTIONS } from "@/lib/eca";
+import {
+  BRANDS,
+  CASE_STUDIES,
+  COMPANY,
+  FAQS,
+  INDUSTRIES,
+  LOCATIONS,
+  SOLUTIONS,
+} from "@/lib/eca";
+
 import { FaqList } from "@/components/site/Faq";
 import { Hero } from "@/components/site/Hero";
 import {
@@ -226,6 +235,50 @@ function Home() {
           </Link>
         </Reveal>
       </Section>
+
+      {/* PROOF */}
+      <Section>
+        <Reveal>
+          <Eyebrow>Proof of work</Eyebrow>
+          <Heading>Jobs that shipped, with the before and after</Heading>
+          <Lead className="mt-4">
+            Published with client approval. Each one started as a drawing or a photograph sent to
+            the technical desk.
+          </Lead>
+        </Reveal>
+        <div className="mt-12 grid gap-5 lg:grid-cols-3">
+          {CASE_STUDIES.map((cs, i) => (
+            <Reveal key={cs.title} delay={i * 80}>
+              <article className="sheen h-full p-6">
+                <p className="text-xs font-bold uppercase tracking-[0.16em] text-ember">
+                  {cs.client}
+                </p>
+                <h3 className="mt-3 text-lg font-bold text-foreground">{cs.title}</h3>
+                <dl className="mt-4 space-y-3 text-sm">
+                  <div>
+                    <dt className="font-semibold text-foreground">Before</dt>
+                    <dd className="text-muted-foreground">{cs.before}</dd>
+                  </div>
+                  <div>
+                    <dt className="font-semibold text-foreground">After</dt>
+                    <dd className="text-muted-foreground">{cs.after}</dd>
+                  </div>
+                </dl>
+                <p className="mt-4 text-sm font-semibold text-primary">{cs.result}</p>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+        <Reveal>
+          <Link
+            to="/projects"
+            className="mt-8 inline-flex text-sm font-semibold text-primary hover:underline"
+          >
+            Read the full case studies
+          </Link>
+        </Reveal>
+      </Section>
+
 
       {/* LOCATIONS */}
       <Section>

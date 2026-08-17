@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as EsgRouteImport } from './routes/esg'
 import { Route as IndustriesRouteImport } from './routes/industries'
 import { Route as InsightsRouteImport } from './routes/insights'
@@ -20,6 +21,7 @@ import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as TeamRouteImport } from './routes/team'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as ToolsRouteImport } from './routes/tools'
 import { Route as SolutionsIndexRouteImport } from './routes/solutions/index'
 import { Route as SolutionsSlugRouteImport } from './routes/solutions/$slug'
@@ -37,6 +39,11 @@ const AboutRoute = AboutRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CookiesRoute = CookiesRouteImport.update({
+  id: '/cookies',
+  path: '/cookies',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EsgRoute = EsgRouteImport.update({
@@ -79,6 +86,11 @@ const TeamRoute = TeamRouteImport.update({
   path: '/team',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ToolsRoute = ToolsRouteImport.update({
   id: '/tools',
   path: '/tools',
@@ -99,6 +111,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/cookies': typeof CookiesRoute
   '/esg': typeof EsgRoute
   '/industries': typeof IndustriesRoute
   '/insights': typeof InsightsRoute
@@ -107,6 +120,7 @@ export interface FileRoutesByFullPath {
   '/projects': typeof ProjectsRoute
   '/services': typeof ServicesRoute
   '/team': typeof TeamRoute
+  '/terms': typeof TermsRoute
   '/tools': typeof ToolsRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/solutions/': typeof SolutionsIndexRoute
@@ -115,6 +129,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/cookies': typeof CookiesRoute
   '/esg': typeof EsgRoute
   '/industries': typeof IndustriesRoute
   '/insights': typeof InsightsRoute
@@ -123,6 +138,7 @@ export interface FileRoutesByTo {
   '/projects': typeof ProjectsRoute
   '/services': typeof ServicesRoute
   '/team': typeof TeamRoute
+  '/terms': typeof TermsRoute
   '/tools': typeof ToolsRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/solutions': typeof SolutionsIndexRoute
@@ -132,6 +148,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/cookies': typeof CookiesRoute
   '/esg': typeof EsgRoute
   '/industries': typeof IndustriesRoute
   '/insights': typeof InsightsRoute
@@ -140,6 +157,7 @@ export interface FileRoutesById {
   '/projects': typeof ProjectsRoute
   '/services': typeof ServicesRoute
   '/team': typeof TeamRoute
+  '/terms': typeof TermsRoute
   '/tools': typeof ToolsRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/solutions/': typeof SolutionsIndexRoute
@@ -150,6 +168,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
+    | '/cookies'
     | '/esg'
     | '/industries'
     | '/insights'
@@ -158,6 +177,7 @@ export interface FileRouteTypes {
     | '/projects'
     | '/services'
     | '/team'
+    | '/terms'
     | '/tools'
     | '/solutions/$slug'
     | '/solutions/'
@@ -166,6 +186,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
+    | '/cookies'
     | '/esg'
     | '/industries'
     | '/insights'
@@ -174,6 +195,7 @@ export interface FileRouteTypes {
     | '/projects'
     | '/services'
     | '/team'
+    | '/terms'
     | '/tools'
     | '/solutions/$slug'
     | '/solutions'
@@ -182,6 +204,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
+    | '/cookies'
     | '/esg'
     | '/industries'
     | '/insights'
@@ -190,6 +213,7 @@ export interface FileRouteTypes {
     | '/projects'
     | '/services'
     | '/team'
+    | '/terms'
     | '/tools'
     | '/solutions/$slug'
     | '/solutions/'
@@ -199,6 +223,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
+  CookiesRoute: typeof CookiesRoute
   EsgRoute: typeof EsgRoute
   IndustriesRoute: typeof IndustriesRoute
   InsightsRoute: typeof InsightsRoute
@@ -207,6 +232,7 @@ export interface RootRouteChildren {
   ProjectsRoute: typeof ProjectsRoute
   ServicesRoute: typeof ServicesRoute
   TeamRoute: typeof TeamRoute
+  TermsRoute: typeof TermsRoute
   ToolsRoute: typeof ToolsRoute
   SolutionsSlugRoute: typeof SolutionsSlugRoute
   SolutionsIndexRoute: typeof SolutionsIndexRoute
@@ -233,6 +259,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cookies': {
+      id: '/cookies'
+      path: '/cookies'
+      fullPath: '/cookies'
+      preLoaderRoute: typeof CookiesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/esg': {
@@ -291,6 +324,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TeamRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/tools': {
       id: '/tools'
       path: '/tools'
@@ -319,6 +359,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
+  CookiesRoute: CookiesRoute,
   EsgRoute: EsgRoute,
   IndustriesRoute: IndustriesRoute,
   InsightsRoute: InsightsRoute,
@@ -327,6 +368,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProjectsRoute: ProjectsRoute,
   ServicesRoute: ServicesRoute,
   TeamRoute: TeamRoute,
+  TermsRoute: TermsRoute,
   ToolsRoute: ToolsRoute,
   SolutionsSlugRoute: SolutionsSlugRoute,
   SolutionsIndexRoute: SolutionsIndexRoute,
