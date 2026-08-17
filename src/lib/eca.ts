@@ -163,3 +163,70 @@ export const FAQS = [
     long: "Because the address never changes, a code printed on a counter card or a quotation stays valid. Ask the sales desk for the account specific list if you buy at trade volume.",
   },
 ] as const;
+
+export const CASE_STUDIES = [
+  {
+    client: "Regional internet provider, Rift Valley",
+    title: "Aerial fibre through 41 kilometres of poled route",
+    scope: "ADSS reels, closures, splitters, drop cable, splice consumables",
+    before: "Two suppliers, mismatched span ratings and a crew idling on sleeves and pigtails.",
+    after:
+      "One staged supply plan per week of build, spans rated above the longest gap, and zero repeat splices on the acceptance trace.",
+    result: "41 km strung, 96 closures populated, handover pack signed on first submission",
+  },
+  {
+    client: "Private school group, Nairobi",
+    title: "Campus backbone and 620 certified outlets",
+    scope: "Fibre backbone between blocks, CAT6 horizontal, cabinets, patching, testers",
+    before: "One overloaded comms cupboard and copper runs well past the 90 metre limit.",
+    after:
+      "A cabinet per block linked on single mode fibre, every outlet inside the permanent link limit and labelled to a room map.",
+    result: "620 outlets certified, results filed per outlet for the estates team",
+  },
+  {
+    client: "County facility, Western Kenya",
+    title: "Surveillance retrofit sized around a 30 day retention rule",
+    scope: "IP cameras, NVR and storage sizing, PoE switching, access readers",
+    before: "A recorder that filled in eleven days and switches without the PoE budget for night mode.",
+    after:
+      "Storage calculated from bitrate, camera count and retention, and switch budgets set with headroom for illuminators.",
+    result: "30 day retention held through the first full quarter, no power brownouts logged",
+  },
+] as const;
+
+export const CERTIFICATIONS = [
+  {
+    title: "Registered Kenyan supplier",
+    body: "Company registration and KRA PIN printed on every quotation, invoice and delivery note so procurement can file the paperwork without chasing it.",
+  },
+  {
+    title: "Brand stockist agreements",
+    body: "Supply and support arrangements with the manufacturers we carry, which is what makes local warranty assessment possible instead of overseas freight.",
+  },
+  {
+    title: "Tender ready documentation",
+    body: "Compliance packs, technical datasheets and warranty statements assembled to the format county and institutional tenders ask for.",
+  },
+  {
+    title: "Manufacturer trained desk",
+    body: "Product training from the brands we stock keeps advice on grades, spans and power budgets current rather than remembered.",
+  },
+] as const;
+
+export const CAREERS = [
+  {
+    role: "Technical sales engineer",
+    place: "Nairobi",
+    body: "Read drawings, correct bills of material and turn site descriptions into quotations buyers can hand to procurement.",
+  },
+  {
+    role: "Fibre support technician",
+    place: "Eldoret",
+    body: "Splicing, OTDR testing and on site support for provider and contractor crews across the western corridor.",
+  },
+  {
+    role: "Stores and dispatch controller",
+    place: "Nairobi",
+    body: "Keep reel and consumable depth honest, stage rollouts week by week and get freight out the door on time.",
+  },
+] as const;
