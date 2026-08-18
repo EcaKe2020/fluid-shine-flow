@@ -34,8 +34,13 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   return <ThemeContext.Provider value={{ mode, toggle }}>{children}</ThemeContext.Provider>;
 }
 
+export function useTheme() {
+  return useContext(ThemeContext);
+}
+
 export function ThemeToggle({ className = "" }: { className?: string }) {
   const { mode, toggle } = useContext(ThemeContext);
+
 
   return (
     <button
