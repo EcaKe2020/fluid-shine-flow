@@ -3,17 +3,24 @@ import { ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-reac
 import { useCallback, useEffect, useRef, useState } from "react";
 import { shopUrl } from "@/lib/eca";
 import { KES } from "@/lib/price-list";
+import { useTheme } from "@/components/site/theme";
 import spool from "@/assets/product-spool.jpg";
 import switchImg from "@/assets/product-switch.jpg";
 import router from "@/assets/product-router.jpg";
 import cabinet from "@/assets/product-cabinet.jpg";
 import splicer from "@/assets/product-splicer.jpg";
+import lightSpool from "@/assets/light-spool.jpg";
+import lightSwitch from "@/assets/light-switch.jpg";
+import lightRouter from "@/assets/light-router.jpg";
+import lightCabinet from "@/assets/light-cabinet.jpg";
+import lightSplicer from "@/assets/light-splicer.jpg";
 
 type Product = {
   name: string;
   category: string;
   price: number;
   image: string;
+  imageLight: string;
   alt: string;
 };
 
@@ -23,6 +30,7 @@ const PRODUCTS: Product[] = [
     category: "Cabling",
     price: 580,
     image: spool,
+    imageLight: lightSpool,
     alt: "Fibre optic cable spool",
   },
   {
@@ -30,6 +38,7 @@ const PRODUCTS: Product[] = [
     category: "Access Layer",
     price: 12500,
     image: switchImg,
+    imageLight: lightSwitch,
     alt: "Managed network switch",
   },
   {
@@ -37,6 +46,7 @@ const PRODUCTS: Product[] = [
     category: "Backbone Routing",
     price: 68000,
     image: router,
+    imageLight: lightRouter,
     alt: "Enterprise network router",
   },
   {
@@ -44,6 +54,7 @@ const PRODUCTS: Product[] = [
     category: "Compute Node",
     price: 18500,
     image: cabinet,
+    imageLight: lightCabinet,
     alt: "Data center server rack",
   },
   {
@@ -51,6 +62,7 @@ const PRODUCTS: Product[] = [
     category: "Deployment Tools",
     price: 98000,
     image: splicer,
+    imageLight: lightSplicer,
     alt: "Fibre fusion splicer kit",
   },
   {
@@ -58,6 +70,7 @@ const PRODUCTS: Product[] = [
     category: "Active Equipment",
     price: 68000,
     image: router,
+    imageLight: lightRouter,
     alt: "GPON optical line terminal",
   },
   {
@@ -65,6 +78,7 @@ const PRODUCTS: Product[] = [
     category: "Networking",
     price: 12500,
     image: switchImg,
+    imageLight: lightSwitch,
     alt: "Managed PoE switch",
   },
   {
@@ -72,6 +86,7 @@ const PRODUCTS: Product[] = [
     category: "Enclosures",
     price: 18500,
     image: cabinet,
+    imageLight: lightCabinet,
     alt: "12U data cabinet",
   },
   {
@@ -79,6 +94,7 @@ const PRODUCTS: Product[] = [
     category: "Test Equipment",
     price: 9800,
     image: splicer,
+    imageLight: lightSplicer,
     alt: "Complete fibre toolkit",
   },
   {
@@ -86,6 +102,7 @@ const PRODUCTS: Product[] = [
     category: "Outdoor Fibre",
     price: 580,
     image: spool,
+    imageLight: lightSpool,
     alt: "ADSS outdoor fibre cable",
   },
 ];
@@ -118,20 +135,29 @@ export function Hero() {
     return item!;
   });
 
+  const { mode } = useTheme();
+  const isDark = mode === "dark";
+
   return (
     <section className="relative overflow-hidden pb-14 pt-[7.5rem] sm:pb-16">
       <div className="section-pad">
-  <h1 className="mx-auto max-w-[920px] text-center font-serif text-[clamp(42px,5.7vw,76px)] font-light leading-[0.98] tracking-[0.02em] text-foreground">
-    Enterprise Infrastructure.
-    <span className="block">Ready on Demand.</span>
-  </h1>
+        <h1 className="blur-in mx-auto max-w-[920px] text-center font-serif text-[clamp(42px,5.7vw,76px)] font-light leading-[0.98] tracking-[0.02em] text-foreground">
+          Enterprise Infrastructure.
+          <span className="block">Ready on Demand.</span>
+        </h1>
 
-        <p className="mx-auto mt-6 max-w-[620px] text-center text-base leading-[1.55] text-muted-foreground sm:text-[17px]">
+        <p
+          className="blur-in mx-auto mt-6 max-w-[620px] text-center text-base leading-[1.55] text-muted-foreground sm:text-[17px]"
+          style={{ animationDelay: "120ms" }}
+        >
           Providing robust hardware solutions for the backbone of modern enterprise networking,
           available 24/7 for deployment and configuration.
         </p>
 
-        <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
+        <div
+          className="blur-in mt-7 flex flex-wrap items-center justify-center gap-3"
+          style={{ animationDelay: "240ms" }}
+        >
           <Link
             to="/contact"
             className="btn-radius inline-flex items-center gap-2 bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-[0_10px_24px_-12px_rgba(14,165,233,0.8)] transition-transform hover:-translate-y-0.5"
@@ -159,31 +185,57 @@ export function Hero() {
         <div className="relative mx-auto max-w-[1440px]">
           <div className="overflow-hidden px-0.5 py-2 sm:px-1">
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-              {visibleProducts.map((product) => (
-                <article key={`${active}-${product.name}`} className="group relative min-w-0">
-                  <div className="relative h-[276px] overflow-hidden rounded-[14px] bg-[#0B4C87] shadow-[0_16px_30px_-22px_rgba(11,76,135,0.8)] sm:h-[310px] lg:h-[330px]">
+              {visibleProducts.map((product, index) => (
+                <article
+                  key={`${active}-${product.name}`}
+                  className="card-in group relative min-w-0"
+                  style={{ animationDelay: `${index * 90}ms` }}
+                >
+                  <div
+                    className={`sweep-host relative h-[228px] overflow-hidden rounded-[14px] transition-transform duration-500 group-hover:-translate-y-1.5 sm:h-[254px] lg:h-[272px] ${
+                      isDark
+                        ? "bg-[#0B4C87] shadow-[0_16px_30px_-22px_rgba(11,76,135,0.8)]"
+                        : "bg-[#F5F0E8] shadow-[0_18px_34px_-24px_rgba(11,50,79,0.45)]"
+                    }`}
+                  >
                     <img
-                      src={product.image}
+                      src={isDark ? product.image : product.imageLight}
                       alt={product.alt}
                       width={420}
                       height={520}
                       loading="lazy"
-                      className="absolute inset-0 size-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                      className="absolute inset-0 size-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-[#062A4D]/75 via-transparent to-[#062A4D]/90" />
-                    <div className="absolute inset-x-0 top-0 p-4 text-center text-white">
+                    <div
+                      className={
+                        isDark
+                          ? "absolute inset-0 bg-gradient-to-b from-[#062A4D]/75 via-transparent to-[#062A4D]/90"
+                          : "absolute inset-0 bg-gradient-to-b from-[#F5F0E8]/95 via-transparent to-[#F5F0E8]/95"
+                      }
+                    />
+                    <div
+                      className={`absolute inset-x-0 top-0 p-4 text-center ${isDark ? "text-white" : "text-[#16324f]"}`}
+                    >
                       <p className="text-sm font-semibold uppercase tracking-[0.03em]">
                         {product.name}
                       </p>
-                      <p className="mt-0.5 text-xs text-white/70">{product.category}</p>
+                      <p className={`mt-0.5 text-xs ${isDark ? "text-white/70" : "text-[#5b7186]"}`}>
+                        {product.category}
+                      </p>
                     </div>
                     <div className="absolute inset-x-4 bottom-4 flex items-end justify-between gap-2">
-                      <span className="text-sm font-bold text-white">{KES(product.price)}</span>
+                      <span
+                        className={`text-sm font-bold ${isDark ? "text-white" : "text-[#16324f]"}`}
+                      >
+                        {KES(product.price)}
+                      </span>
                       <a
                         href={`${shopUrl("hero-product")}#${encodeURIComponent(product.name)}`}
                         target="_blank"
                         rel="noreferrer"
-                        className="rounded-full bg-white/90 px-3 py-2 text-[11px] font-bold text-[#0B4C87] opacity-0 transition-opacity group-hover:opacity-100"
+                        className={`translate-y-1 rounded-full px-3 py-2 text-[11px] font-bold opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 ${
+                          isDark ? "bg-white/90 text-[#0B4C87]" : "bg-[#0B4C87] text-white"
+                        }`}
                       >
                         Order Now
                       </a>
@@ -193,6 +245,7 @@ export function Hero() {
               ))}
             </div>
           </div>
+
 
           <button
             type="button"

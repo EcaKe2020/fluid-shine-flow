@@ -158,7 +158,6 @@ function Industries() {
 
       <CtaBand
         title="Not listed here?"
-        label="Custom procurement options"
         body="Contact us for tailored quotes and documentation specific to your organization"
       />
     </>
