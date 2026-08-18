@@ -3,17 +3,24 @@ import { ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-reac
 import { useCallback, useEffect, useRef, useState } from "react";
 import { shopUrl } from "@/lib/eca";
 import { KES } from "@/lib/price-list";
+import { useTheme } from "@/components/site/theme";
 import spool from "@/assets/product-spool.jpg";
 import switchImg from "@/assets/product-switch.jpg";
 import router from "@/assets/product-router.jpg";
 import cabinet from "@/assets/product-cabinet.jpg";
 import splicer from "@/assets/product-splicer.jpg";
+import lightSpool from "@/assets/light-spool.jpg";
+import lightSwitch from "@/assets/light-switch.jpg";
+import lightRouter from "@/assets/light-router.jpg";
+import lightCabinet from "@/assets/light-cabinet.jpg";
+import lightSplicer from "@/assets/light-splicer.jpg";
 
 type Product = {
   name: string;
   category: string;
   price: number;
   image: string;
+  imageLight: string;
   alt: string;
 };
 
@@ -23,6 +30,7 @@ const PRODUCTS: Product[] = [
     category: "Cabling",
     price: 580,
     image: spool,
+    imageLight: lightSpool,
     alt: "Fibre optic cable spool",
   },
   {
@@ -30,6 +38,7 @@ const PRODUCTS: Product[] = [
     category: "Access Layer",
     price: 12500,
     image: switchImg,
+    imageLight: lightSwitch,
     alt: "Managed network switch",
   },
   {
@@ -37,6 +46,7 @@ const PRODUCTS: Product[] = [
     category: "Backbone Routing",
     price: 68000,
     image: router,
+    imageLight: lightRouter,
     alt: "Enterprise network router",
   },
   {
@@ -44,6 +54,7 @@ const PRODUCTS: Product[] = [
     category: "Compute Node",
     price: 18500,
     image: cabinet,
+    imageLight: lightCabinet,
     alt: "Data center server rack",
   },
   {
@@ -51,6 +62,7 @@ const PRODUCTS: Product[] = [
     category: "Deployment Tools",
     price: 98000,
     image: splicer,
+    imageLight: lightSplicer,
     alt: "Fibre fusion splicer kit",
   },
   {
@@ -58,6 +70,7 @@ const PRODUCTS: Product[] = [
     category: "Active Equipment",
     price: 68000,
     image: router,
+    imageLight: lightRouter,
     alt: "GPON optical line terminal",
   },
   {
@@ -65,6 +78,7 @@ const PRODUCTS: Product[] = [
     category: "Networking",
     price: 12500,
     image: switchImg,
+    imageLight: lightSwitch,
     alt: "Managed PoE switch",
   },
   {
@@ -72,6 +86,7 @@ const PRODUCTS: Product[] = [
     category: "Enclosures",
     price: 18500,
     image: cabinet,
+    imageLight: lightCabinet,
     alt: "12U data cabinet",
   },
   {
@@ -79,6 +94,7 @@ const PRODUCTS: Product[] = [
     category: "Test Equipment",
     price: 9800,
     image: splicer,
+    imageLight: lightSplicer,
     alt: "Complete fibre toolkit",
   },
   {
@@ -86,6 +102,7 @@ const PRODUCTS: Product[] = [
     category: "Outdoor Fibre",
     price: 580,
     image: spool,
+    imageLight: lightSpool,
     alt: "ADSS outdoor fibre cable",
   },
 ];
