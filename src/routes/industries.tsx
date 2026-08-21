@@ -1,17 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { CheckCircle2, Building2, ArrowRight } from "lucide-react";
 import { INDUSTRIES } from "@/lib/eca";
 import {
   CtaBand,
-  Eyebrow,
-  Heading,
-  Lead,
-  Panel,
-  QuoteButton,
-  Reveal,
   Section,
-  ShopButton,
   Content,
-  CardContentWrapper,
 } from "@/components/site/primitives";
 
 export const Route = createFileRoute("/industries")({
@@ -37,7 +30,7 @@ export const Route = createFileRoute("/industries")({
 const DEEP = [
   {
     title: "Internet service providers",
-    need: "Continuity of supply and predictable unit cost",
+    need: "Continuity of supply & predictable cost",
     body: "Rollouts fail on missing consumables, not missing routers. Reel stock, drop cable, closures, splitters and splice sleeves are held in depth so a crew that finishes early can restock the same afternoon rather than idling for a week.",
     points: [
       "Repeat order lists kept on file",
@@ -47,119 +40,157 @@ const DEEP = [
   },
   {
     title: "Contractors and installers",
-    need: "Speed, pick up and a checked bill of materials",
+    need: "Speed, pickup & BOM verification",
     body: "Site work moves faster than email. Collection from Embakasi, trade tiers on volume and a technical review that catches a wrong connector type before it becomes a second trip to site.",
-    points: ["Same day counter collection", "Volume pricing tiers", "Technical review of the list"],
+    points: [
+      "Same day counter collection",
+      "Volume pricing tiers",
+      "Technical review of the list"
+    ],
   },
   {
     title: "Corporates and system integrators",
     need: "Documentation procurement can file",
     body: "Quotations, delivery notes, warranty statements and specification sheets arrive in a form that satisfies finance and audit, with a single point of contact for the account.",
-    points: ["Formal quotations and LPO handling", "Warranty terms per line item", "One account contact"],
+    points: [
+      "Formal quotations and LPO handling",
+      "Warranty terms per line item",
+      "One account contact",
+    ],
   },
   {
-    title: "Schools and educational institutions",
-    need: "Budget cycles and long life installations",
+    title: "Schools & educational institutions",
+    need: "Budget cycles & long-life installations",
     body: "Campus backbones, lab switching and surveillance specified to survive years of student traffic, quoted against a term budget with phased options where funding arrives in stages.",
-    points: ["Phased rollout options", "Campus fibre backbones", "Lab and hostel networking"],
+    points: [
+      "Phased rollout options",
+      "Campus fibre backbones",
+      "Lab and hostel networking"
+    ],
   },
   {
     title: "Government and county projects",
-    need: "Tender compliance",
+    need: "Strict tender compliance",
     body: "Tender ready quotations, documentation packs and delivery evidence for public sector procurement, with clarity on lead times where a schedule is contractual.",
-    points: ["Tender documentation", "Lead time commitments", "Nationwide delivery evidence"],
+    points: [
+      "Tender documentation",
+      "Lead time commitments",
+      "Nationwide delivery evidence"
+    ],
   },
   {
-    title: "Data centres, security firms and developers",
-    need: "Discipline in the rack and the riser",
+    title: "Data centres & security firms",
+    need: "Discipline in the rack and riser",
     body: "Patching, containment, riser fibre and surveillance for facilities where a badly dressed rack turns into a fault report six months later.",
-    points: ["Rack build out kits", "Riser and backbone fibre", "Surveillance and access control"],
+    points: [
+      "Rack build out kits",
+      "Riser and backbone fibre",
+      "Surveillance and access control"
+    ],
   },
 ];
 
 function Industries() {
   return (
     <>
-      <Section className="pt-16 sm:pt-20 lg:pt-24 content-left">
+      {/* High-End Editorial Hero Layout */}
+      <Section className="pt-20 sm:pt-32 pb-16 border-b border-border/80">
         <Content>
-          <div className="grid items-center gap-8 lg:grid-cols-[1.05fr_0.95fr]">
-            <div className="rise">
-              <Eyebrow>Industries served</Eyebrow>
-              <Heading as="h1" center className="mb-6">
-                Same warehouse, <span className="ink-text">different buying rhythm</span>
-              </Heading>
-              <Lead className="mt-6">
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-20 items-start">
+            <div className="lg:col-span-7">
+              <p className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-6 flex items-center gap-2">
+                <Building2 className="size-4" /> Market Segments
+              </p>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-foreground leading-[1.1]">
+                Same warehouse, different buying rhythm.
+              </h1>
+            </div>
+            <div className="lg:col-span-5 lg:pt-4">
+              <p className="text-lg leading-relaxed text-muted-foreground">
                 An ISP buying a reel every week does not want the same process as a county office
-                running a tender. These are the patterns the desk is set up for.
-              </Lead>
-              <div className="mt-8 flex flex-wrap justify-center gap-6">
-                <QuoteButton />
-                <ShopButton />
+                running a tender. These are the supply lines, documentation standards, and volume 
+                patterns the technical desk is set up to support.
+              </p>
+              <div className="mt-8 flex items-center gap-6">
+                <a 
+                  href="/contact" 
+                  className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-primary hover:text-primary/80 transition-colors"
+                >
+                  Request Procurement Quote <ArrowRight className="size-4" />
+                </a>
               </div>
             </div>
-            <Reveal delay={100}>
-              <div className="grid gap-6 sm:grid-cols-2 content-left">
-                {DEEP.map((item, i) => (
-                  <Reveal key={item.title} delay={i * 80}>
-                    <CardContentWrapper>
-                      <Panel className="h-full text-center">
-                        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-ember mb-4">
-                          {item.need}
-                        </p>
-                        <h2 className="mt-4 text-xl font-semibold mb-3">
-                          {item.title}
-                        </h2>
-                        <p className="mt-3 text-sm leading-relaxed text-muted-foreground flex-1">
-                          {item.body}
-                        </p>
-                        <ul className="mt-5 flex flex-wrap justify-center gap-4">
-                          {item.points.map((p) => (
-                            <li
-                              key={p}
-                              className="rounded-full bg-primary-50 px-4 py-2 text-xs font-medium text-primary"
-                            >
-                              {p}
-                            </li>
-                          ))}
-                        </ul>
-                      </Panel>
-                    </CardContentWrapper>
-                  </Reveal>
-                ))}
-              </div>
-            </Reveal>
           </div>
         </Content>
       </Section>
 
-      <Section className="pt-0">
+      {/* Industrial Spec Grid */}
+      <Section className="py-20">
         <Content>
-          <Reveal>
-            <div className="gloss rounded-[2rem] p-8 sm:p-12 text-center">
-              <div className="relative z-10">
-                <Heading center className="mb-4">Not on the list?</Heading>
-                <Lead center className="mt-4">
-                  Hotels, hospitals, manufacturers, churches and estates all buy from the same
-                  shelves. Describe the site and the technical desk will work out which of the four
-                  supply lines it touches.
-                </Lead>
-                <ul className="mt-6 grid gap-3 sm:grid-cols-2 text-center">
-                  {INDUSTRIES.map((i) => (
-                    <li key={i.title} className="text-sm text-muted-foreground">
-                      <span className="font-medium text-foreground">{i.title}.</span> {i.body}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16">
+            {DEEP.map((item, i) => (
+              <div key={item.title} className="border-t border-border/80 pt-6 group">
+                {/* Index & Need Tag */}
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="font-mono text-sm font-bold text-muted-foreground/50">
+                    {String(i + 1).padStart(2, '0')} //
+                  </span>
+                  <span className="text-xs font-bold uppercase tracking-wider text-primary">
+                    {item.need}
+                  </span>
+                </div>
+                
+                <h2 className="text-xl font-bold text-foreground mb-3">{item.title}</h2>
+                <p className="text-sm leading-relaxed text-muted-foreground mb-6">
+                  {item.body}
+                </p>
+                
+                {/* Clean Checklist instead of pills */}
+                <ul className="space-y-2 border-t border-border/40 pt-4">
+                  {item.points.map((p, idx) => (
+                    <li key={idx} className="flex items-start gap-2 text-sm text-foreground/80">
+                      <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-muted-foreground" />
+                      <span>{p}</span>
                     </li>
                   ))}
                 </ul>
               </div>
+            ))}
+          </div>
+        </Content>
+      </Section>
+
+      {/* Directory-Style Secondary Industries List */}
+      <Section className="py-20 bg-muted/20">
+        <Content>
+          <div className="grid lg:grid-cols-12 gap-12">
+            <div className="lg:col-span-4 border-t border-border/80 pt-6">
+              <h2 className="text-2xl font-bold text-foreground">Not on the list?</h2>
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                Hotels, hospitals, manufacturers, churches and estates all buy from the same
+                shelves. Describe the site and the technical desk will work out which of the four
+                supply lines it touches.
+              </p>
             </div>
-          </Reveal>
+            
+            <div className="lg:col-span-8">
+              <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-6 border-t border-border/80 pt-6">
+                {INDUSTRIES.map((i) => (
+                  <li key={i.title} className="text-sm leading-relaxed">
+                    <span className="font-bold text-foreground block mb-1">{i.title}</span> 
+                    <span className="text-muted-foreground">{i.body}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </Content>
       </Section>
 
       <CtaBand
-        title="Not listed here?"
-        label="Custom procurement options"
-        body="Contact us for tailored quotes and documentation specific to your organization"
+        title="Require custom procurement documentation?"
+    
+        body="Contact us for tailored quotes, LPO handling, and compliance documentation specific to your organization's buying cycle."
       />
     </>
   );

@@ -1,19 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { ArrowRight, FolderGit2, GitCommitHorizontal, CheckCircle2 } from "lucide-react";
 import { CASE_STUDIES } from "@/lib/eca";
 import rack from "@/assets/rack.jpg";
 import splicing from "@/assets/splicing.jpg";
 import {
   CtaBand,
-  Eyebrow,
-  Heading,
-  Lead,
-  Panel,
-  QuoteButton,
-  Reveal,
   Section,
-  ShopButton,
   Content,
-  CardContentWrapper,
 } from "@/components/site/primitives";
 
 export const Route = createFileRoute("/projects")({
@@ -39,12 +32,12 @@ export const Route = createFileRoute("/projects")({
 const TYPES = [
   {
     title: "Aerial fibre rollout for a regional provider",
-    scope: "ADSS spans, closures, splitters, drop cable, splicing and OTDR support",
+    scope: "ADSS spans, closures, splitters, drop cable, splicing & OTDR support",
     body: "A poled route through a growing estate needs cable rated for the longest span, closures at every branch and enough drop cable to connect subscribers as they sign. Supply is staged so the crew never carries more stock than the week needs.",
   },
   {
     title: "Campus structured cabling",
-    scope: "CAT6 horizontal, fibre backbone between blocks, cabinets and certification",
+    scope: "CAT6 horizontal, fibre backbone between blocks, cabinets & certification",
     body: "Blocks are linked with fibre while each block keeps its own cabinet, so an outlet is never more than 90 metres from its patch panel. Certification results are handed over with the delivery notes.",
   },
   {
@@ -85,137 +78,167 @@ const FLOW = [
 function Projects() {
   return (
     <>
-      <Section className="pt-16 sm:pt-20 lg:pt-24 content-left">
+      {/* High-End Editorial Hero Layout */}
+      <Section className="pt-20 sm:pt-32 pb-16 border-b border-border/80">
         <Content>
-          <div className="grid items-center gap-8 lg:grid-cols-[1.05fr_0.95fr]">
-            <div className="rise">
-              <Eyebrow>Projects and case studies</Eyebrow>
-              <Heading as="h1" center className="mb-6">
-                The work behind the <span className="ink-text">delivery note</span>
-              </Heading>
-              <Lead className="mt-6">
-                Named case studies are published only once a client approves the details, so this page
-                describes project types and the supply workflow rather than claiming outcomes we
-                cannot evidence. Ask the sales desk for references relevant to your sector.
-              </Lead>
-              <div className="mt-8 flex flex-wrap justify-center gap-6">
-                <QuoteButton label="Discuss a project" />
-                <ShopButton />
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-20 items-start">
+            <div className="lg:col-span-7">
+              <p className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-6 flex items-center gap-2">
+                <FolderGit2 className="size-4" /> Reference Projects
+              </p>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-foreground leading-[1.1]">
+                The engineering behind the delivery note.
+              </h1>
+            </div>
+            <div className="lg:col-span-5 lg:pt-4">
+              <p className="text-lg leading-relaxed text-muted-foreground">
+                Named case studies are published only once a client approves the details, so this
+                page describes project types and the supply workflow rather than claiming outcomes
+                we cannot evidence. Ask the sales desk for references relevant to your sector.
+              </p>
+              <div className="mt-8 flex items-center gap-6">
+                <a
+                  href="/contact"
+                  className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-primary hover:text-primary/80 transition-colors"
+                >
+                  Discuss your project <ArrowRight className="size-4" />
+                </a>
               </div>
             </div>
-            <Reveal delay={100}>
-              <div className="grid gap-6 sm:grid-cols-2 content-left">
-                {CASE_STUDIES.map((cs, i) => (
-                  <Reveal key={cs.title} delay={i * 70}>
-                    <CardContentWrapper>
-                      <article className="sheen h-full p-6 text-center">
-                        <p className="text-xs font-bold uppercase tracking-[0.16em] text-ember mb-4">
-                          {cs.client}
-                        </p>
-                        <h2 className="mt-3 text-xl font-semibold mb-3">{cs.title}</h2>
-                        <p className="mt-2 text-sm text-muted-foreground mb-5">{cs.scope}</p>
-                        <dl className="mt-5 grid gap-4 sm:grid-cols-2">
-                          <div className="rounded-2xl bg-muted/60 p-4">
-                            <dt className="text-xs font-bold uppercase tracking-[0.14em] text-muted-foreground mb-2">
-                              Before
-                            </dt>
-                            <dd className="mt-2 text-sm leading-relaxed text-foreground">
-                              {cs.before}
-                            </dd>
-                          </div>
-                          <div className="rounded-2xl bg-primary/8 p-4">
-                            <dt className="text-xs font-bold uppercase tracking-[0.14em] text-primary mb-2">
-                              After
-                            </dt>
-                            <dd className="mt-2 text-sm leading-relaxed text-foreground">{cs.after}</dd>
-                          </div>
-                        </dl>
-                        <p className="mt-4 text-sm font-semibold text-primary">{cs.result}</p>
-                      </article>
-                    </CardContentWrapper>
-                  </Reveal>
-                ))}
-              </div>
-            </Reveal>
           </div>
         </Content>
       </Section>
 
-      <Section className="pt-0">
+      {/* Case Studies - Structural Spec Grid */}
+      <Section className="py-20">
         <Content>
-          <Reveal>
-            <Eyebrow center>Project types</Eyebrow>
-            <Heading center className="mb-4">Project types we supply every month</Heading>
-          </Reveal>
-          <div className="mt-8 grid gap-6 lg:grid-cols-2 content-left">
-            {TYPES.map((item, i) => (
-              <Reveal key={item.title} delay={i * 80}>
-                <CardContentWrapper>
-                  <Panel className="h-full text-center">
-                    <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-                    <p className="mt-2 text-xs font-semibold uppercase tracking-[0.14em] text-ember mb-3">
-                      {item.scope}
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
+            {CASE_STUDIES.map((cs, i) => (
+              <div key={cs.title} className="border-t border-border/80 pt-6">
+                <p className="text-xs font-bold uppercase tracking-wider text-primary mb-3">
+                  Client: {cs.client}
+                </p>
+                <h2 className="text-2xl font-bold text-foreground mb-2">{cs.title}</h2>
+                <p className="text-sm text-muted-foreground mb-6">{cs.scope}</p>
+
+                {/* Tabular Before/After Comparison */}
+                <div className="grid sm:grid-cols-2 gap-px bg-border/60 border border-border/60">
+                  <div className="bg-background p-5">
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-3 flex items-center gap-1.5">
+                      <GitCommitHorizontal className="size-3" /> Initial State
                     </p>
-                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                      {item.body}
+                    <p className="text-sm leading-relaxed text-foreground/80">{cs.before}</p>
+                  </div>
+                  <div className="bg-primary/5 p-5">
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-primary mb-3 flex items-center gap-1.5">
+                      <CheckCircle2 className="size-3" /> Deployed Solution
                     </p>
-                  </Panel>
-                </CardContentWrapper>
-              </Reveal>
+                    <p className="text-sm leading-relaxed text-foreground/80">{cs.after}</p>
+                  </div>
+                </div>
+
+                <div className="mt-6 border-l-2 border-primary pl-4">
+                  <p className="text-sm font-semibold text-foreground">{cs.result}</p>
+                </div>
+              </div>
             ))}
           </div>
         </Content>
       </Section>
 
-      <Section className="pt-0">
-        <Reveal>
-          <div className="gloss rounded-[2rem] p-3">
-            <img
-              src={splicing}
-              alt="Fibre splicing work on a project route"
-              width={1408}
-              height={1008}
-              loading="lazy"
-              className="relative z-10 aspect-[4/3] w-full rounded-[1.5rem] object-cover"
-            />
-          </div>
-        </Reveal>
+      {/* Project Types - Numbered Columns */}
+      <Section className="py-20 bg-muted/20">
         <Content>
-          <Reveal>
-            <div className="gloss rounded-[2rem] p-3">
-              <div className="relative z-10 text-center">
-                <Eyebrow center>How a project runs</Eyebrow>
-                <Heading center className="mb-4">Five stages, no surprises</Heading>
-                <ol className="mt-8 space-y-6 text-left">
-                  {FLOW.map((item, i) => (
-                    <Reveal key={item.step} delay={i * 70}>
-                      <li className="flex gap-4">
-                        <span className="ink-fill mt-0.5 mx-auto grid size-7 shrink-0 place-items-center rounded-full text-xs font-semibold text-primary-foreground dark:text-background">
-                          {i + 1}
-                        </span>
-                        <span>
-                          <span className="font-semibold">{item.step}.</span>{" "}
-                          <span className="text-sm text-muted-foreground">{item.body}</span>
-                        </span>
-                      </li>
-                    </Reveal>
-                  ))}
-                </ol>
+          <div className="mb-12">
+            <h2 className="text-sm font-bold uppercase tracking-widest text-muted-foreground">
+              Standard Configurations
+            </h2>
+            <p className="mt-4 text-3xl font-bold text-foreground">
+              Project types we supply every month
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-x-12 gap-y-16">
+            {TYPES.map((item, i) => (
+              <div key={item.title} className="border-t border-border/80 pt-6">
+                <div className="flex items-start justify-between mb-4">
+                  <h3 className="text-xl font-bold text-foreground max-w-[85%]">{item.title}</h3>
+                  <span className="font-mono text-sm font-bold text-muted-foreground/50">
+                    {String(i + 1).padStart(2, '0')} //
+                  </span>
+                </div>
+                <p className="text-xs font-bold uppercase tracking-wider text-foreground mb-4">
+                  {item.scope}
+                </p>
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  {item.body}
+                </p>
               </div>
-              <img
-                src={rack}
-                alt="Completed rack installation"
-                width={1408}
-                height={1008}
-                loading="lazy"
-                className="relative z-10 aspect-[4/3] w-full rounded-[1.5rem] object-cover"
-              />
-            </div>
-          </Reveal>
+            ))}
+          </div>
         </Content>
       </Section>
 
-      <CtaBand />
+      {/* Workflow & Imagery Split */}
+      <Section className="py-20">
+        <Content>
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            {/* Technical Flow List */}
+            <div>
+              <h2 className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-6">
+                Supply Protocol
+              </h2>
+              <h3 className="text-3xl font-bold text-foreground mb-10">
+                Five stages, no surprises
+              </h3>
+              <div className="space-y-6">
+                {FLOW.map((item, i) => (
+                  <div key={item.step} className="flex gap-5 border-t border-border/60 pt-6">
+                    <span className="font-mono text-lg font-bold text-primary shrink-0">
+                      0{i + 1}.
+                    </span>
+                    <div>
+                      <span className="block font-bold text-foreground mb-1">{item.step}</span>
+                      <span className="text-sm leading-relaxed text-muted-foreground">
+                        {item.body}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Structured Images */}
+            <div className="grid gap-4 sm:gap-6">
+              <div className="border border-border/80 p-2 bg-muted/10">
+                <img
+                  src={splicing}
+                  alt="Fibre splicing work on a project route"
+                  width={1408}
+                  height={1008}
+                  loading="lazy"
+                  className="w-full aspect-[16/9] object-cover bg-muted grayscale hover:grayscale-0 transition-all duration-500"
+                />
+              </div>
+              <div className="border border-border/80 p-2 bg-muted/10">
+                <img
+                  src={rack}
+                  alt="Completed rack installation"
+                  width={1408}
+                  height={1008}
+                  loading="lazy"
+                  className="w-full aspect-[16/9] object-cover bg-muted grayscale hover:grayscale-0 transition-all duration-500"
+                />
+              </div>
+            </div>
+          </div>
+        </Content>
+      </Section>
+
+      <CtaBand
+        title="Ready to specify your build?"
+        body="Send us your drawing, BOM, or site description for a verified technical review and quotation."
+      />
     </>
   );
 }

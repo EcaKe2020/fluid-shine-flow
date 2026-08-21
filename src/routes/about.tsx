@@ -1,19 +1,16 @@
-import { createFileRoute } from "@tanstack/react-router";
-import warehouse from "@/assets/warehouse.jpg";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowUpRight, CheckCircle2, FileCheck2, ShieldCheck, Mail, Globe2 } from "lucide-react";
+
+// Note: Ensure you have these 6 images in your assets folder, or replace the imports with your actual file names.
+import img1 from "@/assets/about-1.jpg";
+import img2 from "@/assets/about-2.jpg";
+import img3 from "@/assets/about-3.jpg";
+import img4 from "@/assets/about-4.jpg";
+import img5 from "@/assets/about-5.jpg";
+import img6 from "@/assets/about-6.jpg";
+
 import { BRANDS, CAREERS, CERTIFICATIONS, COMPANY, STATS } from "@/lib/eca";
-import { TeamSection } from "@/components/site/TeamSection";
-import {
-  CtaBand,
-  Eyebrow,
-  Heading,
-  Lead,
-  Panel,
-  QuoteButton,
-  Reveal,
-  Section,
-  Content,
-  CardContentWrapper,
-} from "@/components/site/primitives";
+import { CtaBand, Section, Content } from "@/components/site/primitives";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -24,12 +21,6 @@ export const Route = createFileRoute("/about")({
         content:
           "Who ECA Networks is, how the Nairobi supply operation works, and what partners, contractors and procurement teams can expect from the technical desk.",
       },
-      { property: "og:title", content: "About ECA Networks" },
-      {
-        property: "og:description",
-        content:
-          "A Nairobi supply operation for fibre and networking infrastructure, built around stock depth, technical review and honest lead times.",
-      },
     ],
   }),
   component: About,
@@ -37,187 +28,233 @@ export const Route = createFileRoute("/about")({
 
 const PRINCIPLES = [
   {
+    num: "01",
     title: "Specify it right the first time",
     body: "A quotation is a technical document. If the cable grade, span rating or power budget does not add up, we say so before it ships rather than after it fails on site.",
+    bullets: [
+      "DB loss budget & span rating verification",
+      "Single-mode (OS2) & Multimode (OM3/OM4) specification checks",
+      "Power budget calculation support before billing",
+    ],
   },
   {
+    num: "02",
     title: "Hold depth, not just breadth",
     body: "A catalogue is easy. Keeping reels, connectors and consumables in quantity so a rollout can continue on a Friday afternoon is the harder and more useful thing.",
+    bullets: [
+      "Bulk ADSS, GYTA & FTTH drop cable reels ready in Embakasi",
+      "High-density patch panels, ODFs & splice closures on floor",
+      "Same-day dispatch for Nairobi and regional transit points",
+    ],
   },
   {
+    num: "03",
     title: "Publish what we can verify",
     body: "Figures, brand support and delivery promises stated here are the ones the team can stand behind on a call. Anything still being confirmed is left out.",
+    bullets: [
+      "100% factory-inspected & OTDR test-verified equipment",
+      "Transparent batch numbers and KRA / import documentation",
+      "Guaranteed local warranty and replacement support",
+    ],
   },
   {
+    num: "04",
     title: "Keep two doors open",
     body: "Straightforward orders belong on the online store where pricing is published. Project work belongs with a human who reads the drawing.",
+    bullets: [
+      "Instant online pricing for off-the-shelf consumables",
+      "Dedicated technical desk for complex tender BOM reviews",
+      "Direct WhatsApp and phone counter support in Nairobi & Eldoret",
+    ],
   },
 ];
 
 function About() {
   return (
     <>
-      <Section className="pt-16 sm:pt-24">
+      <Section className="pt-20 sm:pt-32 pb-12">
         <Content>
-          <div className="rise text-center">
-            <Eyebrow center>About the company</Eyebrow>
-            <Heading as="h1" center>
-              A supply desk built for people who{" "}
-              <span className="ink-text">install networks for a living</span>
-            </Heading>
-            <Lead center className="mt-6">
-              {COMPANY.name} supplies fibre optic and network infrastructure from Embakasi, Nairobi
-              to internet providers, contractors, integrators, institutions and public sector
-              projects across Kenya. The counter, the warehouse and the technical desk sit in the
-              same building, which is why a corrected bill of materials can turn into a packed
-              consignment the same day.
-            </Lead>
-          </div>
-        </Content>
-
-        <Reveal delay={100}>
-          <div className="gloss mt-12 rounded-[2rem] p-3">
-            <img
-              src={warehouse}
-              alt="Aisle of warehouse racking holding fibre optic cable drums"
-              width={1600}
-              height={1104}
-              loading="lazy"
-              className="relative z-10 aspect-[16/7] w-full rounded-[1.5rem] object-cover"
-            />
-          </div>
-        </Reveal>
-
-        <dl className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-4">
-          {STATS.map((stat, i) => (
-            <Reveal key={stat.label} delay={i * 70}>
-              <Panel className="h-full text-center">
-                <dt className="sr-only">{stat.label}</dt>
-                <dd>
-                  <span className="block text-2xl font-semibold sm:text-3xl">{stat.value}</span>
-                  <span className="text-xs text-muted-foreground">{stat.label}</span>
-                </dd>
-              </Panel>
-            </Reveal>
-          ))}
-        </dl>
-      </Section>
-
-      <Section className="pt-0">
-        <Content>
-          <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
-            <Reveal>
-              <div>
-                <Eyebrow center>How we work</Eyebrow>
-                <Heading center>Four habits that shape every order</Heading>
-                <Lead center className="mt-5">
-                  None of this is unusual in engineering. It is unusual in distribution, which is
-                  exactly the gap the business exists to close.
-                </Lead>
+          {/* High-End Editorial Hero Layout */}
+          <div className="mb-10">
+            <p className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-6">
+              Nairobi Central Supply Operation
+            </p>
+            <div className="grid lg:grid-cols-12 gap-10 lg:gap-20 items-start">
+              <div className="lg:col-span-7">
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-foreground leading-[1.1]">
+                  A supply desk built for people who install networks for a living.
+                </h1>
               </div>
-            </Reveal>
-            <div className="grid gap-5 sm:grid-cols-2">
-              {PRINCIPLES.map((p, i) => (
-                <Reveal key={p.title} delay={i * 80}>
-                  <CardContentWrapper>
-                    <h3 className="text-base font-semibold">{p.title}</h3>
-                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
-                  </CardContentWrapper>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </Content>
-      </Section>
-
-      <Section className="pt-0">
-        <Reveal>
-          <div className="gloss rounded-[2rem] p-8 sm:p-12 text-center">
-            <div className="relative z-10 grid gap-8 md:grid-cols-2 text-center">
-              <div>
-                <h2 className="text-xl font-semibold">Mission</h2>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                  Keep Kenyan networks supplied with equipment that is correctly specified,
-                  genuinely in stock and backed locally, so that installers spend their time
-                  building rather than chasing parts.
-                </p>
-              </div>
-              <div>
-                <h2 className="text-xl font-semibold">Vision</h2>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                  To be the first number a Kenyan network builder dials when a project needs
-                  infrastructure, whether that is a single splice tray or a county wide fibre
-                  rollout.
+              <div className="lg:col-span-5 lg:pt-4">
+                <p className="text-lg leading-relaxed text-muted-foreground">
+                  {COMPANY.name} supplies fibre optic and network infrastructure from Embakasi, Nairobi
+                  to internet providers, contractors, integrators, institutions and public sector
+                  projects across Kenya. The counter, the warehouse and the technical desk sit in the
+                  same building, which is why a corrected bill of materials can turn into a packed
+                  consignment the same day.
                 </p>
               </div>
             </div>
           </div>
-        </Reveal>
-      </Section>
 
-      <TeamSection />
+          {/* Pinterest-Style Masonry Image Grid */}
+          <div className="mt-16 columns-2 md:columns-3 gap-4 sm:gap-6 space-y-4 sm:space-y-6">
+            <img src={img1} alt="Facility" className="w-full rounded bg-muted object-cover aspect-[4/3]" />
+            <img src={img2} alt="Inventory" className="w-full rounded bg-muted object-cover aspect-[3/4]" />
+            <img src={img3} alt="Team" className="w-full rounded bg-muted object-cover aspect-square" />
+            <img src={img4} alt="Cables" className="w-full rounded bg-muted object-cover aspect-[4/5]" />
+            <img src={img5} alt="Dispatch" className="w-full rounded bg-muted object-cover aspect-[16/9]" />
+            <img src={img6} alt="Operations" className="w-full rounded bg-muted object-cover aspect-[2/3]" />
+          </div>
 
-      <Section className="pt-0">
-        <Reveal>
-          <Eyebrow center>Certifications and partners</Eyebrow>
-          <Heading center>The paperwork behind the counter</Heading>
-          <Lead center className="mt-4">
-            Buyers ask for evidence before they ask for a discount, so here is what backs a
-            quotation from us.
-          </Lead>
-        </Reveal>
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 text-center">
-          {CERTIFICATIONS.map((c, i) => (
-            <Reveal key={c.title} delay={i * 70}>
-              <Panel className="h-full text-center">
-                <h3 className="text-lg font-semibold">{c.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{c.body}</p>
-              </Panel>
-            </Reveal>
-          ))}
-        </div>
-        <Reveal delay={120}>
-          <div className="mt-8 flex flex-wrap justify-center gap-2.5">
-            {BRANDS.map((b) => (
-              <span
-                key={b}
-                className="rounded-full border border-border px-4 py-1.5 text-xs font-semibold text-muted-foreground"
-              >
-                {b}
-              </span>
+          {/* Clean Text-Driven Stats */}
+          <div className="mt-20 border-t border-border/80 pt-10 grid grid-cols-2 md:grid-cols-4 gap-8">
+            {STATS.map((stat) => (
+              <div key={stat.label} className="space-y-2">
+                <p className="text-4xl font-light tracking-tight text-foreground">{stat.value}</p>
+                <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                  {stat.label}
+                </p>
+              </div>
             ))}
           </div>
-        </Reveal>
+        </Content>
       </Section>
 
-      <Section className="pt-0">
-        <Reveal>
-          <Eyebrow center>Careers</Eyebrow>
-          <Heading center>Room for people who like getting it right</Heading>
-          <Lead center className="mt-4">
-            Open roles are listed here as they come up. Speculative applications are read, so send
-            one anyway if the work fits you.
-          </Lead>
-        </Reveal>
-        <div className="mt-12 grid gap-4 lg:grid-cols-3 text-center">
-          {CAREERS.map((role, i) => (
-            <Reveal key={role.role} delay={i * 70}>
-              <Panel className="h-full text-center">
-                <p className="text-xs font-bold uppercase tracking-[0.16em] text-ember">
+      <Section className="py-16 bg-muted/20">
+        <Content>
+          <div className="mb-12">
+            <h2 className="text-sm font-bold uppercase tracking-widest text-muted-foreground">
+              Operating Standards
+            </h2>
+            <p className="mt-4 text-3xl font-bold text-foreground max-w-2xl">
+              Four habits that shape every order
+            </p>
+            <p className="mt-4 text-lg text-muted-foreground max-w-2xl">
+              None of this is unusual in engineering. It is unusual in distribution, which is
+              exactly the gap the business exists to close.
+            </p>
+          </div>
+
+          {/* Grid-line separation instead of boxes */}
+          <div className="grid md:grid-cols-2 gap-x-12 gap-y-16">
+            {PRINCIPLES.map((p) => (
+              <div key={p.num} className="border-t border-border/80 pt-6">
+                <div className="flex items-center gap-4 mb-4">
+                  <span className="font-mono text-lg font-semibold text-muted-foreground">{p.num}</span>
+                  <h3 className="text-xl font-bold text-foreground">{p.title}</h3>
+                </div>
+                <p className="text-sm leading-relaxed text-muted-foreground mb-6">
+                  {p.body}
+                </p>
+                <ul className="space-y-3">
+                  {p.bullets.map((bullet, idx) => (
+                    <li key={idx} className="flex items-start gap-3 text-sm text-foreground/80">
+                      <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" />
+                      <span>{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </Content>
+      </Section>
+
+      <Section className="py-20">
+        <Content>
+          {/* Editorial split for Mission/Vision */}
+          <div className="border-y border-border/80 py-16 grid md:grid-cols-2 gap-12 md:gap-24">
+            <div>
+              <h2 className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-6 flex items-center gap-2">
+                <ShieldCheck className="size-4" /> Our Mission
+              </h2>
+              <p className="text-lg font-medium leading-relaxed text-foreground">
+                Keep Kenyan networks supplied with equipment that is correctly specified,
+                genuinely in stock and backed locally, so that installers spend their time
+                building rather than chasing parts.
+              </p>
+            </div>
+            <div>
+              <h2 className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-6 flex items-center gap-2">
+                <Globe2 className="size-4" /> Our Vision
+              </h2>
+              <p className="text-lg font-medium leading-relaxed text-foreground">
+                To be the first number a Kenyan network builder dials when a project needs
+                infrastructure, whether that is a single splice tray or a county-wide fibre
+                rollout.
+              </p>
+            </div>
+          </div>
+        </Content>
+      </Section>
+
+      <Section className="py-10">
+        <Content>
+          <div className="mb-10">
+            <h2 className="text-sm font-bold uppercase tracking-widest text-muted-foreground">
+              Compliance & Verification
+            </h2>
+            <p className="mt-4 text-3xl font-bold text-foreground">
+              The paperwork behind the counter
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {CERTIFICATIONS.map((c) => (
+              <div key={c.title} className="flex items-start gap-4">
+                <FileCheck2 className="mt-1 size-5 shrink-0 text-primary" />
+                <div>
+                  <h3 className="text-base font-bold text-foreground">{c.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{c.body}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Clean text list for brands instead of pills */}
+          <div className="mt-16 border-t border-border/80 pt-10">
+            <h3 className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-6">
+              Supported Manufacturer Brands & Compatibility
+            </h3>
+            <p className="text-lg text-foreground leading-relaxed font-medium">
+              {BRANDS.join(" \u2022 ")}
+            </p>
+          </div>
+        </Content>
+      </Section>
+
+      <Section className="py-20 bg-muted/20">
+        <Content>
+          <div className="mb-12">
+            <h2 className="text-sm font-bold uppercase tracking-widest text-muted-foreground">
+              Careers
+            </h2>
+            <p className="mt-4 text-3xl font-bold text-foreground">
+              Room for people who like getting it right
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-10">
+            {CAREERS.map((role) => (
+              <div key={role.role} className="border-t border-border/80 pt-6">
+                <p className="text-xs font-bold text-muted-foreground mb-3 uppercase tracking-wider">
                   {role.place}
                 </p>
-                <h3 className="mt-3 text-lg font-semibold">{role.role}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{role.body}</p>
+                <h3 className="text-lg font-bold text-foreground mb-3">{role.role}</h3>
+                <p className="text-sm leading-relaxed text-muted-foreground mb-6">{role.body}</p>
                 <a
                   href={`mailto:${COMPANY.email}?subject=${encodeURIComponent(`Application: ${role.role} (${role.place})`)}`}
-                  className="mt-4 inline-flex text-sm font-semibold text-primary hover:underline"
+                  className="inline-flex items-center gap-2 text-sm font-bold text-foreground hover:text-primary transition-colors"
                 >
-                  Apply by email
+                  <Mail className="size-4" />
+                  <span>Apply via email</span>
+                  <ArrowUpRight className="size-4" />
                 </a>
-              </Panel>
-            </Reveal>
-          ))}
-        </div>
+              </div>
+            ))}
+          </div>
+        </Content>
       </Section>
 
       <CtaBand

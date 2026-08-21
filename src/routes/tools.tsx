@@ -1,19 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { Cable, Calculator, Copy } from "lucide-react";
+import { Cable, Calculator, Copy, ArrowRight, Wrench } from "lucide-react";
 import { toast } from "sonner";
 import {
   CtaBand,
-  Eyebrow,
-  Heading,
-  Lead,
-  Panel,
-  QuoteButton,
-  Reveal,
   Section,
-  ShopButton,
   Content,
-  CardContentWrapper,
 } from "@/components/site/primitives";
 
 export const Route = createFileRoute("/tools")({
@@ -55,7 +47,7 @@ function Field({
 }
 
 const inputClass =
-  "w-full rounded-xl border border-input bg-background/70 px-3.5 py-2.5 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/25";
+  "w-full rounded-lg border border-input bg-background px-3.5 py-2.5 text-sm outline-none transition focus:border-primary focus:ring-1 focus:ring-primary";
 
 function BomCalculator() {
   const [outlets, setOutlets] = useState(48);
@@ -90,76 +82,81 @@ function BomCalculator() {
   ];
 
   return (
-    <Panel hover={false} className="h-full">
-      <div className="flex items-center gap-2 text-ember">
-        <Calculator className="size-5" />
-        <h2 className="text-lg font-semibold text-foreground">Project bill of materials</h2>
-      </div>
-      <p className="mt-2 text-sm text-muted-foreground">
-        A first pass estimate for a copper installation, including a twelve percent allowance for
-        routing and waste.
-      </p>
-
-      <div className="mt-6 grid gap-4 sm:grid-cols-2">
-        <Field label="Outlets" hint="data points">
-          <input
-            type="number"
-            min={1}
-            value={outlets}
-            onChange={(e) => setOutlets(Math.max(1, Number(e.target.value) || 0))}
-            className={inputClass}
-          />
-        </Field>
-        <Field label="Average run" hint="metres">
-          <input
-            type="number"
-            min={1}
-            max={90}
-            value={avgRun}
-            onChange={(e) => setAvgRun(Math.min(90, Math.max(1, Number(e.target.value) || 0)))}
-            className={inputClass}
-          />
-        </Field>
-        <Field label="Patch cords per outlet">
-          <input
-            type="number"
-            min={0}
-            max={4}
-            value={cords}
-            onChange={(e) => setCords(Math.max(0, Number(e.target.value) || 0))}
-            className={inputClass}
-          />
-        </Field>
-        <Field label="Category">
-          <select
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            className={inputClass}
-          >
-            <option>CAT6</option>
-            <option>CAT6A</option>
-            <option>CAT6 shielded</option>
-          </select>
-        </Field>
-      </div>
-
-      <ul className="mt-7 space-y-2.5">
-        {lines.map((line) => (
-          <li key={line.label} className="flex items-baseline justify-between gap-4 text-sm">
-            <span className="text-muted-foreground">{line.label}</span>
-            <span className="text-right font-semibold text-foreground">{line.value}</span>
-          </li>
-        ))}
-      </ul>
-
-      {avgRun > 85 ? (
-        <p className="mt-5 rounded-xl bg-ember/15 px-4 py-3 text-xs text-foreground/80">
-          A permanent link is limited to 90 metres of solid cable. At this run length, consider a
-          second cabinet or a fibre backbone to the far end.
+    <div className="border border-border/80 bg-background p-6 sm:p-8 flex flex-col justify-between">
+      <div>
+        <div className="flex items-center justify-between mb-4 border-b border-border/80 pb-4">
+          <div className="flex items-center gap-2.5 text-foreground">
+            <Calculator className="size-5 text-primary" />
+            <h2 className="text-lg font-bold">Project bill of materials</h2>
+          </div>
+          <span className="font-mono text-xs font-bold text-muted-foreground/50">01 //</span>
+        </div>
+        <p className="text-sm text-muted-foreground mb-6">
+          A first pass estimate for a copper installation, including a twelve percent allowance for
+          routing and waste.
         </p>
-      ) : null}
 
-      <div className="mt-6 flex flex-wrap items-center gap-3">
+        <div className="grid gap-4 sm:grid-cols-2">
+          <Field label="Outlets" hint="data points">
+            <input
+              type="number"
+              min={1}
+              value={outlets}
+              onChange={(e) => setOutlets(Math.max(1, Number(e.target.value) || 0))}
+              className={inputClass}
+            />
+          </Field>
+          <Field label="Average run" hint="metres">
+            <input
+              type="number"
+              min={1}
+              max={90}
+              value={avgRun}
+              onChange={(e) => setAvgRun(Math.min(90, Math.max(1, Number(e.target.value) || 0)))}
+              className={inputClass}
+            />
+          </Field>
+          <Field label="Patch cords per outlet">
+            <input
+              type="number"
+              min={0}
+              max={4}
+              value={cords}
+              onChange={(e) => setCords(Math.max(0, Number(e.target.value) || 0))}
+              className={inputClass}
+            />
+          </Field>
+          <Field label="Category">
+            <select
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              className={inputClass}
+            >
+              <option>CAT6</option>
+              <option>CAT6A</option>
+              <option>CAT6 shielded</option>
+            </select>
+          </Field>
+        </div>
+
+        <ul className="mt-8 space-y-3 border-t border-border/60 pt-6">
+          {lines.map((line) => (
+            <li key={line.label} className="flex items-baseline justify-between gap-4 text-sm">
+              <span className="text-muted-foreground">{line.label}</span>
+              <span className="text-right font-semibold text-foreground">{line.value}</span>
+            </li>
+          ))}
+        </ul>
+
+        {avgRun > 85 ? (
+          <p className="mt-6 border-l-2 border-primary bg-primary/5 px-4 py-3 text-xs text-foreground/80">
+            A permanent link is limited to 90 metres of solid cable. At this run length, consider a
+            second cabinet or a fibre backbone to the far end.
+          </p>
+        ) : null}
+      </div>
+
+      <div className="mt-8 pt-6 border-t border-border/60 flex flex-wrap items-center gap-4">
         <button
           type="button"
           onClick={() => {
@@ -169,14 +166,19 @@ function BomCalculator() {
               description: "Paste it into your quote request.",
             });
           }}
-          className="gloss gloss-hover inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold"
+          className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground hover:bg-primary/90 transition-colors"
         >
-          <Copy className="relative z-10 size-4 text-ember" />
-          <span className="relative z-10">Copy the list</span>
+          <Copy className="size-4" />
+          <span>Copy the list</span>
         </button>
-        <QuoteButton label="Send it for pricing" />
+        <a
+          href="/contact"
+          className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-primary hover:text-primary/80 transition-colors"
+        >
+          Request availability <ArrowRight className="size-4" />
+        </a>
       </div>
-    </Panel>
+    </div>
   );
 }
 
@@ -224,126 +226,148 @@ function CableSelector() {
   }, [route, span, poles]);
 
   return (
-    <Panel hover={false} className="h-full">
-      <div className="flex items-center gap-2 text-ember">
-        <Cable className="size-5" />
-        <h2 className="text-lg font-semibold text-foreground">Fibre cable selector</h2>
-      </div>
-      <p className="mt-2 text-sm text-muted-foreground">
-        Answer four questions and the tool names the cable family the route calls for, plus the
-        mistake it most often causes.
-      </p>
-
-      <div className="mt-6 grid gap-4 sm:grid-cols-2">
-        <Field label="Route type">
-          <select value={route} onChange={(e) => setRoute(e.target.value)} className={inputClass}>
-            <option value="aerial">Aerial between poles</option>
-            <option value="duct">Ducted or buried</option>
-            <option value="riser">Building riser</option>
-            <option value="indoor">Indoor horizontal</option>
-          </select>
-        </Field>
-        <Field label="Longest span" hint="metres">
-          <input
-            type="number"
-            min={1}
-            value={span}
-            onChange={(e) => setSpan(Math.max(1, Number(e.target.value) || 0))}
-            className={inputClass}
-            disabled={route !== "aerial"}
-          />
-        </Field>
-        <Field label="Pole route">
-          <select
-            value={poles}
-            onChange={(e) => setPoles(e.target.value)}
-            className={inputClass}
-            disabled={route !== "aerial"}
-          >
-            <option>shared with power</option>
-            <option>dedicated telecom poles</option>
-          </select>
-        </Field>
-        <Field label="Fibre count">
-          <select
-            value={cores}
-            onChange={(e) => setCores(Number(e.target.value))}
-            className={inputClass}
-          >
-            {[2, 4, 12, 24, 48, 96, 144].map((n) => (
-              <option key={n} value={n}>
-                {n} core
-              </option>
-            ))}
-          </select>
-        </Field>
-      </div>
-
-      <div className="mt-7 space-y-4 rounded-2xl bg-primary/8 p-5">
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-primary">
-            Recommended family
-          </p>
-          <p className="mt-1 text-base font-semibold">{advice.pick}</p>
+    <div className="border border-border/80 bg-background p-6 sm:p-8 flex flex-col justify-between">
+      <div>
+        <div className="flex items-center justify-between mb-4 border-b border-border/80 pb-4">
+          <div className="flex items-center gap-2.5 text-foreground">
+            <Cable className="size-5 text-primary" />
+            <h2 className="text-lg font-bold">Fibre cable selector</h2>
+          </div>
+          <span className="font-mono text-xs font-bold text-muted-foreground/50">02 //</span>
         </div>
-        <p className="text-sm leading-relaxed text-muted-foreground">{advice.why}</p>
-        <p className="text-sm leading-relaxed text-foreground/85">
-          <span className="font-semibold">Watch for this.</span> {advice.watch}
+        <p className="text-sm text-muted-foreground mb-6">
+          Answer four questions and the tool names the cable family the route calls for, plus the
+          mistake it most often causes.
         </p>
-        <p className="text-xs text-muted-foreground">
-          Sized at {cores} core. Leave spare fibres for growth, since a second span costs far more
-          than extra cores today.
-        </p>
+
+        <div className="grid gap-4 sm:grid-cols-2">
+          <Field label="Route type">
+            <select value={route} onChange={(e) => setRoute(e.target.value)} className={inputClass}>
+              <option value="aerial">Aerial between poles</option>
+              <option value="duct">Ducted or buried</option>
+              <option value="riser">Building riser</option>
+              <option value="indoor">Indoor horizontal</option>
+            </select>
+          </Field>
+          <Field label="Longest span" hint="metres">
+            <input
+              type="number"
+              min={1}
+              value={span}
+              onChange={(e) => setSpan(Math.max(1, Number(e.target.value) || 0))}
+              className={inputClass}
+              disabled={route !== "aerial"}
+            />
+          </Field>
+          <Field label="Pole route">
+            <select
+              value={poles}
+              onChange={(e) => setPoles(e.target.value)}
+              className={inputClass}
+              disabled={route !== "aerial"}
+            >
+              <option>shared with power</option>
+              <option>dedicated telecom poles</option>
+            </select>
+          </Field>
+          <Field label="Fibre count">
+            <select
+              value={cores}
+              onChange={(e) => setCores(Number(e.target.value))}
+              className={inputClass}
+            >
+              {[2, 4, 12, 24, 48, 96, 144].map((n) => (
+                <option key={n} value={n}>
+                  {n} core
+                </option>
+              ))}
+            </select>
+          </Field>
+        </div>
+
+        <div className="mt-8 space-y-4 border border-border/60 bg-muted/10 p-5">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-widest text-primary mb-1">
+              Recommended family
+            </p>
+            <p className="text-base font-bold text-foreground">{advice.pick}</p>
+          </div>
+          <p className="text-sm leading-relaxed text-muted-foreground">{advice.why}</p>
+          <p className="text-sm leading-relaxed text-foreground/85">
+            <span className="font-bold">Watch for this.</span> {advice.watch}
+          </p>
+          <p className="text-xs text-muted-foreground border-t border-border/40 pt-3">
+            Sized at {cores} core. Leave spare fibres for growth, since a second span costs far more
+            than extra cores today.
+          </p>
+        </div>
       </div>
 
-      <div className="mt-6 flex flex-wrap gap-3">
-        <QuoteButton label="Confirm with an engineer" />
-        <ShopButton label="See stocked cable" />
+      <div className="mt-8 pt-6 border-t border-border/60 flex flex-wrap gap-6 items-center">
+        <a
+          href="/contact"
+          className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-primary hover:text-primary/80 transition-colors"
+        >
+          Confirm with an engineer <ArrowRight className="size-4" />
+        </a>
+        <a
+          href="/shop"
+          className="text-sm font-bold uppercase tracking-wide text-muted-foreground hover:text-foreground transition-colors"
+        >
+          See stocked cable
+        </a>
       </div>
-    </Panel>
+    </div>
   );
 }
 
 function Tools() {
   return (
     <>
-      <Section className="pt-16 sm:pt-20 lg:pt-24 content-left">
+      {/* High-End Editorial Hero Layout */}
+      <Section className="pt-20 sm:pt-32 pb-16 border-b border-border/80">
         <Content>
-          <div className="grid items-center gap-8 lg:grid-cols-[1.05fr_0.95fr]">
-            <div className="rise">
-              <Eyebrow>Interactive tools</Eyebrow>
-              <Heading as="h1" center className="mb-6">
-                Do the rough numbers yourself,{" "}
-                <span className="ink-text">then let us check them</span>
-              </Heading>
-              <Lead className="mt-6">
-                These calculators give an estimate good enough for a budget conversation. They are not
-                a substitute for a site survey, and the technical desk will review anything before it
-                becomes an order.
-              </Lead>
-              <div className="mt-8 flex flex-wrap justify-center gap-6">
-                <ShopButton label="Browse the store" />
-                <Link
-                  to="/tools"
-                  className="inline-flex items-center rounded-full border border-primary/25 px-5 py-2.5 text-sm font-semibold transition hover:bg-primary/10"
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-20 items-start">
+            <div className="lg:col-span-7">
+              <p className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-6 flex items-center gap-2">
+                <Wrench className="size-4" /> Interactive Specifications
+              </p>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-foreground leading-[1.1]">
+                Do the rough numbers yourself, then let us check them.
+              </h1>
+            </div>
+            <div className="lg:col-span-5 lg:pt-4">
+              <p className="text-lg leading-relaxed text-muted-foreground">
+                These calculators give an estimate good enough for a budget conversation. They are
+                not a substitute for a site survey, and the technical desk will review anything
+                before it becomes an order.
+              </p>
+              <div className="mt-8 flex items-center gap-6">
+                <a
+                  href="/shop"
+                  className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-primary hover:text-primary/80 transition-colors"
                 >
-                  Try the calculators
-                </Link>
+                  Browse the store <ArrowRight className="size-4" />
+                </a>
               </div>
             </div>
-            <Reveal delay={100}>
-              <div className="grid gap-6 sm:grid-cols-2 content-left">
-                <BomCalculator />
-                <CableSelector />
-              </div>
-            </Reveal>
+          </div>
+        </Content>
+      </Section>
+
+      {/* Calculators Section */}
+      <Section className="py-20">
+        <Content>
+          <div className="grid lg:grid-cols-2 gap-12">
+            <BomCalculator />
+            <CableSelector />
           </div>
         </Content>
       </Section>
 
       <CtaBand
-        title="Send the output straight to the quotation desk"
-        body="Paste the copied list into a quote request, add the site location and the delivery date you need, and pricing comes back with stock status per line."
+        title="Send the output straight to the technical desk"
+        body="Paste the copied list into a request, add the site location and the delivery date you need, and availability comes back with stock status per line."
       />
     </>
   );

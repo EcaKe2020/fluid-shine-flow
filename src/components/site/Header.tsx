@@ -10,7 +10,7 @@ const LEFT_NAV = [
   { to: "/industries", label: "Industries" },
   { to: "/projects", label: "Projects" },
   { to: "/tools", label: "Tools" },
-  { to: "/price-list", label: "Prices" },
+  { to: "/products", label: "Products" },
 ] as const;
 
 const RIGHT_NAV = [
@@ -24,7 +24,7 @@ const MOBILE_NAV = [
   { to: "/industries", label: "Industries" },
   { to: "/projects", label: "Projects" },
   { to: "/tools", label: "Tools" },
-  { to: "/price-list", label: "Prices" },
+  { to: "/products", label: "Products" },
   { to: "/about", label: "About" },
   { to: "/insights", label: "Insights" },
   { to: "/contact", label: "Contact" },

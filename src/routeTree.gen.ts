@@ -18,6 +18,7 @@ import { Route as IndustriesRouteImport } from './routes/industries'
 import { Route as InsightsRouteImport } from './routes/insights'
 import { Route as PriceListRouteImport } from './routes/price-list'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as ProductsRouteImport } from './routes/products'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as TeamRouteImport } from './routes/team'
@@ -71,6 +72,11 @@ const PrivacyRoute = PrivacyRouteImport.update({
   path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProductsRoute = ProductsRouteImport.update({
+  id: '/products',
+  path: '/products',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProjectsRoute = ProjectsRouteImport.update({
   id: '/projects',
   path: '/projects',
@@ -117,6 +123,7 @@ export interface FileRoutesByFullPath {
   '/insights': typeof InsightsRoute
   '/price-list': typeof PriceListRoute
   '/privacy': typeof PrivacyRoute
+  '/products': typeof ProductsRoute
   '/projects': typeof ProjectsRoute
   '/services': typeof ServicesRoute
   '/team': typeof TeamRoute
@@ -135,6 +142,7 @@ export interface FileRoutesByTo {
   '/insights': typeof InsightsRoute
   '/price-list': typeof PriceListRoute
   '/privacy': typeof PrivacyRoute
+  '/products': typeof ProductsRoute
   '/projects': typeof ProjectsRoute
   '/services': typeof ServicesRoute
   '/team': typeof TeamRoute
@@ -154,6 +162,7 @@ export interface FileRoutesById {
   '/insights': typeof InsightsRoute
   '/price-list': typeof PriceListRoute
   '/privacy': typeof PrivacyRoute
+  '/products': typeof ProductsRoute
   '/projects': typeof ProjectsRoute
   '/services': typeof ServicesRoute
   '/team': typeof TeamRoute
@@ -174,6 +183,7 @@ export interface FileRouteTypes {
     | '/insights'
     | '/price-list'
     | '/privacy'
+    | '/products'
     | '/projects'
     | '/services'
     | '/team'
@@ -192,6 +202,7 @@ export interface FileRouteTypes {
     | '/insights'
     | '/price-list'
     | '/privacy'
+    | '/products'
     | '/projects'
     | '/services'
     | '/team'
@@ -210,6 +221,7 @@ export interface FileRouteTypes {
     | '/insights'
     | '/price-list'
     | '/privacy'
+    | '/products'
     | '/projects'
     | '/services'
     | '/team'
@@ -229,6 +241,7 @@ export interface RootRouteChildren {
   InsightsRoute: typeof InsightsRoute
   PriceListRoute: typeof PriceListRoute
   PrivacyRoute: typeof PrivacyRoute
+  ProductsRoute: typeof ProductsRoute
   ProjectsRoute: typeof ProjectsRoute
   ServicesRoute: typeof ServicesRoute
   TeamRoute: typeof TeamRoute
@@ -303,6 +316,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/products': {
+      id: '/products'
+      path: '/products'
+      fullPath: '/products'
+      preLoaderRoute: typeof ProductsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/projects': {
       id: '/projects'
       path: '/projects'
@@ -365,6 +385,7 @@ const rootRouteChildren: RootRouteChildren = {
   InsightsRoute: InsightsRoute,
   PriceListRoute: PriceListRoute,
   PrivacyRoute: PrivacyRoute,
+  ProductsRoute: ProductsRoute,
   ProjectsRoute: ProjectsRoute,
   ServicesRoute: ServicesRoute,
   TeamRoute: TeamRoute,

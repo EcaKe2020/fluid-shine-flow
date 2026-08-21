@@ -325,7 +325,8 @@ function SolutionPage() {
                   <Eyebrow>Before you request pricing</Eyebrow>
                   <Heading>Four details that make a quotation accurate</Heading>
                   <Lead className="mt-6">
-                    Send these with your enquiry and the list usually comes back the same working day.
+                    Send these with your enquiry and the list usually comes back the same working
+                    day.
                   </Lead>
                   <div className="mt-8">
                     <QuoteButton />
@@ -336,7 +337,10 @@ function SolutionPage() {
                 <CardContentWrapper>
                   <ol className="space-y-4">
                     {detail.specify.map((item, i) => (
-                      <li key={i} className="flex gap-4 text-sm leading-relaxed text-muted-foreground">
+                      <li
+                        key={i}
+                        className="flex gap-4 text-sm leading-relaxed text-muted-foreground"
+                      >
                         <span className="ink-fill grid size-7 shrink-0 place-items-center rounded-full text-xs font-semibold text-primary-foreground dark:text-background">
                           {i + 1}
                         </span>

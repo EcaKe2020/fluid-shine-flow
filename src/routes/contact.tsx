@@ -1,8 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { ArrowUpRight, Clock, Mail, MapPin, Paperclip, Phone } from "lucide-react";
+import { ArrowUpRight, Clock, Mail, MapPin, Paperclip, Phone, CheckCircle2, Copy } from "lucide-react";
 import { COMPANY, LOCATIONS, SOLUTIONS } from "@/lib/eca";
 import { FaqList } from "@/components/site/Faq";
+import { toast } from "sonner";
 import {
   Eyebrow,
   Heading,
@@ -13,8 +14,6 @@ import {
   ShopButton,
   WhatsAppButton,
   Content,
-  CardContentWrapper,
-  FormField,
 } from "@/components/site/primitives";
 
 export const Route = createFileRoute("/contact")({
@@ -98,10 +97,14 @@ function Contact() {
     ]
       .filter(Boolean)
       .join("\n");
+
     window.location.href = `mailto:${COMPANY.email}?subject=${encodeURIComponent(
       `${ref} from ${form.company || form.name}`,
     )}&body=${encodeURIComponent(body)}`;
     setSentRef(ref);
+    toast.success("RFQ reference generated", {
+      description: "Opening your mail client with formatted specifications.",
+    });
   };
 
   const field =
@@ -127,9 +130,9 @@ function Contact() {
         }}
       />
 
-<Section className="pt-28 sm:pt-32">
+      <Section className="pt-28 sm:pt-32">
         <Content>
-          <div className="grid gap-10 lg:grid-cols-[1fr_1fr]">
+          <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr] items-start">
             <div className="rise">
               <Eyebrow>Get a quotation</Eyebrow>
               <Heading as="h1">
@@ -142,50 +145,54 @@ function Contact() {
 
               <div className="mt-10 grid gap-5 sm:grid-cols-2">
                 {LOCATIONS.map((loc) => (
-                  <div key={loc.city} className="sheen p-6">
-                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-ember">
-                      {loc.label}
-                    </p>
-                    <h2 className="mt-2 text-xl font-bold text-foreground">{loc.city}</h2>
-                    <p className="mt-4 flex items-start gap-2.5 text-sm text-muted-foreground">
-                      <MapPin className="mt-0.5 size-4 shrink-0 text-primary" />
-                      {loc.address}
-                    </p>
-                    <p className="mt-2.5 flex items-center gap-2.5 text-sm">
-                      <Phone className="size-4 shrink-0 text-primary" />
+                  <div key={loc.city} className="sheen p-6 flex flex-col justify-between">
+                    <div>
+                      <p className="text-xs font-bold uppercase tracking-[0.18em] text-ember">
+                        {loc.label}
+                      </p>
+                      <h2 className="mt-2 text-xl font-bold text-foreground">{loc.city}</h2>
+                      <p className="mt-4 flex items-start gap-2.5 text-sm text-muted-foreground">
+                        <MapPin className="mt-0.5 size-4 shrink-0 text-primary" />
+                        {loc.address}
+                      </p>
+                      <p className="mt-2.5 flex items-center gap-2.5 text-sm">
+                        <Phone className="size-4 shrink-0 text-primary" />
+                        <a
+                          href={loc.phoneHref}
+                          className="font-semibold text-foreground hover:text-primary transition-colors"
+                        >
+                          {loc.phone}
+                        </a>
+                      </p>
+                      <p className="mt-2.5 flex items-center gap-2.5 text-sm text-muted-foreground">
+                        <Clock className="mt-0.5 size-4 shrink-0 text-primary" />
+                        {loc.hours}
+                      </p>
+                    </div>
+                    <div className="mt-6 pt-4 border-t border-border/60">
                       <a
-                        href={loc.phoneHref}
-                        className="font-semibold text-foreground hover:text-primary"
+                        href={loc.maps}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
                       >
-                        {loc.phone}
+                        Directions
+                        <ArrowUpRight className="size-3.5" />
                       </a>
-                    </p>
-                    <p className="mt-2.5 flex items-center gap-2.5 text-sm text-muted-foreground">
-                      <Clock className="mt-0.5 size-4 shrink-0 text-primary" />
-                      {loc.hours}
-                    </p>
-                    <a
-                      href={loc.maps}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
-                    >
-                      Directions
-                      <ArrowUpRight className="size-3.5" />
-                    </a>
+                    </div>
                   </div>
                 ))}
               </div>
 
-              <p className="mt-6 flex items-center gap-2.5 text-sm">
+              <div className="mt-8 flex items-center gap-2.5 text-sm">
                 <Mail className="size-4 shrink-0 text-primary" />
                 <a
                   href={`mailto:${COMPANY.email}`}
-                  className="font-semibold text-foreground hover:text-primary"
+                  className="font-semibold text-foreground hover:text-primary transition-colors"
                 >
                   {COMPANY.email}
                 </a>
-              </p>
+              </div>
 
               <div className="mt-6 flex flex-wrap items-center gap-5">
                 <WhatsAppButton />
@@ -195,90 +202,126 @@ function Contact() {
 
             <Reveal>
               <div className="sheen p-6 sm:p-8">
-                <h2 className="text-xl font-bold text-foreground">Request for quotation</h2>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  Seven fields, one reference number. Submitting opens your mail client with
-                  everything formatted for the desk.
-                </p>
-                <form onSubmit={submit} className="mt-10 space-y-6">
-                  <Content>
-                    <div className="grid gap-4 sm:grid-cols-2">
-                      <label className="block text-sm font-medium">
-                        Name
-                        <input
-                          required
-                          value={form.name}
-                          onChange={set("name")}
-                          className={field}
-                        />
-                      </label>
-                      <label className="block text-sm font-medium">
-                        Company
-                        <input value={form.company} onChange={set("company")} className={field} />
-                      </label>
-                      <label className="block text-sm font-medium">
-                        Email
-                        <input
-                          required
-                          type="email"
-                          value={form.email}
-                          onChange={set("email")}
-                          className={field}
-                        />
-                      </label>
-                      <label className="block text-sm font-medium">
-                        Phone
-                        <input
-                          value={form.phone}
-                          onChange={set("phone")}
-                          className={field}
-                          placeholder="07xx xxx xxx"
-                        />
-                      </label>
-                    </div>
-                    <label className="block text-sm font-medium">
-                      Project type
-                      <select value={form.projectType} onChange={set("projectType")} className={field}>
-                        {PROJECT_TYPES.map((t) => (
-                          <option key={t} value={t}>
-                            {t}
-                          </option>
-                        ))}
-                      </select>
-                    </label>
-                    <label className="block text-sm font-medium">
-                      Message
-                      <textarea
-                        required
-                        rows={5}
-                        value={form.message}
-                        onChange={set("message")}
-                        className={field}
-                        placeholder="Example: 2.4 km aerial route, 12 core ADSS, longest span 110 m, 8 closures, 40 subscriber drops, delivery to Nakuru."
-                      />
-                    </label>
-                    <label className="flex cursor-pointer items-center gap-3 rounded-lg border border-dashed border-border px-4 py-3 text-sm text-muted-foreground transition hover:border-primary hover:text-foreground">
-                      <Paperclip className="size-4 text-primary" />
-                      {fileName || "Attach a drawing or part list, optional"}
+                <div className="border-b border-border/80 pb-4 mb-6">
+                  <h2 className="text-xl font-bold text-foreground">Request for quotation</h2>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    Seven fields, one reference number. Submitting opens your mail client with
+                    everything formatted for the desk.
+                  </p>
+                </div>
+
+                <form onSubmit={submit} className="space-y-5">
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <label className="block text-sm font-medium text-foreground">
+                      Name <span className="text-primary">*</span>
                       <input
-                        type="file"
-                        className="hidden"
-                        onChange={(e) => setFileName(e.target.files?.[0]?.name ?? "")}
+                        required
+                        value={form.name}
+                        onChange={set("name")}
+                        className={field}
+                        placeholder="John Doe"
                       />
                     </label>
-                    <button
-                      type="submit"
-                      className="btn-radius inline-flex w-full items-center justify-center bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-[0_14px_36px_-16px_rgba(0,212,255,0.9)] transition hover:-translate-y-0.5"
+                    <label className="block text-sm font-medium text-foreground">
+                      Company
+                      <input
+                        value={form.company}
+                        onChange={set("company")}
+                        className={field}
+                        placeholder="Company Ltd"
+                      />
+                    </label>
+                    <label className="block text-sm font-medium text-foreground">
+                      Email <span className="text-primary">*</span>
+                      <input
+                        required
+                        type="email"
+                        value={form.email}
+                        onChange={set("email")}
+                        className={field}
+                        placeholder="john@company.com"
+                      />
+                    </label>
+                    <label className="block text-sm font-medium text-foreground">
+                      Phone
+                      <input
+                        value={form.phone}
+                        onChange={set("phone")}
+                        className={field}
+                        placeholder="07xx xxx xxx"
+                      />
+                    </label>
+                  </div>
+
+                  <label className="block text-sm font-medium text-foreground">
+                    Project type
+                    <select
+                      value={form.projectType}
+                      onChange={set("projectType")}
+                      className={field}
                     >
-                      Send request
-                    </button>
-                    {sentRef ? (
-                      <p className="text-sm text-ember">
-                        Your reference is {sentRef}. If your mail client did not open, email{" "}
-                        {COMPANY.email} with that reference in the subject line.
+                      {PROJECT_TYPES.map((t) => (
+                        <option key={t} value={t}>
+                          {t}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+
+                  <label className="block text-sm font-medium text-foreground">
+                    Message <span className="text-primary">*</span>
+                    <textarea
+                      required
+                      rows={5}
+                      value={form.message}
+                      onChange={set("message")}
+                      className={field}
+                      placeholder="Example: 2.4 km aerial route, 12 core ADSS, longest span 110 m, 8 closures, 40 subscriber drops, delivery to Nakuru."
+                    />
+                  </label>
+
+                  <label className="flex cursor-pointer items-center gap-3 rounded-lg border border-dashed border-border px-4 py-3 text-sm text-muted-foreground transition hover:border-primary hover:text-foreground">
+                    <Paperclip className="size-4 text-primary shrink-0" />
+                    <span className="truncate">{fileName || "Attach a drawing or part list, optional"}</span>
+                    <input
+                      type="file"
+                      className="hidden"
+                      onChange={(e) => setFileName(e.target.files?.[0]?.name ?? "")}
+                    />
+                  </label>
+
+                  <button
+                    type="submit"
+                    className="w-full rounded-lg bg-primary px-6 py-3 text-sm font-bold text-primary-foreground shadow-[0_14px_36px_-16px_rgba(0,212,255,0.9)] transition hover:bg-primary/90"
+                  >
+                    Send request
+                  </button>
+
+                  {sentRef ? (
+                    <div className="mt-4 rounded-lg border border-ember/30 bg-ember/5 p-4 text-sm text-foreground space-y-2">
+                      <div className="flex items-center gap-2 font-bold text-ember">
+                        <CheckCircle2 className="size-4" />
+                        <span>Reference generated: {sentRef}</span>
+                      </div>
+                      <p className="text-xs text-muted-foreground leading-relaxed">
+                        If your mail client did not open automatically, copy your reference and email{" "}
+                        <a href={`mailto:${COMPANY.email}`} className="text-primary font-semibold underline">
+                          {COMPANY.email}
+                        </a>{" "}
+                        directly with the subject line containing <span className="font-mono font-bold text-foreground">{sentRef}</span>.
                       </p>
-                    ) : null}
-                  </Content>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          void navigator.clipboard.writeText(sentRef);
+                          toast.success("Reference copied to clipboard");
+                        }}
+                        className="inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:underline pt-1"
+                      >
+                        <Copy className="size-3.5" /> Copy reference code
+                      </button>
+                    </div>
+                  ) : null}
                 </form>
               </div>
             </Reveal>
@@ -286,13 +329,15 @@ function Contact() {
         </Content>
       </Section>
 
-      <Section>
-        <Reveal>
-          <Eyebrow>Directions</Eyebrow>
-          <Heading>Find the counter without calling for landmarks</Heading>
-        </Reveal>
+      <Section className="py-20">
         <Content>
-          <div className="mt-10 grid gap-5 lg:grid-cols-2">
+          <Reveal>
+            <div className="text-center max-w-2xl mx-auto mb-12">
+              <Eyebrow>Directions</Eyebrow>
+              <Heading className="mt-2">Find the counter without calling for landmarks</Heading>
+            </div>
+          </Reveal>
+          <div className="grid gap-6 lg:grid-cols-2">
             {LOCATIONS.map((loc, i) => (
               <Reveal key={`map-${loc.city}`} delay={i * 80}>
                 <div className="sheen overflow-hidden p-2">
@@ -301,7 +346,7 @@ function Contact() {
                     src={`https://www.google.com/maps?q=${encodeURIComponent(`${loc.address}, ${loc.city}, Kenya`)}&output=embed`}
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                    className="h-[300px] w-full rounded-[14px] border-0"
+                    className="h-[300px] w-full rounded-[12px] border-0"
                   />
                   <div className="flex flex-wrap items-center justify-between gap-3 p-4">
                     <p className="text-sm font-bold text-foreground">
@@ -325,14 +370,16 @@ function Contact() {
         </Content>
       </Section>
 
-      <Section>
-        <Reveal>
-          <Eyebrow>Answers</Eyebrow>
-          <Heading>Before you write</Heading>
-        </Reveal>
-        <div className="mt-8">
+      <Section className="py-20 border-t border-border/80">
+        <Content>
+          <Reveal>
+            <div className="max-w-xl mb-10">
+              <Eyebrow>Answers</Eyebrow>
+              <Heading className="mt-2">Before you write</Heading>
+            </div>
+          </Reveal>
           <FaqList items={FAQS} />
-        </div>
+        </Content>
       </Section>
     </>
   );

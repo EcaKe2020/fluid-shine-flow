@@ -1,5 +1,16 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight } from "lucide-react";
+import { 
+  ArrowUpRight, 
+  CheckCircle2, 
+  ShieldCheck, 
+  Layers, 
+  Activity, 
+  Cpu, 
+  Check, 
+  Zap,
+  Globe2,
+  Boxes
+} from "lucide-react";
 import rack from "@/assets/rack.jpg";
 import { SOLUTIONS } from "@/lib/eca";
 import {
@@ -40,75 +51,233 @@ export const Route = createFileRoute("/solutions/")({
 function SolutionsHub() {
   return (
     <>
-      <Section className="pt-10 sm:pt-16">
+      {/* 1. HERO SECTION - TTI Fiber Industrial Aesthetic */}
+      <Section className="relative overflow-hidden pt-10 pb-12 sm:pt-16 sm:pb-16 border-b border-border/40 bg-gradient-to-b from-background via-muted/20 to-background">
+        {/* Subtle optical laser beam accent line */}
+        <div 
+          aria-hidden="true" 
+          className="pointer-events-none absolute top-0 left-1/2 -z-10 h-72 w-[60rem] -translate-x-1/2 rounded-full bg-gradient-to-r from-ember/20 via-primary/10 to-ember/5 blur-3xl opacity-60"
+        />
+
         <Content>
-          <div className="rise">
-            <Eyebrow>Products and solutions</Eyebrow>
-            <Heading as="h1">
-              Everything between the <span className="ink-text">street pole</span> and the{" "}
-              <span className="ink-text">patch panel</span>
+          <div className="rise max-w-4xl">
+            {/* Spec Badge */}
+            <div className="inline-flex items-center gap-2 rounded-md border border-ember/30 bg-ember/10 px-3 py-1 text-xs font-mono font-semibold text-ember uppercase tracking-wider backdrop-blur-md">
+              <Zap className="size-3.5 text-ember animate-pulse" />
+              <span>Optical Path & Network Infrastructure Manufacturer & Supplier</span>
+            </div>
+
+            <Heading as="h1" className="mt-5 text-3xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl text-foreground">
+              Engineered for the entire optical path: From <span className="text-ember underline decoration-ember/40 underline-offset-8">street pole</span> to <span className="text-foreground underline decoration-ember/40 underline-offset-8">patch panel</span>
             </Heading>
-            <Lead className="mt-5">
-              Pick the line closest to your project. Each page explains what the equipment does, how
-              to specify it and which questions the technical desk will ask before pricing the list.
+
+            <Lead className="mt-6 text-lg leading-relaxed text-muted-foreground max-w-3xl">
+              Precision fibre optics, ADSS aerial deployment, structured cabling, active switching, and 
+              security communications. Select your supply category below to inspect specs, hardware options, and technical pre-quoting guides.
             </Lead>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <QuoteButton />
-              <ShopButton label="Browse the store catalogue" />
+
+            {/* Action Row - Wrappers avoid TypeScript className conflicts on primitives */}
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              <div className="shadow-lg shadow-ember/15 rounded-lg overflow-hidden transition-transform active:scale-95">
+                <QuoteButton />
+              </div>
+              <div className="rounded-lg overflow-hidden transition-all hover:border-ember/40">
+                <ShopButton label="Browse Store Catalogue →" />
+              </div>
             </div>
           </div>
 
-          <div className="mt-12 grid gap-4 md:grid-cols-2">
-            {SOLUTIONS.map((s, i) => (
-              <Reveal key={s.slug} delay={i * 80}>
-                <CardContentWrapper>
-                  <Link to="/solutions/$slug" params={{ slug: s.slug }} className="block h-full">
-                    <Panel className="h-full">
-                      <div className="flex items-start justify-between gap-4">
-                        <h2 className="text-xl font-semibold">{s.title}</h2>
-                        <ArrowUpRight className="mt-1 size-5 shrink-0 text-ember" />
-                      </div>
-                      <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                        {s.blurb}
-                      </p>
-                      <ul className="mt-5 space-y-1.5 text-sm text-muted-foreground">
-                        {s.points.map((p) => (
-                          <li key={p} className="flex items-center gap-2">
-                            <span className="size-1.5 rounded-full bg-ember" />
-                            {p}
-                          </li>
-                        ))}
-                      </ul>
-                    </Panel>
-                  </Link>
-                </CardContentWrapper>
-              </Reveal>
-            ))}
+          {/* 2. TTI-STYLE TRUST METRICS BAR */}
+          <div className="mt-14 grid grid-cols-2 gap-4 rounded-2xl border border-border/80 bg-card/60 p-4 shadow-sm backdrop-blur-md sm:grid-cols-4 sm:p-6">
+            <div className="flex items-center gap-3 border-r-0 border-border/40 p-2 sm:border-r">
+              <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-ember/10 text-ember">
+                <Activity className="size-5" />
+              </div>
+              <div>
+                <p className="text-xs font-bold text-foreground uppercase tracking-wide">100% Tested</p>
+                <p className="text-[11px] text-muted-foreground">Insertion & Return Loss</p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3 border-r-0 border-border/40 p-2 sm:border-r">
+              <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-ember/10 text-ember">
+                <ShieldCheck className="size-5" />
+              </div>
+              <div>
+                <p className="text-xs font-bold text-foreground uppercase tracking-wide">Standards Compliant</p>
+                <p className="text-[11px] text-muted-foreground">ISO9001 / CPR / TIA-568</p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3 border-r-0 border-border/40 p-2 sm:border-r">
+              <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-ember/10 text-ember">
+                <Boxes className="size-5" />
+              </div>
+              <div>
+                <p className="text-xs font-bold text-foreground uppercase tracking-wide">Custom Lengths</p>
+                <p className="text-[11px] text-muted-foreground">Pre-terminated & Cut-to-fit</p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3 p-2">
+              <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-ember/10 text-ember">
+                <Globe2 className="size-5" />
+              </div>
+              <div>
+                <p className="text-xs font-bold text-foreground uppercase tracking-wide">Nairobi Warehouse</p>
+                <p className="text-[11px] text-muted-foreground">Immediate Dispatch & Pickup</p>
+              </div>
+            </div>
+          </div>
+
+          {/* 3. TTI FIBER STYLE SOLUTIONS GRID */}
+          <div className="mt-16">
+            <div className="mb-8 flex items-end justify-between border-b border-border/60 pb-4">
+              <div>
+                <Eyebrow>Supply Lines & Hardware Sets</Eyebrow>
+                <h2 className="mt-1 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+                  Select Your Network Category
+                </h2>
+              </div>
+              <span className="hidden font-mono text-xs font-semibold text-muted-foreground sm:inline-block">
+                {SOLUTIONS.length} CORE LINES AVAILABLE
+              </span>
+            </div>
+
+            <div className="grid gap-6 md:grid-cols-2">
+              {SOLUTIONS.map((s, i) => (
+                <Reveal key={s.slug} delay={i * 80}>
+                  <CardContentWrapper>
+                    <Link 
+                      to="/solutions/$slug" 
+                      params={{ slug: s.slug }} 
+                      className="group block h-full"
+                    >
+                      <Panel className="relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-border/70 bg-card p-6 shadow-sm transition-all duration-300 hover:border-ember/60 hover:shadow-xl sm:p-8">
+                        {/* Top Accent Line */}
+                        <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-ember to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                        
+                        <div>
+                          <div className="flex items-start justify-between gap-4">
+                            <div className="flex items-center gap-3">
+                              {/* TTI Style 01, 02 Number Tag */}
+                              <span className="flex size-9 items-center justify-center rounded-lg bg-muted border border-border font-mono text-sm font-bold text-ember transition-colors group-hover:bg-ember group-hover:text-white">
+                                0{i + 1}
+                              </span>
+                              <h3 className="text-xl font-bold tracking-tight text-foreground transition-colors group-hover:text-ember sm:text-2xl">
+                                {s.title}
+                              </h3>
+                            </div>
+                            <div className="flex size-9 shrink-0 items-center justify-center rounded-full bg-accent/80 text-muted-foreground transition-all duration-300 group-hover:bg-ember group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                              <ArrowUpRight className="size-5" />
+                            </div>
+                          </div>
+
+                          <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
+                            {s.blurb}
+                          </p>
+                        </div>
+
+                        {/* Technical Spec List */}
+                        <div className="mt-8 border-t border-border/50 pt-5">
+                          <div className="flex items-center justify-between">
+                            <span className="font-mono text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+                              Included Equipment & Specifications:
+                            </span>
+                            <span className="text-xs font-semibold text-ember opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                              View Product Line →
+                            </span>
+                          </div>
+                          <ul className="mt-3 grid gap-2.5 sm:grid-cols-2">
+                            {s.points.map((p) => (
+                              <li key={p} className="flex items-center gap-2 text-xs font-medium text-foreground/90 sm:text-sm">
+                                <span className="flex size-4 shrink-0 items-center justify-center rounded-full bg-ember/10 text-ember">
+                                  <Check className="size-2.5 stroke-[3]" />
+                                </span>
+                                <span className="truncate">{p}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </Panel>
+                    </Link>
+                  </CardContentWrapper>
+                </Reveal>
+              ))}
+            </div>
           </div>
         </Content>
       </Section>
 
-      <Section className="pt-0">
+      {/* 4. FEATURE ARCHITECTURE BANNER (TTI Technical Engineering Style) */}
+      <Section className="py-14 sm:py-20 bg-muted/30">
         <Reveal>
           <CtaBanner>
-            <div className="gloss grid gap-8 rounded-[2rem] p-8 sm:p-12 lg:grid-cols-2 lg:items-center">
-              <img
-                src={rack}
-                alt="Rack with patch panels, PoE switching and fibre patching"
-                width={1408}
-                height={1008}
-                loading="lazy"
-                className="relative z-10 aspect-[4/3] w-full rounded-[1.5rem] object-cover"
-              />
-              <div className="relative z-10 content-left">
-                <Heading>Mixed lists are normal, not awkward</Heading>
-                <Lead className="mt-4">
-                  A single site rarely stays inside one category. Aerial fibre lands on a splice
-                  tray, the tray feeds a switch, the switch powers a camera. Quote the whole chain
-                  in one document and the compatibility argument disappears.
-                </Lead>
-                <div className="mt-7">
-                  <QuoteButton label="Send a mixed bill of materials" />
+            <div className="relative overflow-hidden rounded-3xl border border-border/80 bg-card p-6 shadow-2xl sm:p-10 lg:p-12">
+              {/* Background Grid Pattern */}
+              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
+
+              <div className="relative z-10 grid gap-10 lg:grid-cols-12 lg:items-center">
+                {/* Image Showcase with Overlay Badges */}
+                <div className="relative lg:col-span-6">
+                  <div className="relative overflow-hidden rounded-2xl border border-border shadow-2xl">
+                    <img
+                      src={rack}
+                      alt="Rack with patch panels, PoE switching and fibre patching"
+                      width={1408}
+                      height={1008}
+                      loading="lazy"
+                      className="aspect-[4/3] w-full object-cover transition-transform duration-700 hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+
+                    {/* Image Caption inside Media Box */}
+                    <div className="absolute bottom-4 left-4 right-4 text-white">
+                      <p className="font-mono text-xs text-ember font-bold uppercase tracking-wider">High Density Rack Architecture</p>
+                      <p className="text-sm font-medium opacity-90">Fibre splicing, PoE switching & copper termination</p>
+                    </div>
+                  </div>
+
+                  {/* Floating TTI Style Badges */}
+                  <div className="absolute -bottom-5 right-4 flex items-center gap-2.5 rounded-xl border border-border bg-background/95 px-4 py-2.5 shadow-xl backdrop-blur-md">
+                    <Cpu className="size-5 text-ember" />
+                    <div>
+                      <p className="text-xs font-bold text-foreground">Zero Compatibility Clashes</p>
+                      <p className="text-[10px] text-muted-foreground">Pre-tested optical budget</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Content Column */}
+                <div className="content-left lg:col-span-6 lg:pl-4">
+                  <Eyebrow className="text-ember">Single-Source Project Fulfillment</Eyebrow>
+                  <Heading as="h2" className="mt-2 text-2xl font-extrabold tracking-tight sm:text-3xl lg:text-4xl text-foreground">
+                    Mixed lists are normal, not awkward
+                  </Heading>
+                  <Lead className="mt-4 text-base leading-relaxed text-muted-foreground">
+                    A single site deployment rarely stays inside one category. Aerial fibre lands on a splice 
+                    tray, the tray feeds an optical switch, and the switch powers PoE IP cameras. Quote the whole chain 
+                    in one document and compatibility arguments disappear.
+                  </Lead>
+
+                  <ul className="mt-6 space-y-3 font-medium text-sm text-foreground/90">
+                    <li className="flex items-center gap-2.5">
+                      <CheckCircle2 className="size-4 shrink-0 text-ember" />
+                      <span>Single consolidated Bill of Materials (BOM) with itemised pricing</span>
+                    </li>
+                    <li className="flex items-center gap-2.5">
+                      <CheckCircle2 className="size-4 shrink-0 text-ember" />
+                      <span>Full technical desk verification for transceivers and connector loss budgets</span>
+                    </li>
+                    <li className="flex items-center gap-2.5">
+                      <CheckCircle2 className="size-4 shrink-0 text-ember" />
+                      <span>Direct dispatch from Nairobi inventory to jobsite</span>
+                    </li>
+                  </ul>
+
+                  <div className="mt-8">
+                    <QuoteButton label="Send a mixed bill of materials" />
+                  </div>
                 </div>
               </div>
             </div>
@@ -116,7 +285,11 @@ function SolutionsHub() {
         </Reveal>
       </Section>
 
-      <CtaBand />
+      {/* 5. CLOSING CTA BAND */}
+      <CtaBand
+        title="Ready to price your project?"
+        body="Send your complete bill of materials or specifications to the technical engineering desk and get an itemised quotation with confirmed Nairobi stock availability."
+      />
     </>
   );
 }

@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import { ArrowUpRight, Mail, MapPin, MessageSquare, Phone, ShieldCheck } from "lucide-react";
 import logo from "@/assets/eca-logo.png.asset.json";
 import {
   COMPANY,
@@ -12,62 +12,78 @@ import {
 
 export function Footer() {
   return (
-    <footer className="site-footer relative overflow-hidden bg-background pb-12 pt-20">
-      {/* Wave layers — soft blue/cyan, low opacity */}
-      <svg
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-72 w-full"
-        viewBox="0 0 1440 200"
-        preserveAspectRatio="none"
-      >
-        <path
-          d="M0 140 C 240 100 420 170 720 130 C 1020 90 1220 160 1440 120 L 1440 200 L 0 200 Z"
-          fill="var(--wave-color)"
-          opacity="0.08"
-        />
-        <path
-          d="M0 160 C 300 120 500 180 780 150 C 1060 120 1260 170 1440 140 L 1440 200 L 0 200 Z"
-          fill="var(--wave-color)"
-          opacity="0.06"
-        />
-        <path
-          d="M0 180 C 260 150 480 190 760 170 C 1040 150 1240 185 1440 165 L 1440 200 L 0 200 Z"
-          fill="var(--wave-color)"
-          opacity="0.04"
-        />
-      </svg>
+    <footer className="site-footer relative overflow-hidden bg-background pb-12 pt-20 border-t border-border/80">
+      {/* Lower Half Blue Wavy Gradient Layer */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 w-full overflow-hidden select-none">
+        <div className="absolute inset-0 bg-gradient-to-t from-blue-600/10 via-cyan-500/5 to-transparent dark:from-blue-500/15 dark:via-cyan-400/5" />
+        
+        <svg
+          aria-hidden="true"
+          className="absolute bottom-0 left-0 h-full w-full opacity-50 dark:opacity-75"
+          viewBox="0 0 1440 280"
+          preserveAspectRatio="none"
+        >
+          <defs>
+            <linearGradient id="footer-wave-blue-1" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#2563eb" stopOpacity="0.25" />
+              <stop offset="50%" stopColor="#06b6d4" stopOpacity="0.35" />
+              <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.15" />
+            </linearGradient>
+            <linearGradient id="footer-wave-blue-2" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#0284c7" stopOpacity="0.15" />
+              <stop offset="50%" stopColor="#3b82f6" stopOpacity="0.3" />
+              <stop offset="100%" stopColor="#0d9488" stopOpacity="0.2" />
+            </linearGradient>
+          </defs>
 
-      <div className="section-pad relative">
-        <div className="grid gap-10 md:grid-cols-4 content-left">
-          {/* Brand */}
-          <div>
+          <path
+            d="M0,120 C320,200 420,80 720,150 C1020,220 1120,100 1440,160 L1440,280 L0,280 Z"
+            fill="url(#footer-wave-blue-1)"
+          />
+          <path
+            d="M0,180 C280,90 520,220 800,140 C1080,60 1280,200 1440,150 L1440,280 L0,280 Z"
+            fill="url(#footer-wave-blue-2)"
+          />
+        </svg>
+      </div>
+
+      <div className="section-pad relative z-10">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5 content-left">
+          {/* Brand & Warehouse Desk */}
+          <div className="space-y-4 lg:col-span-2">
             <img
               src={logo.url}
               alt="ECA Networks logo"
-              className="h-9 w-auto"
+              className="h-9 w-auto object-contain"
               width={144}
               height={48}
             />
-            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{COMPANY.tagline}</p>
-            <p className="mt-3 text-xs font-bold uppercase tracking-[0.16em] text-primary">
-              Serving Kenya since {COMPANY.founded}
+            <p className="text-sm leading-relaxed text-muted-foreground max-w-sm">
+              {COMPANY.tagline}
             </p>
-            <a
-              href={shopUrl("footer")}
-              target="_blank"
-              rel="noreferrer"
-              className="btn-radius mt-5 inline-flex bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
-            >
-              Visit the online store
-            </a>
+            <p className="flex items-center gap-2 text-sm text-muted-foreground">
+              <ShieldCheck className="size-4 text-primary" />
+              Registered Telecom Supplier &bull; Kenya
+            </p>
+            <div className="pt-2">
+              <a
+                href={shopUrl("footer")}
+                target="_blank"
+                rel="noreferrer"
+                className="group inline-flex items-center gap-2 rounded bg-primary px-4 py-2 text-xs font-bold uppercase tracking-wide text-primary-foreground transition-all hover:bg-primary/90"
+              >
+                <span>Open Online Store & Live Stock</span>
+                <ArrowUpRight className="size-4" />
+              </a>
+            </div>
           </div>
 
-          {/* Solutions */}
+          {/* Solutions Column */}
           <nav aria-label="Solutions">
-            <h2 className="text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">
-              Solutions
+            <h2 className="text-xs font-bold uppercase tracking-wider text-foreground">
+              Equipment & Solutions
             </h2>
-            <ul className="mt-4 space-y-2.5">
+            <ul className="mt-4 space-y-2">
               {SOLUTIONS.map((s) => (
                 <li key={s.slug}>
                   <Link
@@ -82,117 +98,99 @@ export function Footer() {
             </ul>
           </nav>
 
-          {/* Resources */}
+          {/* Resources Column */}
           <nav aria-label="Resources">
-            <h2 className="text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">
-              Resources
+            <h2 className="text-xs font-bold uppercase tracking-wider text-foreground">
+              Technical Resources
             </h2>
-            <ul className="mt-4 space-y-2.5">
-              <li>
-                <Link to="/about" className="text-sm text-muted-foreground hover:text-primary">
-                  About ECA Networks
-                </Link>
-              </li>
-              <li>
-                <Link to="/services" className="text-sm text-muted-foreground hover:text-primary">
-                  Services and support
-                </Link>
-              </li>
-              <li>
-                <Link to="/projects" className="text-sm text-muted-foreground hover:text-primary">
-                  Projects
-                </Link>
-              </li>
-              <li>
-                <Link to="/team" className="text-sm text-muted-foreground hover:text-primary">
-                  Team and careers
-                </Link>
-              </li>
-              <li>
-                <Link to="/esg" className="text-sm text-muted-foreground hover:text-primary">
-                  ESG and sustainability
-                </Link>
-              </li>
-              <li>
-                <Link to="/insights" className="text-sm text-muted-foreground hover:text-primary">
-                  Insights
-                </Link>
-              </li>
-              <li>
-                <Link to="/price-list" className="text-sm text-muted-foreground hover:text-primary">
-                  Price list
-                </Link>
-              </li>
-              <li>
-                <Link to="/privacy" className="text-sm text-muted-foreground hover:text-primary">
-                  Privacy policy
-                </Link>
-              </li>
-              <li>
-                <Link to="/terms" className="text-sm text-muted-foreground hover:text-primary">
-                  Terms and conditions
-                </Link>
-              </li>
-              <li>
-                <Link to="/cookies" className="text-sm text-muted-foreground hover:text-primary">
-                  Cookie policy
-                </Link>
-              </li>
+            <ul className="mt-4 space-y-2">
+              {[
+                { to: "/about", label: "About ECA Networks" },
+                { to: "/services", label: "Technical Services" },
+                { to: "/projects", label: "Reference Projects" },
+                { to: "/team", label: "Engineering Team" },
+                { to: "/esg", label: "ESG & Compliance" },
+                { to: "/products", label: "Product Catalogue" },
+                { to: "/privacy", label: "Privacy Policy" },
+                { to: "/terms", label: "Terms & Conditions" },
+              ].map((item) => (
+                <li key={item.to}>
+                  <Link
+                    to={item.to}
+                    className="text-sm text-muted-foreground transition-colors hover:text-primary"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </nav>
 
-          {/* Reach us — two locations */}
+          {/* Reach Us / Counters */}
           <div className="space-y-6">
-            <h2 className="text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">
-              Reach us
+            <h2 className="text-xs font-bold uppercase tracking-wider text-foreground">
+              Direct Counter Desks
             </h2>
-            {LOCATIONS.map((loc) => (
-              <address key={loc.city} className="space-y-2 not-italic">
-                <p className="text-sm font-bold text-foreground">{loc.city}</p>
-                <p className="flex items-start gap-2.5 text-sm text-muted-foreground">
-                  <MapPin className="mt-0.5 size-4 shrink-0 text-primary" />
-                  {loc.address}
-                </p>
-                <p className="flex items-center gap-2.5 text-sm text-muted-foreground">
-                  <Phone className="size-4 shrink-0 text-primary" />
-                  <a href={loc.phoneHref} className="font-medium hover:text-primary">
-                    {loc.phone}
-                  </a>
-                </p>
-                <p className="flex items-start gap-2.5 text-sm text-muted-foreground">
-                  <Clock className="mt-0.5 size-4 shrink-0 text-primary" />
-                  {loc.hours}
-                </p>
-                <a
-                  href={loc.city === "Eldoret" ? WHATSAPP_URL_ELDORET : WHATSAPP_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex text-sm text-primary hover:underline"
+            <div className="space-y-5">
+              {LOCATIONS.map((loc) => (
+                <address
+                  key={loc.city}
+                  className="not-italic space-y-2"
                 >
-                  WhatsApp {loc.city}
-                </a>
-              </address>
-            ))}
-            <p className="flex items-center gap-2.5 text-sm text-muted-foreground">
+                  <p className="text-sm font-semibold text-foreground">
+                    {loc.city} Counter
+                  </p>
+                  <p className="flex items-start gap-2 text-sm text-muted-foreground">
+                    <MapPin className="mt-0.5 size-4 shrink-0 text-primary" />
+                    <span>{loc.address}</span>
+                  </p>
+                  <p className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <Phone className="size-4 shrink-0 text-primary" />
+                    <a href={loc.phoneHref} className="hover:text-primary transition-colors">
+                      {loc.phone}
+                    </a>
+                  </p>
+                  <p className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <MessageSquare className="size-4 shrink-0 text-primary" />
+                    <a
+                      href={loc.city === "Eldoret" ? WHATSAPP_URL_ELDORET : WHATSAPP_URL}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="hover:text-primary transition-colors"
+                    >
+                      WhatsApp
+                    </a>
+                  </p>
+                </address>
+              ))}
+            </div>
+
+            <p className="flex items-center gap-2 text-sm text-muted-foreground pt-2">
               <Mail className="size-4 shrink-0 text-primary" />
-              <a href={`mailto:${COMPANY.email}`} className="hover:text-primary">
+              <a href={`mailto:${COMPANY.email}`} className="hover:text-primary transition-colors">
                 {COMPANY.email}
               </a>
             </p>
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="mt-14 border-t border-border pt-6 content-left">
-          <p className="text-sm font-semibold text-foreground">
-            {COMPANY.name}. Nairobi and Eldoret, Kenya.
-          </p>
-          <div className="mt-2 flex flex-wrap items-center justify-between gap-3 text-xs text-muted-foreground">
+        {/* Bottom Technical Metadata Bar */}
+        <div className="mt-14 border-t border-border/80 pt-6">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-sm text-muted-foreground">
+            <div>
+              <p className="font-semibold text-foreground mb-1">
+                {COMPANY.name} &bull; Nairobi & Eldoret Supply Hubs
+              </p>
+              <p className="text-xs">
+                KRA PIN and registered company credentials provided on all official quotation & tax invoice packs.
+              </p>
+            </div>
             <p>
-              {COMPANY.name}, registered in Kenya. Company registration and KRA PIN are stated on
-              every quotation, invoice and delivery note.
+              Live Catalog & Inventory:{" "}
+              <a href="https://ecanetworks.com" className="font-semibold text-foreground hover:text-primary transition-colors">
+                ecanetworks.com
+              </a>
             </p>
-            <p>Ordering and stock live on ecanetworks.com</p>
           </div>
         </div>
       </div>
