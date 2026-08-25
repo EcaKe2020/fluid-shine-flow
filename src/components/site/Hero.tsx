@@ -9,11 +9,17 @@ import switchImg from "@/assets/product-switch.jpg";
 import router from "@/assets/product-router.jpg";
 import cabinet from "@/assets/product-cabinet.jpg";
 import splicer from "@/assets/product-splicer.jpg";
+import lightSpool from "@/assets/light-spool.jpg";
+import lightSwitch from "@/assets/light-switch.jpg";
+import lightRouter from "@/assets/light-router.jpg";
+import lightCabinet from "@/assets/light-cabinet.jpg";
+import lightSplicer from "@/assets/light-splicer.jpg";
 
 type Product = {
   name: string;
   category: string;
   image: string;
+  imageLight: string;
   alt: string;
 };
 
@@ -40,60 +46,70 @@ const PRODUCTS: Product[] = [
     name: "Fibre Optic Spool",
     category: "Cabling",
     image: spool,
+    imageLight: lightSpool,
     alt: "Fibre optic cable spool",
   },
   {
     name: "Nexus-7000 Switch",
     category: "Access Layer",
     image: switchImg,
+    imageLight: lightSwitch,
     alt: "Managed network switch",
   },
   {
     name: "Core Router",
     category: "Backbone Routing",
     image: router,
+    imageLight: lightRouter,
     alt: "Enterprise network router",
   },
   {
     name: "Data Center Rack",
     category: "Compute Node",
     image: cabinet,
+    imageLight: lightCabinet,
     alt: "Data center server rack",
   },
   {
     name: "Fusion Splicer Kit",
     category: "Deployment Tools",
     image: splicer,
+    imageLight: lightSplicer,
     alt: "Fibre fusion splicer kit",
   },
   {
     name: "GPON OLT 4-Port",
     category: "Active Equipment",
     image: router,
+    imageLight: lightRouter,
     alt: "GPON optical line terminal",
   },
   {
     name: "Managed PoE Switch",
     category: "Networking",
     image: switchImg,
+    imageLight: lightSwitch,
     alt: "Managed PoE switch",
   },
   {
     name: "Data Cabinet 12U",
     category: "Enclosures",
     image: cabinet,
+    imageLight: lightCabinet,
     alt: "12U data cabinet",
   },
   {
     name: "Fibre Toolkit Complete",
     category: "Test Equipment",
     image: splicer,
+    imageLight: lightSplicer,
     alt: "Complete fibre toolkit",
   },
   {
     name: "ADSS 24-Core Cable",
     category: "Outdoor Fibre",
     image: spool,
+    imageLight: lightSpool,
     alt: "ADSS outdoor fibre cable",
   },
 ];

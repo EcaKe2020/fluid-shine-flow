@@ -9,8 +9,20 @@ import {
   X,
   ChevronLeft,
   ChevronRight,
+  FileDown,
+  QrCode as QrCodeIcon,
 } from "lucide-react";
-import { PRICE_ROWS, PRICE_CATEGORIES, KES, type PriceRow } from "@/lib/price-list";
+import { toast } from "sonner";
+import {
+  PRICE_ROWS,
+  PRICE_CATEGORIES,
+  PRICE_LIST_UPDATED,
+  PRICE_LIST_URL,
+  KES,
+  type PriceRow,
+} from "@/lib/price-list";
+import { COMPANY } from "@/lib/eca";
+import { QrCard } from "./QrCard";
 
 type SortDirection = "asc" | "desc" | null;
 
@@ -26,6 +38,7 @@ export function PriceTable({ className = "" }: PriceTableProps) {
     direction: "asc",
   });
   const [currentPage, setCurrentPage] = useState(1);
+  const [showQr, setShowQr] = useState(false);
   const itemsPerPage = 15;
 
   const filteredAndSortedRows = useMemo(() => {
@@ -88,6 +101,62 @@ export function PriceTable({ className = "" }: PriceTableProps) {
     "On order": "bg-muted text-muted-foreground",
   };
 
+  const exportPdf = async () => {
+    try {
+      const { default: JsPdf } = await import("jspdf");
+      const doc = new JsPdf({ unit: "pt", format: "a4" });
+      const marginX = 40;
+      let y = 56;
+
+      doc.setFontSize(16);
+      doc.text(`${COMPANY.name} price list`, marginX, y);
+      y += 18;
+      doc.setFontSize(9);
+      doc.text(
+        `Updated ${PRICE_LIST_UPDATED}. Prices in KES, exclusive of VAT. Live pricing: ${PRICE_LIST_URL}`,
+        marginX,
+        y,
+      );
+      y += 24;
+
+      doc.setFontSize(9);
+      const cols = [marginX, marginX + 78, marginX + 250, marginX + 372, marginX + 442, marginX + 500];
+      const header = ["SKU", "Product", "Category", "Unit", "Price", "Status"];
+      const writeHeader = () => {
+        doc.setFont("helvetica", "bold");
+        header.forEach((label, i) => doc.text(label, cols[i]!, y));
+        doc.setFont("helvetica", "normal");
+        y += 6;
+        doc.line(marginX, y, 555, y);
+        y += 12;
+      };
+      writeHeader();
+
+      filteredAndSortedRows.forEach((row) => {
+        if (y > 780) {
+          doc.addPage();
+          y = 56;
+          writeHeader();
+        }
+        const cells = [
+          row.sku,
+          doc.splitTextToSize(row.name, 165)[0] ?? row.name,
+          doc.splitTextToSize(row.category, 115)[0] ?? row.category,
+          row.unit,
+          KES(row.price),
+          row.status,
+        ];
+        cells.forEach((cell, i) => doc.text(String(cell), cols[i]!, y));
+        y += 15;
+      });
+
+      doc.save(`eca-networks-price-list-${PRICE_LIST_UPDATED}.pdf`);
+      toast.success(`PDF ready with ${filteredAndSortedRows.length} lines`);
+    } catch {
+      toast.error("The PDF could not be generated. Please try again.");
+    }
+  };
+
   return (
     <div className={`${className} space-y-6`}>
       {/* Controls */}
@@ -139,10 +208,40 @@ export function PriceTable({ className = "" }: PriceTableProps) {
         </div>
       </div>
 
-      {/* Results info */}
-      <div className="text-sm text-muted-foreground">
-        Showing {paginatedRows.length} of {filteredAndSortedRows.length} products
+      {/* Results info and exports */}
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <p className="text-sm text-muted-foreground">
+          Showing {paginatedRows.length} of {filteredAndSortedRows.length} products. Updated{" "}
+          {PRICE_LIST_UPDATED}, exclusive of VAT.
+        </p>
+        <div className="flex flex-wrap items-center gap-2">
+          <button
+            type="button"
+            onClick={() => void exportPdf()}
+            className="btn-radius inline-flex items-center gap-2 bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground transition-transform hover:-translate-y-0.5"
+          >
+            <FileDown className="size-4" />
+            Download PDF
+          </button>
+          <button
+            type="button"
+            onClick={() => setShowQr((v) => !v)}
+            className="btn-radius inline-flex items-center gap-2 border border-border px-4 py-2.5 text-sm font-semibold text-foreground transition-colors hover:border-primary hover:text-primary"
+          >
+            <QrCodeIcon className="size-4 text-primary" />
+            {showQr ? "Hide QR" : "Share QR"}
+          </button>
+        </div>
       </div>
+
+      {showQr && (
+        <div className="card-in flex justify-center">
+          <QrCard
+            url={PRICE_LIST_URL}
+            caption="Scan to open this price list on a phone at the counter or on site."
+          />
+        </div>
+      )}
 
       {/* Table */}
       <div className="overflow-x-auto rounded-2xl border border-border bg-card">

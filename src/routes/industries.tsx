@@ -189,7 +189,6 @@ function Industries() {
 
       <CtaBand
         title="Require custom procurement documentation?"
-    
         body="Contact us for tailored quotes, LPO handling, and compliance documentation specific to your organization's buying cycle."
       />
     </>
