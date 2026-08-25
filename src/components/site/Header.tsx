@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useLocation } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import logo from "@/assets/eca-logo.png.asset.json";
@@ -31,8 +31,10 @@ const MOBILE_NAV = [
 ] as const;
 
 export function Header() {
+  const location = useLocation();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const isHome = location.pathname === "/";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -50,10 +52,10 @@ export function Header() {
 
   return (
     <header
-      className={`site-header fixed inset-x-0 top-0 z-[100] flex h-16 items-center px-[clamp(20px,6vw,120px)] transition-all duration-500 ${
+      className={`site-header fixed inset-x-0 top-0 z-[100] flex h-16 items-center px-[clamp(20px,6vw,120px)] transition-all duration-500 ${isHome ? "is-hero" : ""} ${
         scrolled
-          ? "bg-background/90 backdrop-blur-xl shadow-[0_4px_24px_-12px_rgba(11,50,79,0.15)]"
-          : "bg-background/60 backdrop-blur-md"
+          ? "border-b border-border bg-background"
+          : "border-b border-transparent bg-transparent"
       }`}
     >
       {/* Left navigation */}
@@ -97,7 +99,7 @@ export function Header() {
             {item.label}
           </Link>
         ))}
-        <ThemeToggle />
+        <ThemeToggle className={!scrolled && isHome ? "text-white" : ""} />
       </nav>
 
       {/* Mobile menu button */}

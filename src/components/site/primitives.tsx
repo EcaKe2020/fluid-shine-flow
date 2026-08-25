@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight, MessageCircle, Linkedin, Mail, MapPin } from "lucide-react";
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import { shopUrl, WHATSAPP_URL } from "@/lib/eca";
 
 /** Counts a numeric value up once it scrolls into view. */
@@ -70,41 +70,12 @@ export function Section({
 
 export function Reveal({
   children,
-  delay = 0,
   className = "",
 }: {
   children: ReactNode;
-  delay?: number;
   className?: string;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [shown, setShown] = useState(false);
-
-  useEffect(() => {
-    const node = ref.current;
-    if (!node) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry?.isIntersecting) {
-          setShown(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: "-40px" },
-    );
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <div
-      ref={ref}
-      className={`${className} ${shown ? "rise" : "opacity-0"}`}
-      style={shown ? { animationDelay: `${delay}ms` } : undefined}
-    >
-      {children}
-    </div>
-  );
+  return <div className={className}>{children}</div>;
 }
 
 export function Eyebrow({

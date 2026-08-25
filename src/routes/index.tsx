@@ -1,22 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowUpRight,
-  BadgeCheck,
-  Boxes,
   Calculator,
-  Cable,
   Clock,
-  Headphones,
   MapPin,
   Phone,
-  Truck,
-  Users,
-  Wrench,
-  ShieldCheck,
-  Building2,
-  GraduationCap,
-  Landmark,
-  Server,
 } from "lucide-react";
 import { BRANDS, CASE_STUDIES, COMPANY, FAQS, INDUSTRIES, LOCATIONS, SOLUTIONS } from "@/lib/eca";
 
@@ -61,30 +49,22 @@ export const Route = createFileRoute("/")({
 
 const REASONS = [
   {
-    icon: Boxes,
     title: "Stock that is actually on the shelf",
     body: "Reels, connectors, switches and consumables held in Nairobi and Eldoret, so a rollout is not waiting three weeks on a shipment.",
   },
   {
-    icon: Headphones,
     title: "A technical desk, not a call centre",
     body: "Engineers read your drawing, question the odd line and correct the quantities before the invoice goes out.",
   },
   {
-    icon: BadgeCheck,
     title: "Warranty handled in Kenya",
     body: "Faulty units are assessed locally under supported brand terms instead of being freighted back overseas by the buyer.",
   },
   {
-    icon: Truck,
     title: "Nationwide dispatch",
     body: "Courier partners reach all 47 counties, with reel and cabinet freight quoted up front so budgets hold.",
   },
 ];
-
-const INDUSTRY_ICONS = [Server, Wrench, Building2, GraduationCap, Landmark, Users];
-
-const SOLUTION_ICONS = [Cable, Wrench, Server, ShieldCheck];
 
 const TOOLS = [
   {
@@ -145,14 +125,10 @@ function Home() {
         
         <div className="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
           {SOLUTIONS.map((solution, i) => {
-            const Icon = SOLUTION_ICONS[i] ?? Cable;
             return (
               <Reveal key={solution.slug} delay={i * 80}>
                 <CardContentWrapper>
-                  <div className="sheen group flex h-full flex-col p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-                    <span className="mb-6 flex size-14 items-center justify-center rounded-2xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
-                      <Icon className="size-6" strokeWidth={1.5} />
-                    </span>
+                  <div className="sheen group flex h-full flex-col p-8">
                     <h3 className="text-xl font-bold tracking-tight text-foreground">
                       {solution.title}
                     </h3>
@@ -205,9 +181,6 @@ function Home() {
                   </span>
                   
                   <div className="relative z-10 flex flex-col">
-                    <div className="mb-5 flex size-12 items-center justify-center rounded-full bg-ember/10 text-ember">
-                      <reason.icon className="size-5" strokeWidth={1.5} />
-                    </div>
                     <h3 className="text-lg font-bold leading-tight text-foreground">
                       {reason.title}
                     </h3>
@@ -233,14 +206,10 @@ function Home() {
         
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {INDUSTRIES.map((item, i) => {
-            const Icon = INDUSTRY_ICONS[i] ?? Users;
             return (
               <Reveal key={item.title} delay={i * 70}>
                 <CardContentWrapper>
-                  <div className="sheen flex h-full flex-col items-center p-8 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-                    <div className="mb-5 flex size-14 items-center justify-center rounded-full bg-primary/10 text-primary">
-                      <Icon className="size-6" strokeWidth={1.5} />
-                    </div>
+                  <div className="sheen flex h-full flex-col p-8">
                     <h3 className="text-lg font-bold text-foreground">{item.title}</h3>
                     <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                       {item.body}

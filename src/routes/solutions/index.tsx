@@ -3,11 +3,9 @@ import {
   ArrowUpRight, 
   CheckCircle2, 
   ShieldCheck, 
-  Layers, 
   Activity, 
   Cpu, 
   Check, 
-  Zap,
   Globe2,
   Boxes
 } from "lucide-react";
@@ -52,18 +50,12 @@ function SolutionsHub() {
   return (
     <>
       {/* 1. HERO SECTION - TTI Fiber Industrial Aesthetic */}
-      <Section className="relative overflow-hidden pt-10 pb-12 sm:pt-16 sm:pb-16 border-b border-border/40 bg-gradient-to-b from-background via-muted/20 to-background">
-        {/* Subtle optical laser beam accent line */}
-        <div 
-          aria-hidden="true" 
-          className="pointer-events-none absolute top-0 left-1/2 -z-10 h-72 w-[60rem] -translate-x-1/2 rounded-full bg-gradient-to-r from-ember/20 via-primary/10 to-ember/5 blur-3xl opacity-60"
-        />
+      <Section className="relative overflow-hidden border-b border-border/40 pt-10 pb-12 sm:pt-16 sm:pb-16">
 
         <Content>
           <div className="rise max-w-4xl">
             {/* Spec Badge */}
-            <div className="inline-flex items-center gap-2 rounded-md border border-ember/30 bg-ember/10 px-3 py-1 text-xs font-mono font-semibold text-ember uppercase tracking-wider backdrop-blur-md">
-              <Zap className="size-3.5 text-ember animate-pulse" />
+            <div className="inline-flex items-center border-b border-ember/50 pb-1 text-xs font-mono font-semibold uppercase tracking-wider text-ember">
               <span>Optical Path & Network Infrastructure Manufacturer & Supplier</span>
             </div>
 
@@ -88,7 +80,7 @@ function SolutionsHub() {
           </div>
 
           {/* 2. TTI-STYLE TRUST METRICS BAR */}
-          <div className="mt-14 grid grid-cols-2 gap-4 rounded-2xl border border-border/80 bg-card/60 p-4 shadow-sm backdrop-blur-md sm:grid-cols-4 sm:p-6">
+          <div className="mt-14 grid grid-cols-2 gap-4 border-y border-border/80 py-4 sm:grid-cols-4 sm:py-6">
             <div className="flex items-center gap-3 border-r-0 border-border/40 p-2 sm:border-r">
               <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-ember/10 text-ember">
                 <Activity className="size-5" />
@@ -153,10 +145,7 @@ function SolutionsHub() {
                       params={{ slug: s.slug }} 
                       className="group block h-full"
                     >
-                      <Panel className="relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-border/70 bg-card p-6 shadow-sm transition-all duration-300 hover:border-ember/60 hover:shadow-xl sm:p-8">
-                        {/* Top Accent Line */}
-                        <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-ember to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                        
+                      <Panel className="relative flex h-full flex-col justify-between overflow-hidden border border-border/70 bg-card p-6 transition-colors duration-300 hover:border-ember/60 sm:p-8">
                         <div>
                           <div className="flex items-start justify-between gap-4">
                             <div className="flex items-center gap-3">
@@ -168,7 +157,7 @@ function SolutionsHub() {
                                 {s.title}
                               </h3>
                             </div>
-                            <div className="flex size-9 shrink-0 items-center justify-center rounded-full bg-accent/80 text-muted-foreground transition-all duration-300 group-hover:bg-ember group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                            <div className="flex size-9 shrink-0 items-center justify-center border border-border text-muted-foreground transition-colors group-hover:border-ember group-hover:text-ember">
                               <ArrowUpRight className="size-5" />
                             </div>
                           </div>
@@ -213,21 +202,18 @@ function SolutionsHub() {
       <Section className="py-14 sm:py-20 bg-muted/30">
         <Reveal>
           <CtaBanner>
-            <div className="relative overflow-hidden rounded-3xl border border-border/80 bg-card p-6 shadow-2xl sm:p-10 lg:p-12">
-              {/* Background Grid Pattern */}
-              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
-
+            <div className="relative overflow-hidden border-y border-border/80 bg-card py-6 sm:py-10 lg:py-12">
               <div className="relative z-10 grid gap-10 lg:grid-cols-12 lg:items-center">
                 {/* Image Showcase with Overlay Badges */}
                 <div className="relative lg:col-span-6">
-                  <div className="relative overflow-hidden rounded-2xl border border-border shadow-2xl">
+                  <div className="relative overflow-hidden border border-border">
                     <img
                       src={rack}
                       alt="Rack with patch panels, PoE switching and fibre patching"
                       width={1408}
                       height={1008}
                       loading="lazy"
-                      className="aspect-[4/3] w-full object-cover transition-transform duration-700 hover:scale-105"
+                      className="aspect-[4/3] w-full object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
@@ -239,7 +225,7 @@ function SolutionsHub() {
                   </div>
 
                   {/* Floating TTI Style Badges */}
-                  <div className="absolute -bottom-5 right-4 flex items-center gap-2.5 rounded-xl border border-border bg-background/95 px-4 py-2.5 shadow-xl backdrop-blur-md">
+                  <div className="absolute -bottom-5 right-4 flex items-center gap-2.5 border border-border bg-background px-4 py-2.5">
                     <Cpu className="size-5 text-ember" />
                     <div>
                       <p className="text-xs font-bold text-foreground">Zero Compatibility Clashes</p>

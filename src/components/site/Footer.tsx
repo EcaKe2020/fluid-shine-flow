@@ -13,40 +13,6 @@ import {
 export function Footer() {
   return (
     <footer className="site-footer relative overflow-hidden bg-background pb-12 pt-20 border-t border-border/80">
-      {/* Lower Half Blue Wavy Gradient Layer */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 w-full overflow-hidden select-none">
-        <div className="absolute inset-0 bg-gradient-to-t from-blue-600/10 via-cyan-500/5 to-transparent dark:from-blue-500/15 dark:via-cyan-400/5" />
-        
-        <svg
-          aria-hidden="true"
-          className="absolute bottom-0 left-0 h-full w-full opacity-50 dark:opacity-75"
-          viewBox="0 0 1440 280"
-          preserveAspectRatio="none"
-        >
-          <defs>
-            <linearGradient id="footer-wave-blue-1" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#2563eb" stopOpacity="0.25" />
-              <stop offset="50%" stopColor="#06b6d4" stopOpacity="0.35" />
-              <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.15" />
-            </linearGradient>
-            <linearGradient id="footer-wave-blue-2" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#0284c7" stopOpacity="0.15" />
-              <stop offset="50%" stopColor="#3b82f6" stopOpacity="0.3" />
-              <stop offset="100%" stopColor="#0d9488" stopOpacity="0.2" />
-            </linearGradient>
-          </defs>
-
-          <path
-            d="M0,120 C320,200 420,80 720,150 C1020,220 1120,100 1440,160 L1440,280 L0,280 Z"
-            fill="url(#footer-wave-blue-1)"
-          />
-          <path
-            d="M0,180 C280,90 520,220 800,140 C1080,60 1280,200 1440,150 L1440,280 L0,280 Z"
-            fill="url(#footer-wave-blue-2)"
-          />
-        </svg>
-      </div>
-
       <div className="section-pad relative z-10">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5 content-left">
           {/* Brand & Warehouse Desk */}

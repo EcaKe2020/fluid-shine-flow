@@ -2,7 +2,12 @@ import { Link } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { shopUrl } from "@/lib/eca";
-import heroBackground from "@/assets/hero-background.jpg";
+import hero from "@/assets/hero.webp";
+import hero1 from "@/assets/hero1.webp";
+import hero3 from "@/assets/hero3.webp";
+import hero4 from "@/assets/hero4.webp";
+import hero5 from "@/assets/hero5.webp";
+import hero6 from "@/assets/hero6.webp";
 import rack from "@/assets/rack.jpg";
 import spool from "@/assets/product-spool.jpg";
 import switchImg from "@/assets/product-switch.jpg";
@@ -25,19 +30,34 @@ type Product = {
 
 const HERO_SLIDES = [
   {
-    image: heroBackground,
-    title: "Enterprise Infrastructure.",
-    subtitle: "Ready on Demand.",
+    image: hero,
+    title: "Fibre infrastructure.",
+    subtitle: "Ready on demand.",
   },
   {
-    image: rack,
-    title: "High-Density Distribution.",
-    subtitle: "Engineered for Zero Downtime.",
+    image: hero1,
+    title: "Networking hardware.",
+    subtitle: "Built for uptime.",
   },
   {
-    image: splicer,
-    title: "Precision Splicing & Cabling.",
-    subtitle: "In Stock & Dispatched Daily.",
+    image: hero3,
+    title: "Security systems.",
+    subtitle: "Connected to perform.",
+  },
+  {
+    image: hero4,
+    title: "Infrastructure projects.",
+    subtitle: "Supplied without delay.",
+  },
+  {
+    image: hero5,
+    title: "Technical equipment.",
+    subtitle: "Ready for deployment.",
+  },
+  {
+    image: hero6,
+    title: "Enterprise connectivity.",
+    subtitle: "Delivered across Kenya.",
   },
 ] as const;
 
@@ -168,31 +188,31 @@ export function Hero() {
               alt=""
               className="size-full object-cover object-center transition-transform duration-10000 ease-linear"
             />
-            {/* Subtle dark overlay for text contrast and a gradient fade at the bottom to blend with the rest of the site */}
-            <div className="absolute inset-0 bg-black/30" />
-            <div className="absolute bottom-0 left-0 right-0 h-[40%] bg-gradient-to-t from-background via-background/60 to-transparent" />
+            <div className="absolute inset-0 bg-black/10 dark:bg-black/30" />
+            <div className="absolute inset-x-0 bottom-0 h-[82%] bg-gradient-to-t from-background/95 via-background/82 to-transparent dark:from-background dark:via-background/78" />
           </div>
         ))}
       </div>
 
-      {/* Hero Typography Content - Centered vertically in the available space */}
-      <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-4 pt-[6.5rem] text-center sm:px-6 lg:px-8">
-        <h1 className="mx-auto max-w-[920px] font-serif text-[clamp(40px,6vw,72px)] font-bold leading-[1.05] tracking-tight text-white drop-shadow-xl">
+      {/* Hero Typography Content - Centered just above the product tray */}
+      <div className="relative z-10 flex flex-1 items-center justify-end px-4 pb-7 pt-20 text-center sm:px-6 sm:pb-10 lg:px-8">
+        <div className="w-full max-w-3xl mx-auto translate-y-10 sm:translate-y-16">
+        <h1 className="mx-auto max-w-[620px] font-serif text-[clamp(29px,3.5vw,48px)] font-bold leading-[1.04] tracking-tight text-[#16324f] dark:text-white">
           {currentSlide.title}
-          <span className="block text-primary">
+          <span className="block text-primary dark:text-white">
             {currentSlide.subtitle}
           </span>
         </h1>
 
-        <p className="mx-auto mt-5 max-w-[620px] text-sm leading-relaxed text-white/90 drop-shadow-md sm:text-base">
+        <p className="mx-auto mt-3 max-w-[540px] text-sm leading-relaxed text-[#16324f]/75 dark:text-white/80 sm:text-base">
           Providing robust hardware solutions for the backbone of modern enterprise networking,
           available 24/7 for immediate local deployment and configuration.
         </p>
 
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
           <Link
             to="/contact"
-            className="btn-radius inline-flex items-center gap-2 bg-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition-all hover:-translate-y-0.5 hover:shadow-primary/30"
+            className="btn-radius inline-flex items-center gap-2 bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
           >
             Request a Quote
             <ArrowRight className="size-4" />
@@ -201,7 +221,7 @@ export function Hero() {
             href={shopUrl("hero")}
             target="_blank"
             rel="noreferrer"
-            className="btn-radius inline-flex items-center gap-2 border border-white/40 bg-white/10 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur-md transition-all hover:bg-white hover:text-black"
+            className="btn-radius inline-flex items-center gap-2 border border-[#16324f]/25 bg-background/80 px-6 py-3 text-sm font-semibold text-[#16324f] transition-colors hover:bg-[#16324f] hover:text-white dark:border-white/40 dark:bg-white/10 dark:text-white dark:hover:bg-white dark:hover:text-black"
           >
             Explore Hardware
             <ArrowUpRight className="size-4" />
@@ -209,7 +229,7 @@ export function Hero() {
         </div>
 
         {/* Hero Background Slide Indicators */}
-        <div className="mt-8 flex justify-center gap-2">
+        <div className="mt-6 flex justify-center gap-2">
           {HERO_SLIDES.map((_, idx) => (
             <button
               key={idx}
@@ -217,10 +237,11 @@ export function Hero() {
               onClick={() => setHeroSlide(idx)}
               aria-label={`Go to slide ${idx + 1}`}
               className={`h-1.5 rounded-full transition-all duration-300 ${
-                idx === heroSlide ? "w-8 bg-primary" : "w-2 bg-white/50 hover:bg-white"
+                idx === heroSlide ? "w-8 bg-primary" : "w-2 bg-foreground/35 hover:bg-foreground/70 dark:bg-white/50 dark:hover:bg-white"
               }`}
             />
           ))}
+        </div>
         </div>
       </div>
 
@@ -233,7 +254,7 @@ export function Hero() {
         <div className="mx-auto max-w-[1400px]">
           {/* Centrally Located Header */}
           <div className="mb-4 text-center">
-            <h2 className="text-[11px] font-bold uppercase tracking-widest text-white/90 drop-shadow-sm sm:text-xs">
+            <h2 className="text-[11px] font-bold uppercase tracking-widest text-foreground/80 dark:text-white/90 sm:text-xs">
               Ready to Order Now Products
             </h2>
           </div>
@@ -244,7 +265,7 @@ export function Hero() {
                 {visibleProducts.map((product) => (
                   <article
                     key={`${active}-${product.name}`}
-                    className="group relative flex h-[165px] flex-col justify-between overflow-hidden rounded-xl border border-white/10 bg-background/95 p-2.5 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-primary/50 hover:shadow-primary/10 sm:h-[180px]"
+                    className="group relative flex h-[165px] flex-col justify-between overflow-hidden rounded-xl border border-border bg-background/95 p-2.5 shadow-lg transition-all duration-300 hover:border-primary/50 sm:h-[180px] dark:border-white/10 sm:h-[180px]"
                   >
                     <div className="relative h-20 w-full shrink-0 overflow-hidden rounded-lg bg-white/5 sm:h-24">
                       <img
@@ -286,7 +307,7 @@ export function Hero() {
               type="button"
               onClick={previousProduct}
               aria-label="Previous products"
-              className="absolute -left-2 top-1/2 flex size-8 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/40 text-white shadow-md backdrop-blur-md transition-colors hover:border-primary hover:text-primary sm:-left-4"
+              className="absolute -left-2 top-1/2 flex size-8 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-background/90 text-foreground transition-colors hover:border-primary hover:text-primary dark:border-white/20 dark:bg-black/40 dark:text-white sm:-left-4"
             >
               <ChevronLeft className="size-4" />
             </button>
@@ -294,7 +315,7 @@ export function Hero() {
               type="button"
               onClick={nextProduct}
               aria-label="Next products"
-              className="absolute -right-2 top-1/2 flex size-8 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/40 text-white shadow-md backdrop-blur-md transition-colors hover:border-primary hover:text-primary sm:-right-4"
+              className="absolute -right-2 top-1/2 flex size-8 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-background/90 text-foreground transition-colors hover:border-primary hover:text-primary dark:border-white/20 dark:bg-black/40 dark:text-white sm:-right-4"
             >
               <ChevronRight className="size-4" />
             </button>
