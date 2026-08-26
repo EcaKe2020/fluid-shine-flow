@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { shopUrl } from "@/lib/eca";
-import hero from "@/assets/hero.webp";
+import hero from "@/assets/hero.jpg";
 import hero1 from "@/assets/hero1.webp";
 import hero3 from "@/assets/hero3.webp";
 import hero4 from "@/assets/hero4.webp";
@@ -263,42 +263,38 @@ export function Hero() {
             <div className="overflow-hidden py-1">
               <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
                 {visibleProducts.map((product) => (
-                  <article
-                    key={`${active}-${product.name}`}
-                    className="group relative flex h-[165px] flex-col justify-between overflow-hidden rounded-xl border border-border bg-background/95 p-2.5 shadow-lg transition-all duration-300 hover:border-primary/50 sm:h-[180px] dark:border-white/10 sm:h-[180px]"
-                  >
-                    <div className="relative h-20 w-full shrink-0 overflow-hidden rounded-lg bg-white/5 sm:h-24">
-                      <img
-                        src={product.image}
-                        alt={product.alt}
-                        width={200}
-                        height={200}
-                        loading="lazy"
-                        className="size-full object-contain p-1.5 transition-transform duration-500 group-hover:scale-105"
-                      />
-                      <span className="absolute left-1 top-1 rounded border border-border/40 bg-background/90 px-1.5 py-0.5 text-[9px] font-mono font-semibold text-muted-foreground">
-                        {product.category}
-                      </span>
-                    </div>
+  <article
+    key={`${active}-${product.name}`}
+    className="group relative flex h-[165px] flex-col items-center justify-between overflow-hidden rounded-2xl border-2 border-primary bg-white p-3 shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg sm:h-[180px] dark:bg-background"
+  >
+    {/* 1. Top: Centered Product Name */}
+    <h3 className="w-full text-center text-[11px] font-semibold uppercase tracking-wide text-foreground sm:text-xs pt-1">
+      {product.name}
+    </h3>
 
-                    <div className="mt-2 flex flex-1 flex-col justify-between">
-                      <h3 className="line-clamp-2 text-[11px] font-semibold leading-tight text-foreground sm:text-xs">
-                        {product.name}
-                      </h3>
+    {/* 2. Middle: Suspended Image without a background box */}
+    <div className="relative flex flex-1 w-full items-center justify-center overflow-hidden py-2">
+      <img
+        src={product.image}
+        alt={product.alt}
+        width={200}
+        height={200}
+        loading="lazy"
+        className="h-full w-auto object-contain transition-transform duration-500 group-hover:scale-110"
+      />
+    </div>
 
-                      {/* Order Now Button - Fade in on hover (reserves space to prevent layout shifting) */}
-                      <a
-                        href={`${shopUrl("hero-product")}#${encodeURIComponent(product.name)}`}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="flex h-[26px] w-full items-center justify-center gap-1 rounded-md bg-primary/10 text-[10px] font-bold text-primary opacity-0 transition-all duration-300 hover:bg-primary hover:text-white group-hover:opacity-100"
-                      >
-                        Order Now
-                        <ArrowUpRight className="size-3" />
-                      </a>
-                    </div>
-                  </article>
-                ))}
+    {/* 3. Bottom: Always visible Order Now text */}
+    <a
+      href={`${shopUrl("hero-product")}#${encodeURIComponent(product.name)}`}
+      target="_blank"
+      rel="noreferrer"
+      className="w-full pb-1 text-center text-[10px] font-bold uppercase text-foreground transition-colors hover:text-primary sm:text-[11px]"
+    >
+      Order Now!!!
+    </a>
+  </article>
+))}
               </div>
             </div>
 

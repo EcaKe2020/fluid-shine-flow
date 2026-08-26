@@ -1,7 +1,7 @@
 import { Link, useLocation } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import logo from "@/assets/eca-logo.png.asset.json";
+import logo from "@/assets/logo.png";
 import { COMPANY } from "@/lib/eca";
 import { ThemeToggle } from "@/components/site/theme";
 
@@ -79,7 +79,7 @@ export function Header() {
         aria-label={`${COMPANY.short} home`}
       >
         <img
-          src={logo.url}
+          src={logo}
           alt="ECA Networks logo"
           className="h-8 w-auto"
           width={128}
@@ -119,7 +119,7 @@ export function Header() {
           <div className="flex h-16 items-center justify-between px-[clamp(24px,5vw,80px)]">
             <Link to="/" onClick={() => setOpen(false)} className="flex items-center">
               <img
-                src={logo.url}
+                src={logo}
                 alt="ECA Networks logo"
                 className="h-8 w-auto"
                 width={128}

@@ -2,12 +2,12 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, CheckCircle2, FileCheck2, ShieldCheck, Mail, Globe2 } from "lucide-react";
 
 // Note: Ensure you have these 6 images in your assets folder, or replace the imports with your actual file names.
-import img1 from "@/assets/about-1.jpg";
-import img2 from "@/assets/about-2.jpg";
-import img3 from "@/assets/about-3.jpg";
-import img4 from "@/assets/about-4.jpg";
-import img5 from "@/assets/about-5.jpg";
-import img6 from "@/assets/about-6.jpg";
+import img1 from "@/assets/about1.webp";
+import img2 from "@/assets/about2.webp";
+import img3 from "@/assets/about3.webp";
+import img4 from "@/assets/about4.webp";
+import img5 from "@/assets/about5.webp";
+import img6 from "@/assets/about6.webp";
 
 import { BRANDS, CAREERS, CERTIFICATIONS, COMPANY, STATS } from "@/lib/eca";
 import { CtaBand, Section, Content } from "@/components/site/primitives";

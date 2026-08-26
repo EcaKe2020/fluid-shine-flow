@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight, Mail, MapPin, MessageSquare, Phone, ShieldCheck } from "lucide-react";
-import logo from "@/assets/eca-logo.png.asset.json";
+import logo from "@/assets/logo.png";
 import {
   COMPANY,
   LOCATIONS,
@@ -18,7 +18,7 @@ export function Footer() {
           {/* Brand & Warehouse Desk */}
           <div className="space-y-4 lg:col-span-2">
             <img
-              src={logo.url}
+              src={logo}
               alt="ECA Networks logo"
               className="h-9 w-auto object-contain"
               width={144}
