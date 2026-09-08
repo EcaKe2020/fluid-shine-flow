@@ -15,13 +15,26 @@ import { CtaBand, Section, Content } from "@/components/site/primitives";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About ECA Networks | Network Equipment Supplier, Nairobi" },
+      { title: "About ECA Networks | Networking Supplier in Nairobi, Kenya" },
       {
         name: "description",
         content:
-          "Who ECA Networks is, how the Nairobi supply operation works, and what partners, contractors and procurement teams can expect from the technical desk.",
+          "ECA Networks is a Nairobi supplier of genuine networking equipment serving ISPs, contractors, SMEs and county projects across Kenya since 2020. Brands stocked, warranty terms and team.",
       },
+      {
+        property: "og:title",
+        content: "About ECA Networks | Networking Supplier in Nairobi, Kenya",
+      },
+      {
+        property: "og:description",
+        content:
+          "A Nairobi counter run by engineers. Genuine stock, local warranty and quotations procurement can file, serving Kenya since 2020.",
+      },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://fluid-shine-flow.lovable.app/about" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://fluid-shine-flow.lovable.app/about" }],
   }),
   component: About,
 });
@@ -52,7 +65,7 @@ const PRINCIPLES = [
     title: "Publish what we can verify",
     body: "Figures, brand support and delivery promises stated here are the ones the team can stand behind on a call. Anything still being confirmed is left out.",
     bullets: [
-      "100% factory-inspected & OTDR test-verified equipment",
+      "Genuine stock sourced through the brand supply chain",
       "Transparent batch numbers and KRA / import documentation",
       "Guaranteed local warranty and replacement support",
     ],
