@@ -270,6 +270,22 @@ function About() {
         </Content>
       </Section>
 
+      <Section className="py-16">
+        <Content>
+          <div className="mb-10">
+            <h2 className="text-sm font-bold uppercase tracking-widest text-muted-foreground">
+              Common questions
+            </h2>
+            <p className="mt-4 text-3xl font-bold text-foreground">
+              What buyers ask about ECA Networks
+            </p>
+          </div>
+          <div className="max-w-3xl">
+            <FaqList items={ABOUT_FAQS} />
+          </div>
+        </Content>
+      </Section>
+
       <CtaBand
         title="Want the company profile for a tender file?"
         body="The sales desk can package company details, supported brands and delivery terms in the format your procurement pack requires."
