@@ -110,6 +110,40 @@ function Home() {
       {/* HERO */}
       <Hero />
 
+      {/* DIRECT ANSWER + TRUST ROW */}
+      <Section className="pt-16 sm:pt-20">
+        <Reveal className="mx-auto max-w-3xl text-center">
+          <Eyebrow center>Where to buy networking equipment in Kenya</Eyebrow>
+          <Heading center as="h2" className="mt-4">
+            Genuine fibre and networking gear, stocked in Nairobi and Eldoret
+          </Heading>
+          <Lead center className="mt-5">
+            ECA Networks supplies fibre optic cable, MikroTik and Ubiquiti networking, structured
+            cabling, CCTV and PABX equipment from counters in Nairobi and Eldoret. Order before 2pm
+            and Nairobi deliveries go out the same working day, with courier dispatch to all 47
+            counties.
+          </Lead>
+        </Reveal>
+
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {TRUST.map((item, i) => (
+            <Reveal key={item.title} delay={i * 70}>
+              <div className="sheen flex h-full items-start gap-4 p-6">
+                <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+                  <item.icon className="size-5" strokeWidth={1.6} />
+                </span>
+                <div>
+                  <h3 className="text-sm font-bold text-foreground">{item.title}</h3>
+                  <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                    {item.body}
+                  </p>
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </Section>
+
       {/* WHAT WE SUPPLY */}
       <Section className="pt-20 sm:pt-28">
         <Reveal className="flex flex-col items-center text-center">
@@ -122,34 +156,41 @@ function Home() {
             compatibility, warranty and paperwork in a single place.
           </Lead>
         </Reveal>
-        
-        <div className="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-          {SOLUTIONS.map((solution, i) => {
-            return (
-              <Reveal key={solution.slug} delay={i * 80}>
-                <CardContentWrapper>
-                  <div className="sheen group flex h-full flex-col p-8">
-                    <h3 className="text-xl font-bold tracking-tight text-foreground">
-                      {solution.title}
-                    </h3>
-                    <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
-                      {solution.blurb}
-                    </p>
-                    <Link
-                      to="/solutions/$slug"
-                      params={{ slug: solution.slug }}
-                      className="mt-6 inline-flex w-fit items-center gap-1.5 text-sm font-bold text-primary transition-colors hover:text-foreground"
-                    >
-                      Learn more
-                      <ArrowUpRight className="size-4" />
-                    </Link>
-                  </div>
-                </CardContentWrapper>
-              </Reveal>
-            );
-          })}
+
+        <div className="mt-14 grid gap-6 md:grid-cols-2">
+          {SOLUTIONS.map((solution, i) => (
+            <Reveal key={solution.slug} delay={i * 80}>
+              <div className="sheen group flex h-full flex-col p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+                <span className="text-sm font-black tabular-nums tracking-widest text-ember">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3 className="mt-3 text-xl font-bold tracking-tight text-foreground">
+                  {solution.title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                  {solution.blurb}
+                </p>
+                <ul className="mt-5 flex-1 space-y-2.5">
+                  {solution.points.map((point) => (
+                    <li key={point} className="flex items-start gap-2.5 text-sm text-foreground/85">
+                      <Check className="mt-0.5 size-4 shrink-0 text-primary" strokeWidth={2.2} />
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  to="/solutions/$slug"
+                  params={{ slug: solution.slug }}
+                  className="mt-7 inline-flex w-fit items-center gap-1.5 text-sm font-bold text-primary transition-colors hover:text-foreground"
+                >
+                  View {solution.title.toLowerCase()}
+                  <ArrowUpRight className="size-4" />
+                </Link>
+              </div>
+            </Reveal>
+          ))}
         </div>
-        
+
         <Reveal delay={120}>
           <CtaBanner className="mt-14">
             <div className="flex flex-wrap items-center justify-center gap-4 py-4">
@@ -161,6 +202,53 @@ function Home() {
         </Reveal>
       </Section>
 
+      {/* WHO WE ARE, TWO COLUMN */}
+      <Section className="pt-20 sm:pt-28">
+        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+          <Reveal>
+            <img
+              src={counter}
+              alt="ECA Networks trade counter in Nairobi with fibre reels and switches on the shelf"
+              width={1200}
+              height={900}
+              loading="lazy"
+              className="w-full rounded-2xl object-cover shadow-sm"
+            />
+          </Reveal>
+          <Reveal delay={100}>
+            <Eyebrow>Who you are buying from</Eyebrow>
+            <Heading as="h2" className="mt-4">
+              A counter run by engineers, not a catalogue
+            </Heading>
+            <p className="mt-5 text-base leading-relaxed text-muted-foreground">
+              ECA Networks opened in 2020 and now supplies ISPs, contractors, integrators, schools
+              and county projects. Stock sits in Nairobi and Eldoret, so a corrected bill of
+              materials can be packed the same day it is approved.
+            </p>
+            <ul className="mt-6 space-y-3">
+              {[
+                "Brands stocked include MikroTik, Ubiquiti, TP-Link, Hikvision, Dahua and HSGQ",
+                "Warranty claims assessed in Nairobi under the supported brand terms",
+                "Quotations carry the company registration and KRA PIN procurement needs",
+                "Technical desk replies within two business hours",
+              ].map((line) => (
+                <li key={line} className="flex items-start gap-3 text-sm text-foreground/85">
+                  <Check className="mt-0.5 size-4 shrink-0 text-primary" strokeWidth={2.2} />
+                  <span>{line}</span>
+                </li>
+              ))}
+            </ul>
+            <Link
+              to="/about"
+              className="mt-8 inline-flex items-center gap-1.5 text-sm font-bold text-primary transition-colors hover:text-foreground"
+            >
+              More about ECA Networks
+              <ArrowUpRight className="size-4" />
+            </Link>
+          </Reveal>
+        </div>
+      </Section>
+
       {/* THE LOCAL ADVANTAGE */}
       <Section className="bg-muted/20 py-20 sm:py-28">
         <Reveal className="flex flex-col items-center text-center">
@@ -169,27 +257,19 @@ function Home() {
             Why buyers keep coming back to the counter
           </Heading>
         </Reveal>
-        
+
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {REASONS.map((reason, i) => (
             <Reveal key={reason.title} delay={i * 80}>
-              <CardContentWrapper>
-                <div className="sheen relative flex h-full flex-col overflow-hidden p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-                  {/* Subtle Background Number Watermark */}
-                  <span className="absolute -right-4 -top-6 text-[120px] font-black tabular-nums leading-none text-primary/5 select-none">
-                    {i + 1}
-                  </span>
-                  
-                  <div className="relative z-10 flex flex-col">
-                    <h3 className="text-lg font-bold leading-tight text-foreground">
-                      {reason.title}
-                    </h3>
-                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                      {reason.body}
-                    </p>
-                  </div>
+              <div className="sheen relative flex h-full flex-col overflow-hidden p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+                <span className="absolute -right-4 -top-6 select-none text-[120px] font-black tabular-nums leading-none text-primary/5">
+                  {i + 1}
+                </span>
+                <div className="relative z-10 flex flex-col">
+                  <h3 className="text-lg font-bold leading-tight text-foreground">{reason.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{reason.body}</p>
                 </div>
-              </CardContentWrapper>
+              </div>
             </Reveal>
           ))}
         </div>
