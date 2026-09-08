@@ -41,17 +41,45 @@ export const Route = createFileRoute("/")({
       },
       {
         property: "og:title",
-        content: "ECA Networks | Fibre and Networking Infrastructure, Kenya",
+        content: "Networking Equipment & Fibre Optics Nairobi | ECA Networks",
       },
       {
         property: "og:description",
         content:
-          "Fibre, cabling, networking, CCTV and PABX equipment stocked in Nairobi and Eldoret, shipped nationwide. Request a quote or shop the online store.",
+          "Genuine fibre, MikroTik, Ubiquiti, CCTV and cabling stock in Nairobi and Eldoret. Same day Nairobi delivery and courier to all 47 counties.",
       },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://fluid-shine-flow.lovable.app/" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://fluid-shine-flow.lovable.app/" }],
   }),
   component: Home,
 });
+
+const TRUST = [
+  {
+    icon: BadgeCheck,
+    title: "Brands we stock",
+    body: "MikroTik, Ubiquiti, TP-Link, Hikvision, Dahua, HSGQ, Yealink and Starlink hardware held on the shelf.",
+  },
+  {
+    icon: Truck,
+    title: "Nairobi same day",
+    body: "Orders confirmed before 2pm leave the same working day. Courier delivery reaches all 47 counties.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Genuine product promise",
+    body: "Every unit comes from the brand supply chain, with warranty assessed in Nairobi rather than shipped abroad.",
+  },
+  {
+    icon: Wrench,
+    title: "Technical support",
+    body: "Engineers check span ratings, PoE budgets and part numbers before the quotation is issued.",
+  },
+];
+
 
 const REASONS = [
   {
