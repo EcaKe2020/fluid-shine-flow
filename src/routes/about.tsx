@@ -11,17 +11,54 @@ import img6 from "@/assets/about6.webp";
 
 import { BRANDS, CAREERS, CERTIFICATIONS, COMPANY, STATS } from "@/lib/eca";
 import { CtaBand, Section, Content } from "@/components/site/primitives";
+import { FaqList } from "@/components/site/Faq";
+
+const ABOUT_FAQS = [
+  {
+    q: "Where is ECA Networks located?",
+    a: "The head office and main counter is at Gaberone Plaza, 1st Floor, Shop F14 in Nairobi, with a Rift Valley branch at Veecam House, Ground Floor, Shop 5 in Eldoret. Both counters open Monday to Friday, 8:00 AM to 5:00 PM East Africa Time.",
+  },
+  {
+    q: "Is the equipment genuine and does it carry a warranty in Kenya?",
+    a: "Yes. Stock comes through the brand supply chain and warranty claims are assessed in Nairobi under the manufacturer terms, so a faulty unit is checked here instead of being freighted abroad by the buyer.",
+  },
+  {
+    q: "Which brands does ECA Networks stock?",
+    a: "MikroTik, Ubiquiti, TP-Link, Hikvision, Dahua, HSGQ, Yealink and Starlink hardware, plus fibre cable, closures, patch panels and splicing consumables held in quantity.",
+  },
+  {
+    q: "How fast do you deliver in Nairobi and upcountry?",
+    a: "Orders confirmed before 2:00 PM leave the same working day in Nairobi. Upcountry consignments ship by courier to all 47 counties, usually landing the next working day on main routes.",
+  },
+  {
+    q: "Do you supply documentation for tenders?",
+    a: "Yes. Quotations, delivery notes and invoices carry the company registration and KRA PIN, and the desk assembles datasheets and warranty statements in the format county and institutional tenders ask for.",
+  },
+] as const;
 
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About ECA Networks | Network Equipment Supplier, Nairobi" },
+      { title: "About ECA Networks | Networking Supplier in Nairobi, Kenya" },
       {
         name: "description",
         content:
-          "Who ECA Networks is, how the Nairobi supply operation works, and what partners, contractors and procurement teams can expect from the technical desk.",
+          "ECA Networks is a Nairobi supplier of genuine networking equipment serving ISPs, contractors, SMEs and county projects across Kenya since 2020. Brands stocked, warranty terms and team.",
       },
+      {
+        property: "og:title",
+        content: "About ECA Networks | Networking Supplier in Nairobi, Kenya",
+      },
+      {
+        property: "og:description",
+        content:
+          "A Nairobi counter run by engineers. Genuine stock, local warranty and quotations procurement can file, serving Kenya since 2020.",
+      },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://fluid-shine-flow.lovable.app/about" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://fluid-shine-flow.lovable.app/about" }],
   }),
   component: About,
 });
@@ -52,7 +89,7 @@ const PRINCIPLES = [
     title: "Publish what we can verify",
     body: "Figures, brand support and delivery promises stated here are the ones the team can stand behind on a call. Anything still being confirmed is left out.",
     bullets: [
-      "100% factory-inspected & OTDR test-verified equipment",
+      "Genuine stock sourced through the brand supply chain",
       "Transparent batch numbers and KRA / import documentation",
       "Guaranteed local warranty and replacement support",
     ],
@@ -87,11 +124,11 @@ function About() {
               </div>
               <div className="lg:col-span-5 lg:pt-4">
                 <p className="text-lg leading-relaxed text-muted-foreground">
-                  {COMPANY.name} supplies fibre optic and network infrastructure from Embakasi, Nairobi
-                  to internet providers, contractors, integrators, institutions and public sector
-                  projects across Kenya. The counter, the warehouse and the technical desk sit in the
-                  same building, which is why a corrected bill of materials can turn into a packed
-                  consignment the same day.
+                  {COMPANY.name} is a Nairobi based supplier of genuine networking equipment,
+                  serving ISPs, contractors, SMEs, schools and county projects across Kenya since{" "}
+                  {COMPANY.founded}. The counter at Gaberone Plaza, the store and the technical desk
+                  sit together, so a corrected bill of materials turns into a packed consignment the
+                  same day. A second counter in Eldoret covers the Rift Valley corridor.
                 </p>
               </div>
             </div>
@@ -253,6 +290,22 @@ function About() {
                 </a>
               </div>
             ))}
+          </div>
+        </Content>
+      </Section>
+
+      <Section className="py-16">
+        <Content>
+          <div className="mb-10">
+            <h2 className="text-sm font-bold uppercase tracking-widest text-muted-foreground">
+              Common questions
+            </h2>
+            <p className="mt-4 text-3xl font-bold text-foreground">
+              What buyers ask about ECA Networks
+            </p>
+          </div>
+          <div className="max-w-3xl">
+            <FaqList items={ABOUT_FAQS} />
           </div>
         </Content>
       </Section>
