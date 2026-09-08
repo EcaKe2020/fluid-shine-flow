@@ -100,11 +100,11 @@ function About() {
               </div>
               <div className="lg:col-span-5 lg:pt-4">
                 <p className="text-lg leading-relaxed text-muted-foreground">
-                  {COMPANY.name} supplies fibre optic and network infrastructure from Embakasi, Nairobi
-                  to internet providers, contractors, integrators, institutions and public sector
-                  projects across Kenya. The counter, the warehouse and the technical desk sit in the
-                  same building, which is why a corrected bill of materials can turn into a packed
-                  consignment the same day.
+                  {COMPANY.name} is a Nairobi based supplier of genuine networking equipment,
+                  serving ISPs, contractors, SMEs, schools and county projects across Kenya since{" "}
+                  {COMPANY.founded}. The counter at Gaberone Plaza, the store and the technical desk
+                  sit together, so a corrected bill of materials turns into a packed consignment the
+                  same day. A second counter in Eldoret covers the Rift Valley corridor.
                 </p>
               </div>
             </div>
