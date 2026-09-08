@@ -11,6 +11,30 @@ import img6 from "@/assets/about6.webp";
 
 import { BRANDS, CAREERS, CERTIFICATIONS, COMPANY, STATS } from "@/lib/eca";
 import { CtaBand, Section, Content } from "@/components/site/primitives";
+import { FaqList } from "@/components/site/Faq";
+
+const ABOUT_FAQS = [
+  {
+    q: "Where is ECA Networks located?",
+    a: "The head office and main counter is at Gaberone Plaza, 1st Floor, Shop F14 in Nairobi, with a Rift Valley branch at Veecam House, Ground Floor, Shop 5 in Eldoret. Both counters open Monday to Friday, 8:00 AM to 5:00 PM East Africa Time.",
+  },
+  {
+    q: "Is the equipment genuine and does it carry a warranty in Kenya?",
+    a: "Yes. Stock comes through the brand supply chain and warranty claims are assessed in Nairobi under the manufacturer terms, so a faulty unit is checked here instead of being freighted abroad by the buyer.",
+  },
+  {
+    q: "Which brands does ECA Networks stock?",
+    a: "MikroTik, Ubiquiti, TP-Link, Hikvision, Dahua, HSGQ, Yealink and Starlink hardware, plus fibre cable, closures, patch panels and splicing consumables held in quantity.",
+  },
+  {
+    q: "How fast do you deliver in Nairobi and upcountry?",
+    a: "Orders confirmed before 2:00 PM leave the same working day in Nairobi. Upcountry consignments ship by courier to all 47 counties, usually landing the next working day on main routes.",
+  },
+  {
+    q: "Do you supply documentation for tenders?",
+    a: "Yes. Quotations, delivery notes and invoices carry the company registration and KRA PIN, and the desk assembles datasheets and warranty statements in the format county and institutional tenders ask for.",
+  },
+] as const;
 
 export const Route = createFileRoute("/about")({
   head: () => ({
