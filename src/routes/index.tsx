@@ -1,11 +1,17 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowUpRight,
+  BadgeCheck,
   Calculator,
+  Check,
   Clock,
   MapPin,
   Phone,
+  ShieldCheck,
+  Truck,
+  Wrench,
 } from "lucide-react";
+import counter from "@/assets/counter.jpg";
 import { BRANDS, CASE_STUDIES, COMPANY, FAQS, INDUSTRIES, LOCATIONS, SOLUTIONS } from "@/lib/eca";
 
 import { FaqList } from "@/components/site/Faq";
@@ -27,11 +33,11 @@ import {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "ECA Networks | Fibre Optic and Networking Supplier in Kenya" },
+      { title: "Networking Equipment & Fibre Optics Nairobi | ECA Networks" },
       {
         name: "description",
         content:
-          "Nairobi and Eldoret supplier of fibre optic cable, ADSS, structured cabling, MikroTik and PoE networking, CCTV and PABX. Trade pricing, local warranty, delivery to all 47 counties.",
+          "Buy fibre optic cable, MikroTik, Ubiquiti, TP-Link, CCTV and structured cabling in Nairobi. Genuine stock, local warranty, same day Nairobi delivery, courier to all 47 counties.",
       },
       {
         property: "og:title",
