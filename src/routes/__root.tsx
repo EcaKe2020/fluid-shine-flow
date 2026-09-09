@@ -139,7 +139,9 @@ function RootComponent() {
           </main>
           <Footer />
           <FloatingActions />
+          <BusinessSchema />
         </div>
+
       </ThemeProvider>
     </QueryClientProvider>
   );
