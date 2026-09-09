@@ -4,6 +4,7 @@ import { CASE_STUDIES } from "@/lib/eca";
 import rack from "@/assets/rack.jpg";
 import splicing from "@/assets/splicing.jpg";
 import {
+import { FaqBlock } from "@/components/site/FaqBlock";
   CtaBand,
   Section,
   Content,
@@ -31,6 +32,29 @@ export const Route = createFileRoute("/projects")({
   }),
   component: Projects,
 });
+
+const PAGE_FAQS = [
+  {
+    q: "How quickly can a project be supplied from Nairobi?",
+    a: "Stock items leave the Nairobi store on the day the order is confirmed, and deliveries reach main towns on the next courier run.",
+    long: "Special order lines are confirmed with a date before you commit.",
+  },
+  {
+    q: "Can supply be staged across phases of a rollout?",
+    a: "Yes. Deliveries are released per phase so a crew never carries more stock than the week needs.",
+    long: "Phased releases also keep site security and storage simple.",
+  },
+  {
+    q: "Do you check a bill of materials before quoting?",
+    a: "Yes. The technical desk reviews the list and flags wrong connector types, span ratings or PoE budgets before pricing.",
+    long: "That review is the reason most orders avoid a second trip to site.",
+  },
+  {
+    q: "Are project case studies published with client names?",
+    a: "Only with written approval from the client. Otherwise the scope is described without naming the site.",
+    long: "Reference calls can be arranged for procurement teams that need them.",
+  },
+] as const;
 
 const TYPES = [
   {
@@ -237,6 +261,8 @@ function Projects() {
           </div>
         </Content>
       </Section>
+
+      <FaqBlock items={PAGE_FAQS} title="Questions about project supply" />
 
       <CtaBand
         title="Ready to specify your build?"

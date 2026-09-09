@@ -12,6 +12,7 @@ import {
 import rack from "@/assets/rack.jpg";
 import { SOLUTIONS } from "@/lib/eca";
 import {
+import { FaqBlock } from "@/components/site/FaqBlock";
   CtaBand,
   Eyebrow,
   Heading,
@@ -48,6 +49,29 @@ export const Route = createFileRoute("/solutions/")({
   }),
   component: SolutionsHub,
 });
+
+const PAGE_FAQS = [
+  {
+    q: "Which supply line covers an aerial fibre route?",
+    a: "Fibre optic solutions. That line holds ADSS and figure 8 cable, closures, splitters, pigtails and the splicing and OTDR kit.",
+    long: "Span length and sag allowance decide the cable grade, so send the pole spacing.",
+  },
+  {
+    q: "Do you supply and also advise on the design?",
+    a: "The desk reviews specifications, builds bills of materials and gives configuration guidance. Installation is carried out by your crew or a partner.",
+    long: "Certification and testing gear is supplied so the link can be proven at handover.",
+  },
+  {
+    q: "Can a single order mix fibre, copper, networking and CCTV?",
+    a: "Yes. One quotation can carry all four lines with a single delivery note.",
+    long: "That keeps one reference for procurement and one contact for the account.",
+  },
+  {
+    q: "How long does a quotation take?",
+    a: "The technical desk responds within two business hours during working days.",
+    long: "Complex tender schedules are confirmed with a return time when received.",
+  },
+] as const;
 
 function SolutionsHub() {
   return (
@@ -275,6 +299,8 @@ function SolutionsHub() {
       </Section>
 
       {/* 5. CLOSING CTA BAND */}
+      <FaqBlock items={PAGE_FAQS} title="Questions about the four supply lines" />
+
       <CtaBand
         title="Ready to price your project?"
         body="Send your complete bill of materials or specifications to the technical engineering desk and get an itemised quotation with confirmed Nairobi stock availability."

@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Download, FileText, ShoppingCart, Truck, Warehouse } from "lucide-react";
 import { ProductTable } from "@/components/site/ProductTable";
 import {
+import { FaqBlock } from "@/components/site/FaqBlock";
   CtaBand,
   Eyebrow,
   Heading,
@@ -37,6 +38,29 @@ export const Route = createFileRoute("/products")({
   }),
   component: ProductsPage,
 });
+
+const PAGE_FAQS = [
+  {
+    q: "Are prices shown in the catalogue?",
+    a: "Pricing comes by quotation because reel lengths, quantities and brand options change the figure.",
+    long: "Send the SKUs you need and pricing with availability comes back from the technical desk.",
+  },
+  {
+    q: "Which brands do you stock?",
+    a: "MikroTik, Hikvision, Dahua, Ubiquiti, TP-Link, HSGQ, Yealink and Starlink are the regular lines.",
+    long: "Other brands are sourced on request when the specification calls for them.",
+  },
+  {
+    q: "Is the stock genuine with warranty?",
+    a: "Yes. Equipment comes through supplier channels with warranty handled locally from Nairobi.",
+    long: "Warranty terms appear per line item on the quotation.",
+  },
+  {
+    q: "Can I download the catalogue to share internally?",
+    a: "Yes. The catalogue exports as a PDF from the table on this page.",
+    long: "The export keeps whatever search or category filter you applied.",
+  },
+] as const;
 
 const PRODUCT_HIGHLIGHTS = [
   {
@@ -159,6 +183,8 @@ function ProductsPage() {
           </div>
         </Reveal>
       </Section>
+
+      <FaqBlock items={PAGE_FAQS} title="Questions about the catalogue" />
 
       <CtaBand
         title="Ready to specify your project?"
