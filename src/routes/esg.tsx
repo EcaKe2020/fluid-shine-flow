@@ -27,7 +27,10 @@ export const Route = createFileRoute("/esg")({
         content:
           "Responsible sourcing, packaging and cable waste handling, safety practice and the documentation pack available for tender submissions.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://fluid-shine-flow.lovable.app/esg" }],
   }),
   component: Esg,
 });

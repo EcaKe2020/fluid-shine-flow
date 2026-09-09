@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { FaqBlock } from "@/components/site/FaqBlock";
 import { useMemo, useState } from "react";
 import { Cable, Calculator, Copy, ArrowRight, Wrench } from "lucide-react";
 import { toast } from "sonner";
@@ -23,10 +24,31 @@ export const Route = createFileRoute("/tools")({
         content:
           "Size a cabling bill of materials and select a fibre cable type in seconds, then send the result to the quotation desk.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://fluid-shine-flow.lovable.app/tools" }],
   }),
   component: Tools,
 });
+
+const PAGE_FAQS = [
+  {
+    q: "How accurate is the bill of materials calculator?",
+    a: "It gives a working estimate for budgeting and ordering. The technical desk checks the figures before a quotation goes out.",
+    long: "Send the result and the site details and it comes back confirmed.",
+  },
+  {
+    q: "Which fibre does the selector recommend?",
+    a: "Single mode for outdoor spans and campus backbones, tight buffered indoor fibre for risers, with ADSS or figure 8 chosen by span and mounting.",
+    long: "Rodent risk and duct conditions decide whether armoured grades are needed.",
+  },
+  {
+    q: "Does the calculator include consumables?",
+    a: "Yes. Splice sleeves, pigtails, patch cords, trays and labels are the lines most often forgotten, so they are counted in.",
+    long: "Consumables stall more installations than active gear does.",
+  },
+] as const;
 
 function Field({
   label,
@@ -364,6 +386,8 @@ function Tools() {
           </div>
         </Content>
       </Section>
+
+      <FaqBlock items={PAGE_FAQS} title="Questions about the calculators" />
 
       <CtaBand
         title="Send the output straight to the technical desk"

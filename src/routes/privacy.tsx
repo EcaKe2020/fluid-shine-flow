@@ -17,7 +17,10 @@ export const Route = createFileRoute("/privacy")({
         content:
           "Data handling, cookies, warranty and returns terms for ECA Networks Ltd, written in plain language.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://fluid-shine-flow.lovable.app/privacy" }],
   }),
   component: Privacy,
 });

@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { FaqBlock } from "@/components/site/FaqBlock";
 import { CheckCircle2, Building2, ArrowRight } from "lucide-react";
 import { INDUSTRIES } from "@/lib/eca";
 import {
@@ -22,10 +23,41 @@ export const Route = createFileRoute("/industries")({
         content:
           "Supply patterns, documentation and support tuned to how each type of Kenyan network buyer orders.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://fluid-shine-flow.lovable.app/industries" }],
   }),
   component: Industries,
 });
+
+const PAGE_FAQS = [
+  {
+    q: "Do you supply internet service providers on repeat orders?",
+    a: "Yes. ISP order lists are kept on file so a crew that finishes a phase early can restock the same afternoon.",
+    long: "Reel fibre, drop cable, closures, splitters and splice sleeves are held in depth at the Nairobi store, with radios and subscriber units for expansion.",
+  },
+  {
+    q: "Can contractors collect from the counter instead of waiting for delivery?",
+    a: "Yes. Collection from the Nairobi counter at Gaberone Plaza runs Monday to Friday, 8:00 AM to 5:00 PM, and Saturday morning.",
+    long: "Eldoret customers collect from Veecam House for the Rift Valley corridor.",
+  },
+  {
+    q: "Do you handle county government and tender paperwork?",
+    a: "Yes. Quotations carry line item detail, warranty terms and delivery notes in a format procurement and audit can file.",
+    long: "Send the tender schedule and the technical desk prices it line by line against stock.",
+  },
+  {
+    q: "Do schools and colleges get help sizing a network?",
+    a: "Yes. Send block drawings or room counts and the desk returns a bill of materials with cabinet positions and switch counts.",
+    long: "Cabinet placement follows the 90 metre horizontal limit so every outlet certifies.",
+  },
+  {
+    q: "Is there volume pricing for integrators?",
+    a: "Yes. Trade tiers apply on volume and repeat accounts, quoted per line rather than as a blanket discount.",
+    long: "Ask for the tier when you send the list and the quotation shows the applied rate.",
+  },
+] as const;
 
 const DEEP = [
   {
@@ -186,6 +218,8 @@ function Industries() {
           </div>
         </Content>
       </Section>
+
+      <FaqBlock items={PAGE_FAQS} title="Questions from each type of buyer" />
 
       <CtaBand
         title="Require custom procurement documentation?"

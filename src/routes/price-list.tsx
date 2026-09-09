@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { FaqBlock } from "@/components/site/FaqBlock";
 import { QrCode, ShoppingCart, Truck, Wallet } from "lucide-react";
 import { COMPANY, SHOP_URL } from "@/lib/eca";
 import { FaqList } from "@/components/site/Faq";
@@ -33,10 +34,36 @@ export const Route = createFileRoute("/price-list")({
         content:
           "Items currently in stock at ECA Networks, ready for immediate purchase without quotation requirements.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://fluid-shine-flow.lovable.app/price-list" }],
   }),
   component: ReadilyAvailableItems,
 });
+
+const PAGE_FAQS = [
+  {
+    q: "What does readily available mean?",
+    a: "The item sits in the Nairobi store now and can be collected or dispatched without a quotation step.",
+    long: "Availability marks change as stock moves, so confirm large quantities by phone.",
+  },
+  {
+    q: "Can I buy without an account or an LPO?",
+    a: "Yes. Standard items are bought over the counter, by phone or through the online shop.",
+    long: "Accounts with LPO terms are set up for repeat corporate buyers.",
+  },
+  {
+    q: "Do prices include VAT?",
+    a: "Figures are quoted exclusive of VAT unless the quotation states otherwise.",
+    long: "The exported price sheet carries the same note.",
+  },
+  {
+    q: "What if the item I need is not in ready stock?",
+    a: "Send an enquiry and the desk confirms a lead time from suppliers before you commit.",
+    long: "Most special order lines land within the same week.",
+  },
+] as const;
 
 const ITEMS_WITHOUT_QUERY = [
   {
@@ -141,6 +168,8 @@ function ReadilyAvailableItems() {
           </div>
         </Reveal>
       </Section>
+
+      <FaqBlock items={PAGE_FAQS} title="Questions about ready stock" />
 
       <CtaBand
         title="Items available for immediate purchase"

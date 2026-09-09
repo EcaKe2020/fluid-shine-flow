@@ -15,6 +15,7 @@ import { Header } from "../components/site/Header";
 import { Footer } from "../components/site/Footer";
 import { FloatingActions } from "../components/site/FloatingActions";
 import { ThemeProvider } from "../components/site/theme";
+import { BusinessSchema } from "../components/site/BusinessSchema";
 
 function NotFoundComponent() {
   return (
@@ -139,7 +140,9 @@ function RootComponent() {
           </main>
           <Footer />
           <FloatingActions />
+          <BusinessSchema />
         </div>
+
       </ThemeProvider>
     </QueryClientProvider>
   );
