@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { FaqBlock } from "@/components/site/FaqBlock";
 import { QrCode, ShoppingCart, Truck, Wallet } from "lucide-react";
 import { COMPANY, SHOP_URL } from "@/lib/eca";
 import { FaqList } from "@/components/site/Faq";
 import { PriceTable } from "@/components/site/PriceTable";
 import {
-import { FaqBlock } from "@/components/site/FaqBlock";
   CtaBand,
   Eyebrow,
   Heading,

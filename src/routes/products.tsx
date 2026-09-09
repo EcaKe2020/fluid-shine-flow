@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { FaqBlock } from "@/components/site/FaqBlock";
 import { Download, FileText, ShoppingCart, Truck, Warehouse } from "lucide-react";
 import { ProductTable } from "@/components/site/ProductTable";
 import {
-import { FaqBlock } from "@/components/site/FaqBlock";
   CtaBand,
   Eyebrow,
   Heading,

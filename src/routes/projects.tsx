@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { FaqBlock } from "@/components/site/FaqBlock";
 import { ArrowRight, FolderGit2, GitCommitHorizontal, CheckCircle2 } from "lucide-react";
 import { CASE_STUDIES } from "@/lib/eca";
 import rack from "@/assets/rack.jpg";
 import splicing from "@/assets/splicing.jpg";
 import {
-import { FaqBlock } from "@/components/site/FaqBlock";
   CtaBand,
   Section,
   Content,

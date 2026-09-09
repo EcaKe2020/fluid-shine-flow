@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { FaqBlock } from "@/components/site/FaqBlock";
 import { 
   ArrowUpRight, 
   CheckCircle2, 
@@ -12,7 +13,6 @@ import {
 import rack from "@/assets/rack.jpg";
 import { SOLUTIONS } from "@/lib/eca";
 import {
-import { FaqBlock } from "@/components/site/FaqBlock";
   CtaBand,
   Eyebrow,
   Heading,

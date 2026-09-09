@@ -1,9 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { FaqBlock } from "@/components/site/FaqBlock";
 import { useMemo, useState } from "react";
 import { Cable, Calculator, Copy, ArrowRight, Wrench } from "lucide-react";
 import { toast } from "sonner";
 import {
-import { FaqBlock } from "@/components/site/FaqBlock";
   CtaBand,
   Section,
   Content,

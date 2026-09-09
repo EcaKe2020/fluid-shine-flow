@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { FaqBlock } from "@/components/site/FaqBlock";
 import { CheckCircle2, Building2, ArrowRight } from "lucide-react";
 import { INDUSTRIES } from "@/lib/eca";
 import {
-import { FaqBlock } from "@/components/site/FaqBlock";
   CtaBand,
   Section,
   Content,
