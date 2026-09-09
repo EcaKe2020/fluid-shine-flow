@@ -29,7 +29,10 @@ export const Route = createFileRoute("/team")({
         content:
           "Meet the team behind ECA Networks' operations in Nairobi and learn about career opportunities.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://fluid-shine-flow.lovable.app/team" }],
   }),
   component: Team,
 });

@@ -29,7 +29,10 @@ export const Route = createFileRoute("/services")({
         content:
           "The support that ships with the hardware: specification review, BOM checking, configuration guidance, warranty handling and training.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://fluid-shine-flow.lovable.app/services" }],
   }),
   component: Services,
 });

@@ -23,7 +23,10 @@ export const Route = createFileRoute("/tools")({
         content:
           "Size a cabling bill of materials and select a fibre cable type in seconds, then send the result to the quotation desk.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://fluid-shine-flow.lovable.app/tools" }],
   }),
   component: Tools,
 });

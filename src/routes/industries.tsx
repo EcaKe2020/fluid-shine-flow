@@ -22,7 +22,10 @@ export const Route = createFileRoute("/industries")({
         content:
           "Supply patterns, documentation and support tuned to how each type of Kenyan network buyer orders.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://fluid-shine-flow.lovable.app/industries" }],
   }),
   component: Industries,
 });

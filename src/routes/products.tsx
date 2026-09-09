@@ -30,7 +30,10 @@ export const Route = createFileRoute("/products")({
         content:
           "Complete product catalogue of networking equipment, fibre optic cabling, connectivity hardware and tools available from ECA Networks Kenya.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://fluid-shine-flow.lovable.app/products" }],
   }),
   component: ProductsPage,
 });

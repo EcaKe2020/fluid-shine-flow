@@ -33,7 +33,10 @@ export const Route = createFileRoute("/price-list")({
         content:
           "Items currently in stock at ECA Networks, ready for immediate purchase without quotation requirements.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://fluid-shine-flow.lovable.app/price-list" }],
   }),
   component: ReadilyAvailableItems,
 });

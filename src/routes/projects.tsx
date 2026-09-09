@@ -24,7 +24,10 @@ export const Route = createFileRoute("/projects")({
         content:
           "Project types ECA Networks supplies, the supply workflow behind them and how completed case studies get published once clients approve.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://fluid-shine-flow.lovable.app/projects" }],
   }),
   component: Projects,
 });

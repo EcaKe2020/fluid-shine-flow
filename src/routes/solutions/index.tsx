@@ -41,7 +41,10 @@ export const Route = createFileRoute("/solutions/")({
         content:
           "Fibre optic, structured cabling, networking and ISP hardware, CCTV and PABX, supplied and supported from Nairobi.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://fluid-shine-flow.lovable.app/solutions" }],
   }),
   component: SolutionsHub,
 });

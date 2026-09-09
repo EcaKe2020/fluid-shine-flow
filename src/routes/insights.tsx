@@ -23,7 +23,10 @@ export const Route = createFileRoute("/insights")({
         content:
           "Short technical explainers written for installers and procurement teams working on Kenyan network infrastructure.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://fluid-shine-flow.lovable.app/insights" }],
   }),
   component: Insights,
 });

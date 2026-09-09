@@ -31,7 +31,10 @@ export const Route = createFileRoute("/contact")({
         content:
           "Phone, WhatsApp, email and counter details for both ECA Networks branches, plus a lean request for quotation form built around what the desk needs to price a job.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://fluid-shine-flow.lovable.app/contact" }],
   }),
   component: Contact,
 });
