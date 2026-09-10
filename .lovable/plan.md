@@ -18,7 +18,7 @@
 
 ## Technical details
 
-- Keep TanStack file-based routing and add the blog detail route before linking to it.
+- Follow the project's updated routing structure rather than preserving the previous file-based setup, and use `npm run build` for verification.
 - Consolidate article data into one shared module so index pages, detail pages, and structured data use one source.
 - Use semantic light-only color tokens in the global stylesheet; remove the dark variant and theme provider.
 - Validate the homepage, products page, insights index, and an article page in the browser on desktop and mobile, then confirm the latest preview build is clean.
