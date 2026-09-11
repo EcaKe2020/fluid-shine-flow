@@ -14,7 +14,6 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header } from "../components/site/Header";
 import { Footer } from "../components/site/Footer";
 import { FloatingActions } from "../components/site/FloatingActions";
-import { ThemeProvider } from "../components/site/theme";
 import { BusinessSchema } from "../components/site/BusinessSchema";
 
 function NotFoundComponent() {
@@ -131,8 +130,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider>
-        <div className="flex min-h-screen flex-col">
+      <div className="flex min-h-screen flex-col">
           <Header />
           <main className="flex-1">
             {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
@@ -141,9 +139,7 @@ function RootComponent() {
           <Footer />
           <FloatingActions />
           <BusinessSchema />
-        </div>
-
-      </ThemeProvider>
+      </div>
     </QueryClientProvider>
   );
 }

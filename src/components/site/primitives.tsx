@@ -369,8 +369,6 @@ export function Jsonld({ data }: { data: Record<string, unknown> }) {
   return <script type="application/ld+json">{JSON.stringify(data)}</script>;
 }
 
-export { PriceTable } from "./PriceTable";
-
 interface TeamMember {
   name: string;
   title: string;

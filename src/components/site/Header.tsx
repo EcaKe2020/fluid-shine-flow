@@ -3,7 +3,6 @@ import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import logo from "@/assets/logo.png";
 import { COMPANY } from "@/lib/eca";
-import { ThemeToggle } from "@/components/site/theme";
 
 const LEFT_NAV = [
   { to: "/solutions", label: "Solutions" },
@@ -99,7 +98,6 @@ export function Header() {
             {item.label}
           </Link>
         ))}
-        <ThemeToggle className={!scrolled && isHome ? "text-white" : ""} />
       </nav>
 
       {/* Mobile menu button */}

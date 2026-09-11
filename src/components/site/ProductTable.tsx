@@ -10,8 +10,8 @@ import {
   ChevronLeft,
   ChevronRight,
   Download,
-  FileText,
 } from "lucide-react";
+import { jsPDF } from "jspdf";
 import { PRODUCT_CATEGORIES, PRODUCT_ROWS, type ProductRow } from "@/lib/products";
 
 type SortDirection = "asc" | "desc" | null;
@@ -84,59 +84,51 @@ export function ProductTable({ className = "" }: ProductTableProps) {
     );
   };
 
-  const statusColors: Record<string, string> = {
-    "In stock": "bg-primary/15 text-primary",
-    "Low stock": "bg-warning/15 text-warning",
-    "On order": "bg-muted text-muted-foreground",
-  };
-
   const generatePDF = () => {
-    const doc = {
-      content: [
-        { text: "ECA Networks - Product Catalogue", style: "header", alignment: "center" },
-        { text: `Generated on ${new Date().toLocaleDateString("en-GB")}`, style: "subheader", alignment: "center", margin: [0, 0, 0, 20] },
-        {
-          table: {
-            headerRows: 1,
-            widths: ["auto", "*", "auto", "auto", "auto"],
-            body: [
-              [
-                { text: "SKU", style: "tableHeader" },
-                { text: "Product", style: "tableHeader" },
-                { text: "Category", style: "tableHeader" },
-                { text: "Unit", style: "tableHeader" },
-                { text: "Status", style: "tableHeader" },
-              ],
-              ...filteredAndSortedRows.map((row) => [
-                { text: row.sku, style: "tableCell" },
-                { text: row.name, style: "tableCell" },
-                { text: row.category, style: "tableCell" },
-                { text: row.unit, style: "tableCell" },
-                { text: row.status, style: "tableCell" },
-              ]),
-            ],
-          },
-          layout: "lightHorizontalLines",
-        },
-        { text: "\n\nPrices available on request. Contact our technical desk for a quotation.", style: "footer", alignment: "center", margin: [0, 20, 0, 0] },
-      ],
-      styles: {
-        header: { fontSize: 18, bold: true, color: "#0e5a7d" },
-        subheader: { fontSize: 10, color: "#666" },
-        tableHeader: { bold: true, fontSize: 9, fillColor: "#f0f4f8", color: "#1e293b" },
-        tableCell: { fontSize: 8, color: "#1e293b" },
-        footer: { fontSize: 9, color: "#666", italic: true },
-      },
-      defaultStyle: { font: "Helvetica" },
+    const doc = new jsPDF({ unit: "mm", format: "a4" });
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const margin = 14;
+    let y = 24;
+
+    const header = () => {
+      doc.setFont("helvetica", "bold");
+      doc.setTextColor(14, 90, 125);
+      doc.setFontSize(17);
+      doc.text("ECA Networks Product Catalogue", margin, 15);
+      doc.setDrawColor(232, 118, 34);
+      doc.setLineWidth(1);
+      doc.line(margin, 19, pageWidth - margin, 19);
+      doc.setTextColor(70, 86, 102);
+      doc.setFontSize(8);
+      doc.setFont("helvetica", "normal");
     };
 
-    const blob = new Blob([JSON.stringify(doc)], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `eca-networks-product-catalogue-${new Date().toISOString().split("T")[0]}.json`;
-    a.click();
-    URL.revokeObjectURL(url);
+    header();
+    filteredAndSortedRows.forEach((row, index) => {
+      const nameLines = doc.splitTextToSize(row.name, 93) as string[];
+      const rowHeight = Math.max(8, nameLines.length * 4.2 + 2);
+      if (y + rowHeight > pageHeight - 16) {
+        doc.addPage();
+        header();
+        y = 24;
+      }
+      if (index % 2 === 0) {
+        doc.setFillColor(246, 248, 250);
+        doc.rect(margin, y - 4, pageWidth - margin * 2, rowHeight, "F");
+      }
+      doc.setTextColor(22, 50, 79);
+      doc.text(row.sku, margin + 2, y);
+      doc.text(nameLines, margin + 27, y);
+      doc.setTextColor(91, 113, 134);
+      doc.text(row.category, margin + 122, y);
+      doc.text("In stock", pageWidth - margin - 2, y, { align: "right" });
+      y += rowHeight;
+    });
+    doc.setFontSize(8);
+    doc.setTextColor(91, 113, 134);
+    doc.text("Prices are supplied by quotation. Stock shown as confirmed by ECA Networks.", margin, pageHeight - 8);
+    doc.save(`eca-networks-catalogue-${new Date().toISOString().slice(0, 10)}.pdf`);
   };
 
   return (
@@ -252,7 +244,7 @@ export function ProductTable({ className = "" }: ProductTableProps) {
                   <td className="px-4 py-3 text-sm text-muted-foreground">{row.unit}</td>
                   <td className="px-4 py-3">
                     <span
-                      className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium ${statusColors[row.status] ?? ""}`}
+                      className="inline-flex items-center rounded-full bg-primary/15 px-2.5 py-1 text-xs font-medium text-primary"
                     >
                       {row.status}
                     </span>
