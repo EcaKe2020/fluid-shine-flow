@@ -12,7 +12,8 @@ import {
 
 export function Footer() {
   return (
-    <footer className="site-footer relative overflow-hidden bg-background pb-12 pt-20 border-t border-border/80">
+    <footer className="site-footer relative overflow-hidden bg-background pb-12 pt-24">
+      <div className="footer-wash" aria-hidden="true" />
       <div className="section-pad relative z-10">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5 content-left">
           {/* Brand & Warehouse Desk */}
