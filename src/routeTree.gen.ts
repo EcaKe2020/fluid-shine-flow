@@ -24,6 +24,7 @@ import { Route as ServicesRouteImport } from './routes/services'
 import { Route as TeamRouteImport } from './routes/team'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as ToolsRouteImport } from './routes/tools'
+import { Route as InsightsSlugRouteImport } from './routes/insights/$slug'
 import { Route as SolutionsIndexRouteImport } from './routes/solutions/index'
 import { Route as SolutionsSlugRouteImport } from './routes/solutions/$slug'
 
@@ -102,6 +103,11 @@ const ToolsRoute = ToolsRouteImport.update({
   path: '/tools',
   getParentRoute: () => rootRouteImport,
 } as any)
+const InsightsSlugRoute = InsightsSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => InsightsRoute,
+} as any)
 const SolutionsIndexRoute = SolutionsIndexRouteImport.update({
   id: '/solutions/',
   path: '/solutions/',
@@ -120,7 +126,7 @@ export interface FileRoutesByFullPath {
   '/cookies': typeof CookiesRoute
   '/esg': typeof EsgRoute
   '/industries': typeof IndustriesRoute
-  '/insights': typeof InsightsRoute
+  '/insights': typeof InsightsRouteWithChildren
   '/price-list': typeof PriceListRoute
   '/privacy': typeof PrivacyRoute
   '/products': typeof ProductsRoute
@@ -129,6 +135,7 @@ export interface FileRoutesByFullPath {
   '/team': typeof TeamRoute
   '/terms': typeof TermsRoute
   '/tools': typeof ToolsRoute
+  '/insights/$slug': typeof InsightsSlugRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/solutions/': typeof SolutionsIndexRoute
 }
@@ -139,7 +146,7 @@ export interface FileRoutesByTo {
   '/cookies': typeof CookiesRoute
   '/esg': typeof EsgRoute
   '/industries': typeof IndustriesRoute
-  '/insights': typeof InsightsRoute
+  '/insights': typeof InsightsRouteWithChildren
   '/price-list': typeof PriceListRoute
   '/privacy': typeof PrivacyRoute
   '/products': typeof ProductsRoute
@@ -148,6 +155,7 @@ export interface FileRoutesByTo {
   '/team': typeof TeamRoute
   '/terms': typeof TermsRoute
   '/tools': typeof ToolsRoute
+  '/insights/$slug': typeof InsightsSlugRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/solutions': typeof SolutionsIndexRoute
 }
@@ -159,7 +167,7 @@ export interface FileRoutesById {
   '/cookies': typeof CookiesRoute
   '/esg': typeof EsgRoute
   '/industries': typeof IndustriesRoute
-  '/insights': typeof InsightsRoute
+  '/insights': typeof InsightsRouteWithChildren
   '/price-list': typeof PriceListRoute
   '/privacy': typeof PrivacyRoute
   '/products': typeof ProductsRoute
@@ -168,6 +176,7 @@ export interface FileRoutesById {
   '/team': typeof TeamRoute
   '/terms': typeof TermsRoute
   '/tools': typeof ToolsRoute
+  '/insights/$slug': typeof InsightsSlugRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/solutions/': typeof SolutionsIndexRoute
 }
@@ -189,6 +198,7 @@ export interface FileRouteTypes {
     | '/team'
     | '/terms'
     | '/tools'
+    | '/insights/$slug'
     | '/solutions/$slug'
     | '/solutions/'
   fileRoutesByTo: FileRoutesByTo
@@ -208,6 +218,7 @@ export interface FileRouteTypes {
     | '/team'
     | '/terms'
     | '/tools'
+    | '/insights/$slug'
     | '/solutions/$slug'
     | '/solutions'
   id:
@@ -227,6 +238,7 @@ export interface FileRouteTypes {
     | '/team'
     | '/terms'
     | '/tools'
+    | '/insights/$slug'
     | '/solutions/$slug'
     | '/solutions/'
   fileRoutesById: FileRoutesById
@@ -238,7 +250,7 @@ export interface RootRouteChildren {
   CookiesRoute: typeof CookiesRoute
   EsgRoute: typeof EsgRoute
   IndustriesRoute: typeof IndustriesRoute
-  InsightsRoute: typeof InsightsRoute
+  InsightsRoute: typeof InsightsRouteWithChildren
   PriceListRoute: typeof PriceListRoute
   PrivacyRoute: typeof PrivacyRoute
   ProductsRoute: typeof ProductsRoute
@@ -358,6 +370,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ToolsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/insights/$slug': {
+      id: '/insights/$slug'
+      path: '/$slug'
+      fullPath: '/insights/$slug'
+      preLoaderRoute: typeof InsightsSlugRouteImport
+      parentRoute: typeof InsightsRoute
+    }
     '/solutions/': {
       id: '/solutions/'
       path: '/solutions'
@@ -375,6 +394,18 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface InsightsRouteChildren {
+  InsightsSlugRoute: typeof InsightsSlugRoute
+}
+
+const InsightsRouteChildren: InsightsRouteChildren = {
+  InsightsSlugRoute: InsightsSlugRoute,
+}
+
+const InsightsRouteWithChildren = InsightsRoute._addFileChildren(
+  InsightsRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
@@ -382,7 +413,7 @@ const rootRouteChildren: RootRouteChildren = {
   CookiesRoute: CookiesRoute,
   EsgRoute: EsgRoute,
   IndustriesRoute: IndustriesRoute,
-  InsightsRoute: InsightsRoute,
+  InsightsRoute: InsightsRouteWithChildren,
   PriceListRoute: PriceListRoute,
   PrivacyRoute: PrivacyRoute,
   ProductsRoute: ProductsRoute,
