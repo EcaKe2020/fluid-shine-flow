@@ -58,7 +58,7 @@ export function Header() {
       }`}
     >
       {/* Left navigation */}
-      <nav className="flex items-center gap-6" aria-label="Primary navigation">
+      <nav className="hidden items-center gap-6 lg:flex" aria-label="Primary navigation">
         {LEFT_NAV.map((item) => (
           <Link
             key={item.to}
@@ -87,7 +87,7 @@ export function Header() {
       </Link>
 
       {/* Right navigation */}
-      <nav className="ml-auto flex items-center gap-6" aria-label="Secondary navigation">
+      <nav className="ml-auto hidden items-center gap-6 lg:flex" aria-label="Secondary navigation">
         {RIGHT_NAV.map((item) => (
           <Link
             key={item.to}

@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { BookOpen, ArrowRight, FileText } from "lucide-react";
 import { FaqList } from "@/components/site/Faq";
+import { ARTICLES } from "@/lib/articles";
 import {
   CtaBand,
   Jsonld,
@@ -31,51 +32,6 @@ export const Route = createFileRoute("/insights")({
   component: Insights,
 });
 
-const ARTICLES = [
-  {
-    title: "Choosing an ADSS span rating without guessing",
-    read: "4 min read",
-    answer:
-      "Measure the longest pole to pole distance on the route, then specify the next rating above it. A 100 metre span cable on a 120 metre gap sags into traffic and fails in the first storm season.",
-    body: "Wind loading and ice are not the problem in most of Kenya, but temperature cycling and vegetation are. Add clearance for future growth along the route and specify the fittings to match the rating rather than mixing hardware grades.",
-  },
-  {
-    title: "Sizing a PoE budget so cameras do not brown out",
-    read: "3 min read",
-    answer:
-      "Add the wattage of every powered device, add roughly twenty percent headroom, then choose a switch whose total PoE budget exceeds that figure. Port count alone tells you nothing about power.",
-    body: "A sixteen port switch with a 120 watt budget cannot run sixteen pan tilt zoom cameras. Check whether devices need 802.3af, 802.3at or 802.3bt, and remember heaters and illuminators draw power at night when nobody is watching the graph.",
-  },
-  {
-    title: "Why the 90 metre rule decides your cabinet positions",
-    read: "3 min read",
-    answer:
-      "Horizontal copper runs stop at 90 metres of permanent link, with 10 metres left for patch cords. Cabinet placement follows that limit, not the tidiest cupboard on the floor plan.",
-    body: "Where a building is longer than the rule allows, link cabinets with fibre and keep copper local. Certification results should be recorded per outlet so a future fault is a lookup rather than an investigation.",
-  },
-  {
-    title: "Calculating recorder storage before buying disks",
-    read: "4 min read",
-    answer:
-      "Multiply the stream bitrate by the number of cameras, by the hours recorded daily, by the retention days. Convert to terabytes and add a margin for motion spikes and firmware overhead.",
-    body: "Two identical camera counts can differ fourfold in storage because of resolution, frame rate and codec. Decide the retention policy first, since thirty days changes the array while seven days often fits a single drive.",
-  },
-  {
-    title: "Single mode or multimode for a campus backbone",
-    read: "3 min read",
-    answer:
-      "Single mode for anything leaving a building or likely to be upgraded. Multimode only for short, fixed runs inside one structure where the optics are already on hand.",
-    body: "Single mode optics have narrowed in price and the cable is not the expensive part of the job. Trenching twice because the backbone could not carry a future upgrade is the expensive part.",
-  },
-  {
-    title: "Consumables that stall installations",
-    read: "2 min read",
-    answer:
-      "Splice protection sleeves, cleaning tools, cable ties, labels, patch cords in the right length and spare connectors. Every one of them is cheap and every one of them stops a crew.",
-    body: "Build the consumable list at the same time as the hardware list. A team idle for a day waiting on sleeves costs more than a full box of them.",
-  },
-];
-
 const CATEGORIES = [
   {
     name: "Technical guides",
@@ -93,15 +49,6 @@ const CATEGORIES = [
     name: "Industry updates",
     body: "Kenyan fibre rollouts, licensing shifts and hardware supply changes worth planning around.",
   },
-] as const;
-
-const ARTICLE_CATEGORY = [
-  "Technical guides",
-  "Technical guides",
-  "Technical guides",
-  "Technical guides",
-  "Procurement guides",
-  "Procurement guides",
 ] as const;
 
 const FAQS = [
@@ -199,11 +146,11 @@ function Insights() {
           </div>
 
           <div className="grid lg:grid-cols-2 gap-x-12 gap-y-16">
-            {ARTICLES.map((a, i) => (
-              <div key={a.title} className="border-t border-border/80 pt-6">
+            {ARTICLES.map((a) => (
+              <article key={a.slug} className="border-t border-border/80 pt-6">
                 <div className="flex items-center justify-between mb-3">
                   <span className="text-xs font-bold uppercase tracking-wider text-primary">
-                    {ARTICLE_CATEGORY[i] ?? "Technical guides"}
+                    {a.category}
                   </span>
                   <span className="font-mono text-xs text-muted-foreground">{a.read}</span>
                 </div>
@@ -213,10 +160,11 @@ function Insights() {
                     {a.answer}
                   </p>
                 </div>
-                <p className="text-sm leading-relaxed text-muted-foreground">
-                  {a.body}
-                </p>
-              </div>
+                <p className="text-sm leading-relaxed text-muted-foreground">{a.intro}</p>
+                <Link to="/insights/$slug" params={{ slug: a.slug }} className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-foreground">
+                  Read article <ArrowRight className="size-4" />
+                </Link>
+              </article>
             ))}
           </div>
         </Content>
