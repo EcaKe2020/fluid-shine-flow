@@ -16,7 +16,6 @@ import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as EsgRouteImport } from './routes/esg'
 import { Route as IndustriesRouteImport } from './routes/industries'
 import { Route as InsightsRouteImport } from './routes/insights'
-import { Route as PriceListRouteImport } from './routes/price-list'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ProductsRouteImport } from './routes/products'
 import { Route as ProjectsRouteImport } from './routes/projects'
@@ -61,11 +60,6 @@ const IndustriesRoute = IndustriesRouteImport.update({
 const InsightsRoute = InsightsRouteImport.update({
   id: '/insights',
   path: '/insights',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PriceListRoute = PriceListRouteImport.update({
-  id: '/price-list',
-  path: '/price-list',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyRoute = PrivacyRouteImport.update({
@@ -127,7 +121,6 @@ export interface FileRoutesByFullPath {
   '/esg': typeof EsgRoute
   '/industries': typeof IndustriesRoute
   '/insights': typeof InsightsRouteWithChildren
-  '/price-list': typeof PriceListRoute
   '/privacy': typeof PrivacyRoute
   '/products': typeof ProductsRoute
   '/projects': typeof ProjectsRoute
@@ -147,7 +140,6 @@ export interface FileRoutesByTo {
   '/esg': typeof EsgRoute
   '/industries': typeof IndustriesRoute
   '/insights': typeof InsightsRouteWithChildren
-  '/price-list': typeof PriceListRoute
   '/privacy': typeof PrivacyRoute
   '/products': typeof ProductsRoute
   '/projects': typeof ProjectsRoute
@@ -168,7 +160,6 @@ export interface FileRoutesById {
   '/esg': typeof EsgRoute
   '/industries': typeof IndustriesRoute
   '/insights': typeof InsightsRouteWithChildren
-  '/price-list': typeof PriceListRoute
   '/privacy': typeof PrivacyRoute
   '/products': typeof ProductsRoute
   '/projects': typeof ProjectsRoute
@@ -190,7 +181,6 @@ export interface FileRouteTypes {
     | '/esg'
     | '/industries'
     | '/insights'
-    | '/price-list'
     | '/privacy'
     | '/products'
     | '/projects'
@@ -210,7 +200,6 @@ export interface FileRouteTypes {
     | '/esg'
     | '/industries'
     | '/insights'
-    | '/price-list'
     | '/privacy'
     | '/products'
     | '/projects'
@@ -230,7 +219,6 @@ export interface FileRouteTypes {
     | '/esg'
     | '/industries'
     | '/insights'
-    | '/price-list'
     | '/privacy'
     | '/products'
     | '/projects'
@@ -251,7 +239,6 @@ export interface RootRouteChildren {
   EsgRoute: typeof EsgRoute
   IndustriesRoute: typeof IndustriesRoute
   InsightsRoute: typeof InsightsRouteWithChildren
-  PriceListRoute: typeof PriceListRoute
   PrivacyRoute: typeof PrivacyRoute
   ProductsRoute: typeof ProductsRoute
   ProjectsRoute: typeof ProjectsRoute
@@ -312,13 +299,6 @@ declare module '@tanstack/react-router' {
       path: '/insights'
       fullPath: '/insights'
       preLoaderRoute: typeof InsightsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/price-list': {
-      id: '/price-list'
-      path: '/price-list'
-      fullPath: '/price-list'
-      preLoaderRoute: typeof PriceListRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy': {
@@ -414,7 +394,6 @@ const rootRouteChildren: RootRouteChildren = {
   EsgRoute: EsgRoute,
   IndustriesRoute: IndustriesRoute,
   InsightsRoute: InsightsRouteWithChildren,
-  PriceListRoute: PriceListRoute,
   PrivacyRoute: PrivacyRoute,
   ProductsRoute: ProductsRoute,
   ProjectsRoute: ProjectsRoute,
