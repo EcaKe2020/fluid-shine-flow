@@ -40,7 +40,7 @@ const SECTIONS = [
   },
   {
     title: "Cookies and analytics",
-    body: "The site uses only what is needed to remember your light or dark theme preference and to understand aggregate traffic. No advertising profiles are built from your visit.",
+    body: "The site uses basic browser storage and aggregate traffic data only where needed to operate and improve the service. No advertising profiles are built from your visit.",
   },
   {
     title: "Data retention and access",

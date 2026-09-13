@@ -9,7 +9,7 @@ export const Route = createFileRoute("/cookies")({
       {
         name: "description",
         content:
-          "What ECA Networks stores in your browser, why the theme preference is kept locally, how store referral tags work and how to clear or block cookies.",
+          "What ECA Networks stores in your browser, how store referral tags work and how to clear or block cookies.",
       },
       { property: "og:title", content: "Cookie Policy | ECA Networks" },
       {
@@ -28,7 +28,7 @@ export const Route = createFileRoute("/cookies")({
 const ITEMS = [
   {
     title: "What we set",
-    body: "This site keeps a single local preference: the light or dark theme you pick with the toggle. It stays in your browser, it is not sent to us and it carries no identifier.",
+    body: "This brochure and quotation site does not set an advertising profile or use browser storage to identify you across other websites.",
   },
   {
     title: "Referral tags to the store",
@@ -44,7 +44,7 @@ const ITEMS = [
   },
   {
     title: "Clearing or blocking",
-    body: "Every browser lets you clear site data or block storage per site. Blocking it here only means the theme resets to your system setting on the next visit.",
+    body: "Every browser lets you clear site data or block storage per site. Core pages and contact details remain available when optional storage is blocked.",
   },
   {
     title: "Questions",
