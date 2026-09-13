@@ -349,7 +349,7 @@ function SolutionPage() {
                         key={i}
                         className="flex gap-4 text-sm leading-relaxed text-muted-foreground"
                       >
-                        <span className="ink-fill grid size-7 shrink-0 place-items-center rounded-full text-xs font-semibold text-primary-foreground dark:text-background">
+                        <span className="ink-fill grid size-7 shrink-0 place-items-center rounded-full text-xs font-semibold text-primary-foreground">
                           {i + 1}
                         </span>
                         {item}
